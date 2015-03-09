@@ -19,6 +19,10 @@
 NSMutableArray *_cars;    CCTime mytime;
     float timesliceformovewment;
     CCNodeColor *bus;
+       float timeSinceObstacle;
+    int count;
+    int xcoord;
+    int num;
     int totalTime;
     CGFloat widthBoundary;//
     CGFloat heightBoundary;
@@ -49,8 +53,10 @@ NSMutableArray *_cars;    CCTime mytime;
     scoreLabel =[[CCLabelTTF alloc]initWithString:@"Score: 0" fontName:@"Hello" fontSize:15];
     distLabel =[[CCLabelTTF alloc]initWithString:@"Dist: 0" fontName:@"Hello" fontSize:15];
     CGSize windowSize= [[CCDirector sharedDirector] viewSize];
-    label.position= ccp(windowSize.width/2, windowSize.height/2);
-    label2.position= ccp(windowSize.width/2, windowSize.height/2-50);
+  //  label.position= ccp(windowSize.width/2, windowSize.height/2);
+  //  label2.position= ccp(windowSize.width/2, windowSize.height/2-50);
+   // label.position= ccp(windowSize.width/2, windowSize.height/2);
+  //  label2.position= ccp(windowSize.width/2, windowSize.height/2-50);
     scoreLabel.position= ccp(windowSize.width-50,windowSize.height-10);
     distLabel.position= ccp(windowSize.width-50,windowSize.height-35);
     bus.position=ccp(windowSize.width/2, 0);
@@ -59,8 +65,11 @@ NSMutableArray *_cars;    CCTime mytime;
     window = windowSize;
     [self addChild:scoreLabel];
     [self addChild:distLabel];
-    [self addChild:label];
-    [self addChild:label2];
+//    [self addChild:label];
+ //   [self addChild:label2];
+    
+//    [self addChild:label];
+//    [self addChild:label2];
     [self addChild:bus];
     
     
