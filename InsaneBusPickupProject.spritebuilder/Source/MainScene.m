@@ -10,14 +10,13 @@
     //hi swapnil here
     //added comment in xcode by stephen
     //comment added by varsha
-    
+    #define foo4random() (arc4random() % ((unsigned)RAND_MAX + 1))
     CCNode *_road1;
     CCNode *_road2;
     CCNode *_car1;
     NSArray *_roads;
     CGPoint velocity;
-    NSArray *_cars;
-    CCTime mytime;
+NSMutableArray *_cars;    CCTime mytime;
     float timesliceformovewment;
     CCNodeColor *bus;
     int totalTime;
@@ -42,10 +41,10 @@
     
     //done by Frank
     _roads= @[_road1,_road2];
-   // _cars=@[_car1];
+    _cars= [[NSMutableArray alloc]init];
   
-    label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
-    label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
+   // label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
+   // label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
     scoreLabel =[[CCLabelTTF alloc]initWithString:@"Score: 0" fontName:@"Hello" fontSize:15];
     distLabel =[[CCLabelTTF alloc]initWithString:@"Dist: 0" fontName:@"Hello" fontSize:15];
@@ -136,7 +135,7 @@
  */
 
              
-             
+#pragma mark update function
              
 - (void)update:(CCTime)delta
 {
@@ -174,18 +173,61 @@
         }
     }
     
+    timeSinceObstacle += delta; // delta is approximately 1/60th of a second
+    
+    // Check to see if two seconds have passed
+    
+    int minimum=50;
+    int div=201;
+    
+    if (timeSinceObstacle >2.0f)
+    {
+        // Add a new obstacle
+        
+        
+        CCSprite * newCar= [[CCSprite alloc]initWithImageNamed:@"carimage.png"];
+        //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
+
+        newCar.scale=0.3;
+        num=foo4random();
+        xcoord=minimum+(num%div);
+        newCar.position=ccp(xcoord,620);
+        //newStudent.position=ccp(xcoord,500);
+        [self addChild:newCar];
+        [_cars addObject:newCar];
+        //[self addChild:newStudent];
+        //[_students addObject:newStudent];
+        count++;
+        // Then reset the timer.
+        timeSinceObstacle = 0.0f;
+    }
+    
+    
+    // Find the things to remove
+    NSMutableArray *toDelete = [NSMutableArray array];
+    
+    
     for (CCNode *car1 in _cars) {
         
-        car1.position = ccp(car1.position.x, car1.position.y - (1*3));
+        car1.position = ccp(car1.position.x, car1.position.y - (1.5));
+        
+        if (car1.position.y<-200) {
+            
+            [toDelete addObject:car1];
+        }
+        
+
     }
+    
+    [_cars removeObjectsInArray:toDelete];
     
 
     
     
     CMDeviceMotion *currentDeviceMotion= motionManager.deviceMotion;
     CMAttitude *currentAttitude= currentDeviceMotion.attitude;
-    [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
-                       label.rotation= CC_RADIANS_TO_DEGREES(currentAttitude.roll);
+   // [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
+  //                     label.rotation= CC_RADIANS_TO_DEGREES(currentAttitude.roll);
     
     
     if (currentAttitude.roll>0.045 ) {
