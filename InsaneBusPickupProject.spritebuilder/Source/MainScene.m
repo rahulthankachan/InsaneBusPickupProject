@@ -152,6 +152,8 @@ NSMutableArray *_cars;    CCTime mytime;
         
         CCSprite * newCar= [[CCSprite alloc]initWithImageNamed:@"carimage.png"];
         //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
+
+        newCar.scale=0.3;
         num=foo4random();
         xcoord=minimum+(num%div);
         newCar.position=ccp(xcoord,620);
