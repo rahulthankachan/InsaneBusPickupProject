@@ -10,17 +10,19 @@
     //hi swapnil here
     //added comment in xcode by stephen
     //comment added by varsha
-    
+    #define foo4random() (arc4random() % ((unsigned)RAND_MAX + 1))
     CCNode *_road1;
     CCNode *_road2;
     CCNode *_car1;
     NSArray *_roads;
     CGPoint velocity;
-    NSArray *_cars;
-    CCTime mytime;
+NSMutableArray *_cars;    CCTime mytime;
     float timesliceformovewment;
     CCNodeColor *bus;
-    
+       float timeSinceObstacle;
+    int count;
+    int xcoord;
+    int num;
     CGFloat widthBoundary;//
     CGFloat heightBoundary;
     CGFloat roadVelocity;
@@ -32,7 +34,7 @@
     
     //done by Frank
     _roads= @[_road1,_road2];
-   // _cars=@[_car1];
+    _cars= [[NSMutableArray alloc]init];
   
     label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
@@ -136,10 +138,47 @@
         }
     }
     
+    timeSinceObstacle += delta; // delta is approximately 1/60th of a second
+    
+    // Check to see if two seconds have passed
+    
+    int minimum=50;
+    int div=201;
+    
+    if (timeSinceObstacle >2.0f)
+    {
+        // Add a new obstacle
+        
+        
+        CCSprite * newCar= [[CCSprite alloc]initWithImageNamed:@"carimage.png"];
+        //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
+        num=foo4random();
+        xcoord=minimum+(num%div);
+        newCar.position=ccp(xcoord,620);
+        //newStudent.position=ccp(xcoord,500);
+        [self addChild:newCar];
+        [_cars addObject:newCar];
+        //[self addChild:newStudent];
+        //[_students addObject:newStudent];
+        count++;
+        // Then reset the timer.
+        timeSinceObstacle = 0.0f;
+    }
+    
     for (CCNode *car1 in _cars) {
         
-        car1.position = ccp(car1.position.x, car1.position.y - (1*3));
+        car1.position = ccp(car1.position.x, car1.position.y - (3));
+        if(car1.position.y==0)
+        {
+            if(count==10)
+            {
+                
+                [_cars removeAllObjects];
+                count=0;
+            }
+        }
     }
+
     
 
     
