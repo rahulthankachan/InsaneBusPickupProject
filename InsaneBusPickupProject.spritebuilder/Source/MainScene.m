@@ -36,21 +36,21 @@ NSMutableArray *_cars;    CCTime mytime;
     _roads= @[_road1,_road2];
     _cars= [[NSMutableArray alloc]init];
   
-    label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
-    label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
+   // label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
+   // label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
     
     
     CGSize windowSize= [[CCDirector sharedDirector] viewSize];
-    label.position= ccp(windowSize.width/2, windowSize.height/2);
-    label2.position= ccp(windowSize.width/2, windowSize.height/2-50);
+  //  label.position= ccp(windowSize.width/2, windowSize.height/2);
+  //  label2.position= ccp(windowSize.width/2, windowSize.height/2-50);
     bus.position=ccp(windowSize.width/2, 0);
     
     //bus.position=ccp(0, 0);
     window = windowSize;
     
-    [self addChild:label];
-    [self addChild:label2];
+//    [self addChild:label];
+//    [self addChild:label2];
     [self addChild:bus];
     
     
@@ -125,7 +125,7 @@ NSMutableArray *_cars;    CCTime mytime;
  */
 
              
-             
+#pragma mark update function
              
 - (void)update:(CCTime)delta
 {
@@ -167,28 +167,32 @@ NSMutableArray *_cars;    CCTime mytime;
         timeSinceObstacle = 0.0f;
     }
     
+    
+    // Find the things to remove
+    NSMutableArray *toDelete = [NSMutableArray array];
+    
+    
     for (CCNode *car1 in _cars) {
         
         car1.position = ccp(car1.position.x, car1.position.y - (3));
-        if(car1.position.y==0)
-        {
-            if(count==10)
-            {
-                
-                [_cars removeAllObjects];
-                count=0;
-            }
+        
+        if (car1.position.y<-200) {
+            
+            [toDelete addObject:car1];
         }
-    }
+        
 
+    }
+    
+    [_cars removeObjectsInArray:toDelete];
     
 
     
     
     CMDeviceMotion *currentDeviceMotion= motionManager.deviceMotion;
     CMAttitude *currentAttitude= currentDeviceMotion.attitude;
-    [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
-                       label.rotation= CC_RADIANS_TO_DEGREES(currentAttitude.roll);
+   // [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
+  //                     label.rotation= CC_RADIANS_TO_DEGREES(currentAttitude.roll);
     
     
     if (currentAttitude.roll>0.045 ) {
