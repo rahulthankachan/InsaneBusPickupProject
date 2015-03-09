@@ -174,7 +174,7 @@ NSMutableArray *_cars;    CCTime mytime;
     
     for (CCNode *car1 in _cars) {
         
-        car1.position = ccp(car1.position.x, car1.position.y - (3));
+        car1.position = ccp(car1.position.x, car1.position.y - (1.5));
         
         if (car1.position.y<-200) {
             
