@@ -28,6 +28,17 @@ NSMutableArray *_cars;    CCTime mytime;
     CGFloat roadVelocity;
     
     CGSize window;
+    
+    //variables for students
+    CCTime _curTime;
+    CCTime _lastTime;
+    CCTime _timeSpan;
+    NSMutableArray *_students;
+    CCSprite *_student0;
+    int _maxStudentNum; //maximum number of _students
+    CGFloat initStudentXLeft;
+    CGFloat initStudentXRight;
+    CGFloat initStudentY;
 }
 
 - (void)didLoadFromCCB {
@@ -49,9 +60,30 @@ NSMutableArray *_cars;    CCTime mytime;
     //bus.position=ccp(0, 0);
     window = windowSize;
     
+    _students = [[NSMutableArray alloc] init];
+    
+    //initialize the first student
+    _curTime = 0;
+    _lastTime = 0;
+    _maxStudentNum = 3;
+    _timeSpan = 2.0;
+    initStudentXLeft = window.width/8;
+    initStudentXRight = window.width/8*7;
+    initStudentY = window.height/8*9;
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
+    BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
+    if (posLeft == YES) {
+        _student0.position = ccp(initStudentXLeft, initStudentY);
+    } else {
+        _student0.position = ccp(initStudentXRight, initStudentY);
+    }
+    [_students addObject:_student0];
+    
 //    [self addChild:label];
 //    [self addChild:label2];
     [self addChild:bus];
+    //add the first student as a child of MainScene
+    [self addChild:_student0];
     
     
     
@@ -137,6 +169,34 @@ NSMutableArray *_cars;    CCTime mytime;
             road.position = ccp(road.position.x, road.position.y + 3 *2 * road.contentSize.height - 50);
         }
     }
+    //adding new students
+    _curTime += delta;
+    if (_curTime - _lastTime>_timeSpan) {
+        _lastTime = _curTime;
+        if([_students count]<_maxStudentNum&&CCRANDOM_0_1()<0.3333) {
+            CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
+            BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
+            if (posLeft == YES) {
+                newStudent.position = ccp(initStudentXLeft, initStudentY);
+            } else {
+                newStudent.position = ccp(initStudentXRight, initStudentY);
+            }
+            [self addChild:newStudent];
+            [_students addObject:newStudent];
+        }
+    }
+    
+    //updating position of each student
+    for(int i = [_students count]-1;i>=0;i--) {
+        ((CCSprite *)_students[i]).position = ccp(((CCSprite *)_students[i]).position.x, ((CCSprite *)_students[i]).position.y-roadVelocity);
+        if(((CCSprite *)_students[i]).position.y<-13) {
+            //remove this object
+            [self removeChild:(CCSprite *)_students[i] cleanup:YES];
+            [_students removeObject:(CCSprite *)_students[i]];
+        }
+    }
+    
+    
     
     timeSinceObstacle += delta; // delta is approximately 1/60th of a second
     
