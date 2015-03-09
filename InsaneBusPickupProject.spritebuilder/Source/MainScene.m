@@ -32,7 +32,7 @@
     
     //done by Frank
     _roads= @[_road1,_road2];
-    _cars=@[_car1];
+   // _cars=@[_car1];
   
     label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
