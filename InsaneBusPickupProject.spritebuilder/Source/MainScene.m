@@ -20,12 +20,22 @@
     CCTime mytime;
     float timesliceformovewment;
     CCNodeColor *bus;
-    
+    int totalTime;
     CGFloat widthBoundary;//
     CGFloat heightBoundary;
     CGFloat roadVelocity;
-    
+    CCLabelTTF *scoreLabel;
+    CCLabelTTF *distLabel;
     CGSize window;
+}
+
+-(id)init {
+    if (self = [super init]) {
+        score = 0;
+        distance = 0;
+        totalTime = 0;
+    }
+    return self;
 }
 
 - (void)didLoadFromCCB {
@@ -37,16 +47,19 @@
     label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
-    
-    
+    scoreLabel =[[CCLabelTTF alloc]initWithString:@"Score: 0" fontName:@"Hello" fontSize:15];
+    distLabel =[[CCLabelTTF alloc]initWithString:@"Dist: 0" fontName:@"Hello" fontSize:15];
     CGSize windowSize= [[CCDirector sharedDirector] viewSize];
     label.position= ccp(windowSize.width/2, windowSize.height/2);
     label2.position= ccp(windowSize.width/2, windowSize.height/2-50);
+    scoreLabel.position= ccp(windowSize.width-50,windowSize.height-10);
+    distLabel.position= ccp(windowSize.width-50,windowSize.height-35);
     bus.position=ccp(windowSize.width/2, 0);
     
     //bus.position=ccp(0, 0);
     window = windowSize;
-    
+    [self addChild:scoreLabel];
+    [self addChild:distLabel];
     [self addChild:label];
     [self addChild:label2];
     [self addChild:bus];
@@ -127,6 +140,31 @@
              
 - (void)update:(CCTime)delta
 {
+    // done by Varsha
+    
+    // distance = distance + 0.01;
+    totalTime++;
+    count++;
+    if(count == 120)
+    {
+        //  score = score + 300;
+        // totalTime = 0;
+        distance = distance + 1;
+        [distLabel setString:[NSString stringWithFormat:@"Dist: %d",distance]];
+        count = 0;
+    }
+    if(totalTime == 240)
+    {
+      //  score = score +300;
+        score=score+1;
+        totalTime = 0;
+    }
+    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", score]];
+    
+    
+    
+    
+    
     //this is for endless road. done by frank
     
     for (CCNode *road in _roads) {
