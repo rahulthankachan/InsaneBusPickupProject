@@ -1,5 +1,6 @@
 #import "MainScene.h"
 #import <CCActionInterval.h>
+//#import "UpdatePlist.h"
 
 @implementation MainScene{
 
@@ -53,6 +54,10 @@ NSMutableArray *_cars;    CCTime mytime;
 }
 
 - (void)didLoadFromCCB {
+    
+    //this line is for test
+    //[[UpdatePlist alloc] updatePlist:23];
+    
     
     //done by Frank
     _roads= @[_road1,_road2];
