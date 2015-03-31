@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 011258EE1AA790B100BFFAA0 /* GamePlayScene.m */; };
+		01ED055B1ACB453600033567 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01ED055A1ACB453600033567 /* Info.plist */; };
 		2E4918B71AAAF5AB00ADA502 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */; };
 		3F3E984D1AAD6C62002F27CE /* student_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E984C1AAD6C62002F27CE /* student_small.png */; };
 		3F56CED41AAD5B6200404474 /* carimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F56CED31AAD5B6200404474 /* carimage.png */; };
@@ -155,6 +156,7 @@
 /* Begin PBXFileReference section */
 		011258ED1AA7900A00BFFAA0 /* GamePlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayScene.h; sourceTree = "<group>"; };
 		011258EE1AA790B100BFFAA0 /* GamePlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlayScene.m; sourceTree = "<group>"; };
+		01ED055A1ACB453600033567 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3F3E984C1AAD6C62002F27CE /* student_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = student_small.png; sourceTree = "<group>"; };
 		3F56CED31AAD5B6200404474 /* carimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carimage.png; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				7AFCD5DD19E9BDC200BCCCDA /* Bridging-Header.h */,
 				7AFCD5DB19E9BD9F00BCCCDA /* cocos2d.h */,
 				B73789861807631A0076A88C /* Prefix.pch */,
+				01ED055A1ACB453600033567 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -753,6 +756,7 @@
 			files = (
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
+				01ED055B1ACB453600033567 /* Info.plist in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
