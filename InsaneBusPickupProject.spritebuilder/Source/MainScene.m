@@ -1,6 +1,6 @@
 #import "MainScene.h"
 #import <CCActionInterval.h>
-//#import "UpdatePlist.h"
+#import "GamePlayScene.h"
 
 @implementation MainScene{
 
@@ -56,7 +56,7 @@ NSMutableArray *_cars;    CCTime mytime;
 - (void)didLoadFromCCB {
     
     //this line is for test
-    //[[UpdatePlist alloc] updatePlist:23];
+    //[[GamePlayScene alloc] updateScore:32];
     
     
     //done by Frank

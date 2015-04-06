@@ -20,6 +20,7 @@
 //-(void) showScore;
 
 
+- (void) updateScore: (int) currentScore;
 
 @end
 
