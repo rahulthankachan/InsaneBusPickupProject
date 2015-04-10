@@ -2,6 +2,10 @@
 #import <CCActionInterval.h>
 #import "GamePlayScene.h"
 
+@import Foundation;
+
+#import "CCScheduler.h"
+
 #import "Header.h"
 
 
@@ -33,6 +37,7 @@ NSMutableArray *_cars;    CCTime mytime;
     CGFloat roadVelocity;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *distLabel;
+    CCLabelTTF *countdownLabel;
     CGSize window;
     
     //variables for students
@@ -93,11 +98,26 @@ NSMutableArray *_cars;    CCTime mytime;
 }
 
 - (void)didLoadFromCCB {
+    CGSize windowSize= [[CCDirector sharedDirector] viewSize];
     
     //this line is for test
     [[GamePlayScene alloc] updateScore:32];
     
- 
+ //   float delay = 1.0; // Number of seconds between each call of myTimedMethod:
+ //   CCTimer *myTimer = [[CCTimer alloc] initWithTarget:self selector:@selector(myTimedMethod:) interval:delay]];
+
+  //  CCTimer *myTimer = [[CCTimer alloc] ]
+    
+    //Done by Yao Frank Fan
+    //this part is to create a thread to do a countdown before the student appears
+    countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"Hello" fontSize:30];
+    countdownLabel.position = ccp(windowSize.width - 50, windowSize.height - 50);
+    NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent) object:nil];
+    NSLog(@"nihaoa");
+    
+    [myThread start];  // Actually create the thread
+    
+    
     
     //done by Frank
     _roads= @[_road1,_road2];
@@ -108,7 +128,7 @@ NSMutableArray *_cars;    CCTime mytime;
     bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
     scoreLabel =[[CCLabelTTF alloc]initWithString:@"Score: 0" fontName:@"Hello" fontSize:15];
     distLabel =[[CCLabelTTF alloc]initWithString:@"Dist: 0" fontName:@"Hello" fontSize:15];
-    CGSize windowSize= [[CCDirector sharedDirector] viewSize];
+    
   //  label.position= ccp(windowSize.width/2, windowSize.height/2);
   //  label2.position= ccp(windowSize.width/2, windowSize.height/2-50);
    // label.position= ccp(windowSize.width/2, windowSize.height/2);
@@ -413,7 +433,7 @@ NSMutableArray *_cars;    CCTime mytime;
     
     */
         
-    
+
     
 /*
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
@@ -437,7 +457,14 @@ NSMutableArray *_cars;    CCTime mytime;
 }
     */
     
-    
+
+- (void)createStudent {
+
+    for (int i = 3; i != 0; --i) {
+        NSLog(@"You have %d seconds left.", i);
+        [NSThread sleepForTimeInterval:1.0f];
+    }
+}
 
   
 
