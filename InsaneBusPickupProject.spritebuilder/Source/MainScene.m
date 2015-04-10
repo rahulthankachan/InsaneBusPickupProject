@@ -2,6 +2,9 @@
 #import <CCActionInterval.h>
 #import "GamePlayScene.h"
 
+#import "Header.h"
+
+
 @implementation MainScene{
 
 //Comment added by Rahul Thankachan
@@ -42,6 +45,8 @@ NSMutableArray *_cars;    CCTime mytime;
     CGFloat initStudentXLeft;
     CGFloat initStudentXRight;
     CGFloat initStudentY;
+    
+    CCNode *_joypad;
 }
 
 -(id)init {
@@ -50,14 +55,49 @@ NSMutableArray *_cars;    CCTime mytime;
         distance = 0;
         totalTime = 0;
     }
+    
+    //starting of the joystick by Frank
+    
+    if(self != nil)
+    {
+        // set this so we can register with touch dispatcher
+        
+        //isTouchEnabled = YES;
+        self.userInteractionEnabled = YES;
+        //joypad = [[CCSprite spriteWithImageNamed:@"Joystick"]];
+        _joypad.position = ccp(70, 70);
+        _joypad.opacity = 0;
+        //[self addChild:_joypad z:1];
+     /*
+        // load our joystick background
+        joypad = [[CCSprite spriteWithImageNamed:<#(NSString *)#>]]
+        joypad = [[CCSprite spriteWithFile:@"joypad.png"] retain];
+        joypad.position = ccp(70,70);
+        joypad.opacity = 0;
+        [self addChild:joypad z:1];
+        
+        // load joypad button
+        joybtn = [[CCSprite spriteWithFile:@"joybtn.png"] retain];
+        joybtn.position = ccp(70,70);
+        joybtn.opacity = 0;
+        [self addChild:joybtn z:2];
+      */
+
+    }
+    
+    
+    //end of the joystick
+    
+    
     return self;
 }
 
 - (void)didLoadFromCCB {
     
     //this line is for test
-    //[[GamePlayScene alloc] updateScore:32];
+    [[GamePlayScene alloc] updateScore:32];
     
+ 
     
     //done by Frank
     _roads= @[_road1,_road2];
@@ -375,13 +415,27 @@ NSMutableArray *_cars;    CCTime mytime;
         
     
     
+/*
+- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    CCLOG(@"Received a touch");
+}
 
-
-
-
-    
-
-    
+*/
+    /*
+- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    // we want to know the location of our touch in this scene
+   // CGPoint touchLocation = [touch locationInNode:self];
+    CGPoint touchLocation = [touch locationInNode];
+    [touch]
+    // create a 'hero' sprite
+    CCSprite *hero = [CCSprite spriteWithImageNamed:@"hero.png"];
+    [self addChild:hero];
+    // place the sprite at the touch location
+    hero.position = touchLocation;
+}
+    */
     
     
 
