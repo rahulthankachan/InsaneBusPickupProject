@@ -13,6 +13,7 @@
 		2E4918B71AAAF5AB00ADA502 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */; };
 		3F3E984D1AAD6C62002F27CE /* student_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E984C1AAD6C62002F27CE /* student_small.png */; };
 		3F56CED41AAD5B6200404474 /* carimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F56CED31AAD5B6200404474 /* carimage.png */; };
+		3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57DAFD1AD7C20400FACC78 /* gameplay.m */; };
 		5B121030197484FA004C1E1D /* InsaneBusPickupProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* InsaneBusPickupProjectActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B7378993180767190076A88C /* MainScene.m */; };
@@ -163,6 +164,8 @@
 		2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3F3E984C1AAD6C62002F27CE /* student_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = student_small.png; sourceTree = "<group>"; };
 		3F56CED31AAD5B6200404474 /* carimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carimage.png; sourceTree = "<group>"; };
+		3F57DAFC1AD7C20400FACC78 /* gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameplay.h; sourceTree = "<group>"; };
+		3F57DAFD1AD7C20400FACC78 /* gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameplay.m; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -462,6 +465,8 @@
 			children = (
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				B7378992180767190076A88C /* MainScene.h */,
+				3F57DAFC1AD7C20400FACC78 /* gameplay.h */,
+				3F57DAFD1AD7C20400FACC78 /* gameplay.m */,
 				B7378993180767190076A88C /* MainScene.m */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 				011258EE1AA790B100BFFAA0 /* GamePlayScene.m */,
@@ -854,6 +859,7 @@
 			files = (
 				011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 			);
