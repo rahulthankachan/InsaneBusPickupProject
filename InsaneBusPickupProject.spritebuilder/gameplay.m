@@ -111,7 +111,8 @@
     //Done by Yao Frank Fan
     //this part is to create a thread to do a countdown before the student appears
     countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"Hello" fontSize:30];
-    countdownLabel.position = ccp(windowSize.width - 50, windowSize.height - 50);
+    countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 50);
+    [self addChild:countdownLabel];
     NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent) object:nil];
     NSLog(@"nihaoa");
     
@@ -462,8 +463,16 @@
     
     for (int i = 3; i != 0; --i) {
         NSLog(@"You have %d seconds left.", i);
+        [countdownLabel setString:[NSString stringWithFormat:@"%d", i]];
+
         [NSThread sleepForTimeInterval:1.0f];
     }
+    [countdownLabel setString:@"Incomming"];
+    
+    [NSThread sleepForTimeInterval:1.0f];
+    [countdownLabel setString:@""];
+
+
 }
 
 
