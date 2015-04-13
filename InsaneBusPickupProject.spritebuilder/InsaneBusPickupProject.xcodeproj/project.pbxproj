@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010C41091ADBADB300273945 /* carimage2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 010C41081ADBADB300273945 /* carimage2.xcassets */; };
 		011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 011258EE1AA790B100BFFAA0 /* GamePlayScene.m */; };
 		01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01235B261AD32FBD0092AFDF /* SampleList.plist */; };
 		01ED05A91ACB56A600033567 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01ED05A81ACB56A600033567 /* Info.plist */; };
 		2E4918B71AAAF5AB00ADA502 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */; };
-		3F3E984D1AAD6C62002F27CE /* student_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E984C1AAD6C62002F27CE /* student_small.png */; };
-		3F56CED41AAD5B6200404474 /* carimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F56CED31AAD5B6200404474 /* carimage.png */; };
 		3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57DAFD1AD7C20400FACC78 /* gameplay.m */; };
 		5B121030197484FA004C1E1D /* InsaneBusPickupProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* InsaneBusPickupProjectActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
@@ -156,14 +155,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010C41081ADBADB300273945 /* carimage2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = carimage2.xcassets; sourceTree = "<group>"; };
 		011258ED1AA7900A00BFFAA0 /* GamePlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayScene.h; sourceTree = "<group>"; };
 		011258EE1AA790B100BFFAA0 /* GamePlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlayScene.m; sourceTree = "<group>"; };
 		01235B261AD32FBD0092AFDF /* SampleList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SampleList.plist; sourceTree = "<group>"; };
 		018A97151AD229D8004156CE /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		01ED05A81ACB56A600033567 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		3F3E984C1AAD6C62002F27CE /* student_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = student_small.png; sourceTree = "<group>"; };
-		3F56CED31AAD5B6200404474 /* carimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carimage.png; sourceTree = "<group>"; };
 		3F57DAFC1AD7C20400FACC78 /* gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameplay.h; sourceTree = "<group>"; };
 		3F57DAFD1AD7C20400FACC78 /* gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameplay.m; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
@@ -294,8 +292,7 @@
 		3F56CED01AAD5B4700404474 /* custom */ = {
 			isa = PBXGroup;
 			children = (
-				3F56CED31AAD5B6200404474 /* carimage.png */,
-				3F3E984C1AAD6C62002F27CE /* student_small.png */,
+				010C41081ADBADB300273945 /* carimage2.xcassets */,
 			);
 			name = custom;
 			sourceTree = "<group>";
@@ -773,14 +770,13 @@
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
-				3F56CED41AAD5B6200404474 /* carimage.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
+				010C41091ADBADB300273945 /* carimage2.xcassets in Resources */,
 				01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
-				3F3E984D1AAD6C62002F27CE /* student_small.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 			);

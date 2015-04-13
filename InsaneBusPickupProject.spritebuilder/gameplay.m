@@ -19,6 +19,7 @@
     NSArray *_roads;
     CGPoint velocity;
     NSMutableArray *_cars;    CCTime mytime;
+    NSMutableArray *_cars2; //horizontally moving cars
     float timesliceformovewment;
     CCNodeColor *bus;
     float timeSinceObstacle;
@@ -66,6 +67,8 @@
         score = 0;
         distance = 0;
         totalTime = 0;
+        _createdFlag = false;
+        car2created = false;
     }
     
     //starting of the joystick by Frank
@@ -186,6 +189,10 @@
 
 - (void)update:(CCTime)delta
 {
+    // size of the window
+    CGSize windowSize = [[CCDirector sharedDirector] viewSize];
+
+    
     // done by Varsha
     
     // distance = distance + 0.01;
@@ -261,11 +268,45 @@
     
     if (timeSinceObstacle >2.0f)
     {
+        //generate a random number
+        int number = arc4random_uniform(75);
+        
         // Add a new obstacle
         
+        if (number < 50) {
+            CCSprite * newCar= [[CCSprite alloc]initWithImageNamed:@"carimage.png"];
+            //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
         
-        CCSprite * newCar= [[CCSprite alloc]initWithImageNamed:@"carimage.png"];
-        //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
+            newCar.scale=0.3;
+            num=foo4random();
+            xcoord=minimum+(num%div);
+            newCar.position=ccp(xcoord,620);
+
+            [self addChild:newCar];
+            [_cars addObject:newCar];
+            
+            count++;
+        } else {
+            if (car2created == false) {
+                car2created = true;
+                NSLog(@"car image 2");
+                CCSprite *newCar = [[CCSprite alloc] initWithImageNamed:@"carimage2.png"];
+                
+                newCar.scale = 0.3;
+                num = foo4random();
+                xcoord = minimum + (num % div);
+                newCar.position = ccp(xcoord, 620);
+                //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
+                [self addChild:newCar];
+                [_cars2 addObject:newCar];
+                
+                count++;
+            } else {
+                //NSLog(@"car2 cannot be created.");
+            }
+            
+            
+        }
         
         newCar.scale=0.3;
         num=foo4random();
@@ -319,6 +360,27 @@
     
     [_cars removeObjectsInArray:toDelete];
     
+    NSMutableArray *toDelete2 = [NSMutableArray array];
+    //NSLog(@"%lu", (unsigned long)[_cars2 count]);
+    for (CCNode *car2 in _cars2) {
+        car2.position = ccp(car2.position.x, car2.position.y - (1.5));
+        if (car2.position.y - bus.position.y <= 250) {
+            if (car2.position.x != bus.position.x) {
+                if (car2.position.x - bus.position.x > 0) {
+                    car2.position = ccp(car2.position.x - 0.5, car2.position.y);
+                } else {
+                    car2.position = ccp(car2.position.x + 0.5, car2.position.y);
+                }
+            }
+            
+
+        }
+        if (car2.position.y < -200) {
+            [toDelete2 addObject:car2];
+            car2created = false;
+        }
+    }
+    [_cars2 removeObjectsInArray:toDelete2];
     
     
     
