@@ -11,13 +11,7 @@
 
 @implementation gameplay{
     
-    //Comment added by Rahul Thankachan
-    //Please add ur comment below and Push
-    //comment by stephen
-    // added by Yao "Frank" Fan
-    //hi swapnil here
-    //added comment in xcode by stephen
-    //comment added by varsha
+
 #define foo4random() (arc4random() % ((unsigned)RAND_MAX + 1))
     CCNode *_road1;
     CCNode *_road2;
@@ -54,6 +48,13 @@
     CGFloat initStudentY;
     
     CCNode *_joypad;
+    
+    
+    
+    
+    CCPhysicsNode *physicsNode;
+    
+    
 }
 - (void)retry {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
@@ -78,26 +79,9 @@
         //joypad = [[CCSprite spriteWithImageNamed:@"Joystick"]];
         _joypad.position = ccp(70, 70);
         _joypad.opacity = 0;
-        //[self addChild:_joypad z:1];
-        /*
-         // load our joystick background
-         joypad = [[CCSprite spriteWithImageNamed:<#(NSString *)#>]]
-         joypad = [[CCSprite spriteWithFile:@"joypad.png"] retain];
-         joypad.position = ccp(70,70);
-         joypad.opacity = 0;
-         [self addChild:joypad z:1];
-         
-         // load joypad button
-         joybtn = [[CCSprite spriteWithFile:@"joybtn.png"] retain];
-         joybtn.position = ccp(70,70);
-         joybtn.opacity = 0;
-         [self addChild:joybtn z:2];
-         */
         
     }
-    
-    
-    //end of the joystick
+
     
     
     return self;
@@ -128,34 +112,38 @@
     //done by Frank
     _roads= @[_road1,_road2];
     _cars= [[NSMutableArray alloc]init];
-    
-    // label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
-    // label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
     scoreLabel =[[CCLabelTTF alloc]initWithString:@"Score: 0" fontName:@"Hello" fontSize:15];
     distLabel =[[CCLabelTTF alloc]initWithString:@"Dist: 0" fontName:@"Hello" fontSize:15];
-    
-    //  label.position= ccp(windowSize.width/2, windowSize.height/2);
-    //  label2.position= ccp(windowSize.width/2, windowSize.height/2-50);
-    // label.position= ccp(windowSize.width/2, windowSize.height/2);
-    //  label2.position= ccp(windowSize.width/2, windowSize.height/2-50);
     scoreLabel.position= ccp(windowSize.width-50,windowSize.height-10);
     distLabel.position= ccp(windowSize.width-50,windowSize.height-35);
-    bus.position=ccp(windowSize.width/2, 0);
+    bus.position=ccp(windowSize.width/2, 20);
+
+
+    
+    physicsNode.collisionDelegate=self;
+   // physicsNode.debugDraw=YES;
+    bus.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0,0, bus.contentSize.width, bus.contentSize.height) cornerRadius:0];
+    bus.physicsBody.type = CCPhysicsBodyTypeStatic;
+    bus.physicsBody.mass=1000;
+    bus.physicsBody.collisionType=@"insaneBus";
+    bus.physicsBody.collisionGroup=@"cheat";
+    //bus.physicsBody.allowsRotation=NO;
+    [physicsNode addChild:bus];
+    
+
     
     //bus.position=ccp(0, 0);
     window = windowSize;
     [self addChild:scoreLabel];
     [self addChild:distLabel];
-    //    [self addChild:label];
-    //   [self addChild:label2];
     
     _students = [[NSMutableArray alloc] init];
     
     //initialize the first student
     _curTime = 0;
     _lastTime = 0;
-    _maxStudentNum = 3;
+    _maxStudentNum = 100;
     _timeSpan = 2.0;
     initStudentXLeft = window.width/8;
     initStudentXRight = window.width/8*7;
@@ -169,11 +157,13 @@
     }
     [_students addObject:_student0];
     
-    //    [self addChild:label];
-    //    [self addChild:label2];
-    [self addChild:bus];
+
     //add the first student as a child of MainScene
-    [self addChild:_student0];
+    //[self addChild:_student0];
+    _student0.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,_student0.contentSize.width, _student0.contentSize.height) cornerRadius:0];;
+    _student0.physicsBody.collisionType= @"student";
+    _student0.physicsBody.type=CCPhysicsBodyTypeStatic;
+    [physicsNode addChild:_student0];
     
     
     
@@ -184,67 +174,12 @@
     widthBoundary = _road1.contentSize.width;
     heightBoundary = _road1.contentSize.height;
     roadVelocity = 5;
-    
-    
-    /*
-     
-     if ([motionManager isGyroAvailable]) {
-     if (![motionManager isGyroActive]) {
-     [motionManager setGyroUpdateInterval:.1];
-     [motionManager startGyroUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMGyroData *gyroData, NSError *error) {
-     
-     [label2 setString: [NSString stringWithFormat:@"%.02f", gyroData.rotationRate.x]];
-     
-     
-     NSLog(@"The gyro data is %f",gyroData.rotationRate.y);
-     
-     if (gyroData.rotationRate.y>2 ) {
-     
-     velocity= CGPointMake(50.0f, 0.0f);
-     }
-     else if (gyroData.rotationRate.y<-2 ){
-     velocity= CGPointMake(-50.0f, 0.0f);
-     }
-     else
-     {
-     velocity= CGPointMake(0.0f, 0.0f);
-     
-     }
-     bus.position= ccpAdd(bus.position, velocity);
-     
-     }];
-     
-     widthBoundary = _road1.contentSize.width;
-     heightBoundary = _road1.contentSize.height;
-     roadVelocity = 2;
-     
-     }
-     else{
-     
-     UIAlertView *myAlert= [[UIAlertView alloc]initWithTitle:@"Alert!!" message:@"Gyro is missing" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Cancel", nil];
-     [myAlert show];
-     
-     }
-     }
-     
-     
-     
-     //  timer= [NSTimer scheduledTimerWithTimeInterval:(1.0/60.0) target:self selector:@selector(read) userInfo:nil repeats:YES];
-     */
-    
-    
-    
-    
+
     
     
 }
 
 
-/*
- -(void)read{
- 
- }
- */
 
 
 #pragma mark update function
@@ -268,14 +203,12 @@
     if(totalTime == 240)
     {
         //  score = score +300;
-        score=score+1;
+        //score=score+1;
         totalTime = 0;
     }
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", score]];
     
-    
-    
-    
+
     
     //this is for endless road. done by frank
     
@@ -297,7 +230,12 @@
             } else {
                 newStudent.position = ccp(initStudentXRight, initStudentY);
             }
-            [self addChild:newStudent];
+            
+            newStudent.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newStudent.contentSize.width, newStudent.contentSize.height) cornerRadius:0];;
+            newStudent.physicsBody.collisionType= @"student";
+            newStudent.physicsBody.type=CCPhysicsBodyTypeStatic;
+            [physicsNode addChild:newStudent];
+            
             [_students addObject:newStudent];
         }
     }
@@ -307,8 +245,8 @@
         ((CCSprite *)_students[i]).position = ccp(((CCSprite *)_students[i]).position.x, ((CCSprite *)_students[i]).position.y-roadVelocity);
         if(((CCSprite *)_students[i]).position.y<-13) {
             //remove this object
-            [self removeChild:(CCSprite *)_students[i] cleanup:YES];
-            [_students removeObject:(CCSprite *)_students[i]];
+       //     [self removeChild:(CCSprite *)_students[i] cleanup:YES];
+       //     [_students removeObject:(CCSprite *)_students[i]];
         }
     }
     
@@ -334,10 +272,14 @@
         xcoord=minimum+(num%div);
         newCar.position=ccp(xcoord,620);
         //newStudent.position=ccp(xcoord,500);
-        [self addChild:newCar];
+       // [self addChild:newCar];
+        newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+        newCar.physicsBody.density=0.1;
+        newCar.physicsBody.collisionType=@"level";
+       // newCar.physicsBody.collisionGroup=@"cheat";
+        [physicsNode addChild:newCar];
         [_cars addObject:newCar];
-        //[self addChild:newStudent];
-        //[_students addObject:newStudent];
+
         count++;
         // Then reset the timer.
         //moving the cars left and right, without their positions being fixed.. don by varsha
@@ -462,22 +404,36 @@
  {
  CCLOG(@"Received a touch");
  }
- 
  */
-/*
- - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+
+
+
+ - (void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event
  {
  // we want to know the location of our touch in this scene
- // CGPoint touchLocation = [touch locationInNode:self];
- CGPoint touchLocation = [touch locationInNode];
- [touch]
+
+    CGPoint touchLocation = [touch locationInNode:self];
+     NSLog(@"The x coordinate is %f",touchLocation.x);
+      NSLog(@"The y coordinate before is %f",touchLocation.y);
+     
+
+     if (touchLocation.x>180) {
+         [bus.physicsBody applyImpulse:ccp(0, 400)];
+     }
+     else{
+         [bus.physicsBody applyImpulse:ccp(0, -400)];
+     
+     }
+     NSLog(@"The y coordinate is %f",touchLocation.y);
+     
+     
  // create a 'hero' sprite
- CCSprite *hero = [CCSprite spriteWithImageNamed:@"hero.png"];
- [self addChild:hero];
+ //CCSprite *hero = [CCSprite spriteWithImageNamed:@"hero.png"];
+ //[self addChild:hero];
  // place the sprite at the touch location
- hero.position = touchLocation;
+ //hero.position = touchLocation;
  }
- */
+ 
 
 
 - (void)createStudent {
@@ -487,6 +443,24 @@
         [NSThread sleepForTimeInterval:1.0f];
     }
 }
+
+
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus level:(CCSprite*)level {
+    
+    NSLog(@"Collision");
+    
+    return TRUE;
+}
+
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus student:(CCNode*)student {
+    
+    NSLog(@"Collision Student");
+    [student removeFromParent];
+    score=score+1;
+    
+    return TRUE;
+}
+
 
 
 

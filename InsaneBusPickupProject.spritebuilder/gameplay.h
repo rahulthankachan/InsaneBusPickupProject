@@ -5,7 +5,8 @@ int score;
 int distance;
 int count;
 
-@interface gameplay : CCNode{
+@interface gameplay : CCNode<CCPhysicsCollisionDelegate>
+{
     
     CMMotionManager *motionManager;
     NSOperationQueue *operationQueue;
