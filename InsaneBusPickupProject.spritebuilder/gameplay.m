@@ -47,15 +47,18 @@
     CGFloat initStudentXLeft;
     CGFloat initStudentXRight;
     CGFloat initStudentY;
+  
     
     CCNode *_joypad;
     
+    volatile BOOL car2created;
     
     
     
     CCPhysicsNode *physicsNode;
     
     
+    BOOL _createdFlag;
 }
 - (void)retry {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
@@ -115,6 +118,10 @@
     //done by Frank
     _roads= @[_road1,_road2];
     _cars= [[NSMutableArray alloc]init];
+    _cars2 = [[NSMutableArray alloc] init];
+    
+    // label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
+    // label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
     scoreLabel =[[CCLabelTTF alloc]initWithString:@"Score: 0" fontName:@"Hello" fontSize:15];
     distLabel =[[CCLabelTTF alloc]initWithString:@"Dist: 0" fontName:@"Hello" fontSize:15];
@@ -270,11 +277,12 @@
     {
         //generate a random number
         int number = arc4random_uniform(75);
+        CCSprite * newCar;
         
         // Add a new obstacle
         
         if (number < 50) {
-            CCSprite * newCar= [[CCSprite alloc]initWithImageNamed:@"carimage.png"];
+            newCar= [[CCSprite alloc]initWithImageNamed:@"carimage.png"];
             //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
         
             newCar.scale=0.3;
@@ -282,28 +290,28 @@
             xcoord=minimum+(num%div);
             newCar.position=ccp(xcoord,620);
 
-            [self addChild:newCar];
-            [_cars addObject:newCar];
+           // [self addChild:newCar];
+          //  [_cars addObject:newCar];
             
             count++;
         } else {
-            if (car2created == false) {
-                car2created = true;
+//            if (car2created == false) {
+//                car2created = true;
                 NSLog(@"car image 2");
-                CCSprite *newCar = [[CCSprite alloc] initWithImageNamed:@"carimage2.png"];
+                newCar = [[CCSprite alloc] initWithImageNamed:@"carimage2.png"];
                 
                 newCar.scale = 0.3;
                 num = foo4random();
                 xcoord = minimum + (num % div);
                 newCar.position = ccp(xcoord, 620);
                 //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
-                [self addChild:newCar];
-                [_cars2 addObject:newCar];
+               // [self addChild:newCar];
+              //  [_cars2 addObject:newCar];
                 
                 count++;
-            } else {
-                //NSLog(@"car2 cannot be created.");
-            }
+//            } else {
+//                //NSLog(@"car2 cannot be created.");
+//            }
             
             
         }
