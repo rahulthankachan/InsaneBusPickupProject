@@ -29,6 +29,7 @@
     CCNodeColor *bus;
     float timeSinceObstacle;
     int count;
+    int nfortime;
     int xcoord;
     int num;
     int totalTime;
@@ -37,8 +38,9 @@
     CGFloat roadVelocity;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *distLabel;
-    //CCLabelTTF *countdownLabel;
+    CCLabelTTF *countdownLabel;
     CGSize window;
+    CCButton *retry;
     
     //variables for students
     CCTime _curTime;
@@ -52,8 +54,10 @@
     CGFloat initStudentY;
     
     CCNode *_joypad;
-    
-    BOOL _createdFlag;
+}
+- (void)retry {
+    CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
+    [[CCDirector sharedDirector] replaceScene:gameplayscene];
 }
 
 -(id)init {
@@ -61,7 +65,6 @@
         score = 0;
         distance = 0;
         totalTime = 0;
-        _createdFlag = false;
     }
     
     //starting of the joystick by Frank
@@ -104,17 +107,22 @@
     CGSize windowSize= [[CCDirector sharedDirector] viewSize];
     
     //this line is for test
-    //[[GamePlayScene alloc] updateScore:32];
+    [[GamePlayScene alloc] updateScore:32];
     
     //   float delay = 1.0; // Number of seconds between each call of myTimedMethod:
     //   CCTimer *myTimer = [[CCTimer alloc] initWithTarget:self selector:@selector(myTimedMethod:) interval:delay]];
     
     //  CCTimer *myTimer = [[CCTimer alloc] ]
     
-    //countdown before students appear
- //   countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"Hello" fontSize:30];
-   // countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 50);
-    //[self addChild:countdownLabel];
+    //Done by Yao Frank Fan
+    //this part is to create a thread to do a countdown before the student appears
+    countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"Hello" fontSize:30];
+    countdownLabel.position = ccp(windowSize.width - 50, windowSize.height - 50);
+    NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent) object:nil];
+    NSLog(@"nihaoa");
+    
+    [myThread start];  // Actually create the thread
+    
     
     
     //done by Frank
@@ -175,7 +183,7 @@
     
     widthBoundary = _road1.contentSize.width;
     heightBoundary = _road1.contentSize.height;
-    roadVelocity = 2;
+    roadVelocity = 5;
     
     
     /*
@@ -246,6 +254,7 @@
     // done by Varsha
     
     // distance = distance + 0.01;
+    nfortime++;
     totalTime++;
     count++;
     if(count == 120)
@@ -276,26 +285,20 @@
             road.position = ccp(road.position.x, road.position.y + 3 *2 * road.contentSize.height - 50);
         }
     }
-
-
-    
     //adding new students
     _curTime += delta;
     if (_curTime - _lastTime>_timeSpan) {
         _lastTime = _curTime;
         if([_students count]<_maxStudentNum&&CCRANDOM_0_1()<0.3333) {
-            
-            //Done by Yao Frank Fan
-            //this part is to create a thread to do a countdown before the student appears
-            if (true) {
-                NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent:) object:nil];
-                //NSLog(@"nihaoa");
-                
-                [myThread start];  // Actually create the thread
+            CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
+            BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
+            if (posLeft == YES) {
+                newStudent.position = ccp(initStudentXLeft, initStudentY);
+            } else {
+                newStudent.position = ccp(initStudentXRight, initStudentY);
             }
-            
-
-
+            [self addChild:newStudent];
+            [_students addObject:newStudent];
         }
     }
     
@@ -337,6 +340,21 @@
         //[_students addObject:newStudent];
         count++;
         // Then reset the timer.
+        //moving the cars left and right, without their positions being fixed.. don by varsha
+        BOOL genPos = CCRANDOM_0_1()>=0.5?YES:NO;
+        if(nfortime > 150)
+        {
+            if(genPos == YES)
+            {
+                id theAction = [CCActionMoveTo actionWithDuration:4 position:ccp(200,200)];
+                [newCar runAction:theAction];
+            }
+            else
+            {
+                id theAction = [CCActionMoveTo actionWithDuration:4 position:ccp(-75,200)];
+                [newCar runAction:theAction];
+            }
+        }
         timeSinceObstacle = 0.0f;
     }
     
@@ -461,44 +479,13 @@
  }
  */
 
-//A thread to create a student, and before that to make a countdown
-//Not perfect yet, but it works
-- (void)createStudent:(CCTime) delta {
-    _createdFlag = true;
-    
-    CGSize windowSize = [[CCDirector sharedDirector] viewSize];
-    
-    CCLabelTTF *countdownLabel;
 
-    countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"Hello" fontSize:30];
-    countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 50);
-    [self addChild:countdownLabel];
+- (void)createStudent {
     
     for (int i = 3; i != 0; --i) {
-        //NSLog(@"You have %d seconds left.", i);
-        [countdownLabel setString:[NSString stringWithFormat:@"%d", i]];
-
+        NSLog(@"You have %d seconds left.", i);
         [NSThread sleepForTimeInterval:1.0f];
     }
-    [countdownLabel setString:@"Incomming"];
-    
-    CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
-    BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
-    if (posLeft == YES) {
-        newStudent.position = ccp(initStudentXLeft, initStudentY);
-    } else {
-        newStudent.position = ccp(initStudentXRight, initStudentY);
-    }
-    [self addChild:newStudent];
-    [_students addObject:newStudent];
-    NSLog(@"student added.");
-
-    
-    
-    [NSThread sleepForTimeInterval:1.0f];
-    [countdownLabel setString:@""];
-
-    _createdFlag = false;
 }
 
 
