@@ -20,6 +20,7 @@
     CGPoint velocity;
     NSMutableArray *_cars;    CCTime mytime;
     NSMutableArray *_cars2; //horizontally moving cars
+    NSMutableArray *_coins;
     float timesliceformovewment;
     CCNodeColor *bus;
     float timeSinceObstacle;
@@ -278,18 +279,21 @@
         //generate a random number
         int number = arc4random_uniform(75);
         CCSprite * newCar;
-        
+        CCSprite *coin;
+    
         // Add a new obstacle
-        
+       
         if (number < 50) {
             newCar= [[CCSprite alloc]initWithImageNamed:@"carimage.png"];
             //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
-        
+            coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
             newCar.scale=0.3;
             num=foo4random();
             xcoord=minimum+(num%div);
             newCar.position=ccp(xcoord,620);
-
+            coin.position = ccp(xcoord,500);
+            [physicsNode addChild:coin];
+            [_coins addObject:coin];
            // [self addChild:newCar];
           //  [_cars addObject:newCar];
             
@@ -324,6 +328,9 @@
        // [self addChild:newCar];
         newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
         newCar.physicsBody.density=0.1;
+        coin.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,coin.contentSize.width, coin.contentSize.height) cornerRadius:0];
+        coin.physicsBody.density=0.1;
+
         newCar.physicsBody.collisionType=@"level";
        // newCar.physicsBody.collisionGroup=@"cheat";
         [physicsNode addChild:newCar];
@@ -349,6 +356,10 @@
         timeSinceObstacle = 0.0f;
     }
     
+ /*   for(int i = [_coins count]-1;i>=0;i--) {
+        ((CCSprite *)_coins[i]).position = ccp(((CCSprite *)_coins[i]).position.x, ((CCSprite *)_coins[i]).position.y-roadVelocity);
+        
+    }*/
     
     // Find the things to remove
     NSMutableArray *toDelete = [NSMutableArray array];
@@ -367,6 +378,27 @@
     }
     
     [_cars removeObjectsInArray:toDelete];
+    //finish
+    
+    
+    //varha
+    NSMutableArray *toDelete1 = [NSMutableArray array];
+    
+    
+    for (CCNode *coin1 in _coins) {
+        
+        coin1.position = ccp(coin1.position.x, coin1.position.y - (1.5));
+        
+        if (coin1.position.y<-200) {
+            
+            [toDelete1 addObject:coin1];
+        }
+        
+        
+    }
+    
+    [_coins removeObjectsInArray:toDelete1];
+    //finish
     
     NSMutableArray *toDelete2 = [NSMutableArray array];
     //NSLog(@"%lu", (unsigned long)[_cars2 count]);

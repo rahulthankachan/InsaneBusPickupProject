@@ -12,6 +12,7 @@
 		01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01235B261AD32FBD0092AFDF /* SampleList.plist */; };
 		01ED05A91ACB56A600033567 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01ED05A81ACB56A600033567 /* Info.plist */; };
 		2E4918B71AAAF5AB00ADA502 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */; };
+		3F17F8861ADC7D71005F6CDD /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F17F8851ADC7D71005F6CDD /* coin.png */; };
 		3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57DAFD1AD7C20400FACC78 /* gameplay.m */; };
 		5B121030197484FA004C1E1D /* InsaneBusPickupProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* InsaneBusPickupProjectActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
@@ -162,6 +163,7 @@
 		018A97151AD229D8004156CE /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		01ED05A81ACB56A600033567 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		3F17F8851ADC7D71005F6CDD /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = ../../../Downloads/coin.png; sourceTree = "<group>"; };
 		3F57DAFC1AD7C20400FACC78 /* gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameplay.h; sourceTree = "<group>"; };
 		3F57DAFD1AD7C20400FACC78 /* gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameplay.m; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
@@ -460,6 +462,7 @@
 		B737893C1807616C0076A88C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3F17F8851ADC7D71005F6CDD /* coin.png */,
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				B7378992180767190076A88C /* MainScene.h */,
 				3F57DAFC1AD7C20400FACC78 /* gameplay.h */,
@@ -773,6 +776,7 @@
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
+				3F17F8861ADC7D71005F6CDD /* coin.png in Resources */,
 				010C41091ADBADB300273945 /* carimage2.xcassets in Resources */,
 				01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
