@@ -7,7 +7,7 @@
 #import "CCScheduler.h"
 
 #import "Header.h"
-#import "CrazyCars.h"
+#import "CrazyCarsTaxis.h"
 
 
 @implementation gameplay{
@@ -16,7 +16,7 @@
 #define foo4random() (arc4random() % ((unsigned)RAND_MAX + 1))
     CCNode *_road1;
     CCNode *_road2;
-    CrazyCars *_car1;
+    CrazyCarsTaxis *_car1;
     NSArray *_roads;
     CGPoint velocity;
     NSMutableArray *_cars;    CCTime mytime;
@@ -297,12 +297,12 @@
     {
         //generate a random number
         int number = arc4random_uniform(75);
-        CrazyCars * newCar;
+        CrazyCarsTaxis * newCar;
         
         // Add a new obstacle
         
         if (number < 50) {
-            newCar= [[CrazyCars alloc]initWithImageNamed:@"carimage.png"];
+            newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
             //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
         
             newCar.scale=0.3;
@@ -319,7 +319,7 @@
             if (car2created == false) {
                 car2created = true;
                 NSLog(@"car image 2");
-                newCar = [[CrazyCars alloc] initWithImageNamed:@"carimage2.png"];
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
                 newCar.type=2;
                 
                 newCar.scale = 0.3;
@@ -381,7 +381,7 @@
     NSMutableArray *toDelete = [NSMutableArray array];
     
     
-    for (CrazyCars *car1 in _cars) {
+    for (CrazyCarsTaxis *car1 in _cars) {
         
         switch (car1.type) {
                 
@@ -429,7 +429,7 @@
 
     
     [_cars removeObjectsInArray:toDelete];
-    for (CrazyCars *temp in toDelete) {
+    for (CrazyCarsTaxis *temp in toDelete) {
         [physicsNode removeChild:temp];
 
     }
