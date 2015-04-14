@@ -305,7 +305,7 @@
         if (number < 50) {
             newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
             //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
-            coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
+          //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
             newCar.scale=0.3;
             num=foo4random();
             xcoord=minimum+(num%div);
@@ -349,8 +349,8 @@
        // [self addChild:newCar];
         newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
         newCar.physicsBody.density=0.1;
-        coin.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,coin.contentSize.width, coin.contentSize.height) cornerRadius:0];
-        coin.physicsBody.density=0.1;
+      //  coin.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,coin.contentSize.width, coin.contentSize.height) cornerRadius:0];
+     //   coin.physicsBody.density=0.1;
 
         newCar.physicsBody.collisionType=@"level";
        // newCar.physicsBody.collisionGroup=@"cheat";
