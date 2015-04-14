@@ -21,6 +21,7 @@
     CGPoint velocity;
     NSMutableArray *_cars;    CCTime mytime;
     NSMutableArray *_cars2; //horizontally moving cars
+    NSMutableArray *_coins;
     float timesliceformovewment;
     CCNodeColor *bus;
     float timeSinceObstacle;
@@ -300,11 +301,11 @@
         CrazyCarsTaxis * newCar;
         
         // Add a new obstacle
-        
+       
         if (number < 50) {
             newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
             //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
-        
+            coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
             newCar.scale=0.3;
             num=foo4random();
             xcoord=minimum+(num%div);
@@ -348,6 +349,9 @@
        // [self addChild:newCar];
         newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
         newCar.physicsBody.density=0.1;
+        coin.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,coin.contentSize.width, coin.contentSize.height) cornerRadius:0];
+        coin.physicsBody.density=0.1;
+
         newCar.physicsBody.collisionType=@"level";
        // newCar.physicsBody.collisionGroup=@"cheat";
         [physicsNode addChild:newCar];
@@ -376,6 +380,10 @@
         timeSinceObstacle = 0.0f;
     }
     
+ /*   for(int i = [_coins count]-1;i>=0;i--) {
+        ((CCSprite *)_coins[i]).position = ccp(((CCSprite *)_coins[i]).position.x, ((CCSprite *)_coins[i]).position.y-roadVelocity);
+        
+    }*/
     
     // Find the things to remove
     NSMutableArray *toDelete = [NSMutableArray array];

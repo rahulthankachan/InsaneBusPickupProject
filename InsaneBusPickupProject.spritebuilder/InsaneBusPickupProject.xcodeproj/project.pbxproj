@@ -463,6 +463,7 @@
 		B737893C1807616C0076A88C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3F17F8851ADC7D71005F6CDD /* coin.png */,
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				B7378992180767190076A88C /* MainScene.h */,
 				3F57DAFC1AD7C20400FACC78 /* gameplay.h */,
@@ -778,6 +779,7 @@
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
+				3F17F8861ADC7D71005F6CDD /* coin.png in Resources */,
 				010C41091ADBADB300273945 /* carimage2.xcassets in Resources */,
 				01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
