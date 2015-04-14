@@ -12,6 +12,7 @@
 		01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01235B261AD32FBD0092AFDF /* SampleList.plist */; };
 		01ED05A91ACB56A600033567 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01ED05A81ACB56A600033567 /* Info.plist */; };
 		2E4918B71AAAF5AB00ADA502 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */; };
+		2EC673231ADC984A007E236A /* CrazyCars.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC673221ADC984A007E236A /* CrazyCars.m */; };
 		3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57DAFD1AD7C20400FACC78 /* gameplay.m */; };
 		5B121030197484FA004C1E1D /* InsaneBusPickupProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* InsaneBusPickupProjectActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
@@ -162,6 +163,8 @@
 		018A97151AD229D8004156CE /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		01ED05A81ACB56A600033567 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		2EC673211ADC984A007E236A /* CrazyCars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrazyCars.h; sourceTree = "<group>"; };
+		2EC673221ADC984A007E236A /* CrazyCars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrazyCars.m; sourceTree = "<group>"; };
 		3F57DAFC1AD7C20400FACC78 /* gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameplay.h; sourceTree = "<group>"; };
 		3F57DAFD1AD7C20400FACC78 /* gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameplay.m; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
@@ -463,6 +466,8 @@
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				B7378992180767190076A88C /* MainScene.h */,
 				3F57DAFC1AD7C20400FACC78 /* gameplay.h */,
+				2EC673211ADC984A007E236A /* CrazyCars.h */,
+				2EC673221ADC984A007E236A /* CrazyCars.m */,
 				3F57DAFD1AD7C20400FACC78 /* gameplay.m */,
 				B7378993180767190076A88C /* MainScene.m */,
 				D352B48019EC608A00829775 /* MetalShaders */,
@@ -855,6 +860,7 @@
 			files = (
 				011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				2EC673231ADC984A007E236A /* CrazyCars.m in Sources */,
 				3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,

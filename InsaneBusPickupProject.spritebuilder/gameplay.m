@@ -7,6 +7,7 @@
 #import "CCScheduler.h"
 
 #import "Header.h"
+#import "CrazyCars.h"
 
 
 @implementation gameplay{
@@ -15,7 +16,7 @@
 #define foo4random() (arc4random() % ((unsigned)RAND_MAX + 1))
     CCNode *_road1;
     CCNode *_road2;
-    CCNode *_car1;
+    CrazyCars *_car1;
     NSArray *_roads;
     CGPoint velocity;
     NSMutableArray *_cars;    CCTime mytime;
@@ -47,6 +48,7 @@
     CGFloat initStudentXLeft;
     CGFloat initStudentXRight;
     CGFloat initStudentY;
+    CCParticleExplosion *starsExplosion;
   
     
     CCNode *_joypad;
@@ -98,6 +100,8 @@
     
     //this line is for test
     [[GamePlayScene alloc] updateScore:32];
+
+    
     
     //   float delay = 1.0; // Number of seconds between each call of myTimedMethod:
     //   CCTimer *myTimer = [[CCTimer alloc] initWithTarget:self selector:@selector(myTimedMethod:) interval:delay]];
@@ -106,9 +110,12 @@
     
     //Done by Yao Frank Fan
     //this part is to create a thread to do a countdown before the student appears
-    countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"Hello" fontSize:30];
-    countdownLabel.position = ccp(windowSize.width - 50, windowSize.height - 50);
-    NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent) object:nil];
+
+
+    
+    
+    
+    NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent:) object:nil];
     NSLog(@"nihaoa");
     
     [myThread start];  // Actually create the thread
@@ -129,19 +136,22 @@
     distLabel.position= ccp(windowSize.width-50,windowSize.height-35);
     bus.position=ccp(windowSize.width/2, 20);
 
+    
+    countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
+    countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 50);
+    [self addChild:countdownLabel];
 
     
     physicsNode.collisionDelegate=self;
    // physicsNode.debugDraw=YES;
     bus.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0,0, bus.contentSize.width, bus.contentSize.height) cornerRadius:0];
     bus.physicsBody.type = CCPhysicsBodyTypeStatic;
-    bus.physicsBody.mass=1000;
+    bus.physicsBody.mass=1;
     bus.physicsBody.collisionType=@"insaneBus";
     bus.physicsBody.collisionGroup=@"cheat";
     //bus.physicsBody.allowsRotation=NO;
     [physicsNode addChild:bus];
     
-
     
     //bus.position=ccp(0, 0);
     window = windowSize;
@@ -237,20 +247,30 @@
     if (_curTime - _lastTime>_timeSpan) {
         _lastTime = _curTime;
         if([_students count]<_maxStudentNum&&CCRANDOM_0_1()<0.3333) {
-            CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
-            BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
-            if (posLeft == YES) {
-                newStudent.position = ccp(initStudentXLeft, initStudentY);
-            } else {
-                newStudent.position = ccp(initStudentXRight, initStudentY);
+            //Done by Yao Frank Fan
+            //this part is to create a thread to do a countdown before the student appears
+            if (true) {
+                NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent:) object:nil];
+                //NSLog(@"nihaoa");
+                
+                [myThread start];  // Actually create the thread
+
+ //CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
+   //         BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
+     //       if (posLeft == YES) {
+       //         newStudent.position = ccp(initStudentXLeft, initStudentY);
+         //   } else {
+         //       newStudent.position = ccp(initStudentXRight, initStudentY);
             }
-            
+/*
             newStudent.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newStudent.contentSize.width, newStudent.contentSize.height) cornerRadius:0];;
             newStudent.physicsBody.collisionType= @"student";
             newStudent.physicsBody.type=CCPhysicsBodyTypeStatic;
             [physicsNode addChild:newStudent];
             
             [_students addObject:newStudent];
+ 
+ */
         }
     }
     
@@ -277,28 +297,30 @@
     {
         //generate a random number
         int number = arc4random_uniform(75);
-        CCSprite * newCar;
+        CrazyCars * newCar;
         
         // Add a new obstacle
         
         if (number < 50) {
-            newCar= [[CCSprite alloc]initWithImageNamed:@"carimage.png"];
+            newCar= [[CrazyCars alloc]initWithImageNamed:@"carimage.png"];
             //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
         
             newCar.scale=0.3;
             num=foo4random();
             xcoord=minimum+(num%div);
             newCar.position=ccp(xcoord,620);
+            newCar.type=1;
 
            // [self addChild:newCar];
           //  [_cars addObject:newCar];
             
             count++;
         } else {
-//            if (car2created == false) {
-//                car2created = true;
+            if (car2created == false) {
+                car2created = true;
                 NSLog(@"car image 2");
-                newCar = [[CCSprite alloc] initWithImageNamed:@"carimage2.png"];
+                newCar = [[CrazyCars alloc] initWithImageNamed:@"carimage2.png"];
+                newCar.type=2;
                 
                 newCar.scale = 0.3;
                 num = foo4random();
@@ -309,13 +331,15 @@
               //  [_cars2 addObject:newCar];
                 
                 count++;
-//            } else {
-//                //NSLog(@"car2 cannot be created.");
-//            }
+           } else {
+                //NSLog(@"car2 cannot be created.");
+            }
             
             
         }
         
+        
+        if(newCar){
         newCar.scale=0.3;
         num=foo4random();
         xcoord=minimum+(num%div);
@@ -328,24 +352,27 @@
        // newCar.physicsBody.collisionGroup=@"cheat";
         [physicsNode addChild:newCar];
         [_cars addObject:newCar];
+            
 
-        count++;
-        // Then reset the timer.
-        //moving the cars left and right, without their positions being fixed.. don by varsha
-        BOOL genPos = CCRANDOM_0_1()>=0.5?YES:NO;
-        if(nfortime > 150)
-        {
-            if(genPos == YES)
-            {
-                id theAction = [CCActionMoveTo actionWithDuration:4 position:ccp(200,200)];
-                [newCar runAction:theAction];
-            }
-            else
-            {
-                id theAction = [CCActionMoveTo actionWithDuration:4 position:ccp(-75,200)];
-                [newCar runAction:theAction];
-            }
+            count++;
+        
         }
+        // Then reset the timer.
+//        //moving the cars left and right, without their positions being fixed.. don by varsha
+//        BOOL genPos = CCRANDOM_0_1()>=0.5?YES:NO;
+//        if(nfortime > 150)
+//        {
+//            if(genPos == YES)
+//            {
+//                id theAction = [CCActionMoveTo actionWithDuration:4 position:ccp(200,200)];
+//                [newCar runAction:theAction];
+//            }
+//            else
+//            {
+//                id theAction = [CCActionMoveTo actionWithDuration:4 position:ccp(-75,200)];
+//                [newCar runAction:theAction];
+//            }
+//        }
         timeSinceObstacle = 0.0f;
     }
     
@@ -354,44 +381,61 @@
     NSMutableArray *toDelete = [NSMutableArray array];
     
     
-    for (CCNode *car1 in _cars) {
+    for (CrazyCars *car1 in _cars) {
         
-        car1.position = ccp(car1.position.x, car1.position.y - (1.5));
-        
-        if (car1.position.y<-200) {
-            
-            [toDelete addObject:car1];
+        switch (car1.type) {
+                
+            case 1:
+                
+                car1.position = ccp(car1.position.x, car1.position.y - .5);
+                
+
+                
+                if (car1.position.y<-200) {
+                    
+                    [toDelete addObject:car1];
+                                    }
+                break;
+                
+            case 2:
+                
+                car1.position = ccp(car1.position.x, car1.position.y - .5);
+                if (car1.position.y - bus.position.y <= 250) {
+                    if (car1.position.x != bus.position.x) {
+                        if (car1.position.x - bus.position.x - 15 > 0) {
+                            car1.position = ccp(car1.position.x - 1, car1.position.y);
+                        } else {
+                            car1.position = ccp(car1.position.x + 1, car1.position.y);
+                        }
+                    }
+                    
+                    
+                }
+                if (car1.position.y < -50) {
+                    [toDelete addObject:car1];
+                    car2created = false;
+                }
+                
+                break;
+                
+            default:
+                break;
         }
+        
+
         
         
     }
+
     
     [_cars removeObjectsInArray:toDelete];
-    
-    NSMutableArray *toDelete2 = [NSMutableArray array];
-    //NSLog(@"%lu", (unsigned long)[_cars2 count]);
-    for (CCNode *car2 in _cars2) {
-        car2.position = ccp(car2.position.x, car2.position.y - (1.5));
-        if (car2.position.y - bus.position.y <= 250) {
-            if (car2.position.x != bus.position.x) {
-                if (car2.position.x - bus.position.x > 0) {
-                    car2.position = ccp(car2.position.x - 0.5, car2.position.y);
-                } else {
-                    car2.position = ccp(car2.position.x + 0.5, car2.position.y);
-                }
-            }
-            
+    for (CrazyCars *temp in toDelete) {
+        [physicsNode removeChild:temp];
 
-        }
-        if (car2.position.y < -200) {
-            [toDelete2 addObject:car2];
-            car2created = false;
-        }
     }
-    [_cars2 removeObjectsInArray:toDelete2];
+    NSLog(@"The number of elements are %i", [[physicsNode children]count]);
     
-    
-    
+
     CMDeviceMotion *currentDeviceMotion= motionManager.deviceMotion;
     CMAttitude *currentAttitude= currentDeviceMotion.attitude;
     // [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
@@ -503,21 +547,63 @@
  // place the sprite at the touch location
  //hero.position = touchLocation;
  }
- 
 
 
-- (void)createStudent {
+
+
+
+//A thread to create a student, and before that to make a countdown
+//Not perfect yet, but it works
+- (void)createStudent:(CCTime) delta {
+    _createdFlag = true;
     
+    CGSize windowSize = [[CCDirector sharedDirector] viewSize];
+    
+    //CCLabelTTF *countdownLabel;
     for (int i = 3; i != 0; --i) {
-        NSLog(@"You have %d seconds left.", i);
+        //NSLog(@"You have %d seconds left.", i);
+        [countdownLabel setString:[NSString stringWithFormat:@"%d", i]];
+
         [NSThread sleepForTimeInterval:1.0f];
     }
+    [countdownLabel setString:@"Incomming"];
+    
+    CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
+    BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
+    if (posLeft == YES) {
+        newStudent.position = ccp(initStudentXLeft, initStudentY);
+    } else {
+        newStudent.position = ccp(initStudentXRight, initStudentY);
+    }
+    
+    newStudent.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newStudent.contentSize.width, newStudent.contentSize.height) cornerRadius:0];;
+    newStudent.physicsBody.collisionType= @"student";
+    newStudent.physicsBody.type=CCPhysicsBodyTypeStatic;
+    [physicsNode addChild:newStudent];
+    
+    [_students addObject:newStudent];
+    NSLog(@"student added.");
+
+    
+    
+    [NSThread sleepForTimeInterval:1.0f];
+    [countdownLabel setString:@""];
+    _createdFlag = false;
 }
+
+
+
+
+
+
+
+
 
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus level:(CCSprite*)level {
     
     NSLog(@"Collision");
+
     
     return TRUE;
 }
