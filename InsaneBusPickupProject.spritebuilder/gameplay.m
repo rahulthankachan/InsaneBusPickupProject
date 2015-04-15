@@ -8,7 +8,7 @@
 
 #import "Header.h"
 #import "CrazyCarsTaxis.h"
-
+#import "HealthBar.h"
 
 @implementation gameplay{
     
@@ -62,6 +62,10 @@
     
     
     BOOL _createdFlag;
+    
+
+    HealthBar *progressTimer;
+    
 }
 - (void)retry {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
@@ -100,9 +104,17 @@
     CGSize windowSize= [[CCDirector sharedDirector] viewSize];
     
     //this line is for test
-    [[GamePlayScene alloc] updateScore:32];
+    //[[GamePlayScene alloc] updateScore:32];
 
     
+    //progressTimer = [[HealthBar alloc] initWithProgressTimerSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
+    //progressTimer = [HealthBar progressWithSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
+    progressTimer = [CCProgressNode progressWithSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
+    //self.progressTimer.type = kCCProgressTimerTypeHorizontalBarLR;
+    [progressTimer setScale:5];
+    progressTimer.percentage = 100;
+    progressTimer.position = ccp(windowSize.width/2,windowSize.height/2);
+    [self addChild:progressTimer];
     
     //   float delay = 1.0; // Number of seconds between each call of myTimedMethod:
     //   CCTimer *myTimer = [[CCTimer alloc] initWithTarget:self selector:@selector(myTimedMethod:) interval:delay]];
@@ -209,6 +221,7 @@
 {
     // size of the window
     CGSize windowSize = [[CCDirector sharedDirector] viewSize];
+
 
     
     // done by Varsha
@@ -318,6 +331,7 @@
             count++;
         } else {
             if (car2created == false) {
+                
                 car2created = true;
                 NSLog(@"car image 2");
                 newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
@@ -339,6 +353,13 @@
             
         }
         
+        if (car2created) {
+            [progressTimer setPercentage:25];
+
+        } else {
+            [progressTimer setPercentage:100];
+
+        }
         
         if(newCar){
         newCar.scale=0.3;
@@ -598,9 +619,6 @@
     [countdownLabel setString:@""];
     _createdFlag = false;
 }
-
-
-
 
 
 
