@@ -14,6 +14,7 @@ int count;
     CCLabelTTF *label;
     CCLabelTTF *label2;
     
+    CGSize windowSize;
 }
 
 @end

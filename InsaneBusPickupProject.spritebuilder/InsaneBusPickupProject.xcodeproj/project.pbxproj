@@ -11,6 +11,7 @@
 		011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 011258EE1AA790B100BFFAA0 /* GamePlayScene.m */; };
 		01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01235B261AD32FBD0092AFDF /* SampleList.plist */; };
 		0133E8DB1ADEEC59000DCB2F /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0133E8DA1ADEEC59000DCB2F /* HealthBar.m */; };
+		0133E8F51ADF1C70000DCB2F /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 0133E8F41ADF1C70000DCB2F /* Car.m */; };
 		01ED05A91ACB56A600033567 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01ED05A81ACB56A600033567 /* Info.plist */; };
 		2E4918B71AAAF5AB00ADA502 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */; };
 		2EC6732C1ADCAE27007E236A /* CrazyCarsTaxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6732B1ADCAE27007E236A /* CrazyCarsTaxis.m */; };
@@ -91,6 +92,8 @@
 		01235B261AD32FBD0092AFDF /* SampleList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SampleList.plist; sourceTree = "<group>"; };
 		0133E8D91ADEEC59000DCB2F /* HealthBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthBar.h; sourceTree = "<group>"; };
 		0133E8DA1ADEEC59000DCB2F /* HealthBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthBar.m; sourceTree = "<group>"; };
+		0133E8F31ADF1C70000DCB2F /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		0133E8F41ADF1C70000DCB2F /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
 		018A97151AD229D8004156CE /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		01ED05A81ACB56A600033567 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -360,15 +363,17 @@
 			children = (
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				B7378992180767190076A88C /* MainScene.h */,
-				3F57DAFC1AD7C20400FACC78 /* gameplay.h */,
 				2EC6732A1ADCAE27007E236A /* CrazyCarsTaxis.h */,
 				2EC6732B1ADCAE27007E236A /* CrazyCarsTaxis.m */,
+				3F57DAFC1AD7C20400FACC78 /* gameplay.h */,
 				3F57DAFD1AD7C20400FACC78 /* gameplay.m */,
 				B7378993180767190076A88C /* MainScene.m */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 				011258EE1AA790B100BFFAA0 /* GamePlayScene.m */,
 				011258ED1AA7900A00BFFAA0 /* GamePlayScene.h */,
 				018A97151AD229D8004156CE /* Header.h */,
+				0133E8F31ADF1C70000DCB2F /* Car.h */,
+				0133E8F41ADF1C70000DCB2F /* Car.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -637,6 +642,7 @@
 				3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
+				0133E8F51ADF1C70000DCB2F /* Car.m in Sources */,
 				0133E8DB1ADEEC59000DCB2F /* HealthBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,7 @@
 #import "Header.h"
 #import "CrazyCarsTaxis.h"
 #import "HealthBar.h"
+#import "Car.h"
 
 @implementation gameplay{
     
@@ -65,7 +66,7 @@
     
 
     HealthBar *progressTimer;
-    
+    Car *car;
 }
 - (void)retry {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
@@ -79,6 +80,16 @@
         totalTime = 0;
         _createdFlag = false;
         car2created = false;
+        
+        windowSize = [[CCDirector sharedDirector] viewSize];
+        
+        CGSize screenSize = windowSize;
+        
+        car = [[Car alloc] initWithSpriteAndLayer:@"carimage3.png"];
+        car.sprite.position = ccp(screenSize.width/2, screenSize.height/4);
+        [self addChild:car.sprite z:1];
+
+        
     }
     
     //starting of the joystick by Frank
@@ -101,7 +112,7 @@
 }
 
 - (void)didLoadFromCCB {
-    CGSize windowSize= [[CCDirector sharedDirector] viewSize];
+    //CGSize windowSize= [[CCDirector sharedDirector] viewSize];
     
     //this line is for test
     //[[GamePlayScene alloc] updateScore:32];
@@ -109,12 +120,12 @@
     
     //progressTimer = [[HealthBar alloc] initWithProgressTimerSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
     //progressTimer = [HealthBar progressWithSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
-    progressTimer = [CCProgressNode progressWithSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
+    //progressTimer = [CCProgressNode progressWithSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
     //self.progressTimer.type = kCCProgressTimerTypeHorizontalBarLR;
-    [progressTimer setScale:5];
-    progressTimer.percentage = 100;
-    progressTimer.position = ccp(windowSize.width/2,windowSize.height/2);
-    [self addChild:progressTimer];
+    //[progressTimer setScale:5];
+    //progressTimer.percentage = 100;
+    //progressTimer.position = ccp(windowSize.width/2,windowSize.height/2);
+    //[self addChild:progressTimer];
     
     //   float delay = 1.0; // Number of seconds between each call of myTimedMethod:
     //   CCTimer *myTimer = [[CCTimer alloc] initWithTarget:self selector:@selector(myTimedMethod:) interval:delay]];
