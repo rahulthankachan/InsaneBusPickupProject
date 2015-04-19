@@ -66,6 +66,7 @@
 
     HealthBar *progressTimer;
     
+    int level;
 }
 - (void)retry {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
@@ -79,6 +80,7 @@
         totalTime = 0;
         _createdFlag = false;
         car2created = false;
+        level = 1;
     }
     
     //starting of the joystick by Frank
@@ -114,7 +116,7 @@
     [progressTimer setScale:5];
     progressTimer.percentage = 100;
     progressTimer.position = ccp(windowSize.width/2,windowSize.height/2);
-    [self addChild:progressTimer];
+    [self addChild:progressTimer z:1];
     
     //   float delay = 1.0; // Number of seconds between each call of myTimedMethod:
     //   CCTimer *myTimer = [[CCTimer alloc] initWithTarget:self selector:@selector(myTimedMethod:) interval:delay]];
@@ -354,7 +356,7 @@
         }
         
         if (car2created) {
-            [progressTimer setPercentage:25];
+            [progressTimer setPercentage:90];
 
         } else {
             [progressTimer setPercentage:100];
@@ -411,45 +413,132 @@
     
     
     for (CrazyCarsTaxis *car1 in _cars) {
-        
-        switch (car1.type) {
-                
-            case 1:
-                
-                car1.position = ccp(car1.position.x, car1.position.y - .5);
-                
-
-                
-                if (car1.position.y<-200) {
+        if (level == 1) {
+            switch (car1.type) {
                     
-                    [toDelete addObject:car1];
-                                    }
-                break;
-                
-            case 2:
-                
-                car1.position = ccp(car1.position.x, car1.position.y - .5);
-                if (car1.position.y - bus.position.y <= 250) {
-                    if (car1.position.x != bus.position.x) {
-                        if (car1.position.x - bus.position.x - 15 > 0) {
-                            car1.position = ccp(car1.position.x - 1, car1.position.y);
-                        } else {
-                            car1.position = ccp(car1.position.x + 1, car1.position.y);
+                case 1:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    break;
+                    
+                case 2:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    if (car1.position.y - bus.position.y <= 250) {
+                        if (car1.position.x != bus.position.x) {
+                            if (car1.position.x - bus.position.x - 15 > 0) {
+                                car1.position = ccp(car1.position.x - 1, car1.position.y);
+                            } else {
+                                car1.position = ccp(car1.position.x + 1, car1.position.y);
+                            }
                         }
+                        
+                        
+                    }
+                    if (car1.position.y < -car1.contentSize.height) {
+                        [toDelete addObject:car1];
+                        car2created = false;
                     }
                     
+                    break;
                     
-                }
-                if (car1.position.y < -50) {
-                    [toDelete addObject:car1];
-                    car2created = false;
-                }
-                
-                break;
-                
-            default:
-                break;
+                default:
+                    break;
+            }
+        } else if (level == 2) {
+            switch (car1.type) {
+                    
+                case 1:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    break;
+                    
+                case 2:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    if (car1.position.y - bus.position.y <= 250) {
+                        if (car1.position.x != bus.position.x) {
+                            if (car1.position.x - bus.position.x - 15 > 0) {
+                                car1.position = ccp(car1.position.x - 1, car1.position.y);
+                            } else {
+                                car1.position = ccp(car1.position.x + 1, car1.position.y);
+                            }
+                        }
+                        
+                        
+                    }
+                    if (car1.position.y < -car1.contentSize.height) {
+                        [toDelete addObject:car1];
+                        car2created = false;
+                    }
+                    
+                    break;
+                    
+                default:
+                    break;
+            }
+        } else if (level == 3) {
+            switch (car1.type) {
+                    
+                case 1:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    break;
+                    
+                case 2:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    if (car1.position.y - bus.position.y <= 250) {
+                        if (car1.position.x != bus.position.x) {
+                            if (car1.position.x - bus.position.x - 15 > 0) {
+                                car1.position = ccp(car1.position.x - 1, car1.position.y);
+                            } else {
+                                car1.position = ccp(car1.position.x + 1, car1.position.y);
+                            }
+                        }
+                        
+                        
+                    }
+                    if (car1.position.y < -car1.contentSize.height) {
+                        [toDelete addObject:car1];
+                        car2created = false;
+                    }
+                    
+                    break;
+                    
+                case 3:
+                    
+                    
+                    break;
+                    
+                default:
+                    break;
+            }
+        } else if (level == 4) {
+            
         }
+        
         
 
         
