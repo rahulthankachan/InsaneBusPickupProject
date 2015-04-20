@@ -523,7 +523,7 @@
         }
        
         
-        
+        /*
         if (car2created) {
             [progressTimer setPercentage:80];
 
@@ -531,6 +531,7 @@
             [progressTimer setPercentage:100];
 
         }
+         */
         
         if(newCar){
         newCar.scale=0.3;
