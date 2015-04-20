@@ -74,7 +74,7 @@
 
     HealthBar *progressTimer;
     
-    int level;
+    NSInteger level;
 }
 - (void)retry {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
@@ -110,6 +110,7 @@
     
     currentLevelInfo= [GameLevel sendLevelObjectForLevel:1];
     _maxStudentNum = currentLevelInfo.maxDistance;
+    level=currentLevelInfo.levelNumber;
 
     
     /* Configures the current Level*/
@@ -348,16 +349,11 @@
 
             if (number < 50) {
                 newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
-                //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
-                //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
                 newCar.scale=0.3;
                 num=foo4random();
                 xcoord=minimum+(num%div);
                 newCar.position=ccp(xcoord,620);
                 newCar.type=1;
-                
-                // [self addChild:newCar];
-                //  [_cars addObject:newCar];
                 
                 count++;
             } else {
@@ -383,7 +379,9 @@
                 
                 
             }
-        } else if (level == 2) {
+        }
+        
+        else if (level == 2) {
             //generate a random number
             int number = arc4random_uniform(100);
 
@@ -558,6 +556,8 @@
         }
          */
         
+        
+        
         if(newCar){
         newCar.scale=0.3;
         num=foo4random();
@@ -575,7 +575,7 @@
       
             
             
-            [physicsNode addChild:newCar];
+        [physicsNode addChild:newCar];
         [_cars addObject:newCar];
             
 
@@ -602,13 +602,7 @@
     }
         
     }
-    
- /*   for(int i = [_coins count]-1;i>=0;i--) {
-        ((CCSprite *)_coins[i]).position = ccp(((CCSprite *)_coins[i]).position.x, ((CCSprite *)_coins[i]).position.y-roadVelocity);
-        
-    }*/
-    
-    
+
     
     
     
@@ -716,12 +710,18 @@
         
     
     for (CrazyCarsTaxis *car1 in _cars) {
-        if (level == 1) {
             switch (car1.type) {
                     
+                case 1:
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
                     
-                    [toDelete addObject:car1];
-                                    }
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    break;
                 break;
                 
             case 2:
@@ -747,171 +747,173 @@
                 default:
                     break;
             }
-        } else if (level == 2) {
-            switch (car1.type) {
-                    
-                case 1:
-                    
-                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-                    
-                    
-                    
-                    if (car1.position.y < -car1.contentSize.height) {
-                        
-                        [toDelete addObject:car1];
-                    }
-                    break;
-                    
-                case 2:
-                    
-                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-                    if (car1.position.y - bus.position.y <= 250) {
-                        if (car1.position.x != bus.position.x) {
-                            if (car1.position.x - bus.position.x - 15 > 0) {
-                                car1.position = ccp(car1.position.x - 1, car1.position.y);
-                            } else {
-                                car1.position = ccp(car1.position.x + 1, car1.position.y);
-                            }
-                        }
-                        
-                        
-                    }
-                    if (car1.position.y < -car1.contentSize.height) {
-                        [toDelete addObject:car1];
-                        car2created = false;
-                    }
-                    
-                    break;
-                case 3:
-                    car1.position = ccp(car1.position.x, car1.position.y - 3);
-                    
-                    
-                    
-                    if (car1.position.y < -car1.contentSize.height) {
-                        
-                        [toDelete addObject:car1];
-                    }
-                    
-                    break;
-                    
-                default:
-                    break;
-            }
-        } else if (level == 3) {
-            switch (car1.type) {
-                    
-                case 1:
-                    
-                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-                    
-                    
-                    
-                    if (car1.position.y < -car1.contentSize.height) {
-                        
-                        [toDelete addObject:car1];
-                    }
-                    break;
-                    
-                case 2:
-                    
-                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-                    if (car1.position.y - bus.position.y <= 250) {
-                        if (car1.position.x != bus.position.x) {
-                            if (car1.position.x - bus.position.x - 15 > 0) {
-                                car1.position = ccp(car1.position.x - 1, car1.position.y);
-                            } else {
-                                car1.position = ccp(car1.position.x + 1, car1.position.y);
-                            }
-                        }
-                        
-                        
-                    }
-                    if (car1.position.y < -car1.contentSize.height) {
-                        [toDelete addObject:car1];
-                        car2created = false;
-                    }
-                    
-                    break;
-                    
-                case 3:
-                    car1.position = ccp(car1.position.x, car1.position.y - 3);
-                    
-                    
-                    
-                    if (car1.position.y < -car1.contentSize.height) {
-                        
-                        [toDelete addObject:car1];
-                    }
-                    
-                    break;
-                    
-                default:
-                    break;
-            }
-        } else if (level == 4) {
-            switch (car1.type) {
-                    
-                case 1:
-                    
-                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-                    
-                    
-                    
-                    if (car1.position.y < -car1.contentSize.height) {
-                        
-                        [toDelete addObject:car1];
-                    }
-                    break;
-                    
-                case 2:
-                    
-                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-                    if (car1.position.y - bus.position.y <= 250) {
-                        if (car1.position.x != bus.position.x) {
-                            if (car1.position.x - bus.position.x - 15 > 0) {
-                                car1.position = ccp(car1.position.x - 1, car1.position.y);
-                            } else {
-                                car1.position = ccp(car1.position.x + 1, car1.position.y);
-                            }
-                        }
-                        
-                        
-                    }
-                    if (car1.position.y < -car1.contentSize.height) {
-                        [toDelete addObject:car1];
-                        car2created = false;
-                    }
-                    
-                    break;
-                    
-                case 3:
-                    car1.position = ccp(car1.position.x, car1.position.y - 3);
-                    
-                    
-                    
-                    if (car1.position.y < -car1.contentSize.height) {
-                        
-                        [toDelete addObject:car1];
-                    }
-                    
-                    break;
-                    
-                case 4:
-                    
-                    car1.position = ccp(car1.position.x, car1.position.y - 0.5);
-                    
-                    
-                    if (car1.position.y < -car1.contentSize.height) {
-                        
-                        [toDelete addObject:car1];
-                    }
-                    
-                    break;
-                default:
-                    break;
-            }
         }
         
+//        else if (level == 2) {
+//            switch (car1.type) {
+//                    
+//                case 1:
+//                    
+//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+//                    
+//                    
+//                    
+//                    if (car1.position.y < -car1.contentSize.height) {
+//                        
+//                        [toDelete addObject:car1];
+//                    }
+//                    break;
+//                    
+//                case 2:
+//                    
+//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+//                    if (car1.position.y - bus.position.y <= 250) {
+//                        if (car1.position.x != bus.position.x) {
+//                            if (car1.position.x - bus.position.x - 15 > 0) {
+//                                car1.position = ccp(car1.position.x - 1, car1.position.y);
+//                            } else {
+//                                car1.position = ccp(car1.position.x + 1, car1.position.y);
+//                            }
+//                        }
+//                        
+//                        
+//                    }
+//                    if (car1.position.y < -car1.contentSize.height) {
+//                        [toDelete addObject:car1];
+//                        car2created = false;
+//                    }
+//                    
+//                    break;
+//                case 3:
+//                    car1.position = ccp(car1.position.x, car1.position.y - 3);
+//                    
+//                    
+//                    
+//                    if (car1.position.y < -car1.contentSize.height) {
+//                        
+//                        [toDelete addObject:car1];
+//                    }
+//                    
+//                    break;
+//                    
+//                default:
+//                    break;
+//            }
+//        } else if (level == 3) {
+//            switch (car1.type) {
+//                    
+//                case 1:
+//                    
+//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+//                    
+//                    
+//                    
+//                    if (car1.position.y < -car1.contentSize.height) {
+//                        
+//                        [toDelete addObject:car1];
+//                    }
+//                    break;
+//                    
+//                case 2:
+//                    
+//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+//                    if (car1.position.y - bus.position.y <= 250) {
+//                        if (car1.position.x != bus.position.x) {
+//                            if (car1.position.x - bus.position.x - 15 > 0) {
+//                                car1.position = ccp(car1.position.x - 1, car1.position.y);
+//                            } else {
+//                                car1.position = ccp(car1.position.x + 1, car1.position.y);
+//                            }
+//                        }
+//                        
+//                        
+//                    }
+//                    if (car1.position.y < -car1.contentSize.height) {
+//                        [toDelete addObject:car1];
+//                        car2created = false;
+//                    }
+//                    
+//                    break;
+//                    
+//                case 3:
+//                    car1.position = ccp(car1.position.x, car1.position.y - 3);
+//                    
+//                    
+//                    
+//                    if (car1.position.y < -car1.contentSize.height) {
+//                        
+//                        [toDelete addObject:car1];
+//                    }
+//                    
+//                    break;
+//                    
+//                default:
+//                    break;
+//            }
+//        } else if (level == 4) {
+//            switch (car1.type) {
+//                    
+//                case 1:
+//                    
+//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+//                    
+//                    
+//                    
+//                    if (car1.position.y < -car1.contentSize.height) {
+//                        
+//                        [toDelete addObject:car1];
+//                    }
+//                    break;
+//                    
+//                case 2:
+//                    
+//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+//                    if (car1.position.y - bus.position.y <= 250) {
+//                        if (car1.position.x != bus.position.x) {
+//                            if (car1.position.x - bus.position.x - 15 > 0) {
+//                                car1.position = ccp(car1.position.x - 1, car1.position.y);
+//                            } else {
+//                                car1.position = ccp(car1.position.x + 1, car1.position.y);
+//                            }
+//                        }
+//                        
+//                        
+//                    }
+//                    if (car1.position.y < -car1.contentSize.height) {
+//                        [toDelete addObject:car1];
+//                        car2created = false;
+//                    }
+//                    
+//                    break;
+//                    
+//                case 3:
+//                    car1.position = ccp(car1.position.x, car1.position.y - 3);
+//                    
+//                    
+//                    
+//                    if (car1.position.y < -car1.contentSize.height) {
+//                        
+//                        [toDelete addObject:car1];
+//                    }
+//                    
+//                    break;
+//                    
+//                case 4:
+//                    
+//                    car1.position = ccp(car1.position.x, car1.position.y - 0.5);
+//                    
+//                    
+//                    if (car1.position.y < -car1.contentSize.height) {
+//                        
+//                        [toDelete addObject:car1];
+//                    }
+//                    
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//        
         
 
         
@@ -1144,9 +1146,6 @@
     return TRUE;
 }
 
-
-
-//by Stephen, Collsion Effect
 -(void) ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair insaneBus:(CCNode *)insaneBus level:(CCSprite *)level {
     CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"CarCollision"];
     explosion.autoRemoveOnFinish = TRUE;
@@ -1159,5 +1158,10 @@
         [insaneBus removeFromParent];
     }
 }
+
+
+
+
+
 
 @end

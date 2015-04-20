@@ -18,6 +18,7 @@
 @property NSInteger maxDistance;
 @property NSInteger maxStudents;
 @property NSInteger maxCars;
+@property NSInteger levelNumber;
 
 +(GameLevel*)sendLevelObjectForLevel: (NSInteger) userLevel;
 
