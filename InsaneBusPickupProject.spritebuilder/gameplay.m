@@ -1,6 +1,7 @@
 #import "gameplay.h"
 #import <CCActionInterval.h>
 #import "GamePlayScene.h"
+#import "GameLevel.h"
 
 @import Foundation;
 
@@ -50,8 +51,13 @@
     CGFloat initStudentXRight;
     CGFloat initStudentY;
     CCParticleExplosion *starsExplosion;
-  
-    
+    BOOL levelCompleted;
+    GameLevel *currentLevelInfo;
+    CCSprite *college;
+    CCSprite *parking;
+    CCNode *sensor;
+
+
     CCNode *_joypad;
     
     volatile BOOL car2created;
@@ -79,6 +85,7 @@
         totalTime = 0;
         _createdFlag = false;
         car2created = false;
+        
     }
     
     //starting of the joystick by Frank
@@ -94,6 +101,15 @@
         _joypad.opacity = 0;
         
     }
+#pragma mark init: Current Level Config
+    
+    /* Configures the current Level*/
+    
+    currentLevelInfo= [GameLevel sendLevelObjectForLevel:1];
+    _maxStudentNum = currentLevelInfo.maxDistance;
+
+    
+    /* Configures the current Level*/
 
     
     
@@ -101,6 +117,10 @@
 }
 
 - (void)didLoadFromCCB {
+    
+    
+    
+    
     CGSize windowSize= [[CCDirector sharedDirector] viewSize];
     
     //this line is for test
@@ -156,10 +176,11 @@
 
     
     physicsNode.collisionDelegate=self;
-   // physicsNode.debugDraw=YES;
+    //physicsNode.debugDraw=YES;
     bus.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0,0, bus.contentSize.width, bus.contentSize.height) cornerRadius:0];
     bus.physicsBody.type = CCPhysicsBodyTypeStatic;
     bus.physicsBody.mass=1;
+    bus.zOrder=2;
     bus.physicsBody.collisionType=@"insaneBus";
     bus.physicsBody.collisionGroup=@"cheat";
     //bus.physicsBody.allowsRotation=NO;
@@ -176,7 +197,6 @@
     //initialize the first student
     _curTime = 0;
     _lastTime = 0;
-    _maxStudentNum = 100;
     _timeSpan = 2.0;
     initStudentXLeft = window.width/8;
     initStudentXRight = window.width/8*7;
@@ -230,6 +250,9 @@
     nfortime++;
     totalTime++;
     count++;
+    
+    if (roadVelocity) {
+        
     if(count == 120)
     {
         //  score = score + 300;
@@ -246,66 +269,70 @@
     }
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", score]];
     
-
+    }
     
     //this is for endless road. done by frank
     
     for (CCNode *road in _roads) {
         road.position = ccp(road.position.x, road.position.y - (roadVelocity));
-        if (road.position.y <= (-1 * road.contentSize.height * 3)) {
+        if (road.position.y <= (-1 * road.contentSize.height * 3)&&roadVelocity) {
             road.position = ccp(road.position.x, road.position.y + 3 *2 * road.contentSize.height - 50);
         }
     }
-    //adding new students
-    _curTime += delta;
-    if (_curTime - _lastTime>_timeSpan) {
-        _lastTime = _curTime;
-        if([_students count]<_maxStudentNum&&CCRANDOM_0_1()<0.3333) {
-            //Done by Yao Frank Fan
-            //this part is to create a thread to do a countdown before the student appears
-            if (true) {
-                NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent:) object:nil];
-                //NSLog(@"nihaoa");
-                
-                [myThread start];  // Actually create the thread
-
- //CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
-   //         BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
-     //       if (posLeft == YES) {
-       //         newStudent.position = ccp(initStudentXLeft, initStudentY);
-         //   } else {
-         //       newStudent.position = ccp(initStudentXRight, initStudentY);
+    
+    
+    
+    
+    
+    
+    
+    if (distance<currentLevelInfo.maxDistance) {
+        
+        
+        
+        //adding new students
+        _curTime += delta;
+        if (_curTime - _lastTime>_timeSpan) {
+            _lastTime = _curTime;
+            if([_students count]<_maxStudentNum&&CCRANDOM_0_1()<0.3333) {
+                //Done by Yao Frank Fan
+                //this part is to create a thread to do a countdown before the student appears
+                if (true) {
+                    NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent:) object:nil];
+                    //NSLog(@"nihaoa");
+                    
+                    [myThread start];  // Actually create the thread
+                    
+                    //CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
+                    //         BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
+                    //       if (posLeft == YES) {
+                    //         newStudent.position = ccp(initStudentXLeft, initStudentY);
+                    //   } else {
+                    //       newStudent.position = ccp(initStudentXRight, initStudentY);
+                }
+                /*
+                 newStudent.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newStudent.contentSize.width, newStudent.contentSize.height) cornerRadius:0];;
+                 newStudent.physicsBody.collisionType= @"student";
+                 newStudent.physicsBody.type=CCPhysicsBodyTypeStatic;
+                 [physicsNode addChild:newStudent];
+                 
+                 [_students addObject:newStudent];
+                 
+                 */
             }
-/*
-            newStudent.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newStudent.contentSize.width, newStudent.contentSize.height) cornerRadius:0];;
-            newStudent.physicsBody.collisionType= @"student";
-            newStudent.physicsBody.type=CCPhysicsBodyTypeStatic;
-            [physicsNode addChild:newStudent];
-            
-            [_students addObject:newStudent];
- 
- */
         }
-    }
-    
-    //updating position of each student
-    for(int i = [_students count]-1;i>=0;i--) {
-        ((CCSprite *)_students[i]).position = ccp(((CCSprite *)_students[i]).position.x, ((CCSprite *)_students[i]).position.y-roadVelocity);
-        if(((CCSprite *)_students[i]).position.y<-13) {
-            //remove this object
-       //     [self removeChild:(CCSprite *)_students[i] cleanup:YES];
-       //     [_students removeObject:(CCSprite *)_students[i]];
-        }
-    }
-    
-    
-    
-    timeSinceObstacle += delta; // delta is approximately 1/60th of a second
-    
-    // Check to see if two seconds have passed
-    
-    int minimum=50;
-    int div=201;
+        
+
+        
+        
+        
+        timeSinceObstacle += delta;
+        
+        
+        int minimum=50;
+        int div=201;
+        
+
     
     if (timeSinceObstacle >2.0f)
     {
@@ -375,7 +402,10 @@
 
         newCar.physicsBody.collisionType=@"level";
        // newCar.physicsBody.collisionGroup=@"cheat";
-        [physicsNode addChild:newCar];
+      
+            
+            
+            [physicsNode addChild:newCar];
         [_cars addObject:newCar];
             
 
@@ -400,15 +430,120 @@
 //        }
         timeSinceObstacle = 0.0f;
     }
+        
+    }
     
  /*   for(int i = [_coins count]-1;i>=0;i--) {
         ((CCSprite *)_coins[i]).position = ccp(((CCSprite *)_coins[i]).position.x, ((CCSprite *)_coins[i]).position.y-roadVelocity);
         
     }*/
     
-    // Find the things to remove
+    
+    
+    
+    
+    
+    
+    
+    
+    /////////////////* Show the final Scne*/////////////////////////
+    if(distance>currentLevelInfo.maxDistance)
+    {
+       
+        if(distance>currentLevelInfo.maxDistance+5){
+        if(!parking)
+        {
+            parking= [[CCSprite alloc]initWithImageNamed:@"Parking.png"];
+            parking.scale=0.2;
+//            parking.physicsBody.velocity= CGPointMake(0, 0);
+//            parking.physicsBody=[CCPhysicsBody bodyWithRect:CGRectMake(0, 0,600, 20) cornerRadius:0];
+            
+            
+            parking.parent.zOrder=5;
+        
+            
+            sensor=[[CCNode alloc]init];
+            sensor.physicsBody=[CCPhysicsBody bodyWithRect:CGRectMake(0, 0,600, 20) cornerRadius:0];
+            //sensor.physicsBody.sensor=TRUE;
+            sensor.physicsBody.collisionType=@"Parking";
+            
+            
+            
+            int xcoord= 320/2;
+            parking.position=ccp(xcoord,550);
+            sensor.position=ccp(0,720);
+            [physicsNode addChild:parking];
+            [physicsNode addChild:sensor];
+            
+        
+        }
+        }
+        
+        NSLog(@"tHIS IS THE HIDDEN VELOVITY physics node %f",physicsNode.physicsBody.velocity.y) ;
+        NSLog(@"tHIS IS THE HIDDEN VELOVITY parking %f",parking.physicsBody.velocity.y) ;
+        NSLog(@"tHIS IS THE HIDDEN VELOVITY %f",[parking parent].physicsBody.velocity.y) ;
+        
+        
+        if (parking) {
+            parking.position = ccp(parking.position.x, parking.position.y - roadVelocity);
+        }
+        if (sensor) {
+            sensor.position = ccp(sensor.position.x, sensor.position.y - roadVelocity);
+        }
+
+    
+    
+    }
+    if(distance==currentLevelInfo.maxDistance+6)
+    {
+        parking.physicsBody.velocity= CGPointMake(0, 0);
+        
+//        if(distance>currentLevelInfo.maxDistance+5){
+//            if(!college)
+//            {
+//                college= [[CCSprite alloc]initWithImageNamed:@"Parking.png"];
+//                college.scale=0.2;
+//                
+//                int xcoord= 320/2-college.boundingBox.size.width/2;
+//                college.position=ccp(xcoord,620);
+//                [physicsNode addChild:college];
+//                
+//            }
+//        }
+//        
+//        
+//        if (college) {
+//            college.position = ccp(college.position.x, college.position.y - roadVelocity);
+//        }
+//        
+    
+    
+    }
+    
+    /////////////////* Show the final Scne*/////////////////////////
+    
+    
     NSMutableArray *toDelete = [NSMutableArray array];
     
+    
+    //updating position of each student
+    for(int i = [_students count]-1;i>=0;i--) {
+        ((CCSprite *)_students[i]).position = ccp(((CCSprite *)_students[i]).position.x, ((CCSprite *)_students[i]).position.y-roadVelocity);
+        if(((CCSprite *)_students[i]).position.y<-13) {
+            //remove this object
+            //     [self removeChild:(CCSprite *)_students[i] cleanup:YES];
+            //     [_students removeObject:(CCSprite *)_students[i]];
+            
+            [toDelete addObject: _students[i]];
+        }
+    }
+ 
+    
+    
+    // Find the things to remove
+
+    if (roadVelocity) {
+        
     
     for (CrazyCarsTaxis *car1 in _cars) {
         
@@ -421,6 +556,7 @@
 
                 
                 if (car1.position.y<-200) {
+                    
                     
                     [toDelete addObject:car1];
                                     }
@@ -455,14 +591,19 @@
         
         
     }
+    
+    }
+
 
     
     [_cars removeObjectsInArray:toDelete];
-    for (CrazyCarsTaxis *temp in toDelete) {
-        [physicsNode removeChild:temp];
+    for ( CCNode *temp in toDelete) {
+        [temp removeFromParent];
 
     }
-    NSLog(@"The number of elements are %i", [[physicsNode children]count]);
+    [toDelete removeAllObjects];
+    
+  //  NSLog(@"The number of elements are %i", [[physicsNode children]count]);
     
 
     CMDeviceMotion *currentDeviceMotion= motionManager.deviceMotion;
@@ -640,6 +781,16 @@
     [student removeFromParent];
     score=score+1;
     
+    return TRUE;
+}
+
+
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus Parking:(CCNode*)Parking {
+    
+    NSLog(@"Yay! The level is completed");
+    roadVelocity=0;
+    parking.physicsBody.velocity= CGPointMake(0, 0);
+
     return TRUE;
 }
 

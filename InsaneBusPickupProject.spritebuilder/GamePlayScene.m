@@ -17,6 +17,7 @@
 }
 
 - (void) updateScore: (int) currentScore {
+    
     NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //1
     NSString *documentsDirectory = [paths objectAtIndex:0]; //2
