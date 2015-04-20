@@ -30,6 +30,8 @@
     int xcoord;
     int num;
     int totalTime;
+    int numberOfCollisions;
+    long s1,s2,s3;
     CGFloat widthBoundary;//
     CGFloat heightBoundary;
     CGFloat roadVelocity;
@@ -81,6 +83,7 @@
         _createdFlag = false;
         car2created = false;
         level = 4;
+        numberOfCollisions = 0;
     }
     
     //starting of the joystick by Frank
@@ -100,6 +103,10 @@
     
     
     return self;
+}
+- (void)backbutton4 {
+    CCScene *mainscene = [CCBReader loadAsScene:@"MainScene"];
+    [[CCDirector sharedDirector] replaceScene:mainscene];
 }
 
 - (void)didLoadFromCCB {
@@ -959,8 +966,32 @@
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus level:(CCSprite*)level {
     
     NSLog(@"Collision");
-
-    
+   /* numberOfCollisions = numberOfCollisions + 1 ;
+    score = 10;
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
+    NSMutableDictionary *plistData = [NSMutableDictionary dictionaryWithContentsOfFile:finalPath];
+    s1 = [[plistData objectForKey:@"score1"] integerValue];
+    s2 = [[plistData objectForKey:@"score2"] integerValue];
+    s3 = [[plistData objectForKey:@"score3"] integerValue];
+    if(numberOfCollisions == 2)
+    {
+       
+       
+        NSLog(@"s1:%ld",s1);
+        NSLog(@"s2:%ld",s2);
+        bool success;
+        [plistData setValue:@"score" forKey:@"score1"];
+        success = [plistData writeToFile:finalPath atomically:YES];
+        if(success)
+        {
+            NSLog(@"hurray");
+        }
+        
+    }
+    NSLog(@"s1:%ld",s1);
+    NSLog(@"s2:%ld",s2); */
+   
     return TRUE;
 }
 
