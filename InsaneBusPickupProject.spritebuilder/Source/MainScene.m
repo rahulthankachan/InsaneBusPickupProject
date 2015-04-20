@@ -3,10 +3,13 @@
 @implementation MainScene{
     
     CCButton *play;
-    CCButton *scores;
     CCButton *about;
+    CCButton *scores;
     CCButton *backbutton2;
     CCButton *backbutton3;
+    CCLabelTTF *scorelabel1;
+    CCLabelTTF *scorelabel2;
+    CCLabelTTF *scorelabel3;
     
 }
 
@@ -33,5 +36,20 @@
     CCScene *mainscene = [CCBReader loadAsScene:@"MainScene"];
     [[CCDirector sharedDirector] replaceScene:mainscene];
 }
+
+-(void) didLoadFromCCB {
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
+    NSMutableDictionary *plistData = [NSMutableDictionary dictionaryWithContentsOfFile:finalPath];
+    h1 = [[plistData objectForKey:@"score1"] integerValue];
+    h2 = [[plistData objectForKey:@"score2"] integerValue];
+    h3 = [[plistData objectForKey:@"score3"] integerValue];
+    NSLog(@"h1:%ld",h1);
+    [scorelabel1 setString:[NSString stringWithFormat:@"HighScore1: %ld", h1]];
+    [scorelabel2 setString:[NSString stringWithFormat:@"HighScore2: %ld", h2]];
+    [scorelabel3 setString:[NSString stringWithFormat:@"HighScore3: %ld", h3]];
+    
+}
+
 
 @end

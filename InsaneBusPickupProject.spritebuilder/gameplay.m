@@ -1,7 +1,6 @@
 #import "gameplay.h"
 #import <CCActionInterval.h>
 #import "GamePlayScene.h"
-
 @import Foundation;
 
 #import "CCScheduler.h"
@@ -40,6 +39,7 @@
     CCLabelTTF *countdownLabel;
     CGSize window;
     CCButton *retry;
+ 
     
     //variables for students
     CCTime _curTime;
@@ -965,31 +965,52 @@
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus level:(CCSprite*)level {
     
     NSLog(@"Collision");
-   /* numberOfCollisions = numberOfCollisions + 1 ;
-    score = 10;
+    numberOfCollisions = numberOfCollisions + 1 ;
+    //score = 10;
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
     NSMutableDictionary *plistData = [NSMutableDictionary dictionaryWithContentsOfFile:finalPath];
     s1 = [[plistData objectForKey:@"score1"] integerValue];
     s2 = [[plistData objectForKey:@"score2"] integerValue];
     s3 = [[plistData objectForKey:@"score3"] integerValue];
-    if(numberOfCollisions == 2)
+    if(numberOfCollisions == 4)
     {
        
-       
+        int flag = 0;
         NSLog(@"s1:%ld",s1);
         NSLog(@"s2:%ld",s2);
         bool success;
+        if(score>s1 && score>s2 && score>s3)
+        {
+            flag = 1;
         [plistData setValue:@"score" forKey:@"score1"];
+        [plistData setValue:@"s1" forKey:@"score2"];
+        [plistData setValue:@"s2" forKey:@"score3"];
+        }
+        else if(score>s2 && score>s3)
+            
+        {
+            flag = 1;
+            [plistData setValue:@"score" forKey:@"score2"];
+            [plistData setValue:@"s2" forKey:@"score3"];
+        }
+        else if(score>s3)
+        {
+            flag = 1;
+            [plistData setValue:@"score" forKey:@"score3"];
+        }
+        if(flag==1)
+        {
         success = [plistData writeToFile:finalPath atomically:YES];
         if(success)
         {
             NSLog(@"hurray");
         }
+        }
         
     }
     NSLog(@"s1:%ld",s1);
-    NSLog(@"s2:%ld",s2); */
+    NSLog(@"s2:%ld",s2);
    
     return TRUE;
 }

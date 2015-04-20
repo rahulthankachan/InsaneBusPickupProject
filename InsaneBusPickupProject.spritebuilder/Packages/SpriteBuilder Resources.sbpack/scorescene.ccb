@@ -377,7 +377,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>scorelabel1</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -397,8 +397,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>129</real>
-							<real>402</real>
+							<real>155</real>
+							<real>401</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -435,7 +435,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>HIghScore1:</string>
+							<string>HIghScore1: 87659</string>
 							<false/>
 						</array>
 					</dict>
@@ -571,6 +571,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -584,7 +586,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>scorelabel2</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -604,8 +606,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>126</real>
-							<real>335</real>
+							<real>155</real>
+							<real>333</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -642,7 +644,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>HighScore2:</string>
+							<string>HighScore2: 98754</string>
 							<false/>
 						</array>
 					</dict>
@@ -791,7 +793,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>scorelabel3</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -811,8 +813,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>126</real>
-							<real>263</real>
+							<real>165</real>
+							<real>261</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -849,7 +851,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>HighScore3:</string>
+							<string>HighScore3: 3456789</string>
 							<false/>
 						</array>
 					</dict>
