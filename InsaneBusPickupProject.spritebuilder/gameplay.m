@@ -1005,6 +1005,18 @@
 
 
 
-
+//by Stephen, Collsion Effect
+-(void) ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair insaneBus:(CCNode *)insaneBus level:(CCSprite *)level {
+    CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"CarCollision"];
+    explosion.autoRemoveOnFinish = TRUE;
+    explosion.position = level.position;
+    [level.parent addChild:explosion];
+    [level removeFromParent];
+    //temporarily
+    progressTimer.percentage-=33;
+    if (progressTimer.percentage<=0) {
+        [insaneBus removeFromParent];
+    }
+}
 
 @end
