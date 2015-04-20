@@ -468,8 +468,7 @@
             
             if (number < 25) {
                 newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
-                //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
-                //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
+
                 newCar.scale=0.3;
                 num=foo4random();
                 xcoord=minimum+(num%div);
@@ -509,7 +508,7 @@
                 
                 
             } else {
-                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage4.png"];
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage6.png"];
                 newCar.type=4;
                 
                 NSLog(@"In level 4, car 4 has been added.");
