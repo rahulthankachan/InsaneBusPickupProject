@@ -31,6 +31,8 @@
     int xcoord;
     int num;
     int totalTime;
+    int numberOfCollisions;
+    long s1,s2,s3;
     CGFloat widthBoundary;//
     CGFloat heightBoundary;
     CGFloat roadVelocity;
@@ -72,6 +74,7 @@
 
     HealthBar *progressTimer;
     
+    int level;
 }
 - (void)retry {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
@@ -115,6 +118,10 @@
     
     return self;
 }
+- (void)backbutton4 {
+    CCScene *mainscene = [CCBReader loadAsScene:@"MainScene"];
+    [[CCDirector sharedDirector] replaceScene:mainscene];
+}
 
 - (void)didLoadFromCCB {
     
@@ -134,7 +141,7 @@
     [progressTimer setScale:5];
     progressTimer.percentage = 100;
     progressTimer.position = ccp(windowSize.width/2,windowSize.height/2);
-    [self addChild:progressTimer];
+    [self addChild:progressTimer z:1];
     
     //   float delay = 1.0; // Number of seconds between each call of myTimedMethod:
     //   CCTimer *myTimer = [[CCTimer alloc] initWithTarget:self selector:@selector(myTimedMethod:) interval:delay]];
@@ -149,7 +156,6 @@
     
     
     NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent:) object:nil];
-    NSLog(@"nihaoa");
     
     [myThread start];  // Actually create the thread
     
@@ -167,7 +173,7 @@
     distLabel =[[CCLabelTTF alloc]initWithString:@"Dist: 0" fontName:@"Hello" fontSize:15];
     scoreLabel.position= ccp(windowSize.width-50,windowSize.height-10);
     distLabel.position= ccp(windowSize.width-50,windowSize.height-35);
-    bus.position=ccp(windowSize.width/2, 20);
+    bus.position=ccp(windowSize.width/2 - bus.contentSize.width / 2, 20);
 
     
     countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
@@ -219,7 +225,6 @@
     [physicsNode addChild:_student0];
     
     
-    
     motionManager= [[CMMotionManager alloc]init];
     motionManager.deviceMotionUpdateInterval=1.0/60.0;
     [motionManager startDeviceMotionUpdates];
@@ -227,8 +232,6 @@
     widthBoundary = _road1.contentSize.width;
     heightBoundary = _road1.contentSize.height;
     roadVelocity = 5;
-
-    
     
 }
 
@@ -336,31 +339,70 @@
     
     if (timeSinceObstacle >2.0f)
     {
-        //generate a random number
-        int number = arc4random_uniform(75);
-        CrazyCarsTaxis * newCar;
+         CrazyCarsTaxis * newCar;
         
         // Add a new obstacle
-       
-        if (number < 50) {
-            newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
-            //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
-          //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
-            newCar.scale=0.3;
-            num=foo4random();
-            xcoord=minimum+(num%div);
-            newCar.position=ccp(xcoord,620);
-            newCar.type=1;
+        if (level == 1) {
+            //generate a random number
+            int number = arc4random_uniform(75);
 
-           // [self addChild:newCar];
-          //  [_cars addObject:newCar];
-            
-            count++;
-        } else {
-            if (car2created == false) {
+            if (number < 50) {
+                newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+                //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
+                //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
+                newCar.scale=0.3;
+                num=foo4random();
+                xcoord=minimum+(num%div);
+                newCar.position=ccp(xcoord,620);
+                newCar.type=1;
                 
-                car2created = true;
-                NSLog(@"car image 2");
+                // [self addChild:newCar];
+                //  [_cars addObject:newCar];
+                
+                count++;
+            } else {
+                if (car2created == false) {
+                    
+                    car2created = true;
+                    //NSLog(@"car image 2");
+                    newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
+                    newCar.type=2;
+                    
+                    newCar.scale = 0.3;
+                    num = foo4random();
+                    xcoord = minimum + (num % div);
+                    newCar.position = ccp(xcoord, 620);
+                    //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
+                    // [self addChild:newCar];
+                    //  [_cars2 addObject:newCar];
+                    
+                    count++;
+                } else {
+                    //NSLog(@"car2 cannot be created.");
+                }
+                
+                
+            }
+        } else if (level == 2) {
+            //generate a random number
+            int number = arc4random_uniform(100);
+
+            if (number < 50) {
+                newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+                //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
+                //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
+                newCar.scale=0.3;
+                num=foo4random();
+                xcoord=minimum+(num%div);
+                newCar.position=ccp(xcoord,620);
+                newCar.type=1;
+                
+                // [self addChild:newCar];
+                //  [_cars addObject:newCar];
+                
+                count++;
+            } else if (number >= 50 && number < 75) {
+                //NSLog(@"car image 2");
                 newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
                 newCar.type=2;
                 
@@ -369,24 +411,152 @@
                 xcoord = minimum + (num % div);
                 newCar.position = ccp(xcoord, 620);
                 //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
-               // [self addChild:newCar];
-              //  [_cars2 addObject:newCar];
+                // [self addChild:newCar];
+                //  [_cars2 addObject:newCar];
                 
                 count++;
-           } else {
-                //NSLog(@"car2 cannot be created.");
+                
+                
+            } else {
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+                newCar.type=3;
+                
+                newCar.scale = 0.3;
+                num = foo4random();
+                xcoord = minimum + (num % div);
+                newCar.position = ccp(xcoord, 620);
+
+                count++;
+                
+                
             }
+        } else if (level == 3) {
+            //generate a random number
+            int number = arc4random_uniform(100);
             
+            if (number < 25) {
+                newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+                //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
+                //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
+                newCar.scale=0.3;
+                num=foo4random();
+                xcoord=minimum+(num%div);
+                newCar.position=ccp(xcoord,620);
+                newCar.type=1;
+                
+                // [self addChild:newCar];
+                //  [_cars addObject:newCar];
+                
+                count++;
+            } else if (number >= 25 && number < 50) {
+                //NSLog(@"car image 2");
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
+                newCar.type=2;
+                
+                newCar.scale = 0.3;
+                num = foo4random();
+                xcoord = minimum + (num % div);
+                newCar.position = ccp(xcoord, 620);
+                //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
+                // [self addChild:newCar];
+                //  [_cars2 addObject:newCar];
+                
+                count++;
+                
+                
+            } else if (number >= 50 && number < 75) {
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+                newCar.type=3;
+                
+                newCar.scale = 0.3;
+                num = foo4random();
+                xcoord = minimum + (num % div);
+                newCar.position = ccp(xcoord, 620);
+                
+                count++;
+                
+                
+            } else {
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage4.png"];
+                newCar.type=4;
+                
+                newCar.scale = 0.3;
+                num = foo4random();
+                xcoord = minimum + (num % div);
+                newCar.position = ccp(xcoord, 620);
+                
+                count++;
+            }
+        } else if (level == 4) {
+            //generate a random number
+            int number = arc4random_uniform(100);
             
+            if (number < 25) {
+                newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+
+                newCar.scale=0.3;
+                num=foo4random();
+                xcoord=minimum+(num%div);
+                newCar.position=ccp(xcoord,620);
+                newCar.type=1;
+                
+                // [self addChild:newCar];
+                //  [_cars addObject:newCar];
+                
+                count++;
+            } else if (number >= 25 && number < 50) {
+                //NSLog(@"car image 2");
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
+                newCar.type=2;
+                
+                newCar.scale = 0.3;
+                num = foo4random();
+                xcoord = minimum + (num % div);
+                newCar.position = ccp(xcoord, 620);
+                //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
+                // [self addChild:newCar];
+                //  [_cars2 addObject:newCar];
+                
+                count++;
+                
+                
+            } else if (number >= 50 && number < 75) {
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+                newCar.type=3;
+                
+                newCar.scale = 0.3;
+                num = foo4random();
+                xcoord = minimum + (num % div);
+                newCar.position = ccp(xcoord, 620);
+                
+                count++;
+                
+                
+            } else {
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage6.png"];
+                newCar.type=4;
+                
+                NSLog(@"In level 4, car 4 has been added.");
+
+                newCar.scale = 0.3;
+                num = foo4random();
+                xcoord = minimum + (num % div);
+                newCar.position=ccp(xcoord,620);
+                
+                count++;
+            }
         }
+       
         
+        /*
         if (car2created) {
-            [progressTimer setPercentage:25];
+            [progressTimer setPercentage:80];
 
         } else {
             [progressTimer setPercentage:100];
 
         }
+         */
         
         if(newCar){
         newCar.scale=0.3;
@@ -546,16 +716,8 @@
         
     
     for (CrazyCarsTaxis *car1 in _cars) {
-        
-        switch (car1.type) {
-                
-            case 1:
-                
-                car1.position = ccp(car1.position.x, car1.position.y - .5);
-                
-
-                
-                if (car1.position.y<-200) {
+        if (level == 1) {
+            switch (car1.type) {
                     
                     
                     [toDelete addObject:car1];
@@ -572,20 +734,184 @@
                         } else {
                             car1.position = ccp(car1.position.x + 1, car1.position.y);
                         }
+                        
+                        
+                    }
+                    if (car1.position.y < -car1.contentSize.height) {
+                        [toDelete addObject:car1];
+                        car2created = false;
                     }
                     
+                    break;
                     
-                }
-                if (car1.position.y < -50) {
-                    [toDelete addObject:car1];
-                    car2created = false;
-                }
-                
-                break;
-                
-            default:
-                break;
+                default:
+                    break;
+            }
+        } else if (level == 2) {
+            switch (car1.type) {
+                    
+                case 1:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    break;
+                    
+                case 2:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    if (car1.position.y - bus.position.y <= 250) {
+                        if (car1.position.x != bus.position.x) {
+                            if (car1.position.x - bus.position.x - 15 > 0) {
+                                car1.position = ccp(car1.position.x - 1, car1.position.y);
+                            } else {
+                                car1.position = ccp(car1.position.x + 1, car1.position.y);
+                            }
+                        }
+                        
+                        
+                    }
+                    if (car1.position.y < -car1.contentSize.height) {
+                        [toDelete addObject:car1];
+                        car2created = false;
+                    }
+                    
+                    break;
+                case 3:
+                    car1.position = ccp(car1.position.x, car1.position.y - 3);
+                    
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    
+                    break;
+                    
+                default:
+                    break;
+            }
+        } else if (level == 3) {
+            switch (car1.type) {
+                    
+                case 1:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    break;
+                    
+                case 2:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    if (car1.position.y - bus.position.y <= 250) {
+                        if (car1.position.x != bus.position.x) {
+                            if (car1.position.x - bus.position.x - 15 > 0) {
+                                car1.position = ccp(car1.position.x - 1, car1.position.y);
+                            } else {
+                                car1.position = ccp(car1.position.x + 1, car1.position.y);
+                            }
+                        }
+                        
+                        
+                    }
+                    if (car1.position.y < -car1.contentSize.height) {
+                        [toDelete addObject:car1];
+                        car2created = false;
+                    }
+                    
+                    break;
+                    
+                case 3:
+                    car1.position = ccp(car1.position.x, car1.position.y - 3);
+                    
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    
+                    break;
+                    
+                default:
+                    break;
+            }
+        } else if (level == 4) {
+            switch (car1.type) {
+                    
+                case 1:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    break;
+                    
+                case 2:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    if (car1.position.y - bus.position.y <= 250) {
+                        if (car1.position.x != bus.position.x) {
+                            if (car1.position.x - bus.position.x - 15 > 0) {
+                                car1.position = ccp(car1.position.x - 1, car1.position.y);
+                            } else {
+                                car1.position = ccp(car1.position.x + 1, car1.position.y);
+                            }
+                        }
+                        
+                        
+                    }
+                    if (car1.position.y < -car1.contentSize.height) {
+                        [toDelete addObject:car1];
+                        car2created = false;
+                    }
+                    
+                    break;
+                    
+                case 3:
+                    car1.position = ccp(car1.position.x, car1.position.y - 3);
+                    
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    
+                    break;
+                    
+                case 4:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y - 0.5);
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    
+                    break;
+                default:
+                    break;
+            }
         }
+        
         
 
         
@@ -752,7 +1078,7 @@
     [physicsNode addChild:newStudent];
     
     [_students addObject:newStudent];
-    NSLog(@"student added.");
+    //NSLog(@"student added.");
 
     
     
@@ -770,8 +1096,32 @@
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus level:(CCSprite*)level {
     
     NSLog(@"Collision");
-
-    
+   /* numberOfCollisions = numberOfCollisions + 1 ;
+    score = 10;
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
+    NSMutableDictionary *plistData = [NSMutableDictionary dictionaryWithContentsOfFile:finalPath];
+    s1 = [[plistData objectForKey:@"score1"] integerValue];
+    s2 = [[plistData objectForKey:@"score2"] integerValue];
+    s3 = [[plistData objectForKey:@"score3"] integerValue];
+    if(numberOfCollisions == 2)
+    {
+       
+       
+        NSLog(@"s1:%ld",s1);
+        NSLog(@"s2:%ld",s2);
+        bool success;
+        [plistData setValue:@"score" forKey:@"score1"];
+        success = [plistData writeToFile:finalPath atomically:YES];
+        if(success)
+        {
+            NSLog(@"hurray");
+        }
+        
+    }
+    NSLog(@"s1:%ld",s1);
+    NSLog(@"s2:%ld",s2); */
+   
     return TRUE;
 }
 
@@ -796,5 +1146,18 @@
 
 
 
+//by Stephen, Collsion Effect
+-(void) ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair insaneBus:(CCNode *)insaneBus level:(CCSprite *)level {
+    CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"CarCollision"];
+    explosion.autoRemoveOnFinish = TRUE;
+    explosion.position = level.position;
+    [level.parent addChild:explosion];
+    level.position = ccp(1000, 1000);
+    //temporarily
+    progressTimer.percentage-=33;
+    if (progressTimer.percentage<=0) {
+        [insaneBus removeFromParent];
+    }
+}
 
 @end
