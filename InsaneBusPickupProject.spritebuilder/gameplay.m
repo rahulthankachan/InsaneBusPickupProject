@@ -1011,7 +1011,7 @@
     explosion.autoRemoveOnFinish = TRUE;
     explosion.position = level.position;
     [level.parent addChild:explosion];
-    [level removeFromParent];
+    level.position = ccp(1000, 1000);
     //temporarily
     progressTimer.percentage-=33;
     if (progressTimer.percentage<=0) {
