@@ -80,7 +80,7 @@
         totalTime = 0;
         _createdFlag = false;
         car2created = false;
-        level = 1;
+        level = 2;
     }
     
     //starting of the joystick by Frank
@@ -201,7 +201,6 @@
     [physicsNode addChild:_student0];
     
     
-    
     motionManager= [[CMMotionManager alloc]init];
     motionManager.deviceMotionUpdateInterval=1.0/60.0;
     [motionManager startDeviceMotionUpdates];
@@ -209,8 +208,6 @@
     widthBoundary = _road1.contentSize.width;
     heightBoundary = _road1.contentSize.height;
     roadVelocity = 5;
-
-    
     
 }
 
@@ -311,31 +308,70 @@
     
     if (timeSinceObstacle >2.0f)
     {
-        //generate a random number
-        int number = arc4random_uniform(75);
-        CrazyCarsTaxis * newCar;
+         CrazyCarsTaxis * newCar;
         
         // Add a new obstacle
-       
-        if (number < 50) {
-            newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
-            //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
-          //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
-            newCar.scale=0.3;
-            num=foo4random();
-            xcoord=minimum+(num%div);
-            newCar.position=ccp(xcoord,620);
-            newCar.type=1;
+        if (level == 1) {
+            //generate a random number
+            int number = arc4random_uniform(75);
 
-           // [self addChild:newCar];
-          //  [_cars addObject:newCar];
-            
-            count++;
-        } else {
-            if (car2created == false) {
+            if (number < 50) {
+                newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+                //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
+                //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
+                newCar.scale=0.3;
+                num=foo4random();
+                xcoord=minimum+(num%div);
+                newCar.position=ccp(xcoord,620);
+                newCar.type=1;
                 
-                car2created = true;
-                NSLog(@"car image 2");
+                // [self addChild:newCar];
+                //  [_cars addObject:newCar];
+                
+                count++;
+            } else {
+                if (car2created == false) {
+                    
+                    car2created = true;
+                    //NSLog(@"car image 2");
+                    newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
+                    newCar.type=2;
+                    
+                    newCar.scale = 0.3;
+                    num = foo4random();
+                    xcoord = minimum + (num % div);
+                    newCar.position = ccp(xcoord, 620);
+                    //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
+                    // [self addChild:newCar];
+                    //  [_cars2 addObject:newCar];
+                    
+                    count++;
+                } else {
+                    //NSLog(@"car2 cannot be created.");
+                }
+                
+                
+            }
+        } else if (level == 2) {
+            //generate a random number
+            int number = arc4random_uniform(100);
+
+            if (number < 50) {
+                newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+                //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
+                //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
+                newCar.scale=0.3;
+                num=foo4random();
+                xcoord=minimum+(num%div);
+                newCar.position=ccp(xcoord,620);
+                newCar.type=1;
+                
+                // [self addChild:newCar];
+                //  [_cars addObject:newCar];
+                
+                count++;
+            } else if (number >= 50 && number < 75) {
+                //NSLog(@"car image 2");
                 newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
                 newCar.type=2;
                 
@@ -344,19 +380,31 @@
                 xcoord = minimum + (num % div);
                 newCar.position = ccp(xcoord, 620);
                 //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
-               // [self addChild:newCar];
-              //  [_cars2 addObject:newCar];
+                // [self addChild:newCar];
+                //  [_cars2 addObject:newCar];
                 
                 count++;
-           } else {
-                //NSLog(@"car2 cannot be created.");
+                
+                
+            } else {
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+                newCar.type=3;
+                
+                newCar.scale = 0.3;
+                num = foo4random();
+                xcoord = minimum + (num % div);
+                newCar.position = ccp(xcoord, 620);
+
+                count++;
+                
+                
             }
-            
-            
         }
+       
+        
         
         if (car2created) {
-            [progressTimer setPercentage:90];
+            [progressTimer setPercentage:80];
 
         } else {
             [progressTimer setPercentage:100];
@@ -484,6 +532,17 @@
                     if (car1.position.y < -car1.contentSize.height) {
                         [toDelete addObject:car1];
                         car2created = false;
+                    }
+                    
+                    break;
+                case 3:
+                    car1.position = ccp(car1.position.x, car1.position.y - 3);
+                    
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
                     }
                     
                     break;
