@@ -75,6 +75,7 @@
     HealthBar *progressTimer;
     
     NSInteger level;
+    NSInteger totalBumps;
 }
 - (void)retry {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
@@ -111,6 +112,7 @@
     currentLevelInfo= [GameLevel sendLevelObjectForLevel:1];
     _maxStudentNum = currentLevelInfo.maxDistance;
     level=currentLevelInfo.levelNumber;
+    totalBumps=5;
 
     
     /* Configures the current Level*/
@@ -1095,37 +1097,37 @@
 
 
 
--(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus level:(CCSprite*)level {
-    
-    NSLog(@"Collision");
-   /* numberOfCollisions = numberOfCollisions + 1 ;
-    score = 10;
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
-    NSMutableDictionary *plistData = [NSMutableDictionary dictionaryWithContentsOfFile:finalPath];
-    s1 = [[plistData objectForKey:@"score1"] integerValue];
-    s2 = [[plistData objectForKey:@"score2"] integerValue];
-    s3 = [[plistData objectForKey:@"score3"] integerValue];
-    if(numberOfCollisions == 2)
-    {
-       
-       
-        NSLog(@"s1:%ld",s1);
-        NSLog(@"s2:%ld",s2);
-        bool success;
-        [plistData setValue:@"score" forKey:@"score1"];
-        success = [plistData writeToFile:finalPath atomically:YES];
-        if(success)
-        {
-            NSLog(@"hurray");
-        }
-        
-    }
-    NSLog(@"s1:%ld",s1);
-    NSLog(@"s2:%ld",s2); */
-   
-    return TRUE;
-}
+//-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus level:(CCSprite*)level {
+//    
+//    NSLog(@"Collision");
+//   /* numberOfCollisions = numberOfCollisions + 1 ;
+//    score = 10;
+//    NSString *path = [[NSBundle mainBundle] bundlePath];
+//    NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
+//    NSMutableDictionary *plistData = [NSMutableDictionary dictionaryWithContentsOfFile:finalPath];
+//    s1 = [[plistData objectForKey:@"score1"] integerValue];
+//    s2 = [[plistData objectForKey:@"score2"] integerValue];
+//    s3 = [[plistData objectForKey:@"score3"] integerValue];
+//    if(numberOfCollisions == 2)
+//    {
+//       
+//       
+//        NSLog(@"s1:%ld",s1);
+//        NSLog(@"s2:%ld",s2);
+//        bool success;
+//        [plistData setValue:@"score" forKey:@"score1"];
+//        success = [plistData writeToFile:finalPath atomically:YES];
+//        if(success)
+//        {
+//            NSLog(@"hurray");
+//        }
+//        
+//    }
+//    NSLog(@"s1:%ld",s1);
+//    NSLog(@"s2:%ld",s2); */
+//   
+//    return TRUE;
+//}
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus student:(CCNode*)student {
     
@@ -1146,17 +1148,24 @@
     return TRUE;
 }
 
--(void) ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair insaneBus:(CCNode *)insaneBus level:(CCSprite *)level {
-    CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"CarCollision"];
-    explosion.autoRemoveOnFinish = TRUE;
-    explosion.position = level.position;
-    [level.parent addChild:explosion];
-    level.position = ccp(1000, 1000);
-    //temporarily
-    progressTimer.percentage-=33;
-    if (progressTimer.percentage<=0) {
-        [insaneBus removeFromParent];
+-(BOOL) ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair insaneBus:(CCNode *)insaneBus level:(CCSprite *)level {
+    totalBumps--;
+    
+    if (!totalBumps) {
+        CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"CarCollision"];
+        explosion.autoRemoveOnFinish = TRUE;
+        explosion.position = level.position;
+        [level.parent addChild:explosion];
+        level.position = ccp(1000, 1000);
+        //temporarily
+        progressTimer.percentage-=33;
+        if (progressTimer.percentage<=0) {
+            [insaneBus removeFromParent];
+        }
+        
     }
+
+    return TRUE;
 }
 
 
