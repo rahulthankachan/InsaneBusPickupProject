@@ -11,21 +11,27 @@
     CCLabelTTF *scorelabel2;
     CCLabelTTF *scorelabel3;
     
+    NSString *buttonHitSoundEffect;
 }
 
 - (void)play {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
     [[CCDirector sharedDirector] replaceScene:gameplayscene];
+    [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
 }
 
 - (void)scores {
     CCScene *scorescene = [CCBReader loadAsScene:@"scorescene"];
     [[CCDirector sharedDirector] replaceScene:scorescene];
+    [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+
 }
 
 - (void)about {
     CCScene *aboutscene = [CCBReader loadAsScene:@"aboutscene"];
     [[CCDirector sharedDirector] replaceScene:aboutscene];
+    [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+
 }
 
 - (void)backbutton2 {
@@ -38,6 +44,9 @@
 }
 
 -(void) didLoadFromCCB {
+    //Sound effect of buttons
+    buttonHitSoundEffect = @"boom-kick.wav";
+    
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
     NSMutableDictionary *plistData = [NSMutableDictionary dictionaryWithContentsOfFile:finalPath];
