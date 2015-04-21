@@ -1230,7 +1230,7 @@
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus Parking:(CCNode*)Parking {
     
     NSLog(@"Yay! The level is completed");
-    roadVelocity=0;
+    //roadVelocity=0;
     parking.physicsBody.velocity= CGPointMake(0, 0);
     
     CCScene *gameplayscene = [CCBReader loadAsScene:@"EndOfLevel"];
