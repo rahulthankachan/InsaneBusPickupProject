@@ -109,7 +109,7 @@
     
     /* Configures the current Level*/
     
-    currentLevelInfo= [GameLevel sendLevelObjectForLevel:1];
+    currentLevelInfo= [GameLevel sendLevelObjectForLevel:3];
     _maxStudentNum = currentLevelInfo.maxDistance;
     level=currentLevelInfo.levelNumber;
     totalBumps=5;
@@ -354,7 +354,7 @@
         
 
     
-    if (timeSinceObstacle >2.0f)
+    if (timeSinceObstacle >1.25f)
     {
          CrazyCarsTaxis * newCar;
         
@@ -491,7 +491,7 @@
                 
                 
             } else {
-                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage4.png"];
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage6.png"];
                 newCar.type=4;
                 
                 newCar.scale = 0.3;
