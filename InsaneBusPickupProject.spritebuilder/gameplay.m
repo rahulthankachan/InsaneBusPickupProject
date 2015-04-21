@@ -1073,7 +1073,6 @@
     
     if (smoke) {
         smoke.position = ccp(bus.position.x, bus.position.y + bus.contentSize.height / 2 - 10);
-        roadVelocity=0;
     }
     
     // done by Frank. make sure the bus will not go beyond the screen.
@@ -1230,7 +1229,7 @@
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus Parking:(CCNode*)Parking {
     
     NSLog(@"Yay! The level is completed");
-    //roadVelocity=0;
+    roadVelocity=0;
     parking.physicsBody.velocity= CGPointMake(0, 0);
     
     CCScene *gameplayscene = [CCBReader loadAsScene:@"EndOfLevel"];
