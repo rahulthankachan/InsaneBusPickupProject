@@ -14,7 +14,7 @@
 }
 
 - (void)play {
-    CCScene *gameplayscene = [CCBReader loadAsScene:@"EndOfLevel"];
+    CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
     [[CCDirector sharedDirector] replaceScene:gameplayscene];
 }
 
