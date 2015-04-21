@@ -170,7 +170,8 @@
     
     // label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     // label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
-    bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
+    bus = [[CCSprite alloc] initWithImageNamed:@"bus.png"];
+    //bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
     scoreLabel =[[CCLabelTTF alloc]initWithString:@"Score: 0" fontName:@"Hello" fontSize:15];
     distLabel =[[CCLabelTTF alloc]initWithString:@"Dist: 0" fontName:@"Hello" fontSize:15];
     scoreLabel.position= ccp(windowSize.width-50,windowSize.height-10);
@@ -998,11 +999,11 @@
     
     
     // done by Frank. make sure the bus will not go beyond the screen.
-    if (bus.position.x < 0) {
-        bus.position = ccp(0, bus.position.y);
+    if (bus.position.x < 0 + bus.contentSize.width / 2) {
+        bus.position = ccp(0 + bus.contentSize.width / 2, bus.position.y);
     }
-    if (bus.position.x > window.width - bus.contentSize.width) {
-        bus.position = ccp(window.width - bus.contentSize.width, bus.position.y);
+    if (bus.position.x > window.width - bus.contentSize.width / 2) {
+        bus.position = ccp(window.width - bus.contentSize.width / 2, bus.position.y);
     }
     
     if (bus.position.y < 0) {
@@ -1162,7 +1163,7 @@
     [level.parent addChild:explosion];
     level.position = ccp(1000, 1000);
     //temporarily
-    progressTimer.percentage-=50;
+    progressTimer.percentage-=10;
     if (progressTimer.percentage<=0) {
         [insaneBus removeFromParent];
         [self gameEnds];
