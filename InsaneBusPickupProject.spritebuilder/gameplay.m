@@ -1,8 +1,6 @@
 #import "gameplay.h"
 #import <CCActionInterval.h>
 #import "GamePlayScene.h"
-#import "GameLevel.h"
-
 @import Foundation;
 
 #import "CCScheduler.h"
@@ -41,6 +39,7 @@
     CCLabelTTF *countdownLabel;
     CGSize window;
     CCButton *retry;
+ 
     
     //variables for students
     CCTime _curTime;
