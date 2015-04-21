@@ -8,6 +8,16 @@
 
 #import "gameEnd.h"
 
-@implementation gameEnd
+@implementation gameEnd{
+    
+
+}
+
+
+- (void)retryLevel {
+    CCScene *aboutscene = [CCBReader loadAsScene:@"gameplay"];
+    [[CCDirector sharedDirector] replaceScene:aboutscene];
+}
+
 
 @end

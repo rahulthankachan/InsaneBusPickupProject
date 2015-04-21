@@ -248,7 +248,7 @@
     
     widthBoundary = _road1.contentSize.width;
     heightBoundary = _road1.contentSize.height;
-    roadVelocity = 5;
+    roadVelocity = 10;
     
 }
 
@@ -259,6 +259,9 @@
 
 - (void)update:(CCTime)delta
 {
+    
+    if (roadVelocity) {
+        
     // size of the window
     CGSize windowSize = [[CCDirector sharedDirector] viewSize];
 
@@ -271,7 +274,7 @@
     totalTime++;
     count++;
     
-    if (roadVelocity) {
+    
         
     if(count == 120)
     {
@@ -289,7 +292,7 @@
     }
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", score]];
     
-    }
+    
     
     //this is for endless road. done by frank
     
@@ -999,6 +1002,7 @@
     
     if (smoke) {
         smoke.position = ccp(bus.position.x, bus.position.y + bus.contentSize.height / 2 - 10);
+        roadVelocity=0;
     }
     
     // done by Frank. make sure the bus will not go beyond the screen.
@@ -1016,7 +1020,7 @@
         bus.position = ccp(bus.position.x, window.height - bus.contentSize.height);
     }
     
-    
+    }//// end of if velocity
 }
 
 
@@ -1158,9 +1162,8 @@
     roadVelocity=0;
     parking.physicsBody.velocity= CGPointMake(0, 0);
     
-    
-    CCScene *mainscene = [CCBReader loadAsScene:@"FinalScoresScene"];
-    [[CCDirector sharedDirector] replaceScene:mainscene];
+    CCScene *gameplayscene = [CCBReader loadAsScene:@"EndOfLevel"];
+    [[CCDirector sharedDirector] replaceScene:gameplayscene];
 
     return TRUE;
 }
