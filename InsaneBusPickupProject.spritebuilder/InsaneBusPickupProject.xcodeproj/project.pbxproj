@@ -657,6 +657,7 @@
 			files = (
 				2E094DE41AE33D5600590919 /* GameLevel.m in Sources */,
 				2E094E141AE641F500590919 /* EndOfLevel.m in Sources */,
+				01043C1A1AE6174600D352F8 /* gameEnd.m in Sources */,
 				011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */,
 				2EC6732C1ADCAE27007E236A /* CrazyCarsTaxis.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
