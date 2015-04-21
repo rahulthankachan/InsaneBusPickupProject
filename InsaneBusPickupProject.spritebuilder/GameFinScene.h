@@ -9,5 +9,5 @@
 #import "CCNode.h"
 
 @interface GameFinScene : CCNode
-
+- (NSInteger) calcScore:(NSInteger) stuNum TimeElpased:(NSInteger) timeUsed;
 @end
