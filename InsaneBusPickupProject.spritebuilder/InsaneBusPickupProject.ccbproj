@@ -75,8 +75,6 @@
 	<dict>
 		<key></key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>previewFolderHidden</key>
 			<false/>
 		</dict>
@@ -84,8 +82,6 @@
 		<dict/>
 		<key>ccbResources</key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>previewFolderHidden</key>
 			<true/>
 		</dict>
@@ -168,9 +164,9 @@
 		</dict>
 	</dict>
 	<key>versionStr</key>
-	<string>revision : eea568a5c7
+	<string>revision : 10891b8575
 sku : default
-version : 1.4.9
+version : 1.4.7
 </string>
 </dict>
 </plist>

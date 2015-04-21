@@ -1155,24 +1155,19 @@
     return TRUE;
 }
 
--(BOOL) ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair insaneBus:(CCNode *)insaneBus level:(CCSprite *)level {
-    totalBumps--;
-    
-    if (!totalBumps) {
-        CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"CarCollision"];
-        explosion.autoRemoveOnFinish = TRUE;
-        explosion.position = level.position;
-        [level.parent addChild:explosion];
-        level.position = ccp(1000, 1000);
-        //temporarily
-        progressTimer.percentage-=33;
-        if (progressTimer.percentage<=0) {
-            [insaneBus removeFromParent];
-        }
-        
+-(void) ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair insaneBus:(CCNode *)insaneBus level:(CCSprite *)level {
+    CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"CarCollision"];
+    explosion.autoRemoveOnFinish = TRUE;
+    explosion.position = level.position;
+    [level.parent addChild:explosion];
+    level.position = ccp(1000, 1000);
+    //temporarily
+    progressTimer.percentage-=10;
+    if (progressTimer.percentage<=0) {
+        [insaneBus removeFromParent];
+        [self gameEnds];
     }
 
-    return TRUE;
 }
 
 
