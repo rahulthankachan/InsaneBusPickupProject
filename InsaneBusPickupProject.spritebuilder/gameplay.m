@@ -262,6 +262,9 @@
 
 - (void)update:(CCTime)delta
 {
+    
+    if (roadVelocity) {
+        
     // size of the window
     CGSize windowSize = [[CCDirector sharedDirector] viewSize];
 
@@ -274,7 +277,7 @@
     totalTime++;
     count++;
     
-    if (roadVelocity) {
+    
         
     if(count == 120)
     {
@@ -292,7 +295,7 @@
     }
     [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", score]];
     
-    }
+    
     
     //this is for endless road. done by frank
     
@@ -981,27 +984,96 @@
     CMAttitude *currentAttitude= currentDeviceMotion.attitude;
     // [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
     //                     label.rotation= CC_RADIANS_TO_DEGREES(currentAttitude.roll);
-    
-    
-    if (currentAttitude.roll>0.045 ) {
+        NSLog(@" tHE ROLL IS %f",currentAttitude.roll);
         
-        velocity= CGPointMake(3.0f, 0.0f);
-    }
-    else if (currentAttitude.roll<-0.045 ){
-        velocity= CGPointMake(-3.0f, 0.0f);
-    }
-    else
-    {
-        velocity= CGPointMake(0.0f, 0.0f);
         
-    }
+   ///////////////////////////////////////This is used to control the gyro////////////////////////
+        if (currentAttitude.roll>0.015 ) {
+            
+            velocity= CGPointMake(0.3f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.015 ){
+            velocity= CGPointMake(-0.3f, 0.0f);
+        }
+        else
+        {
+            velocity= CGPointMake(0.0f, 0.0f);
+            
+        }
+        
+        
+        
+        if (currentAttitude.roll>0.025 ) {
+            
+            velocity= CGPointMake(1.0f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.025 ){
+            velocity= CGPointMake(-1.0f, 0.0f);
+        }
+
+        
+        if (currentAttitude.roll>0.035 ) {
+            
+            velocity= CGPointMake(2.0f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.025 ){
+            velocity= CGPointMake(-2.0f, 0.0f);
+        }
+
+        
+        if (currentAttitude.roll>0.045 ) {
+            
+            velocity= CGPointMake(3.5f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.045 ){
+            velocity= CGPointMake(-3.5f, 0.0f);
+        }
+        
+        if (currentAttitude.roll>0.055 ) {
+            
+            velocity= CGPointMake(4.0f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.055 ){
+            velocity= CGPointMake(-4.0f, 0.0f);
+        }
+        
+        
     
+    if (currentAttitude.roll>0.065 ) {
+        
+        velocity= CGPointMake(5.0f, 0.0f);
+    }
+    else if (currentAttitude.roll<-0.065 ){
+        velocity= CGPointMake(-5.0f, 0.0f);
+    }
+        
+        if (currentAttitude.roll>0.070 ) {
+            
+            velocity= CGPointMake(5.3f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.070 ){
+            velocity= CGPointMake(-5.3f, 0.0f);
+        }
+
+        if (currentAttitude.roll>0.20 ) {
+            
+            velocity= CGPointMake(6.0f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.20 ){
+            velocity= CGPointMake(-6.0f, 0.0f);
+        }
+
+        
+        ///////////////////////////////////////This is used to control the gyro////////////////////////
+
+
     
     
     bus.position= ccpAdd(bus.position, velocity);
     
     if (smoke) {
         smoke.position = ccp(bus.position.x, bus.position.y + bus.contentSize.height / 2 - 10);
+        roadVelocity=0;
     }
     
     // done by Frank. make sure the bus will not go beyond the screen.
@@ -1019,7 +1091,7 @@
         bus.position = ccp(bus.position.x, window.height - bus.contentSize.height);
     }
     
-    
+    }//// end of if velocity
 }
 
 
@@ -1161,9 +1233,11 @@
     roadVelocity=0;
     parking.physicsBody.velocity= CGPointMake(0, 0);
     
+    CCScene *gameplayscene = [CCBReader loadAsScene:@"EndOfLevel"];
+    [[CCDirector sharedDirector] replaceScene:gameplayscene];
     //oh man, collision...
-    CCScene *mainscene = [CCBReader loadAsScene:@"GameFinScene"];
-    [[CCDirector sharedDirector] replaceScene:mainscene];
+   // CCScene *mainscene = [CCBReader loadAsScene:@"GameFinScene"];
+   // [[CCDirector sharedDirector] replaceScene:mainscene];
 
     return TRUE;
 }
