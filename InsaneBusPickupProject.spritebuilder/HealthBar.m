@@ -19,6 +19,7 @@
     self = [super init]; 
 
     self.progressTimer = [CCProgressNode progressWithSprite:sprite];
+
     self.progressTimer.type = CCProgressNodeTypeBar;
     self.progressTimer.percentage = 100;
     
