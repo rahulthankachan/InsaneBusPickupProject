@@ -21,6 +21,7 @@
 		3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57DAFD1AD7C20400FACC78 /* gameplay.m */; };
 		3F7374271AE4E858006BBCFB /* GameData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F7374261AE4E858006BBCFB /* GameData.plist */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
+		78013E871AE67EF60062BAA2 /* GameFinScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 78013E821AE67A1B0062BAA2 /* GameFinScene.m */; };
 		7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B7378993180767190076A88C /* MainScene.m */; };
 		7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9790FE19E62E40001FFC4D /* libcocos2d.a */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
@@ -122,6 +123,8 @@
 		5B121033197485FE004C1E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/Android/Info.plist; sourceTree = "<group>"; };
 		5B121034197485FE004C1E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/iOS/Info.plist; sourceTree = "<group>"; };
 		5BA4619E1974C88900785744 /* AndroidManifest.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = AndroidManifest.xml; path = Platforms/Android/AndroidManifest.xml; sourceTree = "<group>"; };
+		78013E811AE67A1B0062BAA2 /* GameFinScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameFinScene.h; sourceTree = "<group>"; };
+		78013E821AE67A1B0062BAA2 /* GameFinScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameFinScene.m; sourceTree = "<group>"; };
 		7A40360219DDEE84007B6E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/Mac/Info.plist; sourceTree = "<group>"; };
 		7A40360319DDEE84007B6E8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/Platforms/Mac/main.m; sourceTree = "<group>"; };
 		7A40360519DDEE84007B6E8F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/Platforms/Mac/AppDelegate.h; sourceTree = "<group>"; };
@@ -372,6 +375,8 @@
 		B737893C1807616C0076A88C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				78013E811AE67A1B0062BAA2 /* GameFinScene.h */,
+				78013E821AE67A1B0062BAA2 /* GameFinScene.m */,
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				3F7374261AE4E858006BBCFB /* GameData.plist */,
 				2EC6732A1ADCAE27007E236A /* CrazyCarsTaxis.h */,
@@ -661,6 +666,7 @@
 				011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */,
 				2EC6732C1ADCAE27007E236A /* CrazyCarsTaxis.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				78013E871AE67EF60062BAA2 /* GameFinScene.m in Sources */,
 				3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
