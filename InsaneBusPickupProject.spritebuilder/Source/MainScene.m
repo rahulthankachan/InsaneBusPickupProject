@@ -48,8 +48,21 @@
     [scorelabel1 setString:[NSString stringWithFormat:@"HighScore1: %ld", h1]];
     [scorelabel2 setString:[NSString stringWithFormat:@"HighScore2: %ld", h2]];
     [scorelabel3 setString:[NSString stringWithFormat:@"HighScore3: %ld", h3]];
-    
+    [self preloadAndPlayMusic];
 }
 
+-(void) preloadAndPlayMusic
+{
+    // Preload...
+    [[OALSimpleAudio sharedInstance] preloadBg:@"DesertRace_22050Hz_Loop.wav"];
+    
+    // Play (and loop the music)...
+    [[OALSimpleAudio sharedInstance] playBgWithLoop:YES];
+    
+    // To stop the music...
+    //[[OALSimpleAudio sharedInstance] stopBg];
+    
+    NSLog(@"Music is playing.");
+}
 
 @end

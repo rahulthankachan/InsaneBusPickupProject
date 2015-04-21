@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01043C1A1AE6174600D352F8 /* gameEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 01043C191AE6174600D352F8 /* gameEnd.m */; };
+		01043C2E1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043C2D1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav */; };
 		010C41091ADBADB300273945 /* carimage2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 010C41081ADBADB300273945 /* carimage2.xcassets */; };
 		011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 011258EE1AA790B100BFFAA0 /* GamePlayScene.m */; };
 		01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01235B261AD32FBD0092AFDF /* SampleList.plist */; };
@@ -93,6 +94,7 @@
 /* Begin PBXFileReference section */
 		01043C181AE6174600D352F8 /* gameEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameEnd.h; sourceTree = "<group>"; };
 		01043C191AE6174600D352F8 /* gameEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameEnd.m; sourceTree = "<group>"; };
+		01043C2D1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DesertRace_22050Hz_Loop.wav; sourceTree = "<group>"; };
 		010C41081ADBADB300273945 /* carimage2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = carimage2.xcassets; sourceTree = "<group>"; };
 		011258ED1AA7900A00BFFAA0 /* GamePlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayScene.h; sourceTree = "<group>"; };
 		011258EE1AA790B100BFFAA0 /* GamePlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlayScene.m; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		3F56CED01AAD5B4700404474 /* custom */ = {
 			isa = PBXGroup;
 			children = (
+				01043C2D1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav */,
 				010C41081ADBADB300273945 /* carimage2.xcassets */,
 			);
 			name = custom;
@@ -600,6 +603,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01043C2E1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				01ED05A91ACB56A600033567 /* Info.plist in Resources */,
