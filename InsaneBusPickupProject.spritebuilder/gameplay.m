@@ -1143,6 +1143,8 @@
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus student:(CCNode*)student {
     
     NSLog(@"Collision Student");
+    [self applyEnergizeEffect:student];
+
     [student removeFromParent];
     score=score+1;
     
@@ -1219,6 +1221,23 @@
     //smoke.position = ccp(200, 200);
     //smoke.position = ccp(bus.position.x, bus.position.y);
     [self addChild:smoke];
+}
+
+-(void) applyEnergizeEffect:(CCNode*) student
+{
+    CCParticleExplosion *meteor = [[CCParticleExplosion alloc] init];
+    [meteor setAutoRemoveOnFinish:YES];
+    [meteor setTotalParticles:200];
+    
+    [meteor setStartSize:2];
+    [meteor setEndSize:2];
+    
+    [meteor setDuration:3];
+    meteor.position = ccp(student.position.x, student.position.y);
+    //meteor.position = ccp(window.width/2, window.height/2);
+    
+    [self addChild:meteor];
+    
 }
 
 @end
