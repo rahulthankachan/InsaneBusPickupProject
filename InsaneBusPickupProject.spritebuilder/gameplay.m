@@ -72,6 +72,7 @@
     
 
     HealthBar *progressTimer;
+    CCParticleSmoke *smoke;
     
     NSInteger level;
     NSInteger totalBumps;
@@ -108,7 +109,7 @@
     
     /* Configures the current Level*/
     
-    currentLevelInfo= [GameLevel sendLevelObjectForLevel:4];
+    currentLevelInfo= [GameLevel sendLevelObjectForLevel:1];
     _maxStudentNum = currentLevelInfo.maxDistance;
     level=currentLevelInfo.levelNumber;
     totalBumps=5;
@@ -554,7 +555,7 @@
                 newCar.scale = 0.3;
                 num = foo4random();
                 xcoord = minimum + (num % div);
-                newCar.position = ccp(xcoord, 50);
+                newCar.position = ccp(xcoord, 0);
                 
                 count++;
             }
@@ -773,9 +774,9 @@
                     
                 case 4:
                     
-                    car1.position = ccp(car1.position.x, car1.position.y + 3.5);
+                    car1.position = ccp(car1.position.x, car1.position.y + 2.5);
                     
-                    if (car1.position.y > windowSize.height) {
+                    if (car1.position.y > windowSize.height || car1.position.y < -500) {
                    // if (car1.position.y < -car1.contentSize.height) {
                         
                         [toDelete addObject:car1];
@@ -996,7 +997,9 @@
     
     bus.position= ccpAdd(bus.position, velocity);
     
-    
+    if (smoke) {
+        smoke.position = ccp(bus.position.x, bus.position.y + bus.contentSize.height / 2 - 10);
+    }
     
     // done by Frank. make sure the bus will not go beyond the screen.
     if (bus.position.x < 0 + bus.contentSize.width / 2) {
@@ -1165,6 +1168,9 @@
     //temporarily
     progressTimer.percentage -= 10;
     if (progressTimer.percentage <= 100) {
+        if (smoke) {
+            [smoke removeFromParent];
+        }
         [self enableSmoke];
     }
     if (progressTimer.percentage<=0) {
@@ -1203,7 +1209,7 @@
 
 -(void) enableSmoke
 {
-    CCParticleSmoke *smoke = [[CCParticleSmoke alloc] init];
+    smoke = [[CCParticleSmoke alloc] init];
     [smoke setAutoRemoveOnFinish:YES];
     [smoke setScaleX:0.8];
     [smoke setStartSize:10];
@@ -1211,7 +1217,7 @@
     [smoke setGravity:ccp(0,-90)];
     [smoke setTotalParticles:50];
     //smoke.position = ccp(200, 200);
-    smoke.position = ccp(bus.position.x, bus.position.y);
+    //smoke.position = ccp(bus.position.x, bus.position.y);
     [self addChild:smoke];
 }
 
