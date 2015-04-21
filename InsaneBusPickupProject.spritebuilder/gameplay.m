@@ -1096,37 +1096,6 @@
 
 
 
-//-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus level:(CCSprite*)level {
-//    
-//    NSLog(@"Collision");
-//   /* numberOfCollisions = numberOfCollisions + 1 ;
-//    score = 10;
-//    NSString *path = [[NSBundle mainBundle] bundlePath];
-//    NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
-//    NSMutableDictionary *plistData = [NSMutableDictionary dictionaryWithContentsOfFile:finalPath];
-//    s1 = [[plistData objectForKey:@"score1"] integerValue];
-//    s2 = [[plistData objectForKey:@"score2"] integerValue];
-//    s3 = [[plistData objectForKey:@"score3"] integerValue];
-//    if(numberOfCollisions == 2)
-//    {
-//       
-//       
-//        NSLog(@"s1:%ld",s1);
-//        NSLog(@"s2:%ld",s2);
-//        bool success;
-//        [plistData setValue:@"score" forKey:@"score1"];
-//        success = [plistData writeToFile:finalPath atomically:YES];
-//        if(success)
-//        {
-//            NSLog(@"hurray");
-//        }
-//        
-//    }
-//    NSLog(@"s1:%ld",s1);
-//    NSLog(@"s2:%ld",s2); */
-//   
-//    return TRUE;
-//}
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus student:(CCNode*)student {
     
