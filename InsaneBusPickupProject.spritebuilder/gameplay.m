@@ -1151,6 +1151,10 @@
     NSLog(@"Yay! The level is completed");
     roadVelocity=0;
     parking.physicsBody.velocity= CGPointMake(0, 0);
+    
+    
+    CCScene *mainscene = [CCBReader loadAsScene:@"FinalScoresScene"];
+    [[CCDirector sharedDirector] replaceScene:mainscene];
 
     return TRUE;
 }

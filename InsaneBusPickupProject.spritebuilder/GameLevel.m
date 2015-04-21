@@ -32,7 +32,7 @@ static GameLevel *currentLevel;
             currentLevel.currentGameLevel=currentLevel;
             currentLevel.maxCars=2;
             currentLevel.maxStudents=5;
-            currentLevel.maxDistance=10;
+            currentLevel.maxDistance=1;
             currentLevel.levelNumber=userLevel;
             
             break;
@@ -41,7 +41,7 @@ static GameLevel *currentLevel;
             currentLevel.currentGameLevel=currentLevel;
             currentLevel.maxCars=4;
             currentLevel.maxStudents=10;
-            currentLevel.maxDistance=17;
+            currentLevel.maxDistance=1;
             currentLevel.levelNumber=userLevel;
             
             break;
