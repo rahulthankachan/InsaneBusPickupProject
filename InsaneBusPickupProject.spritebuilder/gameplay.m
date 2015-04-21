@@ -90,7 +90,8 @@
         totalTime = 0;
         _createdFlag = false;
         car2created = false;
-        soundBufferHit = [[OALSimpleAudio sharedInstance] preloadEffect:@"hit.mp3"];
+        soundBufferHit = [[OALSimpleAudio sharedInstance] preloadEffect:@"hit.wav"];
+
     }
     
     //starting of the joystick by Frank
@@ -129,7 +130,8 @@
 
 - (void)didLoadFromCCB {
     
-    
+    //initialize the sound effect
+
     
     
     CGSize windowSize= [[CCDirector sharedDirector] viewSize];
