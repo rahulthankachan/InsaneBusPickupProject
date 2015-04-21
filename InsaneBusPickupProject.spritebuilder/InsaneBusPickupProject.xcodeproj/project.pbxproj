@@ -12,6 +12,7 @@
 		01043C341AE6D70500D352F8 /* hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 01043C331AE6D70500D352F8 /* hit.mp3 */; };
 		01043C361AE6DBE400D352F8 /* boom-kick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043C351AE6DBE400D352F8 /* boom-kick.wav */; };
 		01043C451AE6EAC000D352F8 /* hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043C441AE6EAC000D352F8 /* hit.wav */; };
+		01043C511AE6FC3500D352F8 /* cha-ching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043C501AE6FC3500D352F8 /* cha-ching.wav */; };
 		010C41091ADBADB300273945 /* carimage2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 010C41081ADBADB300273945 /* carimage2.xcassets */; };
 		011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 011258EE1AA790B100BFFAA0 /* GamePlayScene.m */; };
 		01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01235B261AD32FBD0092AFDF /* SampleList.plist */; };
@@ -101,6 +102,7 @@
 		01043C331AE6D70500D352F8 /* hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit.mp3; sourceTree = "<group>"; };
 		01043C351AE6DBE400D352F8 /* boom-kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "boom-kick.wav"; sourceTree = "<group>"; };
 		01043C441AE6EAC000D352F8 /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit.wav; sourceTree = "<group>"; };
+		01043C501AE6FC3500D352F8 /* cha-ching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "cha-ching.wav"; sourceTree = "<group>"; };
 		010C41081ADBADB300273945 /* carimage2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = carimage2.xcassets; sourceTree = "<group>"; };
 		011258ED1AA7900A00BFFAA0 /* GamePlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayScene.h; sourceTree = "<group>"; };
 		011258EE1AA790B100BFFAA0 /* GamePlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlayScene.m; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				01043C441AE6EAC000D352F8 /* hit.wav */,
+				01043C501AE6FC3500D352F8 /* cha-ching.wav */,
 				01043C351AE6DBE400D352F8 /* boom-kick.wav */,
 				01043C331AE6D70500D352F8 /* hit.mp3 */,
 				01043C2D1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav */,
@@ -631,6 +634,7 @@
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				010C41091ADBADB300273945 /* carimage2.xcassets in Resources */,
 				01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */,
+				01043C511AE6FC3500D352F8 /* cha-ching.wav in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,

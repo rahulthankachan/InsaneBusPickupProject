@@ -1222,6 +1222,8 @@
     [student removeFromParent];
     score=score+1;
     
+    [[OALSimpleAudio sharedInstance] playEffect:@"cha-ching.wav" loop:NO];
+    
     return TRUE;
 }
 
