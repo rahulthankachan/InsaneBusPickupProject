@@ -248,7 +248,7 @@
     
     widthBoundary = _road1.contentSize.width;
     heightBoundary = _road1.contentSize.height;
-    roadVelocity = 10;
+    roadVelocity = 5;
     
 }
 
@@ -981,21 +981,89 @@
     CMAttitude *currentAttitude= currentDeviceMotion.attitude;
     // [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
     //                     label.rotation= CC_RADIANS_TO_DEGREES(currentAttitude.roll);
-    
-    
-    if (currentAttitude.roll>0.045 ) {
+        NSLog(@" tHE ROLL IS %f",currentAttitude.roll);
         
-        velocity= CGPointMake(3.0f, 0.0f);
-    }
-    else if (currentAttitude.roll<-0.045 ){
-        velocity= CGPointMake(-3.0f, 0.0f);
-    }
-    else
-    {
-        velocity= CGPointMake(0.0f, 0.0f);
         
-    }
+   ///////////////////////////////////////This is used to control the gyro////////////////////////
+        if (currentAttitude.roll>0.015 ) {
+            
+            velocity= CGPointMake(0.3f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.015 ){
+            velocity= CGPointMake(-0.3f, 0.0f);
+        }
+        else
+        {
+            velocity= CGPointMake(0.0f, 0.0f);
+            
+        }
+        
+        
+        
+        if (currentAttitude.roll>0.025 ) {
+            
+            velocity= CGPointMake(1.0f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.025 ){
+            velocity= CGPointMake(-1.0f, 0.0f);
+        }
+
+        
+        if (currentAttitude.roll>0.035 ) {
+            
+            velocity= CGPointMake(2.0f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.025 ){
+            velocity= CGPointMake(-2.0f, 0.0f);
+        }
+
+        
+        if (currentAttitude.roll>0.045 ) {
+            
+            velocity= CGPointMake(3.5f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.045 ){
+            velocity= CGPointMake(-3.5f, 0.0f);
+        }
+        
+        if (currentAttitude.roll>0.055 ) {
+            
+            velocity= CGPointMake(4.0f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.055 ){
+            velocity= CGPointMake(-4.0f, 0.0f);
+        }
+        
+        
     
+    if (currentAttitude.roll>0.065 ) {
+        
+        velocity= CGPointMake(5.0f, 0.0f);
+    }
+    else if (currentAttitude.roll<-0.065 ){
+        velocity= CGPointMake(-5.0f, 0.0f);
+    }
+        
+        if (currentAttitude.roll>0.070 ) {
+            
+            velocity= CGPointMake(5.3f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.070 ){
+            velocity= CGPointMake(-5.3f, 0.0f);
+        }
+
+        if (currentAttitude.roll>0.20 ) {
+            
+            velocity= CGPointMake(6.0f, 0.0f);
+        }
+        else if (currentAttitude.roll<-0.20 ){
+            velocity= CGPointMake(-6.0f, 0.0f);
+        }
+
+        
+        ///////////////////////////////////////This is used to control the gyro////////////////////////
+
+
     
     
     bus.position= ccpAdd(bus.position, velocity);
@@ -1164,6 +1232,9 @@
     
     CCScene *gameplayscene = [CCBReader loadAsScene:@"EndOfLevel"];
     [[CCDirector sharedDirector] replaceScene:gameplayscene];
+    //oh man, collision...
+   // CCScene *mainscene = [CCBReader loadAsScene:@"GameFinScene"];
+   // [[CCDirector sharedDirector] replaceScene:mainscene];
 
     return TRUE;
 }
