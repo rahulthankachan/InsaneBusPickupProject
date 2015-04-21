@@ -22,7 +22,7 @@
     NSMutableArray *_cars2; //horizontally moving cars
     NSMutableArray *_coins;
     float timesliceformovewment;
-    CCNodeColor *bus;
+    CCSprite *bus;
     float timeSinceObstacle;
     int count;
     int nfortime;
@@ -72,6 +72,7 @@
     
 
     HealthBar *progressTimer;
+    CCParticleSmoke *smoke;
     
     NSInteger level;
     NSInteger totalBumps;
@@ -108,7 +109,7 @@
     
     /* Configures the current Level*/
     
-    currentLevelInfo= [GameLevel sendLevelObjectForLevel:4];
+    currentLevelInfo= [GameLevel sendLevelObjectForLevel:3];
     _maxStudentNum = currentLevelInfo.maxDistance;
     level=currentLevelInfo.levelNumber;
     totalBumps=5;
@@ -170,12 +171,13 @@
     
     // label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     // label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
-    bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
+    bus = [[CCSprite alloc] initWithImageNamed:@"bus.png"];
+    //bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
     scoreLabel =[[CCLabelTTF alloc]initWithString:@"Score: 0" fontName:@"Hello" fontSize:15];
     distLabel =[[CCLabelTTF alloc]initWithString:@"Dist: 0" fontName:@"Hello" fontSize:15];
     scoreLabel.position= ccp(windowSize.width-50,windowSize.height-10);
     distLabel.position= ccp(windowSize.width-50,windowSize.height-35);
-    bus.position=ccp(windowSize.width/2 - bus.contentSize.width / 2, 60);
+    bus.position=ccp(windowSize.width/2 - bus.contentSize.width / 2, 90);
 
     
     countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
@@ -352,7 +354,7 @@
         
 
     
-    if (timeSinceObstacle >2.0f)
+    if (timeSinceObstacle >1.25f)
     {
          CrazyCarsTaxis * newCar;
         
@@ -489,7 +491,7 @@
                 
                 
             } else {
-                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage4.png"];
+                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage6.png"];
                 newCar.type=4;
                 
                 newCar.scale = 0.3;
@@ -553,7 +555,7 @@
                 newCar.scale = 0.3;
                 num = foo4random();
                 xcoord = minimum + (num % div);
-                newCar.position = ccp(xcoord, 50);
+                newCar.position = ccp(xcoord, 0);
                 
                 count++;
             }
@@ -772,9 +774,9 @@
                     
                 case 4:
                     
-                    car1.position = ccp(car1.position.x, car1.position.y + 3.5);
+                    car1.position = ccp(car1.position.x, car1.position.y + 2.5);
                     
-                    if (car1.position.y > windowSize.height) {
+                    if (car1.position.y > windowSize.height || car1.position.y < -500) {
                    // if (car1.position.y < -car1.contentSize.height) {
                         
                         [toDelete addObject:car1];
@@ -995,14 +997,16 @@
     
     bus.position= ccpAdd(bus.position, velocity);
     
-    
+    if (smoke) {
+        smoke.position = ccp(bus.position.x, bus.position.y + bus.contentSize.height / 2 - 10);
+    }
     
     // done by Frank. make sure the bus will not go beyond the screen.
-    if (bus.position.x < 0) {
-        bus.position = ccp(0, bus.position.y);
+    if (bus.position.x < 0 + bus.contentSize.width / 2) {
+        bus.position = ccp(0 + bus.contentSize.width / 2, bus.position.y);
     }
-    if (bus.position.x > window.width - bus.contentSize.width) {
-        bus.position = ccp(window.width - bus.contentSize.width, bus.position.y);
+    if (bus.position.x > window.width - bus.contentSize.width / 2) {
+        bus.position = ccp(window.width - bus.contentSize.width / 2, bus.position.y);
     }
     
     if (bus.position.y < 0) {
@@ -1139,6 +1143,8 @@
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus student:(CCNode*)student {
     
     NSLog(@"Collision Student");
+    [self applyEnergizeEffect:student];
+
     [student removeFromParent];
     score=score+1;
     
@@ -1166,7 +1172,13 @@
     [level.parent addChild:explosion];
     level.position = ccp(1000, 1000);
     //temporarily
-    progressTimer.percentage-=10;
+    progressTimer.percentage -= 10;
+    if (progressTimer.percentage <= 100) {
+        if (smoke) {
+            [smoke removeFromParent];
+        }
+        [self enableSmoke];
+    }
     if (progressTimer.percentage<=0) {
         [insaneBus removeFromParent];
         [self gameEnds];
@@ -1199,6 +1211,37 @@
 - (void)gameEnds {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameEnd"];
     [[CCDirector sharedDirector] replaceScene:gameplayscene];
+}
+
+-(void) enableSmoke
+{
+    smoke = [[CCParticleSmoke alloc] init];
+    [smoke setAutoRemoveOnFinish:YES];
+    [smoke setScaleX:0.8];
+    [smoke setStartSize:10];
+    [smoke setEndSize:10];
+    [smoke setGravity:ccp(0,-90)];
+    [smoke setTotalParticles:50];
+    //smoke.position = ccp(200, 200);
+    //smoke.position = ccp(bus.position.x, bus.position.y);
+    [self addChild:smoke];
+}
+
+-(void) applyEnergizeEffect:(CCNode*) student
+{
+    CCParticleExplosion *meteor = [[CCParticleExplosion alloc] init];
+    [meteor setAutoRemoveOnFinish:YES];
+    [meteor setTotalParticles:200];
+    
+    [meteor setStartSize:2];
+    [meteor setEndSize:2];
+    
+    [meteor setDuration:3];
+    meteor.position = ccp(student.position.x, student.position.y);
+    //meteor.position = ccp(window.width/2, window.height/2);
+    
+    [self addChild:meteor];
+    
 }
 
 @end
