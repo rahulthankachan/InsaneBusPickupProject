@@ -1252,9 +1252,11 @@
     //temporarily
     progressTimer.percentage -= 10;
     if (progressTimer.percentage <= 100) {
+        /*
         if (smoke) {
             [smoke removeFromParent];
         }
+         */
         [self enableSmoke];
     }
     
@@ -1302,6 +1304,7 @@
     [smoke setEndSize:10];
     [smoke setGravity:ccp(0,-90)];
     [smoke setTotalParticles:50];
+    [smoke setDuration:3];
     //smoke.position = ccp(200, 200);
     //smoke.position = ccp(bus.position.x, bus.position.y);
     [self addChild:smoke];
