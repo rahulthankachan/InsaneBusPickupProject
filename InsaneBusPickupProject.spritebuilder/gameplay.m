@@ -1163,7 +1163,10 @@
     [level.parent addChild:explosion];
     level.position = ccp(1000, 1000);
     //temporarily
-    progressTimer.percentage-=10;
+    progressTimer.percentage -= 10;
+    if (progressTimer.percentage <= 100) {
+        [self enableSmoke];
+    }
     if (progressTimer.percentage<=0) {
         [insaneBus removeFromParent];
         [self gameEnds];
@@ -1196,6 +1199,20 @@
 - (void)gameEnds {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameEnd"];
     [[CCDirector sharedDirector] replaceScene:gameplayscene];
+}
+
+-(void) enableSmoke
+{
+    CCParticleSmoke *smoke = [[CCParticleSmoke alloc] init];
+    [smoke setAutoRemoveOnFinish:YES];
+    [smoke setScaleX:0.8];
+    [smoke setStartSize:10];
+    [smoke setEndSize:10];
+    [smoke setGravity:ccp(0,-90)];
+    [smoke setTotalParticles:50];
+    //smoke.position = ccp(200, 200);
+    smoke.position = ccp(bus.position.x, bus.position.y);
+    [self addChild:smoke];
 }
 
 @end
