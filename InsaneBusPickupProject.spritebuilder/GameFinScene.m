@@ -30,7 +30,7 @@
 }
 
 - (NSInteger) calcScore:(NSInteger) stuNum TimeElpased:(NSInteger) timeUsed {
-    return timeUsed/5*(stuNum+1);
+    return 1/(timeUsed+1)*5*(stuNum+1);
     
 }
 
