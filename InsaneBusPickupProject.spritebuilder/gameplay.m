@@ -73,6 +73,7 @@
 
     HealthBar *progressTimer;
     CCParticleSmoke *smoke;
+    ALBuffer* soundBufferHit;
     
     NSInteger level;
     NSInteger totalBumps;
@@ -89,7 +90,7 @@
         totalTime = 0;
         _createdFlag = false;
         car2created = false;
-        
+        soundBufferHit = [[OALSimpleAudio sharedInstance] preloadEffect:@"hit.mp3"];
     }
     
     //starting of the joystick by Frank
@@ -1179,6 +1180,8 @@
         }
         [self enableSmoke];
     }
+    
+    [[OALSimpleAudio sharedInstance] playBuffer:soundBufferHit volume:1.0f pitch:1.0f pan:0.0f loop:NO];
     if (progressTimer.percentage<=0) {
         [insaneBus removeFromParent];
         [self gameEnds];

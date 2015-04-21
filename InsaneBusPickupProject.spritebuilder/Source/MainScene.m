@@ -49,6 +49,7 @@
     [scorelabel2 setString:[NSString stringWithFormat:@"HighScore2: %ld", h2]];
     [scorelabel3 setString:[NSString stringWithFormat:@"HighScore3: %ld", h3]];
     [self preloadAndPlayMusic];
+
 }
 
 -(void) preloadAndPlayMusic
@@ -62,7 +63,7 @@
     // To stop the music...
     //[[OALSimpleAudio sharedInstance] stopBg];
     
-    NSLog(@"Music is playing.");
+    NSLog(@"Background music is playing.");
 }
 
 @end
