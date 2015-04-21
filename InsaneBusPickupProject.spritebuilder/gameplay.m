@@ -107,7 +107,7 @@
     
     /* Configures the current Level*/
     
-    currentLevelInfo= [GameLevel sendLevelObjectForLevel:1];
+    currentLevelInfo= [GameLevel sendLevelObjectForLevel:4];
     _maxStudentNum = currentLevelInfo.maxDistance;
     level=currentLevelInfo.levelNumber;
 
@@ -136,9 +136,9 @@
     
     //progressTimer = [[HealthBar alloc] initWithProgressTimerSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
     //progressTimer = [HealthBar progressWithSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
-    progressTimer = [CCProgressNode progressWithSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
+    progressTimer = [CCProgressNode progressWithSprite:[[CCSprite alloc] initWithImageNamed:@"heart-red.png"]];
     //self.progressTimer.type = kCCProgressTimerTypeHorizontalBarLR;
-    [progressTimer setScale:5];
+    [progressTimer setScale:0.15];
     progressTimer.percentage = 100;
     progressTimer.position = ccp(windowSize.width/2,windowSize.height/2);
     [self addChild:progressTimer z:1];
@@ -538,7 +538,7 @@
                 newCar.scale = 0.3;
                 num = foo4random();
                 xcoord = minimum + (num % div);
-                newCar.position=ccp(xcoord,620);
+                newCar.position = ccp(xcoord, 50);
                 
                 count++;
             }
@@ -561,7 +561,7 @@
         newCar.scale=0.3;
         num=foo4random();
         xcoord=minimum+(num%div);
-        newCar.position=ccp(xcoord,620);
+        //newCar.position=ccp(xcoord,620);
         //newStudent.position=ccp(xcoord,500);
        // [self addChild:newCar];
         newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
@@ -725,7 +725,7 @@
                 
             case 2:
                 
-                car1.position = ccp(car1.position.x, car1.position.y - .5);
+                car1.position = ccp(car1.position.x, car1.position.y - 0.5);
                 if (car1.position.y - bus.position.y <= 250) {
                     if (car1.position.x != bus.position.x) {
                         if (car1.position.x - bus.position.x - 15 > 0) {
@@ -743,6 +743,30 @@
                     
                     break;
                     
+                case 3:
+                    car1.position = ccp(car1.position.x, car1.position.y - 3);
+                    
+                    
+                    
+                    if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    
+                    break;
+                    
+                case 4:
+                    
+                    car1.position = ccp(car1.position.x, car1.position.y + 3.5);
+                    
+                    if (car1.position.y > windowSize.height) {
+                   // if (car1.position.y < -car1.contentSize.height) {
+                        
+                        [toDelete addObject:car1];
+                    }
+                    
+                    break;
+
                 default:
                     break;
             }
@@ -750,7 +774,7 @@
         
 //        else if (level == 2) {
 //            switch (car1.type) {
-//                    
+//
 //                case 1:
 //                    
 //                    car1.position = ccp(car1.position.x, car1.position.y - .5);
@@ -1173,7 +1197,7 @@
     [level.parent addChild:explosion];
     level.position = ccp(1000, 1000);
     //temporarily
-    progressTimer.percentage-=33;
+    progressTimer.percentage-=10;
     if (progressTimer.percentage<=0) {
         [insaneBus removeFromParent];
     }
