@@ -184,7 +184,7 @@
 
     
     countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
-    countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 50);
+    //countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 50);
     [self addChild:countdownLabel];
 
     
@@ -1173,6 +1173,16 @@
     
     CGSize windowSize = [[CCDirector sharedDirector] viewSize];
     
+    BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
+    
+    if (posLeft == NO) {
+        countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 50);
+
+    } else {
+        countdownLabel.position = ccp(100, windowSize.height - 50);
+
+    }
+    
     //CCLabelTTF *countdownLabel;
     for (int i = 3; i != 0; --i) {
         //NSLog(@"You have %d seconds left.", i);
@@ -1185,10 +1195,12 @@
     int number= arc4random_uniform(11)+1;
     CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:[NSString stringWithFormat:@"character-%i.png",number]];
     newStudent.scale=.2;
-    BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
+    
     if (posLeft == YES) {
+
         newStudent.position = ccp(initStudentXLeft, initStudentY);
     } else {
+
         newStudent.position = ccp(initStudentXRight, initStudentY);
     }
     
