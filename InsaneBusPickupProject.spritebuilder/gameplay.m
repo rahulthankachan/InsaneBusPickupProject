@@ -1162,7 +1162,7 @@
     [level.parent addChild:explosion];
     level.position = ccp(1000, 1000);
     //temporarily
-    progressTimer.percentage-=10;
+    progressTimer.percentage-=50;
     if (progressTimer.percentage<=0) {
         [insaneBus removeFromParent];
         [self gameEnds];
