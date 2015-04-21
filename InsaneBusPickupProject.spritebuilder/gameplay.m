@@ -140,7 +140,7 @@
     //self.progressTimer.type = kCCProgressTimerTypeHorizontalBarLR;
     [progressTimer setScale:0.15];
     progressTimer.percentage = 100;
-    progressTimer.position = ccp(windowSize.width/2,windowSize.height/2);
+    progressTimer.position = ccp(50, windowSize.height - 50);
     [self addChild:progressTimer z:1];
     
     //   float delay = 1.0; // Number of seconds between each call of myTimedMethod:
@@ -173,7 +173,7 @@
     distLabel =[[CCLabelTTF alloc]initWithString:@"Dist: 0" fontName:@"Hello" fontSize:15];
     scoreLabel.position= ccp(windowSize.width-50,windowSize.height-10);
     distLabel.position= ccp(windowSize.width-50,windowSize.height-35);
-    bus.position=ccp(windowSize.width/2 - bus.contentSize.width / 2, 20);
+    bus.position=ccp(windowSize.width/2 - bus.contentSize.width / 2, 60);
 
     
     countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
