@@ -6,6 +6,10 @@
 	<integer>0</integer>
 	<key>score2</key>
 	<integer>0</integer>
+	<key>nStu</key>
+	<integer>0</integer>
+	<key>timeUsed</key>
+	<integer>0</integer>
 	<key>score1</key>
 	<integer>0</integer>
 </dict>
