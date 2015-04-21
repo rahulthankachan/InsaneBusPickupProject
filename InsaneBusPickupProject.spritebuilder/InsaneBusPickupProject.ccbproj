@@ -78,13 +78,6 @@
 			<key>previewFolderHidden</key>
 			<false/>
 		</dict>
-		<key>Burst-hd@4x.png</key>
-		<dict>
-			<key>isDirty</key>
-			<true/>
-			<key>scaleFrom</key>
-			<integer>4</integer>
-		</dict>
 		<key>Sprites</key>
 		<dict/>
 		<key>ccbResources</key>

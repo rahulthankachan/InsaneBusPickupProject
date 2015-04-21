@@ -14,6 +14,7 @@
 		01ED05A91ACB56A600033567 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01ED05A81ACB56A600033567 /* Info.plist */; };
 		2E094DE41AE33D5600590919 /* GameLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E094DE31AE33D5600590919 /* GameLevel.m */; };
 		2E094E111AE61AB000590919 /* FinalScoresScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E094E101AE61AB000590919 /* FinalScoresScene.m */; };
+		2E094E141AE641F500590919 /* EndOfLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E094E131AE641F500590919 /* EndOfLevel.m */; };
 		2E4918B71AAAF5AB00ADA502 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */; };
 		2EC6732C1ADCAE27007E236A /* CrazyCarsTaxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6732B1ADCAE27007E236A /* CrazyCarsTaxis.m */; };
 		3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57DAFD1AD7C20400FACC78 /* gameplay.m */; };
@@ -100,6 +101,8 @@
 		2E094DE31AE33D5600590919 /* GameLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLevel.m; sourceTree = "<group>"; };
 		2E094E0F1AE61AB000590919 /* FinalScoresScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalScoresScene.h; sourceTree = "<group>"; };
 		2E094E101AE61AB000590919 /* FinalScoresScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalScoresScene.m; sourceTree = "<group>"; };
+		2E094E121AE641F500590919 /* EndOfLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndOfLevel.h; sourceTree = "<group>"; };
+		2E094E131AE641F500590919 /* EndOfLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndOfLevel.m; sourceTree = "<group>"; };
 		2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		2EC6732A1ADCAE27007E236A /* CrazyCarsTaxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrazyCarsTaxis.h; sourceTree = "<group>"; };
 		2EC6732B1ADCAE27007E236A /* CrazyCarsTaxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrazyCarsTaxis.m; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 		B77F1B2517B978D7009739AE = {
 			isa = PBXGroup;
 			children = (
+				2E094E121AE641F500590919 /* EndOfLevel.h */,
+				2E094E131AE641F500590919 /* EndOfLevel.m */,
 				B737893C1807616C0076A88C /* Source */,
 				B77F1B4617B978D7009739AE /* Resources */,
 				9222E2B918734FF800A246C7 /* libs */,
@@ -646,6 +651,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E094DE41AE33D5600590919 /* GameLevel.m in Sources */,
+				2E094E141AE641F500590919 /* EndOfLevel.m in Sources */,
 				011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */,
 				2EC6732C1ADCAE27007E236A /* CrazyCarsTaxis.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,

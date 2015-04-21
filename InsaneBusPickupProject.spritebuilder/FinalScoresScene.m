@@ -31,6 +31,7 @@
     
     if(self != nil)
     {
+        // set this so we can register with touch dispatcher
 
     }
 
