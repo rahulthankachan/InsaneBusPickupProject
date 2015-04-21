@@ -1089,6 +1089,8 @@
     }
     [countdownLabel setString:@"Incomming"];
     
+    //CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"character-1.png"];
+
     CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
     BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
     if (posLeft == YES) {
@@ -1200,12 +1202,35 @@
     progressTimer.percentage-=10;
     if (progressTimer.percentage<=0) {
         [insaneBus removeFromParent];
+        [self gameEnds];
     }
 }
 
 
+/****
+ call like this
+ 
+ CCScene *myScene = [[CCDirector sharedDirector] runningScene];
+ CCNode *node = [myScene.children objectAtIndex:0];
+ UIImage *img = [AppController screenshotWithStartNode:node];
+ 
+ **/
++(UIImage*) screenshotWithStartNode:(CCNode*)stNode
+{
+    [CCDirector sharedDirector].nextDeltaTimeZero = YES;
+    
+    CGSize winSize = [[CCDirector sharedDirector] viewSize];
+    CCRenderTexture* renTxture = [CCRenderTexture renderTextureWithWidth:winSize.width height:winSize.height];
+    [renTxture begin];
+    [stNode visit];
+    [renTxture end];
+    
+    return [renTxture getUIImage];
+}
 
-
-
+- (void)gameEnds {
+    CCScene *gameplayscene = [CCBReader loadAsScene:@"gameEnd"];
+    [[CCDirector sharedDirector] replaceScene:gameplayscene];
+}
 
 @end
