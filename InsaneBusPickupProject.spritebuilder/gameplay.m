@@ -210,6 +210,19 @@
     initStudentXRight = window.width/8*7;
     initStudentY = window.height/8*9;
     _student0 = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-1.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-2.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-3.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-4.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-5.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-6.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-7.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-8.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-9.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-10.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-11.png"];
+    _student0 = [[CCSprite alloc] initWithImageNamed:@"character-12.png"];
+    _student0.scale=.2;
     BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
     if (posLeft == YES) {
         _student0.position = ccp(initStudentXLeft, initStudentY);
@@ -1091,7 +1104,9 @@
     }
     [countdownLabel setString:@"Incomming"];
     
-    CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
+    int number= arc4random_uniform(11)+1;
+    CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:[NSString stringWithFormat:@"character-%i.png",number]];
+    newStudent.scale=.2;
     BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
     if (posLeft == YES) {
         newStudent.position = ccp(initStudentXLeft, initStudentY);
