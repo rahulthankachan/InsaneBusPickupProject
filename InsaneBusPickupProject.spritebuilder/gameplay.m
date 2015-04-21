@@ -92,6 +92,9 @@
         car2created = false;
         soundBufferHit = [[OALSimpleAudio sharedInstance] preloadEffect:@"hit.wav"];
 
+        //modify the background music
+        [[OALSimpleAudio sharedInstance] setBgVolume:0.8];
+
     }
     
     //starting of the joystick by Frank
@@ -111,7 +114,7 @@
     
     /* Configures the current Level*/
     
-    currentLevelInfo= [GameLevel sendLevelObjectForLevel:3];
+    currentLevelInfo= [GameLevel sendLevelObjectForLevel:4];
     _maxStudentNum = currentLevelInfo.maxDistance;
     level=currentLevelInfo.levelNumber;
     totalBumps=5;
@@ -129,6 +132,7 @@
 }
 
 - (void)didLoadFromCCB {
+    
     
     //initialize the sound effect
 
