@@ -52,10 +52,6 @@
 
 -(void)update:(CCTime)delta
 {
-
-    
-    
-    
     
 }
 

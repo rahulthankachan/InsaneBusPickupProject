@@ -7,6 +7,7 @@
 //
 
 #import "LevelSelection.h"
+#import "AppDelegate.h"
 
 @implementation LevelSelection {
     NSString *buttonHitSoundEffect;
@@ -14,6 +15,7 @@
     BOOL _flag2;
     BOOL _flag3;
     BOOL _flag4;
+    //CCAppDelegate *_appDelegate;
 }
 
 - (void) didLoadFromCCB {
@@ -31,6 +33,7 @@
     CCScene *mainscene = [CCBReader loadAsScene:@"MainScene"];
     [[CCDirector sharedDirector] replaceScene:mainscene];
     [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+    
 }
 
 - (void) btnLevel1 {
@@ -38,7 +41,10 @@
         CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
         [[CCDirector sharedDirector] replaceScene:gameplay];
         [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
-
+        //AppController* app = (AppController *)[UIApplication sharedApplication];
+        //app.levelSelected = 1;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:1] forKey:@"levelSelected"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 
@@ -47,7 +53,11 @@
         CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
         [[CCDirector sharedDirector] replaceScene:gameplay];
         [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
-        
+        //AppController* app = (AppController *)[UIApplication sharedApplication];
+        //app.levelSelected = 2;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:2] forKey:@"levelSelected"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
     }
 
 }
@@ -57,7 +67,11 @@
         CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
         [[CCDirector sharedDirector] replaceScene:gameplay];
         [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
-        
+        //AppController* app = (AppController *)[UIApplication sharedApplication];
+        //app.levelSelected = 3;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:3] forKey:@"levelSelected"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
     }
 
 }
@@ -67,7 +81,11 @@
         CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
         [[CCDirector sharedDirector] replaceScene:gameplay];
         [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
-        
+        //AppController* app = (AppController *)[UIApplication sharedApplication];
+        //app.levelSelected = 4;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:4] forKey:@"levelSelected"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
     }
 }
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "CCNode.h"
+#import "AppDelegate.h"
 
 @interface LevelSelection : CCNode
 
