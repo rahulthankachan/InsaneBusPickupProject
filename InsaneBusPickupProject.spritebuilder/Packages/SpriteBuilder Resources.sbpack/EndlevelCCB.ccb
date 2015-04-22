@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>29</integer>
+	<integer>30</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -154,8 +154,6 @@
 						<array/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -277,7 +275,7 @@
 				<key>displayName</key>
 				<string>character-12</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_trophy3</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -385,7 +383,7 @@
 				<key>displayName</key>
 				<string>character-12</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_trophy2</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -405,7 +403,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>97</real>
+							<real>101</real>
 							<real>221</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -493,7 +491,7 @@
 				<key>displayName</key>
 				<string>character-12</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_trophy1</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -601,7 +599,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_timeRemaining</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -1481,7 +1479,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_timeRemaining</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -3021,7 +3019,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_timeScore</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -3241,7 +3239,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_studentScore</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -3461,7 +3459,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_bonusScore</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -3681,7 +3679,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_totalScore</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -3749,7 +3747,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Helvetica</string>
+						<string>Helvetica-Bold</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3901,7 +3899,7 @@
 				<key>displayName</key>
 				<string>refresh</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_restartButton</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -4009,7 +4007,7 @@
 				<key>displayName</key>
 				<string>16-Menu-circular-button</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_menuButton</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -4117,7 +4115,7 @@
 				<key>displayName</key>
 				<string>forward-1-512</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_nextButton</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -4215,7 +4213,7 @@
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string></string>
+		<string>EndlevelCCB</string>
 		<key>displayName</key>
 		<string>CCNode</string>
 		<key>memberVarAssignmentName</key>

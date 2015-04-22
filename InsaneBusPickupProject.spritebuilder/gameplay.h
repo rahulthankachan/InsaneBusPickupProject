@@ -1,6 +1,7 @@
 #import "GamePlayScene.h"
 #import <CoreMotion/CoreMotion.h>
 #import "GameLevel.h"
+#import "AppDelegate.h"
 
 int score;
 int distance;
