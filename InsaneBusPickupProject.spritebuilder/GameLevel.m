@@ -7,6 +7,8 @@
 //
 
 #import "GameLevel.h"
+#import "CrazyCarsTaxis.h"
+#import "ObjectOnRoad.h"
 
 
 static int x;
@@ -77,10 +79,22 @@ static NSMutableArray *patternA;
 +(NSMutableArray*)sendPatternForLevel: (NSInteger) userLevel{
 
     patternA= [[NSMutableArray alloc]init];
+    
+    
+    CrazyCarsTaxis * newCar;
 
+    NSInteger xcoord=80;
+    for (int i=0; i<10; i++) {
+        newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+        newCar.scale=0.3;
 
+        newCar.position=ccp(xcoord,620+i*50);
+        newCar.type=1;
+        [patternA addObject:newCar];
+        
+    }
 
-
+    
     return patternA;
 
 }
