@@ -63,16 +63,16 @@
 
 -(void) preloadAndPlayMusic
 {
-    // Preload...
-    [[OALSimpleAudio sharedInstance] preloadBg:@"DesertRace_22050Hz_Loop.wav"];
-    
-    // Play (and loop the music)...
-    [[OALSimpleAudio sharedInstance] playBgWithLoop:YES];
-    
-    // To stop the music...
-    //[[OALSimpleAudio sharedInstance] stopBg];
-    
-    NSLog(@"Background music is playing.");
+//    // Preload...
+//    [[OALSimpleAudio sharedInstance] preloadBg:@"DesertRace_22050Hz_Loop.wav"];
+//    
+//    // Play (and loop the music)...
+//    [[OALSimpleAudio sharedInstance] playBgWithLoop:YES];
+//    
+//    // To stop the music...
+//    //[[OALSimpleAudio sharedInstance] stopBg];
+//    
+//    NSLog(@"Background music is playing.");
 }
 
 @end
