@@ -80,7 +80,7 @@
     NSInteger capacityOfBus;
     NSInteger offsetVelocityOfCars;
     CGFloat baseRoadVelocity;
-    
+    CGFloat capRoadVelocity;
     NSInteger level;
     NSInteger totalBumps;
 }
@@ -267,6 +267,8 @@
     heightBoundary = _road1.contentSize.height;
     roadVelocity = 5;
     baseRoadVelocity = roadVelocity;
+    //set the max velocity of road to 10
+    capRoadVelocity = roadVelocity + 5;
     offsetVelocityOfCars = roadVelocity;
 
     
@@ -1175,8 +1177,11 @@
          }
          
      } else {
-         roadVelocity += 0.1;
-         offsetVelocityOfCars += 0.05;
+         if (roadVelocity < capRoadVelocity) {
+             roadVelocity += 0.1;
+             offsetVelocityOfCars += 0.05;
+         }
+         
 
      }
      
