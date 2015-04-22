@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>levelSelected</key>
+	<integer>1</integer>
 	<key>score3</key>
 	<integer>0</integer>
 	<key>score2</key>
@@ -13,7 +15,7 @@
 	<key>level1Flag</key>
 	<true/>
 	<key>level2Flag</key>
-	<true/>
+	<false/>
 	<key>level3Flag</key>
 	<false/>
 	<key>level4Flag</key>

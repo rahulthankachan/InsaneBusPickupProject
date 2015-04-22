@@ -28,6 +28,9 @@
 
 @interface AppController : CCAppDelegate
 {
+    //int levelSelected;
 }
+
+//@property int levelSelected;
 
 @end

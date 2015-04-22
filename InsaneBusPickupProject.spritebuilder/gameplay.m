@@ -113,8 +113,12 @@
 #pragma mark init: Current Level Config
     
     /* Configures the current Level*/
+    //addd by Stephen
+    //AppController * app = (AppController *)[UIApplication sharedApplication];
+    int nLevel = [[[NSUserDefaults standardUserDefaults] objectForKey:@"levelSelected"] intValue];
+    NSLog(@"Level selected %d", nLevel);
     
-    currentLevelInfo= [GameLevel sendLevelObjectForLevel:4];
+    currentLevelInfo= [GameLevel sendLevelObjectForLevel:nLevel];
     _maxStudentNum = currentLevelInfo.maxDistance;
     level=currentLevelInfo.levelNumber;
     totalBumps=5;
