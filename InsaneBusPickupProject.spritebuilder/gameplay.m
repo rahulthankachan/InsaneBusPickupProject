@@ -682,11 +682,11 @@
         
         }
         }
-        
+        /*
         NSLog(@"tHIS IS THE HIDDEN VELOVITY physics node %f",physicsNode.physicsBody.velocity.y) ;
         NSLog(@"tHIS IS THE HIDDEN VELOVITY parking %f",parking.physicsBody.velocity.y) ;
         NSLog(@"tHIS IS THE HIDDEN VELOVITY %f",[parking parent].physicsBody.velocity.y) ;
-        
+        */
         
         if (parking) {
             parking.position = ccp(parking.position.x, parking.position.y - roadVelocity);
@@ -1002,7 +1002,7 @@
     CMAttitude *currentAttitude= currentDeviceMotion.attitude;
     // [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
     //                     label.rotation= CC_RADIANS_TO_DEGREES(currentAttitude.roll);
-        NSLog(@" tHE ROLL IS %f",currentAttitude.roll);
+    //    NSLog(@" tHE ROLL IS %f",currentAttitude.roll);
         
         
    ///////////////////////////////////////This is used to control the gyro////////////////////////
@@ -1158,19 +1158,26 @@
  {
  // we want to know the location of our touch in this scene
 
-    CGPoint touchLocation = [touch locationInNode:self];
-     NSLog(@"The x coordinate is %f",touchLocation.x);
-      NSLog(@"The y coordinate before is %f",touchLocation.y);
+     CGPoint touchLocation = [touch locationInNode:self];
+     //NSLog(@"The x coordinate is %f",touchLocation.x);
+     //NSLog(@"The y coordinate before is %f",touchLocation.y);
      
-
+     NSLog(@"Coordinate (%f, %f)", touchLocation.x, touchLocation.y);
+     
+     if (touchLocation.x < window.width / 2) {
+         roadVelocity -= 0.1;
+     } else {
+         roadVelocity += 0.1;
+     }
+     
      if (touchLocation.x>180) {
          [bus.physicsBody applyImpulse:ccp(0, 400)];
      }
      else{
          [bus.physicsBody applyImpulse:ccp(0, -400)];
-     
+         
      }
-     NSLog(@"The y coordinate is %f",touchLocation.y);
+     //NSLog(@"The y coordinate is %f",touchLocation.y);
      
      
  // create a 'hero' sprite
