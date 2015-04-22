@@ -9,6 +9,8 @@
 #import "CrazyCarsTaxis.h"
 #import "HealthBar.h"
 
+#import "CapacityOfBus.h"
+
 @implementation gameplay{
     
 
@@ -74,6 +76,8 @@
     HealthBar *progressTimer;
     CCParticleSmoke *smoke;
     ALBuffer* soundBufferHit;
+    
+    NSInteger capacityOfBus;
     
     NSInteger level;
     NSInteger totalBumps;
@@ -261,6 +265,12 @@
     heightBoundary = _road1.contentSize.height;
     roadVelocity = 5;
     
+    
+    //set the capacity of the bus
+    CapacityOfBus *capacity = [CapacityOfBus alloc];
+    //if the capacity of the bus is nil, it will be initialized
+    [capacity initializeCapacityOfBus];
+    capacityOfBus = [capacity getCapacityOfBus];
 }
 
 
@@ -301,7 +311,7 @@
         //score=score+1;
         totalTime = 0;
     }
-    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", score]];
+    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d/%ld", score, capacityOfBus]];
     
     
     
@@ -1236,15 +1246,20 @@
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus student:(CCNode*)student {
     
-    NSLog(@"Collision Student");
-    [self applyEnergizeEffect:student];
+    CapacityOfBus *capacity = [CapacityOfBus alloc];
+    if (score < [capacity getCapacityOfBus]) {
+        NSLog(@"Collision Student");
+        [self applyEnergizeEffect:student];
+        
+        [student removeFromParent];
+        score = score + 1;
+        [[OALSimpleAudio sharedInstance] playEffect:@"cha-ching.wav" loop:NO];
+        return TRUE;
 
-    [student removeFromParent];
-    score=score+1;
+    } else {
+        return FALSE;
+    }
     
-    [[OALSimpleAudio sharedInstance] playEffect:@"cha-ching.wav" loop:NO];
-    
-    return TRUE;
 }
 
 
