@@ -14,6 +14,7 @@
 		01043C451AE6EAC000D352F8 /* hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043C441AE6EAC000D352F8 /* hit.wav */; };
 		01043C511AE6FC3500D352F8 /* cha-ching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043C501AE6FC3500D352F8 /* cha-ching.wav */; };
 		01043C651AE7824C00D352F8 /* CapacityOfBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 01043C641AE7824C00D352F8 /* CapacityOfBus.m */; };
+		01043C7C1AE79A9B00D352F8 /* ObjectOnRoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 01043C7B1AE79A9B00D352F8 /* ObjectOnRoad.m */; };
 		010C41091ADBADB300273945 /* carimage2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 010C41081ADBADB300273945 /* carimage2.xcassets */; };
 		011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 011258EE1AA790B100BFFAA0 /* GamePlayScene.m */; };
 		01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01235B261AD32FBD0092AFDF /* SampleList.plist */; };
@@ -107,6 +108,8 @@
 		01043C501AE6FC3500D352F8 /* cha-ching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "cha-ching.wav"; sourceTree = "<group>"; };
 		01043C631AE7824C00D352F8 /* CapacityOfBus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapacityOfBus.h; sourceTree = "<group>"; };
 		01043C641AE7824C00D352F8 /* CapacityOfBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapacityOfBus.m; sourceTree = "<group>"; };
+		01043C7A1AE79A9B00D352F8 /* ObjectOnRoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectOnRoad.h; sourceTree = "<group>"; };
+		01043C7B1AE79A9B00D352F8 /* ObjectOnRoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectOnRoad.m; sourceTree = "<group>"; };
 		010C41081ADBADB300273945 /* carimage2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = carimage2.xcassets; sourceTree = "<group>"; };
 		011258ED1AA7900A00BFFAA0 /* GamePlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayScene.h; sourceTree = "<group>"; };
 		011258EE1AA790B100BFFAA0 /* GamePlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlayScene.m; sourceTree = "<group>"; };
@@ -406,6 +409,8 @@
 				01043C641AE7824C00D352F8 /* CapacityOfBus.m */,
 				3F57DAFC1AD7C20400FACC78 /* gameplay.h */,
 				3F57DAFD1AD7C20400FACC78 /* gameplay.m */,
+				01043C7A1AE79A9B00D352F8 /* ObjectOnRoad.h */,
+				01043C7B1AE79A9B00D352F8 /* ObjectOnRoad.m */,
 				01043C181AE6174600D352F8 /* gameEnd.h */,
 				01043C191AE6174600D352F8 /* gameEnd.m */,
 				2E094DE21AE33D5600590919 /* GameLevel.h */,
@@ -552,7 +557,7 @@
 		B77F1B2617B978D7009739AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Apportable;
 				TargetAttributes = {
 					B77F1B2D17B978D7009739AE = {
@@ -700,6 +705,7 @@
 				2E25F7C01AE77ED20038466C /* EndlevelCCB.m in Sources */,
 				78013E871AE67EF60062BAA2 /* GameFinScene.m in Sources */,
 				3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */,
+				01043C7C1AE79A9B00D352F8 /* ObjectOnRoad.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				0133E8DB1ADEEC59000DCB2F /* HealthBar.m in Sources */,
@@ -732,6 +738,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Zyda (4TS2GH2E9U)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -767,6 +774,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Zyda (4TS2GH2E9U)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
