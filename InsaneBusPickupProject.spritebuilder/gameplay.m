@@ -129,7 +129,7 @@
     currentLevelInfo= [GameLevel sendLevelObjectForLevel:nLevel];
     _maxStudentNum = currentLevelInfo.maxDistance;
     level=currentLevelInfo.levelNumber;
-    level = 4;
+    level = 1;
     totalBumps=5;
 
     
@@ -334,12 +334,18 @@
     }
     
     
+        if (distance > 10 && distance < 20) {
+            trafficComing = false;
+            
+        }
+        if (distance > 20) {
+            trafficComing = true;
+        }
     
     
     
     
-    
-    if (distance<currentLevelInfo.maxDistance) {
+    if (distance<currentLevelInfo.maxDistance && trafficComing) {
         
         
         
@@ -386,8 +392,8 @@
         int div=201;
         
 
-    
-    if (timeSinceObstacle >1.25f && trafficComing)
+
+    if (timeSinceObstacle >1.25f)
     {
          CrazyCarsTaxis * newCar;
         
