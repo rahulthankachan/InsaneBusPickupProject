@@ -78,6 +78,8 @@
     ALBuffer* soundBufferHit;
     
     NSInteger capacityOfBus;
+    NSInteger offsetVelocityOfCars;
+    CGFloat baseRoadVelocity;
     
     NSInteger level;
     NSInteger totalBumps;
@@ -264,7 +266,9 @@
     widthBoundary = _road1.contentSize.width;
     heightBoundary = _road1.contentSize.height;
     roadVelocity = 5;
-    
+    baseRoadVelocity = roadVelocity;
+    offsetVelocityOfCars = roadVelocity;
+
     
     //set the capacity of the bus
     CapacityOfBus *capacity = [CapacityOfBus alloc];
@@ -753,7 +757,7 @@
             switch (car1.type) {
                     
                 case 1:
-                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    car1.position = ccp(car1.position.x, car1.position.y - .5 + roadVelocity - offsetVelocityOfCars);
                     
                     
                     
@@ -766,7 +770,7 @@
                 
             case 2:
                 
-                car1.position = ccp(car1.position.x, car1.position.y - 0.5);
+                car1.position = ccp(car1.position.x, car1.position.y - 0.5  + roadVelocity - offsetVelocityOfCars);
                 if (car1.position.y - bus.position.y <= 250) {
                     if (car1.position.x != bus.position.x) {
                         if (car1.position.x - bus.position.x - 15 > 0) {
@@ -785,7 +789,7 @@
                     break;
                     
                 case 3:
-                    car1.position = ccp(car1.position.x, car1.position.y - 3);
+                    car1.position = ccp(car1.position.x, car1.position.y - 3  + roadVelocity - offsetVelocityOfCars);
                     
                     
                     
@@ -798,7 +802,7 @@
                     
                 case 4:
                     
-                    car1.position = ccp(car1.position.x, car1.position.y + 2.5);
+                    car1.position = ccp(car1.position.x, car1.position.y + 2.5  - roadVelocity + offsetVelocityOfCars);
                     
                     if (car1.position.y > windowSize.height || car1.position.y < -500) {
                    // if (car1.position.y < -car1.contentSize.height) {
@@ -1165,9 +1169,15 @@
      NSLog(@"Coordinate (%f, %f)", touchLocation.x, touchLocation.y);
      
      if (touchLocation.x < window.width / 2) {
-         roadVelocity -= 0.1;
+         if (roadVelocity > baseRoadVelocity) {
+             roadVelocity -= 0.1;
+             offsetVelocityOfCars -= 0.05;
+         }
+         
      } else {
          roadVelocity += 0.1;
+         offsetVelocityOfCars += 0.05;
+
      }
      
      if (touchLocation.x>180) {
