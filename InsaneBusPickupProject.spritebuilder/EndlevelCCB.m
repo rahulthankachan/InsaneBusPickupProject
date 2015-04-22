@@ -48,7 +48,7 @@
     [_timeScore setString:[NSString stringWithFormat:@"%i",timeScore]];
     [_studentScore setString:[NSString stringWithFormat:@"%i",studentScore]];
     [_bonusScore setString:[NSString stringWithFormat:@"%i",bonusScore]];
-    [_totalScore setString:[NSString stringWithFormat:@"%i",studentScore+bonusScore+studentScore]];
+    [_totalScore setString:[NSString stringWithFormat:@"%i",studentScore+bonusScore+timeScore]];
     
     
     
