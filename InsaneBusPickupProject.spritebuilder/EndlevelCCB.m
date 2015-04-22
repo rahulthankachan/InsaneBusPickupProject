@@ -29,6 +29,8 @@
 
 -(void) didLoadFromCCB {
     
+    self.userInteractionEnabled=true;
+    
     [_timeScore setString:@"Rahul"];
     
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
@@ -49,6 +51,8 @@
     [_studentScore setString:[NSString stringWithFormat:@"%i",studentScore]];
     [_bonusScore setString:[NSString stringWithFormat:@"%i",bonusScore]];
     [_totalScore setString:[NSString stringWithFormat:@"%i",studentScore+bonusScore+timeScore]];
+    
+    
     
     
     
@@ -76,6 +80,41 @@
     
 }
 
+
+#pragma mark handling the touch
+
+
+
+-(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event{
+   CGPoint touchLocation = [touch locationInNode:self];
+    
+    NSLog(@"The x position is %f",touchLocation.x);
+    NSLog(@"The y position is %f",touchLocation.y);
+    
+    
+    if ((touchLocation.x+10>_restartButton.position.x&&touchLocation.x-10<_restartButton.position.x) && (touchLocation.y+10>_restartButton.position.y&&touchLocation.y-10<_restartButton.position.y)) {
+        
+        CCScene *selection = [CCBReader loadAsScene:@"gameplay"];
+        [[CCDirector sharedDirector] replaceScene:selection];
+       
+    }
+    
+    if ((touchLocation.x+10>_menuButton.position.x&&touchLocation.x-10<_menuButton.position.x) && (touchLocation.y+10>_menuButton.position.y&&touchLocation.y-10<_menuButton.position.y)) {
+        
+        CCScene *selection = [CCBReader loadAsScene:@"MainScene"];
+        [[CCDirector sharedDirector] replaceScene:selection];
+        
+    }
+    
+    if ((touchLocation.x+10>_nextButton.position.x&&touchLocation.x-10<_nextButton.position.x) && (touchLocation.y+10>_nextButton.position.y&&touchLocation.y-10<_nextButton.position.y)) {
+        
+        CCScene *selection = [CCBReader loadAsScene:@"LevelSelection"];
+        [[CCDirector sharedDirector] replaceScene:selection];
+        
+    }
+
+
+}
 
 
 @end
