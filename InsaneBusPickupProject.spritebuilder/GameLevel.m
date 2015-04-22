@@ -11,6 +11,7 @@
 
 static int x;
 static GameLevel *currentLevel;
+static NSMutableArray *patternA;
 
 @implementation GameLevel
 {
@@ -70,6 +71,18 @@ static GameLevel *currentLevel;
     }
     
     return currentLevel;
+}
+
+
++(NSMutableArray*)sendPatternForLevel: (NSInteger) userLevel{
+
+    patternA= [[NSMutableArray alloc]init];
+
+
+
+
+    return patternA;
+
 }
 
 
