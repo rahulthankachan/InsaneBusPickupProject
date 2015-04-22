@@ -59,6 +59,7 @@
     CCSprite *college;
     CCSprite *parking;
     CCNode *sensor;
+    NSMutableArray *patternCars;
 
 
     CCNode *_joypad;
@@ -334,7 +335,7 @@
     }
     
     
-        if (distance > 10 && distance < 20) {
+        if (distance > 5 && distance < 20) {
             trafficComing = false;
             
         }
@@ -671,10 +672,20 @@
         
         
     /////adding pattern
-        
-    NSMutableArray *patternCars=[GameLevel sendPatternForLevel:1];
-        for (CCSprite *temp in patternCars) {
-            [physicsNode addChild:temp];
+       
+
+        if (!(distance<currentLevelInfo.maxDistance && trafficComing)){
+            
+            if(!patternCars){
+            patternCars=[[NSMutableArray alloc]initWithArray:[GameLevel sendPatternForLevel:1]];
+            
+            for (CrazyCarsTaxis *temp in patternCars) {
+                [physicsNode addChild:temp];
+                [_cars addObject:temp];
+                
+            }
+            }
+      
         }
         
         

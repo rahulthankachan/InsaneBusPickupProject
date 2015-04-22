@@ -82,17 +82,48 @@ static NSMutableArray *patternA;
     
     
     CrazyCarsTaxis * newCar;
+    
 
-    NSInteger xcoord=80;
+    NSInteger xcoord=180;
     for (int i=0; i<10; i++) {
         newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+        newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+        newCar.physicsBody.density=0.1;
+        newCar.physicsBody.collisionGroup = @"notColliding";
         newCar.scale=0.3;
-
         newCar.position=ccp(xcoord,620+i*50);
         newCar.type=1;
+        newCar.physicsBody.collisionType=@"level";
         [patternA addObject:newCar];
         
     }
+    
+    xcoord=180+100;
+
+    for (int i=0; i<10; i++) {
+        newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+        newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+        newCar.physicsBody.density=0.1;
+        newCar.physicsBody.collisionGroup = @"notColliding";
+        newCar.scale=0.3;
+        newCar.position=ccp(xcoord,620+i*50);
+        newCar.type=1;
+        newCar.physicsBody.collisionType=@"level";
+        [patternA addObject:newCar];
+        
+    }
+    
+    
+    newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+    newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+    newCar.physicsBody.density=0.1;
+    newCar.physicsBody.collisionGroup = @"notColliding";
+    newCar.scale=0.3;
+    newCar.position=ccp(xcoord+40-100,620+2*50);
+    newCar.physicsBody.collisionType=@"level";
+    newCar.type=1;
+    
+    [patternA addObject:newCar];
 
     
     return patternA;
