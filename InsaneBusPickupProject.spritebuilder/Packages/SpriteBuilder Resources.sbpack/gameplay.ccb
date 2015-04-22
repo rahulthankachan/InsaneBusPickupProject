@@ -405,8 +405,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>27</real>
-							<real>552</real>
+							<real>33</real>
+							<real>548</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -500,7 +500,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>insanebusResources/button.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -511,7 +511,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>insanebusResources/button_pressed.png</string>
 						</array>
 					</dict>
 					<dict>

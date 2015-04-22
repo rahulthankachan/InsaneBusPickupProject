@@ -15,8 +15,8 @@
 }
 
 - (void)play {
-    CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
-    [[CCDirector sharedDirector] replaceScene:gameplayscene];
+    CCScene *selection = [CCBReader loadAsScene:@"LevelSelection"];
+    [[CCDirector sharedDirector] replaceScene:selection];
     [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
 }
 
