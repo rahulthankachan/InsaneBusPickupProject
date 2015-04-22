@@ -667,7 +667,7 @@
     
     
     
-    
+#pragma adding pattern
         
         
     /////adding pattern
