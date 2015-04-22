@@ -1,4 +1,5 @@
 #import "MainScene.h"
+#import "CapacityOfBus.h"
 
 @implementation MainScene{
     
@@ -58,8 +59,11 @@
     [scorelabel2 setString:[NSString stringWithFormat:@"HighScore2: %ld", h2]];
     [scorelabel3 setString:[NSString stringWithFormat:@"HighScore3: %ld", h3]];
     [self preloadAndPlayMusic];
+    NSLog(@"The value of capacity of bus is %ld", (long)[[CapacityOfBus alloc] getCapacityOfBus]);
 
 }
+
+
 
 -(void) preloadAndPlayMusic
 {

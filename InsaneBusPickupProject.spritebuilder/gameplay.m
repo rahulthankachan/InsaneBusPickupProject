@@ -9,6 +9,8 @@
 #import "CrazyCarsTaxis.h"
 #import "HealthBar.h"
 
+#import "CapacityOfBus.h"
+
 @implementation gameplay{
     
 
@@ -75,6 +77,10 @@
     CCParticleSmoke *smoke;
     ALBuffer* soundBufferHit;
     
+    NSInteger capacityOfBus;
+    NSInteger offsetVelocityOfCars;
+    CGFloat baseRoadVelocity;
+    CGFloat capRoadVelocity;
     NSInteger level;
     NSInteger totalBumps;
 }
@@ -260,7 +266,17 @@
     widthBoundary = _road1.contentSize.width;
     heightBoundary = _road1.contentSize.height;
     roadVelocity = 5;
+    baseRoadVelocity = roadVelocity;
+    //set the max velocity of road to 10
+    capRoadVelocity = roadVelocity + 5;
+    offsetVelocityOfCars = roadVelocity;
+
     
+    //set the capacity of the bus
+    CapacityOfBus *capacity = [CapacityOfBus alloc];
+    //if the capacity of the bus is nil, it will be initialized
+    [capacity initializeCapacityOfBus];
+    capacityOfBus = [capacity getCapacityOfBus];
 }
 
 
@@ -301,7 +317,7 @@
         //score=score+1;
         totalTime = 0;
     }
-    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", score]];
+    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d/%ld", score, capacityOfBus]];
     
     
     
@@ -672,11 +688,11 @@
         
         }
         }
-        
+        /*
         NSLog(@"tHIS IS THE HIDDEN VELOVITY physics node %f",physicsNode.physicsBody.velocity.y) ;
         NSLog(@"tHIS IS THE HIDDEN VELOVITY parking %f",parking.physicsBody.velocity.y) ;
         NSLog(@"tHIS IS THE HIDDEN VELOVITY %f",[parking parent].physicsBody.velocity.y) ;
-        
+        */
         
         if (parking) {
             parking.position = ccp(parking.position.x, parking.position.y - roadVelocity);
@@ -743,7 +759,7 @@
             switch (car1.type) {
                     
                 case 1:
-                    car1.position = ccp(car1.position.x, car1.position.y - .5);
+                    car1.position = ccp(car1.position.x, car1.position.y - .5 + roadVelocity - offsetVelocityOfCars);
                     
                     
                     
@@ -756,7 +772,7 @@
                 
             case 2:
                 
-                car1.position = ccp(car1.position.x, car1.position.y - 0.5);
+                car1.position = ccp(car1.position.x, car1.position.y - 0.5  + roadVelocity - offsetVelocityOfCars);
                 if (car1.position.y - bus.position.y <= 250) {
                     if (car1.position.x != bus.position.x) {
                         if (car1.position.x - bus.position.x - 15 > 0) {
@@ -775,7 +791,7 @@
                     break;
                     
                 case 3:
-                    car1.position = ccp(car1.position.x, car1.position.y - 3);
+                    car1.position = ccp(car1.position.x, car1.position.y - 3  + roadVelocity - offsetVelocityOfCars);
                     
                     
                     
@@ -788,7 +804,7 @@
                     
                 case 4:
                     
-                    car1.position = ccp(car1.position.x, car1.position.y + 2.5);
+                    car1.position = ccp(car1.position.x, car1.position.y + 2.5  - roadVelocity + offsetVelocityOfCars);
                     
                     if (car1.position.y > windowSize.height || car1.position.y < -500) {
                    // if (car1.position.y < -car1.contentSize.height) {
@@ -992,7 +1008,7 @@
     CMAttitude *currentAttitude= currentDeviceMotion.attitude;
     // [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
     //                     label.rotation= CC_RADIANS_TO_DEGREES(currentAttitude.roll);
-        NSLog(@" tHE ROLL IS %f",currentAttitude.roll);
+    //    NSLog(@" tHE ROLL IS %f",currentAttitude.roll);
         
         
    ///////////////////////////////////////This is used to control the gyro////////////////////////
@@ -1148,19 +1164,35 @@
  {
  // we want to know the location of our touch in this scene
 
-    CGPoint touchLocation = [touch locationInNode:self];
-     NSLog(@"The x coordinate is %f",touchLocation.x);
-      NSLog(@"The y coordinate before is %f",touchLocation.y);
+     CGPoint touchLocation = [touch locationInNode:self];
+     //NSLog(@"The x coordinate is %f",touchLocation.x);
+     //NSLog(@"The y coordinate before is %f",touchLocation.y);
      
+     NSLog(@"Coordinate (%f, %f)", touchLocation.x, touchLocation.y);
+     
+     if (touchLocation.x < window.width / 2) {
+         if (roadVelocity > baseRoadVelocity) {
+             roadVelocity -= 0.1;
+             offsetVelocityOfCars -= 0.05;
+         }
+         
+     } else {
+         if (roadVelocity < capRoadVelocity) {
+             roadVelocity += 0.1;
+             offsetVelocityOfCars += 0.05;
+         }
+         
 
+     }
+     
      if (touchLocation.x>180) {
          [bus.physicsBody applyImpulse:ccp(0, 400)];
      }
      else{
          [bus.physicsBody applyImpulse:ccp(0, -400)];
-     
+         
      }
-     NSLog(@"The y coordinate is %f",touchLocation.y);
+     //NSLog(@"The y coordinate is %f",touchLocation.y);
      
      
  // create a 'hero' sprite
@@ -1236,15 +1268,20 @@
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus student:(CCNode*)student {
     
-    NSLog(@"Collision Student");
-    [self applyEnergizeEffect:student];
+    CapacityOfBus *capacity = [CapacityOfBus alloc];
+    if (score < [capacity getCapacityOfBus]) {
+        NSLog(@"Collision Student");
+        [self applyEnergizeEffect:student];
+        
+        [student removeFromParent];
+        score = score + 1;
+        [[OALSimpleAudio sharedInstance] playEffect:@"cha-ching.wav" loop:NO];
+        return TRUE;
 
-    [student removeFromParent];
-    score=score+1;
+    } else {
+        return FALSE;
+    }
     
-    [[OALSimpleAudio sharedInstance] playEffect:@"cha-ching.wav" loop:NO];
-    
-    return TRUE;
 }
 
 
@@ -1376,5 +1413,7 @@
     [self addChild:meteor];
     
 }
+
+
 
 @end
