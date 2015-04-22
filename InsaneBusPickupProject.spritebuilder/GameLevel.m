@@ -35,7 +35,7 @@ static NSMutableArray *patternA;
             currentLevel.currentGameLevel=currentLevel;
             currentLevel.maxCars=2;
             currentLevel.maxStudents=25;
-            currentLevel.maxDistance=10;
+            currentLevel.maxDistance=25;
             currentLevel.levelNumber=userLevel;
             
             break;
