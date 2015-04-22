@@ -1248,14 +1248,44 @@
 }
 
 
+#pragma mark End of level
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus Parking:(CCNode*)Parking {
     
     NSLog(@"Yay! The level is completed");
     roadVelocity=0;
     parking.physicsBody.velocity= CGPointMake(0, 0);
     
-    CCScene *gameplayscene = [CCBReader loadAsScene:@"EndOfLevel"];
+    
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dataForScoreScreen = [[NSMutableDictionary alloc]init];
+    [dataForScoreScreen setObject:[NSString stringWithFormat:@"%i",distance] forKey:@"distance"];
+    [dataForScoreScreen setObject:[NSString stringWithFormat:@"%i",score] forKey:@"students"];
+    
+    
+#pragma mark Change this to actual trophy list
+    ////////Change this to actual trophy list later/////
+    
+    
+    NSString *nameOfTheTrophy=@"trophy1";
+    NSMutableArray *trophylist= [[NSMutableArray alloc]init];
+    [trophylist addObject:nameOfTheTrophy];
+    
+    for (int i=0; i<[trophylist count]; i++) {
+        
+        [dataForScoreScreen setObject:trophylist[i] forKey:[NSString stringWithFormat:@"trophy%i",i]];
+        
+    }
+    
+    [dataForScoreScreen setObject:[NSString stringWithFormat:@"%i",[trophylist count]] forKey:@"numberOfTrophies"];
+    
+    [defaults setObject:dataForScoreScreen forKey:@"dataForScoreScreen"];
+    
+
+    CCScene *gameplayscene = [CCBReader loadAsScene:@"EndlevelCCB"];
     [[CCDirector sharedDirector] replaceScene:gameplayscene];
+    
+    
+    
     //oh man, collision...
    // CCScene *mainscene = [CCBReader loadAsScene:@"GameFinScene"];
    // [[CCDirector sharedDirector] replaceScene:mainscene];
