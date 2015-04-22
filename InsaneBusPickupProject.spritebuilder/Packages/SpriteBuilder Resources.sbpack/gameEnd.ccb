@@ -287,8 +287,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>155.00003051757812</real>
-							<real>201</real>
+							<real>160</real>
+							<real>204</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -336,8 +336,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>111</real>
+							<real>33</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -370,7 +370,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>retrylevel</string>
+							<string>Retry</string>
 							<false/>
 						</array>
 					</dict>
@@ -382,7 +382,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>insanebusResources/button.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -393,7 +393,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>insanebusResources/button_pressed.png</string>
 						</array>
 					</dict>
 					<dict>
