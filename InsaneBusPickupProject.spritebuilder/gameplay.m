@@ -659,6 +659,16 @@
     
     
     
+        
+        
+    /////adding pattern
+        
+    NSMutableArray *patternCars=[GameLevel sendPatternForLevel:1];
+        for (CCSprite *temp in patternCars) {
+            [physicsNode addChild:temp];
+        }
+        
+        
     /////////////////* Show the final Scne*/////////////////////////
     if(distance>currentLevelInfo.maxDistance)
     {
