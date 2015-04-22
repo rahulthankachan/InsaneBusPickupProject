@@ -10,10 +10,21 @@
 
 @implementation LevelSelection {
     NSString *buttonHitSoundEffect;
+    BOOL _flag1;
+    BOOL _flag2;
+    BOOL _flag3;
+    BOOL _flag4;
 }
 
 - (void) didLoadFromCCB {
     buttonHitSoundEffect = @"boom-kick.wav";
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
+    NSMutableDictionary *plistData = [NSMutableDictionary dictionaryWithContentsOfFile:finalPath];
+    _flag1 = [[plistData objectForKey:@"level1Flag"] boolValue];
+    _flag2 = [[plistData objectForKey:@"level2Flag"] boolValue];
+    _flag3 = [[plistData objectForKey:@"level3Flag"] boolValue];
+    _flag4 = [[plistData objectForKey:@"level4Flag"] boolValue];
 }
 
 - (void) btnBack {
@@ -23,26 +34,40 @@
 }
 
 - (void) btnLevel1 {
-    CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
-    [[CCDirector sharedDirector] replaceScene:gameplay];
-    [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+    if (_flag1 == YES) {
+        CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
+        [[CCDirector sharedDirector] replaceScene:gameplay];
+        [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+
+    }
 }
 
 - (void) btnLevel2 {
-    CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
-    [[CCDirector sharedDirector] replaceScene:gameplay];
-    [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+    if (_flag2 == YES) {
+        CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
+        [[CCDirector sharedDirector] replaceScene:gameplay];
+        [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+        
+    }
+
 }
 
 - (void) btnLevel3 {
-    CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
-    [[CCDirector sharedDirector] replaceScene:gameplay];
-    [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+    if (_flag3 == YES) {
+        CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
+        [[CCDirector sharedDirector] replaceScene:gameplay];
+        [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+        
+    }
+
 }
 
 - (void) btnLevel4 {
-    CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
-    [[CCDirector sharedDirector] replaceScene:gameplay];
-    [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+    if (_flag4 == YES) {
+        CCScene *gameplay = [CCBReader loadAsScene:@"gameplay"];
+        [[CCDirector sharedDirector] replaceScene:gameplay];
+        [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+        
+    }
 }
 @end
