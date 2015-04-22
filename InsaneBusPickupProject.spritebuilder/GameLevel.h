@@ -21,5 +21,6 @@
 @property NSInteger levelNumber;
 
 +(GameLevel*)sendLevelObjectForLevel: (NSInteger) userLevel;
++(NSMutableArray*)sendPatternForLevel: (NSInteger) userLevel;
 
 @end
