@@ -613,6 +613,9 @@
        // [self addChild:newCar];
         newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
         newCar.physicsBody.density=0.1;
+            
+            newCar.physicsBody.collisionGroup = @"notColliding";
+            
       //  coin.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,coin.contentSize.width, coin.contentSize.height) cornerRadius:0];
      //   coin.physicsBody.density=0.1;
 
@@ -1004,92 +1007,8 @@
   //  NSLog(@"The number of elements are %i", [[physicsNode children]count]);
     
 
-    CMDeviceMotion *currentDeviceMotion= motionManager.deviceMotion;
-    CMAttitude *currentAttitude= currentDeviceMotion.attitude;
-    // [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
-    //                     label.rotation= CC_RADIANS_TO_DEGREES(currentAttitude.roll);
-    //    NSLog(@" tHE ROLL IS %f",currentAttitude.roll);
-        
-        
-   ///////////////////////////////////////This is used to control the gyro////////////////////////
-        if (currentAttitude.roll>0.015 ) {
-            
-            velocity= CGPointMake(0.3f, 0.0f);
-        }
-        else if (currentAttitude.roll<-0.015 ){
-            velocity= CGPointMake(-0.3f, 0.0f);
-        }
-        else
-        {
-            velocity= CGPointMake(0.0f, 0.0f);
-            
-        }
-        
-        
-        
-        if (currentAttitude.roll>0.025 ) {
-            
-            velocity= CGPointMake(1.0f, 0.0f);
-        }
-        else if (currentAttitude.roll<-0.025 ){
-            velocity= CGPointMake(-1.0f, 0.0f);
-        }
-
-        
-        if (currentAttitude.roll>0.035 ) {
-            
-            velocity= CGPointMake(2.0f, 0.0f);
-        }
-        else if (currentAttitude.roll<-0.025 ){
-            velocity= CGPointMake(-2.0f, 0.0f);
-        }
-
-        
-        if (currentAttitude.roll>0.045 ) {
-            
-            velocity= CGPointMake(3.5f, 0.0f);
-        }
-        else if (currentAttitude.roll<-0.045 ){
-            velocity= CGPointMake(-3.5f, 0.0f);
-        }
-        
-        if (currentAttitude.roll>0.055 ) {
-            
-            velocity= CGPointMake(4.0f, 0.0f);
-        }
-        else if (currentAttitude.roll<-0.055 ){
-            velocity= CGPointMake(-4.0f, 0.0f);
-        }
-        
-        
-    
-    if (currentAttitude.roll>0.065 ) {
-        
-        velocity= CGPointMake(5.0f, 0.0f);
-    }
-    else if (currentAttitude.roll<-0.065 ){
-        velocity= CGPointMake(-5.0f, 0.0f);
-    }
-        
-        if (currentAttitude.roll>0.070 ) {
-            
-            velocity= CGPointMake(5.3f, 0.0f);
-        }
-        else if (currentAttitude.roll<-0.070 ){
-            velocity= CGPointMake(-5.3f, 0.0f);
-        }
-
-        if (currentAttitude.roll>0.20 ) {
-            
-            velocity= CGPointMake(6.0f, 0.0f);
-        }
-        else if (currentAttitude.roll<-0.20 ){
-            velocity= CGPointMake(-6.0f, 0.0f);
-        }
-
-        
-        ///////////////////////////////////////This is used to control the gyro////////////////////////
-
+  /////CALLS THE GYRO FUNCTION
+        [self gyroConfiguration];
 
     
     
@@ -1246,6 +1165,8 @@
     
     newStudent.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newStudent.contentSize.width, newStudent.contentSize.height) cornerRadius:0];;
     newStudent.physicsBody.collisionType= @"student";
+    newStudent.physicsBody.collisionGroup = @"notColliding";
+
     newStudent.physicsBody.type=CCPhysicsBodyTypeStatic;
     [physicsNode addChild:newStudent];
     
@@ -1414,6 +1335,98 @@
     
 }
 
+#pragma mark Gyro Configuration
+
+-(void)gyroConfiguration{
+
+    CMDeviceMotion *currentDeviceMotion= motionManager.deviceMotion;
+    CMAttitude *currentAttitude= currentDeviceMotion.attitude;
+    // [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
+    //                     label.rotation= CC_RADIANS_TO_DEGREES(currentAttitude.roll);
+    //    NSLog(@" tHE ROLL IS %f",currentAttitude.roll);
+    
+    
+    ///////////////////////////////////////This is used to control the gyro////////////////////////
+    if (currentAttitude.roll>0.015 ) {
+        
+        velocity= CGPointMake(0.3f, 0.0f);
+    }
+    else if (currentAttitude.roll<-0.015 ){
+        velocity= CGPointMake(-0.3f, 0.0f);
+    }
+    else
+    {
+        velocity= CGPointMake(0.0f, 0.0f);
+        
+    }
+    
+    
+    
+    if (currentAttitude.roll>0.025 ) {
+        
+        velocity= CGPointMake(1.0f, 0.0f);
+    }
+    else if (currentAttitude.roll<-0.025 ){
+        velocity= CGPointMake(-1.0f, 0.0f);
+    }
+    
+    
+    if (currentAttitude.roll>0.035 ) {
+        
+        velocity= CGPointMake(2.0f, 0.0f);
+    }
+    else if (currentAttitude.roll<-0.025 ){
+        velocity= CGPointMake(-2.0f, 0.0f);
+    }
+    
+    
+    if (currentAttitude.roll>0.045 ) {
+        
+        velocity= CGPointMake(3.5f, 0.0f);
+    }
+    else if (currentAttitude.roll<-0.045 ){
+        velocity= CGPointMake(-3.5f, 0.0f);
+    }
+    
+    if (currentAttitude.roll>0.055 ) {
+        
+        velocity= CGPointMake(4.0f, 0.0f);
+    }
+    else if (currentAttitude.roll<-0.055 ){
+        velocity= CGPointMake(-4.0f, 0.0f);
+    }
+    
+    
+    
+    if (currentAttitude.roll>0.065 ) {
+        
+        velocity= CGPointMake(5.0f, 0.0f);
+    }
+    else if (currentAttitude.roll<-0.065 ){
+        velocity= CGPointMake(-5.0f, 0.0f);
+    }
+    
+    if (currentAttitude.roll>0.070 ) {
+        
+        velocity= CGPointMake(5.3f, 0.0f);
+    }
+    else if (currentAttitude.roll<-0.070 ){
+        velocity= CGPointMake(-5.3f, 0.0f);
+    }
+    
+    if (currentAttitude.roll>0.20 ) {
+        
+        velocity= CGPointMake(6.0f, 0.0f);
+    }
+    else if (currentAttitude.roll<-0.20 ){
+        velocity= CGPointMake(-6.0f, 0.0f);
+    }
+    
+    
+    ///////////////////////////////////////This is used to control the gyro////////////////////////
+
+
+}
 
 
 @end
