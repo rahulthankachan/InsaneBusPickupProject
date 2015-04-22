@@ -76,6 +76,7 @@
     HealthBar *progressTimer;
     CCParticleSmoke *smoke;
     ALBuffer* soundBufferHit;
+    BOOL trafficComing;
     
     NSInteger capacityOfBus;
     NSInteger offsetVelocityOfCars;
@@ -97,6 +98,7 @@
         _createdFlag = false;
         car2created = false;
         soundBufferHit = [[OALSimpleAudio sharedInstance] preloadEffect:@"hit.wav"];
+        trafficComing = true;
 
         //modify the background music
         [[OALSimpleAudio sharedInstance] setBgVolume:0.8];
@@ -127,6 +129,7 @@
     currentLevelInfo= [GameLevel sendLevelObjectForLevel:nLevel];
     _maxStudentNum = currentLevelInfo.maxDistance;
     level=currentLevelInfo.levelNumber;
+    level = 4;
     totalBumps=5;
 
     
@@ -384,7 +387,7 @@
         
 
     
-    if (timeSinceObstacle >1.25f)
+    if (timeSinceObstacle >1.25f && trafficComing)
     {
          CrazyCarsTaxis * newCar;
         
