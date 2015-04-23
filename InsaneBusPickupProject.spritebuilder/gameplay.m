@@ -78,6 +78,7 @@
     CCParticleSmoke *smoke;
     ALBuffer* soundBufferHit;
     BOOL trafficComing;
+    BOOL patternComing;
     
     NSInteger capacityOfBus;
     NSInteger offsetVelocityOfCars;
@@ -100,7 +101,7 @@
         car2created = false;
         soundBufferHit = [[OALSimpleAudio sharedInstance] preloadEffect:@"hit.wav"];
         trafficComing = true;
-
+        patternComing = false;
         //modify the background music
         [[OALSimpleAudio sharedInstance] setBgVolume:0.8];
 
@@ -335,12 +336,16 @@
     }
     
     
-        if (distance > 5 && distance < 20) {
+        if (distance > 5 && distance < 13) {
             trafficComing = false;
+            if (distance > 6 && distance < 13) {
+                patternComing = true;
+            }
             
         }
-        if (distance > 20) {
+        if (distance > 13) {
             trafficComing = true;
+            patternComing = false;
         }
     
     
@@ -674,16 +679,17 @@
     /////adding pattern
        
 
-        if (!(distance<currentLevelInfo.maxDistance && trafficComing)){
-            
-            if(!patternCars){
-            patternCars=[[NSMutableArray alloc]initWithArray:[GameLevel sendPatternForLevel:1]];
-            
-            for (CrazyCarsTaxis *temp in patternCars) {
-                [physicsNode addChild:temp];
-                [_cars addObject:temp];
-                
-            }
+        if (!(distance < currentLevelInfo.maxDistance && trafficComing)){
+            if (patternComing) {
+                if(!patternCars){
+                    patternCars=[[NSMutableArray alloc]initWithArray:[GameLevel sendPatternForLevel:1]];
+                    
+                    for (CrazyCarsTaxis *temp in patternCars) {
+                        [physicsNode addChild:temp];
+                        [_cars addObject:temp];
+                        
+                    }
+                }
             }
       
         }
