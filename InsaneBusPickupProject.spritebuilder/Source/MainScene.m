@@ -11,6 +11,12 @@
     CCLabelTTF *scorelabel1;
     CCLabelTTF *scorelabel2;
     CCLabelTTF *scorelabel3;
+    CCLabelTTF *scorelabel4;
+    CCLabelTTF *scorelabel5;
+    CCLabelTTF *scorelabel6;
+    CCLabelTTF *scorelabel7;
+    CCLabelTTF *scorelabel8;
+    CCLabelTTF *scorelabel9;
     
     NSString *buttonHitSoundEffect;
 }
@@ -51,13 +57,26 @@
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
     NSMutableDictionary *plistData = [NSMutableDictionary dictionaryWithContentsOfFile:finalPath];
-    h1 = [[plistData objectForKey:@"score1"] integerValue];
-    h2 = [[plistData objectForKey:@"score2"] integerValue];
-    h3 = [[plistData objectForKey:@"score3"] integerValue];
-    NSLog(@"h1:%ld",h1);
-    [scorelabel1 setString:[NSString stringWithFormat:@"HighScore1: %ld", h1]];
-    [scorelabel2 setString:[NSString stringWithFormat:@"HighScore2: %ld", h2]];
-    [scorelabel3 setString:[NSString stringWithFormat:@"HighScore3: %ld", h3]];
+    h[0] = [[plistData objectForKey:@"score1"] integerValue];
+    h[1] = [[plistData objectForKey:@"score2"] integerValue];
+    h[2] = [[plistData objectForKey:@"score3"] integerValue];
+    h[3] = [[plistData objectForKey:@"score4"] integerValue];
+    h[4] = [[plistData objectForKey:@"score5"] integerValue];
+    h[5] = [[plistData objectForKey:@"score6"] integerValue];
+    h[6] = [[plistData objectForKey:@"score7"] integerValue];
+    h[7] = [[plistData objectForKey:@"score8"] integerValue];
+    h[8] = [[plistData objectForKey:@"score9"] integerValue];
+ 
+  //  NSLog(@"h1:%ld",h1);
+    [scorelabel1 setString:[NSString stringWithFormat:@"HighScore1: %ld", h[0]]];
+    [scorelabel2 setString:[NSString stringWithFormat:@"HighScore2: %ld", h[1]]];
+    [scorelabel3 setString:[NSString stringWithFormat:@"HighScore3: %ld", h[2]]];
+     [scorelabel4 setString:[NSString stringWithFormat:@"HighScore1: %ld", h[3]]];
+     [scorelabel5 setString:[NSString stringWithFormat:@"HighScore2: %ld", h[4]]];
+     [scorelabel6 setString:[NSString stringWithFormat:@"HighScore3: %ld", h[5]]];
+     [scorelabel7 setString:[NSString stringWithFormat:@"HighScore1: %ld", h[6]]];
+     [scorelabel8 setString:[NSString stringWithFormat:@"HighScore2: %ld", h[7]]];
+     [scorelabel9 setString:[NSString stringWithFormat:@"HighScore3: %ld", h[8]]];
     [self preloadAndPlayMusic];
     NSLog(@"The value of capacity of bus is %ld", (long)[[CapacityOfBus alloc] getCapacityOfBus]);
 
