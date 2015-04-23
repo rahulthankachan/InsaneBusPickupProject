@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>score9</key>
+	<integer>0</integer>
+	<key>score8</key>
+	<integer>0</integer>
+	<key>score7</key>
+	<integer>0</integer>
+	<key>score6</key>
+	<integer>0</integer>
+	<key>score5</key>
+	<integer>0</integer>
+	<key>score4</key>
+	<integer>0</integer>
 	<key>levelSelected</key>
 	<integer>1</integer>
 	<key>score3</key>
@@ -21,6 +33,6 @@
 	<key>level4Flag</key>
 	<false/>
 	<key>score1</key>
-	<integer>0</integer>
+	<integer>30</integer>
 </dict>
 </plist>

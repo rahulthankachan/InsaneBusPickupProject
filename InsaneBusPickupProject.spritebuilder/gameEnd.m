@@ -9,7 +9,8 @@
 #import "gameEnd.h"
 
 @implementation gameEnd{
-    
+    CCButton *retryLevel;
+    CCButton *menu1;
 
 }
 
@@ -17,6 +18,11 @@
 - (void)retryLevel {
     CCScene *aboutscene = [CCBReader loadAsScene:@"gameplay"];
     [[CCDirector sharedDirector] replaceScene:aboutscene];
+}
+
+- (void)menu1 {
+    CCScene *mainscene = [CCBReader loadAsScene:@"MainScene"];
+    [[CCDirector sharedDirector] replaceScene:mainscene];
 }
 
 
