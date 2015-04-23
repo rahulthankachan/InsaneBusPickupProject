@@ -80,6 +80,7 @@
             break;
             
         case 3:
+            [_level2Lock setVisible:FALSE];
             [_level3Lock setVisible:FALSE];
             _flag1=true;
             _flag2=true;
@@ -87,6 +88,8 @@
         
             break;
         case 4:
+            [_level2Lock setVisible:FALSE];
+            [_level3Lock setVisible:FALSE];
             [_level4Lock setVisible:FALSE];
             _flag1=true;
             _flag2=true;
