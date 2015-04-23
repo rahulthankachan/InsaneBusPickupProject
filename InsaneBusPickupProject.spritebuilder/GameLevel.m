@@ -11,6 +11,7 @@
 #import "ObjectOnRoad.h"
 
 
+
 static int x;
 static GameLevel *currentLevel;
 static NSMutableArray *patternA;
@@ -29,6 +30,8 @@ static NSMutableArray *patternA;
 }
 
 +(GameLevel*)sendLevelObjectForLevel: (NSInteger) userLevel{
+    
+    
     
     switch (userLevel) {
         case 1:

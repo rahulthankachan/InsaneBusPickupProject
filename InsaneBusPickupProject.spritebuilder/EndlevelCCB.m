@@ -63,7 +63,7 @@
     NSInteger maxLevel= [[currentUsedata objectForKey:@"maxReachedLevel"] integerValue];
     NSInteger currentLevel= [[currentUsedata objectForKey:@"currentLevel"] integerValue];
     
-    if(maxLevel<=currentLevel){
+    if(maxLevel<=currentLevel&&maxLevel<4){
         currentLevel++;
         [currentUsedata setValue:[NSNumber numberWithInt:currentLevel] forKey:@"maxReachedLevel"];
         [defaults setObject:currentUsedata forKey:@"currentUserData"];
