@@ -3,7 +3,7 @@
 #import "GameLevel.h"
 #import "AppDelegate.h"
 
-int score;
+long score;
 int distance;
 int count;
 
