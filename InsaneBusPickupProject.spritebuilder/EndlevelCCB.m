@@ -35,10 +35,12 @@
     
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSDictionary *dataForScoreScreen=[[NSDictionary alloc]initWithDictionary:[defaults objectForKey:@"dataForScoreScreen"]];
+    
     NSInteger timeScore,studentScore,bonusScore,totalScore,timeRemaining,students,numberOfT;
     timeRemaining=[[dataForScoreScreen objectForKey:@"distance"] integerValue];
     students=[[dataForScoreScreen objectForKey:@"students"] integerValue];
     numberOfT=[[dataForScoreScreen objectForKey:@"numberOfTrophies"] integerValue];
+    
     
     
     timeScore= timeRemaining*5;
@@ -51,6 +53,25 @@
     [_studentScore setString:[NSString stringWithFormat:@"%i",studentScore]];
     [_bonusScore setString:[NSString stringWithFormat:@"%i",bonusScore]];
     [_totalScore setString:[NSString stringWithFormat:@"%i",studentScore+bonusScore+timeScore]];
+    
+    
+    
+    
+#pragma mark Current Level Later to plist()
+
+    NSMutableDictionary *currentUsedata= [[NSMutableDictionary alloc]initWithDictionary:[defaults objectForKey:@"currentUserData"]];
+    NSInteger maxLevel= [[currentUsedata objectForKey:@"maxReachedLevel"] integerValue];
+    NSInteger currentLevel= [[currentUsedata objectForKey:@"currentLevel"] integerValue];
+    
+    if(maxLevel<=currentLevel){
+        currentLevel++;
+        [currentUsedata setValue:[NSNumber numberWithInt:currentLevel] forKey:@"maxReachedLevel"];
+        [defaults setObject:currentUsedata forKey:@"currentUserData"];
+    
+    }
+
+    
+    
     
     
     
