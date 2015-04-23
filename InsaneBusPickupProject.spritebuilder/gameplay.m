@@ -131,7 +131,7 @@
     currentLevelInfo= [GameLevel sendLevelObjectForLevel:nLevel];
     _maxStudentNum = currentLevelInfo.maxDistance;
     level=currentLevelInfo.levelNumber;
-    level = 1;
+  //  level = 1;
     totalBumps=5;
 
     
@@ -682,7 +682,7 @@
         if (!(distance < currentLevelInfo.maxDistance && trafficComing)){
             if (patternComing) {
                 if(!patternCars){
-                    patternCars=[[NSMutableArray alloc]initWithArray:[GameLevel sendPatternForLevel:1]];
+                    patternCars=[[NSMutableArray alloc]initWithArray:[GameLevel sendPatternForLevel:level]];
                     
                     for (CrazyCarsTaxis *temp in patternCars) {
                         [physicsNode addChild:temp];
