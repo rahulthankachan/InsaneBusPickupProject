@@ -19,6 +19,14 @@
 }
 
 - (void) didLoadFromCCB {
+    
+    NSUserDefaults *defaults= [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *setstate= [[NSMutableDictionary alloc]init];
+    setstate = [defaults objectForKey:@"userState"];
+    
+
+    
+    
     buttonHitSoundEffect = @"boom-kick.wav";
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
