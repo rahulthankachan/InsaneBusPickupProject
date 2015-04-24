@@ -1,4 +1,4 @@
-long h[9];
+long h[12];
 
 @interface MainScene : CCNode
 

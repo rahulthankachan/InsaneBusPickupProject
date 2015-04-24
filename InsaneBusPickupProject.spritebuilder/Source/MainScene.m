@@ -17,6 +17,9 @@
     CCLabelTTF *scorelabel7;
     CCLabelTTF *scorelabel8;
     CCLabelTTF *scorelabel9;
+    CCLabelTTF *scorelabel10;
+    CCLabelTTF *scorelabel11;
+    CCLabelTTF *scorelabel12;
     
     NSString *buttonHitSoundEffect;
 }
@@ -66,6 +69,9 @@
     h[6] = [[plistData objectForKey:@"score7"] integerValue];
     h[7] = [[plistData objectForKey:@"score8"] integerValue];
     h[8] = [[plistData objectForKey:@"score9"] integerValue];
+    h[9] = [[plistData objectForKey:@"score10"] integerValue];
+    h[10] = [[plistData objectForKey:@"score11"] integerValue];
+    h[11] = [[plistData objectForKey:@"score12"] integerValue];
  
   //  NSLog(@"h1:%ld",h1);
     [scorelabel1 setString:[NSString stringWithFormat:@"HighScore1: %ld", h[0]]];
@@ -77,6 +83,9 @@
      [scorelabel7 setString:[NSString stringWithFormat:@"HighScore1: %ld", h[6]]];
      [scorelabel8 setString:[NSString stringWithFormat:@"HighScore2: %ld", h[7]]];
      [scorelabel9 setString:[NSString stringWithFormat:@"HighScore3: %ld", h[8]]];
+    [scorelabel10 setString:[NSString stringWithFormat:@"HighScore1: %ld", h[9]]];
+    [scorelabel11 setString:[NSString stringWithFormat:@"HighScore2: %ld", h[10]]];
+    [scorelabel12 setString:[NSString stringWithFormat:@"HighScore3: %ld", h[11]]];
     [self preloadAndPlayMusic];
     NSLog(@"The value of capacity of bus is %ld", (long)[[CapacityOfBus alloc] getCapacityOfBus]);
 
