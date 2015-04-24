@@ -13,7 +13,7 @@
 
 @implementation gameplay{
     
-
+    
 #define foo4random() (arc4random() % ((unsigned)RAND_MAX + 1))
     CCNode *_road1;
     CCNode *_road2;
@@ -32,7 +32,7 @@
     int num;
     int totalTime;
     int numberOfCollisions;
- //   long s1,s2,s3;
+    //   long s1,s2,s3;
     CGFloat widthBoundary;//
     CGFloat heightBoundary;
     CGFloat roadVelocity;
@@ -42,7 +42,7 @@
     CCLabelTTF *scorelabel1;
     CGSize window;
     CCButton *retry;
- 
+    
     
     //variables for students
     CCTime _curTime;
@@ -61,8 +61,8 @@
     CCSprite *parking;
     CCNode *sensor;
     NSMutableArray *patternCars;
-
-
+    
+    
     CCNode *_joypad;
     
     volatile BOOL car2created;
@@ -74,7 +74,7 @@
     
     BOOL _createdFlag;
     
-
+    
     HealthBar *progressTimer;
     CCParticleSmoke *smoke;
     ALBuffer* soundBufferHit;
@@ -109,7 +109,7 @@
         patternComing = false;
         //modify the background music
         [[OALSimpleAudio sharedInstance] setBgVolume:0.8];
-
+        
     }
     
     //starting of the joystick by Frank
@@ -133,18 +133,18 @@
     int nLevel = [[[NSUserDefaults standardUserDefaults] objectForKey:@"levelSelected"] intValue];
     NSLog(@"Level selected %d", nLevel);
     
-
+    
     currentLevelInfo= [GameLevel sendLevelObjectForLevel:1];
     _maxStudentNum = currentLevelInfo.maxDistance;
     
-
+    
     level=currentLevelInfo.levelNumber;
-  //  level = 1;
+    //  level = 1;
     totalBumps=5;
-
+    
     
     /* Configures the current Level*/
-
+    
     
     
     return self;
@@ -158,14 +158,14 @@
     
     
     //initialize the sound effect
-
+    
     
     
     CGSize windowSize= [[CCDirector sharedDirector] viewSize];
     
     //this line is for test
     //[[GamePlayScene alloc] updateScore:32];
-
+    
     
     //progressTimer = [[HealthBar alloc] initWithProgressTimerSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
     //progressTimer = [HealthBar progressWithSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
@@ -183,8 +183,8 @@
     
     //Done by Yao Frank Fan
     //this part is to create a thread to do a countdown before the student appears
-
-
+    
+    
     
     
     
@@ -208,12 +208,12 @@
     scoreLabel.position= ccp(windowSize.width-50,windowSize.height-10);
     distLabel.position= ccp(windowSize.width-50,windowSize.height-35);
     bus.position=ccp(windowSize.width/2, 90);
-
+    
     
     countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
     //countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 50);
     [self addChild:countdownLabel];
-
+    
     
     physicsNode.collisionDelegate=self;
     //physicsNode.debugDraw=YES;
@@ -263,13 +263,13 @@
     }
     [_students addObject:_student0];
     
-
+    
     //add the first student as a child of MainScene
-//    [self addChild:_student0];
-//    _student0.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,_student0.contentSize.width, _student0.contentSize.height) cornerRadius:0];;
-//    _student0.physicsBody.collisionType= @"student";
-//    _student0.physicsBody.type=CCPhysicsBodyTypeStatic;
-//    [physicsNode addChild:_student0];
+    //    [self addChild:_student0];
+    //    _student0.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,_student0.contentSize.width, _student0.contentSize.height) cornerRadius:0];;
+    //    _student0.physicsBody.collisionType= @"student";
+    //    _student0.physicsBody.type=CCPhysicsBodyTypeStatic;
+    //    [physicsNode addChild:_student0];
     
     
     motionManager= [[CMMotionManager alloc]init];
@@ -283,7 +283,7 @@
     //set the max velocity of road to 10
     capRoadVelocity = roadVelocity + 5;
     offsetVelocityOfCars = roadVelocity;
-
+    
     
     //set the capacity of the bus
     CapacityOfBus *capacity = [CapacityOfBus alloc];
@@ -302,48 +302,48 @@
     
     if (roadVelocity) {
         
-    // size of the window
-    CGSize windowSize = [[CCDirector sharedDirector] viewSize];
-
-
-    
-    // done by Varsha
-    
-    // distance = distance + 0.01;
-    nfortime++;
-    totalTime++;
-    count++;
-    
-    
+        // size of the window
+        CGSize windowSize = [[CCDirector sharedDirector] viewSize];
         
-    if(count == 120)
-    {
-        //  score = score + 300;
-        // totalTime = 0;
-        distance = distance + 1;
-        [distLabel setString:[NSString stringWithFormat:@"Dist: %d",distance]];
-        count = 0;
-    }
-    if(totalTime == 240)
-    {
-        //  score = score +300;
-        //score=score+1;
-        totalTime = 0;
-    }
-    [scoreLabel setString:[NSString stringWithFormat:@"Score: %d/%ld", score, capacityOfBus]];
-    
-    
-    
-    //this is for endless road. done by frank
-    
-    for (CCNode *road in _roads) {
-        road.position = ccp(road.position.x, road.position.y - (roadVelocity));
-        if (road.position.y <= (-1 * road.contentSize.height * 3)&&roadVelocity) {
-            road.position = ccp(road.position.x, road.position.y + 3 *2 * road.contentSize.height - 50);
+        
+        
+        // done by Varsha
+        
+        // distance = distance + 0.01;
+        nfortime++;
+        totalTime++;
+        count++;
+        
+        
+        
+        if(count >= 120)
+        {
+            //  score = score + 300;
+            // totalTime = 0;
+            distance = distance + 1;
+            [distLabel setString:[NSString stringWithFormat:@"Dist: %d",distance]];
+            count = 0;
         }
-    }
-    
-    
+        if(totalTime == 240)
+        {
+            //  score = score +300;
+            //score=score+1;
+            totalTime = 0;
+        }
+        [scoreLabel setString:[NSString stringWithFormat:@"Score: %ld/%ld", score, capacityOfBus]];
+        
+        
+        
+        //this is for endless road. done by frank
+        
+        for (CCNode *road in _roads) {
+            road.position = ccp(road.position.x, road.position.y - (roadVelocity));
+            if (road.position.y <= (-1 * road.contentSize.height * 3)&&roadVelocity) {
+                road.position = ccp(road.position.x, road.position.y + 3 *2 * road.contentSize.height - 50);
+            }
+        }
+        
+        
         if (distance > 5 && distance < 13) {
             trafficComing = false;
             if (distance > 6 && distance < 13) {
@@ -355,399 +355,402 @@
             trafficComing = true;
             patternComing = false;
         }
-    
-    
-    
-    
-    if (distance<currentLevelInfo.maxDistance && trafficComing) {
         
         
         
-        //adding new students
-        _curTime += delta;
-        if (_curTime - _lastTime>_timeSpan) {
-            _lastTime = _curTime;
-            if([_students count]<_maxStudentNum&&CCRANDOM_0_1()<0.3333) {
-                //Done by Yao Frank Fan
-                //this part is to create a thread to do a countdown before the student appears
-                if (true) {
+        
+        if (distance<currentLevelInfo.maxDistance && trafficComing) {
+            
+            
+            
+            //adding new students
+            _curTime += delta;
+            if (_curTime - _lastTime>_timeSpan) {
+                _lastTime = _curTime;
+                if([_students count]<_maxStudentNum&&CCRANDOM_0_1()<0.3333) {
+                    //Done by Yao Frank Fan
+                    //this part is to create a thread to do a countdown before the student appears
+                
                     NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent:) object:nil];
                     //NSLog(@"nihaoa");
                     
                     [myThread start];  // Actually create the thread
                     
-                    //CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:@"student_small.png"];
-                    //         BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
-                    //       if (posLeft == YES) {
-                    //         newStudent.position = ccp(initStudentXLeft, initStudentY);
-                    //   } else {
-                    //       newStudent.position = ccp(initStudentXRight, initStudentY);
+  
+     
+
                 }
-                /*
-                 newStudent.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newStudent.contentSize.width, newStudent.contentSize.height) cornerRadius:0];;
-                 newStudent.physicsBody.collisionType= @"student";
-                 newStudent.physicsBody.type=CCPhysicsBodyTypeStatic;
-                 [physicsNode addChild:newStudent];
-                 
-                 [_students addObject:newStudent];
-                 
-                 */
             }
-        }
-        
-
-        
-        
-        
-        timeSinceObstacle += delta;
-        
-        
-        int minimum=50;
-        int div=201;
-        
-
-
-    if (timeSinceObstacle >1.25f)
-    {
-         CrazyCarsTaxis * newCar;
-        
-        // Add a new obstacle
-        if (level == 1) {
-            //generate a random number
-            int number = arc4random_uniform(75);
-
-            if (number < 50) {
-                newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
-                newCar.scale=0.3;
-                num=foo4random();
-                xcoord=minimum+(num%div);
-                newCar.position=ccp(xcoord,620);
-                newCar.type=1;
+            
+            
+            
+            
+            
+            timeSinceObstacle += delta;
+            
+            
+            int minimum=50;
+            int div=201;
+            
+            
+            
+            if (timeSinceObstacle >1.25f)
+            {
+                CrazyCarsTaxis * newCar;
                 
-                count++;
-            } else {
-                if (car2created == false) {
+                // Add a new obstacle
+                if (level == 1) {
+                    //generate a random number
+                    int number = arc4random_uniform(75);
                     
-                    car2created = true;
-                    //NSLog(@"car image 2");
-                    newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
-                    newCar.type=2;
+                    if (number < 50) {
+                        newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+                        newCar.scale=0.3;
+                        num=foo4random();
+                        xcoord=minimum+(num%div);
+                        newCar.position=ccp(xcoord,620);
+                        newCar.type=1;
+                        
+     
+                    } else {
+                        if (car2created == false) {
+                            
+                            car2created = true;
+                            //NSLog(@"car image 2");
+                            newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
+                            newCar.type=2;
+                            
+                            newCar.scale = 0.3;
+                            num = foo4random();
+                            xcoord = minimum + (num % div);
+                            newCar.position = ccp(xcoord, 620);
+                            //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
+                            // [self addChild:newCar];
+                            //  [_cars2 addObject:newCar];
+                            
+                        } else {
+                            //NSLog(@"car2 cannot be created.");
+                        }
+                        
+                        
+                    }
+                }
+                
+                else if (level == 2) {
+                    //generate a random number
+                    int number = arc4random_uniform(100);
                     
-                    newCar.scale = 0.3;
+                    if (number < 50) {
+                        newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+                        //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
+                        //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
+                        newCar.scale=0.3;
+                        num=foo4random();
+                        xcoord=minimum+(num%div);
+                        newCar.position=ccp(xcoord,620);
+                        newCar.type=1;
+                        
+                        // [self addChild:newCar];
+                        //  [_cars addObject:newCar];
+                        
+                    } else if (number >= 50 && number < 75) {
+                        //NSLog(@"car image 2");
+                        newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
+                        newCar.type=2;
+                        
+                        newCar.scale = 0.3;
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        newCar.position = ccp(xcoord, 620);
+                        //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
+                        // [self addChild:newCar];
+                        //  [_cars2 addObject:newCar];
+                        
+                        
+                        
+                    } else {
+                        newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+                        newCar.type=3;
+                        
+                        newCar.scale = 0.3;
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        newCar.position = ccp(xcoord, 620);
+                        
+                        
+                        
+                    }
+                } else if (level == 3) {
+                    //generate a random number
+                    int number = arc4random_uniform(100);
+                    
+                    if (number < 25) {
+                        newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+                        //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
+                        //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
+                        newCar.scale=0.3;
+                        num=foo4random();
+                        xcoord=minimum+(num%div);
+                        newCar.position=ccp(xcoord,620);
+                        newCar.type=1;
+                        
+                        // [self addChild:newCar];
+                        //  [_cars addObject:newCar];
+                        
+                    } else if (number >= 25 && number < 50) {
+                        //NSLog(@"car image 2");
+                        newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
+                        newCar.type=2;
+                        
+                        newCar.scale = 0.3;
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        newCar.position = ccp(xcoord, 620);
+                        //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
+                        // [self addChild:newCar];
+                        //  [_cars2 addObject:newCar];
+                        
+                        
+                        
+                    } else if (number >= 50 && number < 75) {
+                        newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+                        newCar.type=3;
+                        
+                        newCar.scale = 0.3;
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        newCar.position = ccp(xcoord, 620);
+                        
+                        
+                        
+                    } else {
+                        newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage6.png"];
+                        newCar.type=4;
+                        
+                        newCar.scale = 0.3;
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        newCar.position = ccp(xcoord, 620);
+                        
+                    }
+                } else if (level == 4) {
+                    //generate a random number
+                    int number = arc4random_uniform(100);
+                    
+                    if (number < 25) {
+                        newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+                        
+                        newCar.scale=0.3;
+                        num=foo4random();
+                        xcoord=minimum+(num%div);
+                        newCar.position=ccp(xcoord,620);
+                        newCar.type=1;
+                        
+                        // [self addChild:newCar];
+                        //  [_cars addObject:newCar];
+                        
+                    } else if (number >= 25 && number < 50) {
+                        //NSLog(@"car image 2");
+                        newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
+                        newCar.type=2;
+                        
+                        newCar.scale = 0.3;
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        newCar.position = ccp(xcoord, 620);
+                        //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
+                        // [self addChild:newCar];
+                        //  [_cars2 addObject:newCar];
+                        
+                        
+                        
+                    } else if (number >= 50 && number < 75) {
+                        newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+                        newCar.type=3;
+                        
+                        newCar.scale = 0.3;
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        newCar.position = ccp(xcoord, 620);
+                        
+                        
+                        
+                    } else {
+                        newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage6.png"];
+                        newCar.type=4;
+                        
+                        NSLog(@"In level 4, car 4 has been added.");
+                        
+                        newCar.scale = 0.3;
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        newCar.position = ccp(xcoord, 0);
+                        
+                    }
+                }
+                
+                if (distance >= 1 & distance < 2) {
+                    if (!pizza) {
+                        pizza = [[ObjectOnRoad alloc] initWithImageNamed:@"pizza.png"];
+                        pizza.scale = 0.06;
+                        pizza.type = 6;
+                        
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
+                        pizza.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, pizza.contentSize.width, pizza.contentSize.height) cornerRadius:0];
+                        pizza.physicsBody.collisionType = @"objectOnRoad";
+                        pizza.physicsBody.collisionGroup = @"notColliding";
+                        [physicsNode addChild:pizza];
+                        
+                    }
+                }
+                
+                if (pizza) {
+                    pizza.position = ccp(pizza.position.x, pizza.position.y - roadVelocity);
+                }
+    /*
+                if (distance >= 3 & distance < 4) {
+                    if (!gas) {
+                        gas = [[ObjectOnRoad alloc] initWithImageNamed:@"gas-tank.png"];
+                        gas.scale = 0.06;
+                        gas.type = 7;
+                        
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        gas.position = ccp(xcoord, window.height + pizza.contentSize.height);
+                        gas.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, gas.contentSize.width, gas.contentSize.height) cornerRadius:0];
+                        gas.physicsBody.collisionType = @"objectOnRoad";
+                        gas.physicsBody.collisionGroup = @"notColliding";
+                        [physicsNode addChild:gas];
+                        
+                    }
+                }
+       */
+                if (distance >= 3 & distance < 4) {
+                    if (!gas) {
+                        gas = [[ObjectOnRoad alloc] initWithType:7];
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        gas.position = ccp(xcoord, window.height + pizza.contentSize.height);
+                        [physicsNode addChild:gas];
+
+                    }
+                }
+                if (gas) {
+                    gas.position = ccp(gas.position.x, gas.position.y - roadVelocity);
+                }
+                
+                
+                if (distance % 5 == 4) {
+                    CrazyCarsTaxis *car1 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+                    CrazyCarsTaxis *car2 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+                    CrazyCarsTaxis *car3 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+                    car1.type = 3;
+                    car2.type = 3;
+                    car3.type = 3;
+                    car1.scale = 0.3;
+                    car2.scale = 0.3;
+                    
+                    car3.scale = 0.3;
                     num = foo4random();
                     xcoord = minimum + (num % div);
-                    newCar.position = ccp(xcoord, 620);
-                    //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
-                    // [self addChild:newCar];
-                    //  [_cars2 addObject:newCar];
+                    car1.position = ccp(xcoord, window.height + car1.contentSize.height);
+                    car2.position = ccp(xcoord + 40, window.height + car1.contentSize.height);
+                    car3.position = ccp(xcoord + 40*2, window.height + car1.contentSize.height);
                     
-                    count++;
-                } else {
-                    //NSLog(@"car2 cannot be created.");
+                    if (car1) {
+                        car1.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,car1.contentSize.width, car1.contentSize.height) cornerRadius:0];
+                        car1.physicsBody.density=0.1;
+                        car1.physicsBody.collisionGroup = @"notColliding";
+                        car1.physicsBody.collisionType=@"level";
+                        [physicsNode addChild:car1];
+                        [_cars addObject:car1];
+                        
+                    }
+                    if (car2) {
+                        car2.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,car2.contentSize.width, car2.contentSize.height) cornerRadius:0];
+                        car2.physicsBody.density=0.1;
+                        car2.physicsBody.collisionGroup = @"notColliding";
+                        car2.physicsBody.collisionType=@"level";
+                        [physicsNode addChild:car2];
+                        [_cars addObject:car2];
+                        
+                    }
+                    if (car3) {
+                        car3.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,car3.contentSize.width, car3.contentSize.height) cornerRadius:0];
+                        car3.physicsBody.density=0.1;
+                        car3.physicsBody.collisionGroup = @"notColliding";
+                        car3.physicsBody.collisionType=@"level";
+                        [physicsNode addChild:car3];
+                        [_cars addObject:car3];
+                        
+                    }
+                    
                 }
                 
                 
-            }
-        }
-        
-        else if (level == 2) {
-            //generate a random number
-            int number = arc4random_uniform(100);
-
-            if (number < 50) {
-                newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
-                //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
-                //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
-                newCar.scale=0.3;
-                num=foo4random();
-                xcoord=minimum+(num%div);
-                newCar.position=ccp(xcoord,620);
-                newCar.type=1;
                 
-                // [self addChild:newCar];
-                //  [_cars addObject:newCar];
+                if(newCar){
+                    newCar.scale=0.3;
+                    num=foo4random();
+                    xcoord=minimum+(num%div);
+                    //newCar.position=ccp(xcoord,620);
+                    //newStudent.position=ccp(xcoord,500);
+                    // [self addChild:newCar];
+                    newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+                    newCar.physicsBody.density=0.1;
+                    
+                    newCar.physicsBody.collisionGroup = @"notColliding";
+                    
+                    //  coin.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,coin.contentSize.width, coin.contentSize.height) cornerRadius:0];
+                    //   coin.physicsBody.density=0.1;
+                    
+                    newCar.physicsBody.collisionType=@"level";
+                    // newCar.physicsBody.collisionGroup=@"cheat";
+                    
+                    
+                    
+                    [physicsNode addChild:newCar];
+                    [_cars addObject:newCar];
+                    
+                    
+                    
+                }
                 
-                count++;
-            } else if (number >= 50 && number < 75) {
-                //NSLog(@"car image 2");
-                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
-                newCar.type=2;
-                
-                newCar.scale = 0.3;
-                num = foo4random();
-                xcoord = minimum + (num % div);
-                newCar.position = ccp(xcoord, 620);
-                //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
-                // [self addChild:newCar];
-                //  [_cars2 addObject:newCar];
-                
-                count++;
-                
-                
-            } else {
-                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
-                newCar.type=3;
-                
-                newCar.scale = 0.3;
-                num = foo4random();
-                xcoord = minimum + (num % div);
-                newCar.position = ccp(xcoord, 620);
-
-                count++;
-                
-                
-            }
-        } else if (level == 3) {
-            //generate a random number
-            int number = arc4random_uniform(100);
-            
-            if (number < 25) {
-                newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
-                //CCSprite * newStudent= [[CCSprite alloc]initWithImageNamed:@"student copy.png"];
-                //  coin= [[CCSprite alloc]initWithImageNamed:@"coin.png"];
-                newCar.scale=0.3;
-                num=foo4random();
-                xcoord=minimum+(num%div);
-                newCar.position=ccp(xcoord,620);
-                newCar.type=1;
-                
-                // [self addChild:newCar];
-                //  [_cars addObject:newCar];
-                
-                count++;
-            } else if (number >= 25 && number < 50) {
-                //NSLog(@"car image 2");
-                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
-                newCar.type=2;
-                
-                newCar.scale = 0.3;
-                num = foo4random();
-                xcoord = minimum + (num % div);
-                newCar.position = ccp(xcoord, 620);
-                //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
-                // [self addChild:newCar];
-                //  [_cars2 addObject:newCar];
-                
-                count++;
-                
-                
-            } else if (number >= 50 && number < 75) {
-                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
-                newCar.type=3;
-                
-                newCar.scale = 0.3;
-                num = foo4random();
-                xcoord = minimum + (num % div);
-                newCar.position = ccp(xcoord, 620);
-                
-                count++;
-                
-                
-            } else {
-                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage6.png"];
-                newCar.type=4;
-                
-                newCar.scale = 0.3;
-                num = foo4random();
-                xcoord = minimum + (num % div);
-                newCar.position = ccp(xcoord, 620);
-                
-                count++;
-            }
-        } else if (level == 4) {
-            //generate a random number
-            int number = arc4random_uniform(100);
-            
-            if (number < 25) {
-                newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
-
-                newCar.scale=0.3;
-                num=foo4random();
-                xcoord=minimum+(num%div);
-                newCar.position=ccp(xcoord,620);
-                newCar.type=1;
-                
-                // [self addChild:newCar];
-                //  [_cars addObject:newCar];
-                
-                count++;
-            } else if (number >= 25 && number < 50) {
-                //NSLog(@"car image 2");
-                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage2.png"];
-                newCar.type=2;
-                
-                newCar.scale = 0.3;
-                num = foo4random();
-                xcoord = minimum + (num % div);
-                newCar.position = ccp(xcoord, 620);
-                //newCar.position = ccp(windowSize.width - 100, windowSize.height - 10);
-                // [self addChild:newCar];
-                //  [_cars2 addObject:newCar];
-                
-                count++;
-                
-                
-            } else if (number >= 50 && number < 75) {
-                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
-                newCar.type=3;
-                
-                newCar.scale = 0.3;
-                num = foo4random();
-                xcoord = minimum + (num % div);
-                newCar.position = ccp(xcoord, 620);
-                
-                count++;
-                
-                
-            } else {
-                newCar = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage6.png"];
-                newCar.type=4;
-                
-                NSLog(@"In level 4, car 4 has been added.");
-
-                newCar.scale = 0.3;
-                num = foo4random();
-                xcoord = minimum + (num % div);
-                newCar.position = ccp(xcoord, 0);
-                
-                count++;
-            }
-        }
-        
-        if (distance >= 1 & distance < 2) {
-            if (!pizza) {
-                pizza = [[ObjectOnRoad alloc] initWithImageNamed:@"pizza.png"];
-                pizza.scale = 0.06;
-                pizza.type = 6;
-                
-                num = foo4random();
-                xcoord = minimum + (num % div);
-                pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
-                pizza.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, pizza.contentSize.width, pizza.contentSize.height) cornerRadius:0];
-                pizza.physicsBody.collisionType = @"objectOnRoad";
-                pizza.physicsBody.collisionGroup = @"notColliding";
-                [physicsNode addChild:pizza];
-                
-            }
-        }
-        
-        
-        
-        if (pizza) {
-            pizza.position = ccp(pizza.position.x, pizza.position.y - roadVelocity);
-        }
-        
-       
-        if (distance % 5 == 4) {
-            CrazyCarsTaxis *car1 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
-            CrazyCarsTaxis *car2 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
-            CrazyCarsTaxis *car3 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
-            car1.type = 3;
-            car2.type = 3;
-            car3.type = 3;
-            car1.scale = 0.3;
-            car2.scale = 0.3;
-
-            car3.scale = 0.3;
-            num = foo4random();
-            xcoord = minimum + (num % div);
-            car1.position = ccp(xcoord, window.height + car1.contentSize.height);
-            car2.position = ccp(xcoord + 40, window.height + car1.contentSize.height);
-            car3.position = ccp(xcoord + 40*2, window.height + car1.contentSize.height);
-
-            if (car1) {
-                car1.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,car1.contentSize.width, car1.contentSize.height) cornerRadius:0];
-                car1.physicsBody.density=0.1;
-                car1.physicsBody.collisionGroup = @"notColliding";
-                car1.physicsBody.collisionType=@"level";
-                [physicsNode addChild:car1];
-                [_cars addObject:car1];
-
-            }
-            if (car2) {
-                car2.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,car2.contentSize.width, car2.contentSize.height) cornerRadius:0];
-                car2.physicsBody.density=0.1;
-                car2.physicsBody.collisionGroup = @"notColliding";
-                car2.physicsBody.collisionType=@"level";
-                [physicsNode addChild:car2];
-                [_cars addObject:car2];
-                
-            }
-            if (car3) {
-                car3.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,car3.contentSize.width, car3.contentSize.height) cornerRadius:0];
-                car3.physicsBody.density=0.1;
-                car3.physicsBody.collisionGroup = @"notColliding";
-                car3.physicsBody.collisionType=@"level";
-                [physicsNode addChild:car3];
-                [_cars addObject:car3];
-                
+                // Then reset the timer.
+                //        //moving the cars left and right, without their positions being fixed.. don by varsha
+                //        BOOL genPos = CCRANDOM_0_1()>=0.5?YES:NO;
+                //        if(nfortime > 150)
+                //        {
+                //            if(genPos == YES)
+                //            {
+                //                id theAction = [CCActionMoveTo actionWithDuration:4 position:ccp(200,200)];
+                //                [newCar runAction:theAction];
+                //            }
+                //            else
+                //            {
+                //                id theAction = [CCActionMoveTo actionWithDuration:4 position:ccp(-75,200)];
+                //                [newCar runAction:theAction];
+                //            }
+                //        }
+                timeSinceObstacle = 0.0f;
             }
             
         }
         
         
         
-        if(newCar){
-            newCar.scale=0.3;
-            num=foo4random();
-            xcoord=minimum+(num%div);
-            //newCar.position=ccp(xcoord,620);
-            //newStudent.position=ccp(xcoord,500);
-            // [self addChild:newCar];
-            newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
-            newCar.physicsBody.density=0.1;
-            
-            newCar.physicsBody.collisionGroup = @"notColliding";
-            
-            //  coin.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,coin.contentSize.width, coin.contentSize.height) cornerRadius:0];
-            //   coin.physicsBody.density=0.1;
-            
-            newCar.physicsBody.collisionType=@"level";
-            // newCar.physicsBody.collisionGroup=@"cheat";
-            
-            
-            
-            [physicsNode addChild:newCar];
-            [_cars addObject:newCar];
-            
-            
-            count++;
-            
-        }
         
-        // Then reset the timer.
-//        //moving the cars left and right, without their positions being fixed.. don by varsha
-//        BOOL genPos = CCRANDOM_0_1()>=0.5?YES:NO;
-//        if(nfortime > 150)
-//        {
-//            if(genPos == YES)
-//            {
-//                id theAction = [CCActionMoveTo actionWithDuration:4 position:ccp(200,200)];
-//                [newCar runAction:theAction];
-//            }
-//            else
-//            {
-//                id theAction = [CCActionMoveTo actionWithDuration:4 position:ccp(-75,200)];
-//                [newCar runAction:theAction];
-//            }
-//        }
-        timeSinceObstacle = 0.0f;
-    }
         
-    }
-
-    
-    
-    
-    
-    
-    
+        
+        
 #pragma adding pattern
         
         
-    /////adding pattern
-       
-
+        /////adding pattern
+        
+        
         if (!(distance < currentLevelInfo.maxDistance && trafficComing)){
             if (patternComing) {
                 if(!patternCars){
@@ -760,369 +763,211 @@
                     }
                 }
             }
-      
+            
         }
         
         
-    /////////////////* Show the final Scne*/////////////////////////
-    if(distance>currentLevelInfo.maxDistance)
-    {
-       
-        if(distance>currentLevelInfo.maxDistance+5){
-        if(!parking)
+        /////////////////* Show the final Scne*/////////////////////////
+        if(distance>currentLevelInfo.maxDistance)
         {
-            parking= [[CCSprite alloc]initWithImageNamed:@"Parking.png"];
-            parking.scale=0.2;
-//            parking.physicsBody.velocity= CGPointMake(0, 0);
-//            parking.physicsBody=[CCPhysicsBody bodyWithRect:CGRectMake(0, 0,600, 20) cornerRadius:0];
             
-            
-            parking.parent.zOrder=5;
-        
-            
-            sensor=[[CCNode alloc]init];
-            sensor.physicsBody=[CCPhysicsBody bodyWithRect:CGRectMake(0, 0,600, 20) cornerRadius:0];
-            //sensor.physicsBody.sensor=TRUE;
-            sensor.physicsBody.collisionType=@"Parking";
-            
-            
-            
-            int xcoord= 320/2;
-            parking.position=ccp(xcoord,550);
-            sensor.position=ccp(0,720);
-            [physicsNode addChild:parking];
-            [physicsNode addChild:sensor];
-            
-        
-        }
-        }
-        /*
-        NSLog(@"tHIS IS THE HIDDEN VELOVITY physics node %f",physicsNode.physicsBody.velocity.y) ;
-        NSLog(@"tHIS IS THE HIDDEN VELOVITY parking %f",parking.physicsBody.velocity.y) ;
-        NSLog(@"tHIS IS THE HIDDEN VELOVITY %f",[parking parent].physicsBody.velocity.y) ;
-        */
-        
-        if (parking) {
-            parking.position = ccp(parking.position.x, parking.position.y - roadVelocity);
-        }
-        if (sensor) {
-            sensor.position = ccp(sensor.position.x, sensor.position.y - roadVelocity);
-        }
-
-    
-    
-    }
-    if(distance==currentLevelInfo.maxDistance+6)
-    {
-        parking.physicsBody.velocity= CGPointMake(0, 0);
-        
-//        if(distance>currentLevelInfo.maxDistance+5){
-//            if(!college)
-//            {
-//                college= [[CCSprite alloc]initWithImageNamed:@"Parking.png"];
-//                college.scale=0.2;
-//                
-//                int xcoord= 320/2-college.boundingBox.size.width/2;
-//                college.position=ccp(xcoord,620);
-//                [physicsNode addChild:college];
-//                
-//            }
-//        }
-//        
-//        
-//        if (college) {
-//            college.position = ccp(college.position.x, college.position.y - roadVelocity);
-//        }
-//        
-    
-    
-    }
-    
-    /////////////////* Show the final Scne*/////////////////////////
-    
-    
-    NSMutableArray *toDelete = [NSMutableArray array];
-    
-    
-    //updating position of each student
-    for(int i = [_students count]-1;i>=0;i--) {
-        ((CCSprite *)_students[i]).position = ccp(((CCSprite *)_students[i]).position.x, ((CCSprite *)_students[i]).position.y-roadVelocity);
-        if(((CCSprite *)_students[i]).position.y<-13) {
-            //remove this object
-            //     [self removeChild:(CCSprite *)_students[i] cleanup:YES];
-            //     [_students removeObject:(CCSprite *)_students[i]];
-            
-            [toDelete addObject: _students[i]];
-        }
-    }
- 
-    
-    
-    // Find the things to remove
-
-    if (roadVelocity) {
-        
-    
-    for (CrazyCarsTaxis *car1 in _cars) {
-            switch (car1.type) {
+            if(distance>currentLevelInfo.maxDistance+5){
+                if(!parking)
+                {
+                    parking= [[CCSprite alloc]initWithImageNamed:@"Parking.png"];
+                    parking.scale=0.2;
+                    //            parking.physicsBody.velocity= CGPointMake(0, 0);
+                    //            parking.physicsBody=[CCPhysicsBody bodyWithRect:CGRectMake(0, 0,600, 20) cornerRadius:0];
                     
-                case 1:
-                    car1.position = ccp(car1.position.x, car1.position.y - .5 + roadVelocity - offsetVelocityOfCars);
+                    
+                    parking.parent.zOrder=5;
+                    
+                    
+                    sensor=[[CCNode alloc]init];
+                    sensor.physicsBody=[CCPhysicsBody bodyWithRect:CGRectMake(0, 0,600, 20) cornerRadius:0];
+                    //sensor.physicsBody.sensor=TRUE;
+                    sensor.physicsBody.collisionType=@"Parking";
                     
                     
                     
-                    if (car1.position.y < -car1.contentSize.height) {
-                        
-                        [toDelete addObject:car1];
-                    }
-                    break;
-                break;
+                    int xcoord= 320/2;
+                    parking.position=ccp(xcoord,550);
+                    sensor.position=ccp(0,720);
+                    [physicsNode addChild:parking];
+                    [physicsNode addChild:sensor];
+                    
+                    
+                }
+            }
+            /*
+             NSLog(@"tHIS IS THE HIDDEN VELOVITY physics node %f",physicsNode.physicsBody.velocity.y) ;
+             NSLog(@"tHIS IS THE HIDDEN VELOVITY parking %f",parking.physicsBody.velocity.y) ;
+             NSLog(@"tHIS IS THE HIDDEN VELOVITY %f",[parking parent].physicsBody.velocity.y) ;
+             */
+            
+            if (parking) {
+                parking.position = ccp(parking.position.x, parking.position.y - roadVelocity);
+            }
+            if (sensor) {
+                sensor.position = ccp(sensor.position.x, sensor.position.y - roadVelocity);
+            }
+            
+            
+            
+        }
+        if(distance==currentLevelInfo.maxDistance+6)
+        {
+            parking.physicsBody.velocity= CGPointMake(0, 0);
+            
+            //        if(distance>currentLevelInfo.maxDistance+5){
+            //            if(!college)
+            //            {
+            //                college= [[CCSprite alloc]initWithImageNamed:@"Parking.png"];
+            //                college.scale=0.2;
+            //
+            //                int xcoord= 320/2-college.boundingBox.size.width/2;
+            //                college.position=ccp(xcoord,620);
+            //                [physicsNode addChild:college];
+            //
+            //            }
+            //        }
+            //
+            //
+            //        if (college) {
+            //            college.position = ccp(college.position.x, college.position.y - roadVelocity);
+            //        }
+            //
+            
+            
+        }
+        
+        /////////////////* Show the final Scne*/////////////////////////
+        
+        
+        NSMutableArray *toDelete = [NSMutableArray array];
+        
+        
+        //updating position of each student
+        for(int i = [_students count]-1;i>=0;i--) {
+            ((CCSprite *)_students[i]).position = ccp(((CCSprite *)_students[i]).position.x, ((CCSprite *)_students[i]).position.y-roadVelocity);
+            if(((CCSprite *)_students[i]).position.y<-13) {
+                //remove this object
+                //     [self removeChild:(CCSprite *)_students[i] cleanup:YES];
+                //     [_students removeObject:(CCSprite *)_students[i]];
                 
-            case 2:
-                
-                car1.position = ccp(car1.position.x, car1.position.y - 0.5  + roadVelocity - offsetVelocityOfCars);
-                if (car1.position.y - bus.position.y <= 250) {
-                    if (car1.position.x != bus.position.x) {
-                        if (car1.position.x - bus.position.x - 15 > 0) {
-                            car1.position = ccp(car1.position.x - 1, car1.position.y);
-                        } else {
-                            car1.position = ccp(car1.position.x + 1, car1.position.y);
-                        }
-                        
-                        
-                    }
-                    if (car1.position.y < -car1.contentSize.height) {
-                        [toDelete addObject:car1];
-                        car2created = false;
-                    }
-                    
-                    break;
-                    
-                case 3:
-                    car1.position = ccp(car1.position.x, car1.position.y - 3  + roadVelocity - offsetVelocityOfCars);
-                    
-                    
-                    
-                    if (car1.position.y < -car1.contentSize.height) {
-                        
-                        [toDelete addObject:car1];
-                    }
-                    
-                    break;
-                    
-                case 4:
-                    
-                    car1.position = ccp(car1.position.x, car1.position.y + 2.5  - roadVelocity + offsetVelocityOfCars);
-                    
-                    if (car1.position.y > windowSize.height || car1.position.y < -500) {
-                   // if (car1.position.y < -car1.contentSize.height) {
-                        
-                        [toDelete addObject:car1];
-                    }
-                    
-                    break;
-
-                default:
-                    break;
+                [toDelete addObject: _students[i]];
             }
         }
         
-//        else if (level == 2) {
-//            switch (car1.type) {
-//
-//                case 1:
-//                    
-//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-//                    
-//                    
-//                    
-//                    if (car1.position.y < -car1.contentSize.height) {
-//                        
-//                        [toDelete addObject:car1];
-//                    }
-//                    break;
-//                    
-//                case 2:
-//                    
-//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-//                    if (car1.position.y - bus.position.y <= 250) {
-//                        if (car1.position.x != bus.position.x) {
-//                            if (car1.position.x - bus.position.x - 15 > 0) {
-//                                car1.position = ccp(car1.position.x - 1, car1.position.y);
-//                            } else {
-//                                car1.position = ccp(car1.position.x + 1, car1.position.y);
-//                            }
-//                        }
-//                        
-//                        
-//                    }
-//                    if (car1.position.y < -car1.contentSize.height) {
-//                        [toDelete addObject:car1];
-//                        car2created = false;
-//                    }
-//                    
-//                    break;
-//                case 3:
-//                    car1.position = ccp(car1.position.x, car1.position.y - 3);
-//                    
-//                    
-//                    
-//                    if (car1.position.y < -car1.contentSize.height) {
-//                        
-//                        [toDelete addObject:car1];
-//                    }
-//                    
-//                    break;
-//                    
-//                default:
-//                    break;
-//            }
-//        } else if (level == 3) {
-//            switch (car1.type) {
-//                    
-//                case 1:
-//                    
-//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-//                    
-//                    
-//                    
-//                    if (car1.position.y < -car1.contentSize.height) {
-//                        
-//                        [toDelete addObject:car1];
-//                    }
-//                    break;
-//                    
-//                case 2:
-//                    
-//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-//                    if (car1.position.y - bus.position.y <= 250) {
-//                        if (car1.position.x != bus.position.x) {
-//                            if (car1.position.x - bus.position.x - 15 > 0) {
-//                                car1.position = ccp(car1.position.x - 1, car1.position.y);
-//                            } else {
-//                                car1.position = ccp(car1.position.x + 1, car1.position.y);
-//                            }
-//                        }
-//                        
-//                        
-//                    }
-//                    if (car1.position.y < -car1.contentSize.height) {
-//                        [toDelete addObject:car1];
-//                        car2created = false;
-//                    }
-//                    
-//                    break;
-//                    
-//                case 3:
-//                    car1.position = ccp(car1.position.x, car1.position.y - 3);
-//                    
-//                    
-//                    
-//                    if (car1.position.y < -car1.contentSize.height) {
-//                        
-//                        [toDelete addObject:car1];
-//                    }
-//                    
-//                    break;
-//                    
-//                default:
-//                    break;
-//            }
-//        } else if (level == 4) {
-//            switch (car1.type) {
-//                    
-//                case 1:
-//                    
-//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-//                    
-//                    
-//                    
-//                    if (car1.position.y < -car1.contentSize.height) {
-//                        
-//                        [toDelete addObject:car1];
-//                    }
-//                    break;
-//                    
-//                case 2:
-//                    
-//                    car1.position = ccp(car1.position.x, car1.position.y - .5);
-//                    if (car1.position.y - bus.position.y <= 250) {
-//                        if (car1.position.x != bus.position.x) {
-//                            if (car1.position.x - bus.position.x - 15 > 0) {
-//                                car1.position = ccp(car1.position.x - 1, car1.position.y);
-//                            } else {
-//                                car1.position = ccp(car1.position.x + 1, car1.position.y);
-//                            }
-//                        }
-//                        
-//                        
-//                    }
-//                    if (car1.position.y < -car1.contentSize.height) {
-//                        [toDelete addObject:car1];
-//                        car2created = false;
-//                    }
-//                    
-//                    break;
-//                    
-//                case 3:
-//                    car1.position = ccp(car1.position.x, car1.position.y - 3);
-//                    
-//                    
-//                    
-//                    if (car1.position.y < -car1.contentSize.height) {
-//                        
-//                        [toDelete addObject:car1];
-//                    }
-//                    
-//                    break;
-//                    
-//                case 4:
-//                    
-//                    car1.position = ccp(car1.position.x, car1.position.y - 0.5);
-//                    
-//                    
-//                    if (car1.position.y < -car1.contentSize.height) {
-//                        
-//                        [toDelete addObject:car1];
-//                    }
-//                    
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//        
-        
-
         
         
-    }
-    
-    }
-
-
-    
-    [_cars removeObjectsInArray:toDelete];
-    for ( CCNode *temp in toDelete) {
-        [temp removeFromParent];
-
-    }
-    [toDelete removeAllObjects];
-    
-  //  NSLog(@"The number of elements are %i", [[physicsNode children]count]);
-    
-
-  /////CALLS THE GYRO FUNCTION
+        // Find the things to remove
+        
+        if (roadVelocity) {
+            
+            for (CrazyCarsTaxis *car1 in _cars) {
+                switch (car1.type) {
+                        
+                    case 1:
+                        car1.position = ccp(car1.position.x, car1.position.y - .5 + roadVelocity - offsetVelocityOfCars);
+                        
+                        
+                        
+                        if (car1.position.y < -car1.contentSize.height) {
+                            
+                            [toDelete addObject:car1];
+                        }
+                        break;
+                        break;
+                        
+                    case 2:
+                        
+                        car1.position = ccp(car1.position.x, car1.position.y - 0.5  + roadVelocity - offsetVelocityOfCars);
+                        if (car1.position.y - bus.position.y <= 250) {
+                            if (car1.position.x != bus.position.x) {
+                                if (car1.position.x - bus.position.x - 15 > 0) {
+                                    car1.position = ccp(car1.position.x - 1, car1.position.y);
+                                } else {
+                                    car1.position = ccp(car1.position.x + 1, car1.position.y);
+                                }
+                                
+                                
+                            }
+                            if (car1.position.y < -car1.contentSize.height) {
+                                [toDelete addObject:car1];
+                                car2created = false;
+                            }
+                            
+                            break;
+                            
+                        case 3:
+                            car1.position = ccp(car1.position.x, car1.position.y - 3  + roadVelocity - offsetVelocityOfCars);
+                            
+                            
+                            
+                            if (car1.position.y < -car1.contentSize.height) {
+                                
+                                [toDelete addObject:car1];
+                            }
+                            
+                            break;
+                            
+                        case 4:
+                            
+                            car1.position = ccp(car1.position.x, car1.position.y + 2.5  - roadVelocity + offsetVelocityOfCars);
+                            
+                            if (car1.position.y > windowSize.height || car1.position.y < -500) {
+                                // if (car1.position.y < -car1.contentSize.height) {
+                                
+                                [toDelete addObject:car1];
+                            }
+                            
+                            break;
+                            
+                        default:
+                            break;
+                        }
+                }
+                
+                
+                
+                
+                
+                
+            }
+            
+        }
+        
+        
+        
+        [_cars removeObjectsInArray:toDelete];
+        for ( CCNode *temp in toDelete) {
+            [temp removeFromParent];
+            
+        }
+        [toDelete removeAllObjects];
+        
+        //  NSLog(@"The number of elements are %i", [[physicsNode children]count]);
+        
+        
+        /////CALLS THE GYRO FUNCTION
         [self gyroConfiguration];
+        
+        
+        
+        bus.position= ccpAdd(bus.position, velocity);
+        
+        if (smoke) {
+            smoke.position = ccp(bus.position.x, bus.position.y + bus.contentSize.height / 2 - 10);
+        }
+        
+        [self busWillNotGoBeyondScreen];
+        
+        
+    }//// end of if velocity
+}
 
-    
-    
-    bus.position= ccpAdd(bus.position, velocity);
-    
-    if (smoke) {
-        smoke.position = ccp(bus.position.x, bus.position.y + bus.contentSize.height / 2 - 10);
-    }
-    
+-(void)busWillNotGoBeyondScreen {
     // done by Frank. make sure the bus will not go beyond the screen.
     if (bus.position.x < 0 + bus.contentSize.width / 2) {
         bus.position = ccp(0 + bus.contentSize.width / 2, bus.position.y);
@@ -1137,11 +982,7 @@
     if (bus.position.y > window.height - bus.contentSize.height) {
         bus.position = ccp(bus.position.x, window.height - bus.contentSize.height);
     }
-    
-    }//// end of if velocity
 }
-
-
 
 
 /*
@@ -1184,47 +1025,47 @@
 
 
 
- - (void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event
- {
- // we want to know the location of our touch in this scene
-
-     CGPoint touchLocation = [touch locationInNode:self];
-     //NSLog(@"The x coordinate is %f",touchLocation.x);
-     //NSLog(@"The y coordinate before is %f",touchLocation.y);
-     
-     NSLog(@"Coordinate (%f, %f)", touchLocation.x, touchLocation.y);
-     
-     if (touchLocation.x < window.width / 2) {
-         if (roadVelocity > baseRoadVelocity) {
-             roadVelocity -= 0.1;
-             offsetVelocityOfCars -= 0.05;
-         }
-         
-     } else {
-         if (roadVelocity < capRoadVelocity) {
-             roadVelocity += 0.1;
-             offsetVelocityOfCars += 0.05;
-         }
-         
-
-     }
-     
-     if (touchLocation.x>180) {
-         [bus.physicsBody applyImpulse:ccp(0, 400)];
-     }
-     else{
-         [bus.physicsBody applyImpulse:ccp(0, -400)];
-         
-     }
-     //NSLog(@"The y coordinate is %f",touchLocation.y);
-     
-     
- // create a 'hero' sprite
- //CCSprite *hero = [CCSprite spriteWithImageNamed:@"hero.png"];
- //[self addChild:hero];
- // place the sprite at the touch location
- //hero.position = touchLocation;
- }
+- (void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event
+{
+    // we want to know the location of our touch in this scene
+    
+    CGPoint touchLocation = [touch locationInNode:self];
+    //NSLog(@"The x coordinate is %f",touchLocation.x);
+    //NSLog(@"The y coordinate before is %f",touchLocation.y);
+    
+    NSLog(@"Coordinate (%f, %f)", touchLocation.x, touchLocation.y);
+    
+    if (touchLocation.x < window.width / 2) {
+        if (roadVelocity > baseRoadVelocity) {
+            roadVelocity -= 0.1;
+            offsetVelocityOfCars -= 0.05;
+        }
+        
+    } else {
+        if (roadVelocity < capRoadVelocity) {
+            roadVelocity += 0.1;
+            offsetVelocityOfCars += 0.05;
+        }
+        
+        
+    }
+    
+    if (touchLocation.x>180) {
+        [bus.physicsBody applyImpulse:ccp(0, 400)];
+    }
+    else{
+        [bus.physicsBody applyImpulse:ccp(0, -400)];
+        
+    }
+    //NSLog(@"The y coordinate is %f",touchLocation.y);
+    
+    
+    // create a 'hero' sprite
+    //CCSprite *hero = [CCSprite spriteWithImageNamed:@"hero.png"];
+    //[self addChild:hero];
+    // place the sprite at the touch location
+    //hero.position = touchLocation;
+}
 
 
 
@@ -1241,17 +1082,17 @@
     
     if (posLeft == NO) {
         countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 50);
-
+        
     } else {
         countdownLabel.position = ccp(100, windowSize.height - 50);
-
+        
     }
     
     //CCLabelTTF *countdownLabel;
     for (int i = 3; i != 0; --i) {
         //NSLog(@"You have %d seconds left.", i);
         [countdownLabel setString:[NSString stringWithFormat:@"%d", i]];
-
+        
         [NSThread sleepForTimeInterval:1.0f];
     }
     [countdownLabel setString:@"Incomming"];
@@ -1261,23 +1102,23 @@
     newStudent.scale=.2;
     
     if (posLeft == YES) {
-
+        
         newStudent.position = ccp(initStudentXLeft, initStudentY);
     } else {
-
+        
         newStudent.position = ccp(initStudentXRight, initStudentY);
     }
     
     newStudent.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newStudent.contentSize.width, newStudent.contentSize.height) cornerRadius:0];;
     newStudent.physicsBody.collisionType= @"student";
     newStudent.physicsBody.collisionGroup = @"notColliding";
-
+    
     newStudent.physicsBody.type=CCPhysicsBodyTypeStatic;
     [physicsNode addChild:newStudent];
     
     [_students addObject:newStudent];
     //NSLog(@"student added.");
-
+    
     
     
     [NSThread sleepForTimeInterval:1.0f];
@@ -1304,14 +1145,20 @@
             
             if (progressTimer.percentage <= 70) {
                 progressTimer.percentage += 30;
-
+                
             } else {
                 progressTimer.percentage = 100;
             }
             [[OALSimpleAudio sharedInstance] playEffect:@"power-up.wav" loop:NO];
-
-        } else if (objectOnRoad.type == 7) {
             
+        } else if (objectOnRoad.type == 7) {
+            if (progressTimer.percentage <= 50) {
+                progressTimer.percentage += 50;
+                
+            } else {
+                progressTimer.percentage = 100;
+            }
+            [[OALSimpleAudio sharedInstance] playEffect:@"engine-start.wav" loop:NO];
         }
         [objectOnRoad removeFromParent];
         return true;
@@ -1333,7 +1180,7 @@
         score = score + 1;
         [[OALSimpleAudio sharedInstance] playEffect:@"cha-ching.wav" loop:NO];
         return TRUE;
-
+        
     } else {
         return FALSE;
     }
@@ -1373,16 +1220,16 @@
     
     [defaults setObject:dataForScoreScreen forKey:@"dataForScoreScreen"];
     
-
+    
     CCScene *gameplayscene = [CCBReader loadAsScene:@"EndlevelCCB"];
     [[CCDirector sharedDirector] replaceScene:gameplayscene];
     
     
     
     //oh man, collision...
-   // CCScene *mainscene = [CCBReader loadAsScene:@"GameFinScene"];
-   // [[CCDirector sharedDirector] replaceScene:mainscene];
-
+    // CCScene *mainscene = [CCBReader loadAsScene:@"GameFinScene"];
+    // [[CCDirector sharedDirector] replaceScene:mainscene];
+    
     return TRUE;
 }
 
@@ -1401,171 +1248,171 @@
     progressTimer.percentage -= 10;
     if (progressTimer.percentage <= 100) {
         /*
-        if (smoke) {
-            [smoke removeFromParent];
-        }
+         if (smoke) {
+         [smoke removeFromParent];
+         }
          */
         [self enableSmoke];
     }
     
     [[OALSimpleAudio sharedInstance] playBuffer:soundBufferHit volume:1.0f pitch:1.0f pan:0.0f loop:NO];
     if (progressTimer.percentage<=0) {
-      /*  int l = 1;
-       
-        NSString *listPath;
-        NSMutableDictionary *plistData;
-        // long x[3];
-        listPath = [[self docsDir]stringByAppendingPathComponent:@"GameData.plist"];
-        if(![[NSFileManager defaultManager]fileExistsAtPath:listPath]) {
-            [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle]pathForResource:@"GameData" ofType:@"plist"] toPath:listPath error:nil];
-        }
-        plistData = [NSMutableDictionary dictionaryWithContentsOfFile:listPath];
-        if(l == 1)
-        {
-            score = 40;
-            
-            long s1 = [[plistData objectForKey:@"score1"] integerValue];
-            long s2 = [[plistData objectForKey:@"score2"] integerValue];
-            long s3 = [[plistData objectForKey:@"score3"] integerValue];
-             NSLog(@"s1:%ld,s2:%ld,s3:%ld",s1,s2,s3);
-            if(score>s1 && score>s2 && score>s3)
-            {
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score1"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s1] forKey:@"score2"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score3"];
-                [plistData writeToFile:listPath atomically:YES];
-                long hh= [[plistData objectForKey:@"score1"] integerValue];
-                
-                //  NSLog(@"h1:%ld",h1);
-                [scorelabel1 setString:[NSString stringWithFormat:@"HighScore1: %ld", hh]];
-                
-            }
-           
-            
-            else if(score>s2 && score>s3)
-            {
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score2"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score3"];
-                
-            }
-            else if(score>s3)
-            {
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score3"];
-                
-            }
-            [plistData writeToFile:listPath atomically:YES];
-            
-            
-        }
-        
-        else if(l == 2)
-        {
-            
-            long s1 = [[plistData objectForKey:@"score4"] integerValue];
-            long s2 = [[plistData objectForKey:@"score5"] integerValue];
-            long s3 = [[plistData objectForKey:@"score6"] integerValue];
-            if(score>s1 && score>s2 && score>s3)
-            {
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score4"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s1] forKey:@"score5"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score6"];
-                
-                
-            }
-            else if(score>s2 && score>s3)
-            {
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score5"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score6"];
-                
-            }
-            else if(score>s3)
-            {
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score6"];
-                
-            }
-            [plistData writeToFile:listPath atomically:YES];
-            
-        }
-        
-        else if(l == 3)
-        {
-            
-            long s1 = [[plistData objectForKey:@"score7"] integerValue];
-            long s2 = [[plistData objectForKey:@"score8"] integerValue];
-            long s3 = [[plistData objectForKey:@"score9"] integerValue];
-            if(score>s1 && score>s2 && score>s3)
-            {
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score7"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s1] forKey:@"score8"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score9"];
-                
-            }
-            else if(score>s2 && score>s3)
-            {
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score8"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score9"];
-                
-            }
-            else if(score>s3)
-            {
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score9"];
-                
-            }
-            [plistData writeToFile:listPath atomically:YES];
-            
-        }
-        
-        else if(l == 4)
-        {
-            
-            
-            long s1 = [[plistData objectForKey:@"score10"] integerValue];
-            long s2 = [[plistData objectForKey:@"score11"] integerValue];
-            long s3 = [[plistData objectForKey:@"score12"] integerValue];
-            if(score>s1 && score>s2 && score>s3)
-            {
-                
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score10"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s1] forKey:@"score11"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score12"];
-                
-                
-            }
-            else if(score>s2 && score>s3)
-            {
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score11"];
-                [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score12"];
-                
-            }
-            else if(score>s3)
-            {
-                
-                [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score12"];
-                
-            }
-            [plistData writeToFile:listPath atomically:YES];
-            
-            
-        } */
-   /*    long s1 = [[plistData objectForKey:@"score1"] integerValue];
-       long s2 = [[plistData objectForKey:@"score2"] integerValue];
-       long s3 = [[plistData objectForKey:@"score3"] integerValue];
-        NSLog(@"s1:%ld,s2:%ld,s3:%ld",s1,s2,s3); */
+        /*  int l = 1;
+         
+         NSString *listPath;
+         NSMutableDictionary *plistData;
+         // long x[3];
+         listPath = [[self docsDir]stringByAppendingPathComponent:@"GameData.plist"];
+         if(![[NSFileManager defaultManager]fileExistsAtPath:listPath]) {
+         [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle]pathForResource:@"GameData" ofType:@"plist"] toPath:listPath error:nil];
+         }
+         plistData = [NSMutableDictionary dictionaryWithContentsOfFile:listPath];
+         if(l == 1)
+         {
+         score = 40;
+         
+         long s1 = [[plistData objectForKey:@"score1"] integerValue];
+         long s2 = [[plistData objectForKey:@"score2"] integerValue];
+         long s3 = [[plistData objectForKey:@"score3"] integerValue];
+         NSLog(@"s1:%ld,s2:%ld,s3:%ld",s1,s2,s3);
+         if(score>s1 && score>s2 && score>s3)
+         {
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score1"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s1] forKey:@"score2"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score3"];
+         [plistData writeToFile:listPath atomically:YES];
+         long hh= [[plistData objectForKey:@"score1"] integerValue];
+         
+         //  NSLog(@"h1:%ld",h1);
+         [scorelabel1 setString:[NSString stringWithFormat:@"HighScore1: %ld", hh]];
+         
+         }
+         
+         
+         else if(score>s2 && score>s3)
+         {
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score2"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score3"];
+         
+         }
+         else if(score>s3)
+         {
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score3"];
+         
+         }
+         [plistData writeToFile:listPath atomically:YES];
+         
+         
+         }
+         
+         else if(l == 2)
+         {
+         
+         long s1 = [[plistData objectForKey:@"score4"] integerValue];
+         long s2 = [[plistData objectForKey:@"score5"] integerValue];
+         long s3 = [[plistData objectForKey:@"score6"] integerValue];
+         if(score>s1 && score>s2 && score>s3)
+         {
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score4"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s1] forKey:@"score5"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score6"];
+         
+         
+         }
+         else if(score>s2 && score>s3)
+         {
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score5"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score6"];
+         
+         }
+         else if(score>s3)
+         {
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score6"];
+         
+         }
+         [plistData writeToFile:listPath atomically:YES];
+         
+         }
+         
+         else if(l == 3)
+         {
+         
+         long s1 = [[plistData objectForKey:@"score7"] integerValue];
+         long s2 = [[plistData objectForKey:@"score8"] integerValue];
+         long s3 = [[plistData objectForKey:@"score9"] integerValue];
+         if(score>s1 && score>s2 && score>s3)
+         {
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score7"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s1] forKey:@"score8"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score9"];
+         
+         }
+         else if(score>s2 && score>s3)
+         {
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score8"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score9"];
+         
+         }
+         else if(score>s3)
+         {
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score9"];
+         
+         }
+         [plistData writeToFile:listPath atomically:YES];
+         
+         }
+         
+         else if(l == 4)
+         {
+         
+         
+         long s1 = [[plistData objectForKey:@"score10"] integerValue];
+         long s2 = [[plistData objectForKey:@"score11"] integerValue];
+         long s3 = [[plistData objectForKey:@"score12"] integerValue];
+         if(score>s1 && score>s2 && score>s3)
+         {
+         
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score10"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s1] forKey:@"score11"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score12"];
+         
+         
+         }
+         else if(score>s2 && score>s3)
+         {
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score11"];
+         [plistData setValue:[NSString stringWithFormat:@"%li",s2] forKey:@"score12"];
+         
+         }
+         else if(score>s3)
+         {
+         
+         [plistData setValue:[NSString stringWithFormat:@"%li",score] forKey:@"score12"];
+         
+         }
+         [plistData writeToFile:listPath atomically:YES];
+         
+         
+         } */
+        /*    long s1 = [[plistData objectForKey:@"score1"] integerValue];
+         long s2 = [[plistData objectForKey:@"score2"] integerValue];
+         long s3 = [[plistData objectForKey:@"score3"] integerValue];
+         NSLog(@"s1:%ld,s2:%ld,s3:%ld",s1,s2,s3); */
         [insaneBus removeFromParent];
         [self gameEnds];
     }
-
+    
 }
 
 
@@ -1630,7 +1477,7 @@
 #pragma mark Gyro Configuration
 
 -(void)gyroConfiguration{
-
+    
     CMDeviceMotion *currentDeviceMotion= motionManager.deviceMotion;
     CMAttitude *currentAttitude= currentDeviceMotion.attitude;
     // [label setString: [NSString stringWithFormat:@"%.02f", currentAttitude.roll]];
@@ -1716,8 +1563,8 @@
     
     
     ///////////////////////////////////////This is used to control the gyro////////////////////////
-
-
+    
+    
 }
 
 

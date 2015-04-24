@@ -10,6 +10,8 @@
 
 @interface ObjectOnRoad : CCSprite
 @property NSInteger type;
+- (id)initWithType:(NSInteger) type;
+
 /*
  type 1     trophy
  type 2     horizontal bus
