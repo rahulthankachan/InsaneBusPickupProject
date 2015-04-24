@@ -184,10 +184,10 @@ static NSMutableArray *patternA;
             newCar.physicsBody.collisionGroup = @"notColliding";
             newCar.scale=0.3;
             if (i%2 == 1) {
-                newCar.position=ccp(xcoord + 40,920+i*50);
+                newCar.position=ccp(xcoord + 40,1120+i*50*1.2);
 
             } else {
-                newCar.position=ccp(xcoord,920+i*50);
+                newCar.position=ccp(xcoord,1120+i*50);
 
             }
             newCar.type=1;

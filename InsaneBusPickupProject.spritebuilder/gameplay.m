@@ -212,7 +212,7 @@
 
     
     physicsNode.collisionDelegate=self;
-    physicsNode.debugDraw=YES;
+    //physicsNode.debugDraw=YES;
     bus.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0,0, bus.contentSize.width-5, bus.contentSize.height) cornerRadius:0];
     bus.physicsBody.type = CCPhysicsBodyTypeStatic;
     bus.physicsBody.mass=1;
@@ -610,46 +610,83 @@
             }
         }
        
-        
-        /*
-        if (car2created) {
-            [progressTimer setPercentage:80];
+        if (distance % 5 == 4) {
+            CrazyCarsTaxis *car1 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+            CrazyCarsTaxis *car2 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+            CrazyCarsTaxis *car3 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
+            car1.type = 3;
+            car2.type = 3;
+            car3.type = 3;
+            car1.scale = 0.3;
+            car2.scale = 0.3;
 
-        } else {
-            [progressTimer setPercentage:100];
+            car3.scale = 0.3;
+            num = foo4random();
+            xcoord = minimum + (num % div);
+            car1.position = ccp(xcoord, window.height + car1.contentSize.height);
+            car2.position = ccp(xcoord + 40, window.height + car1.contentSize.height);
+            car3.position = ccp(xcoord + 40*2, window.height + car1.contentSize.height);
 
+            if (car1) {
+                car1.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,car1.contentSize.width, car1.contentSize.height) cornerRadius:0];
+                car1.physicsBody.density=0.1;
+                car1.physicsBody.collisionGroup = @"notColliding";
+                car1.physicsBody.collisionType=@"level";
+                [physicsNode addChild:car1];
+                [_cars addObject:car1];
+
+            }
+            if (car2) {
+                car2.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,car2.contentSize.width, car2.contentSize.height) cornerRadius:0];
+                car2.physicsBody.density=0.1;
+                car2.physicsBody.collisionGroup = @"notColliding";
+                car2.physicsBody.collisionType=@"level";
+                [physicsNode addChild:car2];
+                [_cars addObject:car2];
+                
+            }
+            if (car3) {
+                car3.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,car3.contentSize.width, car3.contentSize.height) cornerRadius:0];
+                car3.physicsBody.density=0.1;
+                car3.physicsBody.collisionGroup = @"notColliding";
+                car3.physicsBody.collisionType=@"level";
+                [physicsNode addChild:car3];
+                [_cars addObject:car3];
+                
+            }
+            
         }
-         */
         
         
         
         if(newCar){
-        newCar.scale=0.3;
-        num=foo4random();
-        xcoord=minimum+(num%div);
-        //newCar.position=ccp(xcoord,620);
-        //newStudent.position=ccp(xcoord,500);
-       // [self addChild:newCar];
-        newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
-        newCar.physicsBody.density=0.1;
+            newCar.scale=0.3;
+            num=foo4random();
+            xcoord=minimum+(num%div);
+            //newCar.position=ccp(xcoord,620);
+            //newStudent.position=ccp(xcoord,500);
+            // [self addChild:newCar];
+            newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+            newCar.physicsBody.density=0.1;
             
             newCar.physicsBody.collisionGroup = @"notColliding";
             
-      //  coin.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,coin.contentSize.width, coin.contentSize.height) cornerRadius:0];
-     //   coin.physicsBody.density=0.1;
-
-        newCar.physicsBody.collisionType=@"level";
-       // newCar.physicsBody.collisionGroup=@"cheat";
-      
+            //  coin.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,coin.contentSize.width, coin.contentSize.height) cornerRadius:0];
+            //   coin.physicsBody.density=0.1;
+            
+            newCar.physicsBody.collisionType=@"level";
+            // newCar.physicsBody.collisionGroup=@"cheat";
             
             
-        [physicsNode addChild:newCar];
-        [_cars addObject:newCar];
             
-
+            [physicsNode addChild:newCar];
+            [_cars addObject:newCar];
+            
+            
             count++;
-        
+            
         }
+        
         // Then reset the timer.
 //        //moving the cars left and right, without their positions being fixed.. don by varsha
 //        BOOL genPos = CCRANDOM_0_1()>=0.5?YES:NO;
