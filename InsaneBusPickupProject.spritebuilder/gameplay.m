@@ -128,8 +128,11 @@
     int nLevel = [[[NSUserDefaults standardUserDefaults] objectForKey:@"levelSelected"] intValue];
     NSLog(@"Level selected %d", nLevel);
     
-    currentLevelInfo= [GameLevel sendLevelObjectForLevel:nLevel];
+
+    currentLevelInfo= [GameLevel sendLevelObjectForLevel:1];
     _maxStudentNum = currentLevelInfo.maxDistance;
+    
+
     level=currentLevelInfo.levelNumber;
   //  level = 1;
     totalBumps=5;
@@ -257,11 +260,11 @@
     
 
     //add the first student as a child of MainScene
-    //[self addChild:_student0];
-    _student0.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,_student0.contentSize.width, _student0.contentSize.height) cornerRadius:0];;
-    _student0.physicsBody.collisionType= @"student";
-    _student0.physicsBody.type=CCPhysicsBodyTypeStatic;
-    [physicsNode addChild:_student0];
+//    [self addChild:_student0];
+//    _student0.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,_student0.contentSize.width, _student0.contentSize.height) cornerRadius:0];;
+//    _student0.physicsBody.collisionType= @"student";
+//    _student0.physicsBody.type=CCPhysicsBodyTypeStatic;
+//    [physicsNode addChild:_student0];
     
     
     motionManager= [[CMMotionManager alloc]init];

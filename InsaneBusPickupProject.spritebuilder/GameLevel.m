@@ -32,14 +32,22 @@ static NSMutableArray *patternA;
 +(GameLevel*)sendLevelObjectForLevel: (NSInteger) userLevel{
     
     
+    NSUserDefaults *defaults= [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *currentUsedata= [[NSMutableDictionary alloc]initWithDictionary:[defaults objectForKey:@"currentUserData"]];
     
-    switch (userLevel) {
+    //NSInteger maxLevel= [[currentUsedata objectForKey:@"maxReachedLevel"] integerValue];
+    NSInteger currentLevelNumber= [[currentUsedata objectForKey:@"currentLevel"] integerValue];
+    userLevel=currentLevelNumber;
+    
+    
+    
+    switch (currentLevelNumber) {
         case 1:
             currentLevel.currentGameLevel=currentLevel;
             currentLevel.maxCars=2;
             currentLevel.maxStudents=25;
-            currentLevel.maxDistance=1;
-            currentLevel.levelNumber=userLevel;
+            currentLevel.maxDistance=20;
+            currentLevel.levelNumber=currentLevelNumber;
             
             break;
             
@@ -47,8 +55,8 @@ static NSMutableArray *patternA;
             currentLevel.currentGameLevel=currentLevel;
             currentLevel.maxCars=5;
             currentLevel.maxStudents=10;
-            currentLevel.maxDistance=1;
-            currentLevel.levelNumber=userLevel;
+            currentLevel.maxDistance=20;
+            currentLevel.levelNumber=currentLevelNumber;
             
             break;
             
@@ -57,7 +65,7 @@ static NSMutableArray *patternA;
             currentLevel.maxCars=8;
             currentLevel.maxStudents=15;
             currentLevel.maxDistance=20;
-            currentLevel.levelNumber=userLevel;
+            currentLevel.levelNumber=currentLevelNumber;
             
             break;
             
@@ -66,7 +74,7 @@ static NSMutableArray *patternA;
             currentLevel.maxCars=12;
             currentLevel.maxStudents=20;
             currentLevel.maxDistance=25;
-            currentLevel.levelNumber=userLevel;
+            currentLevel.levelNumber=currentLevelNumber;
             
             break;
 
@@ -80,9 +88,10 @@ static NSMutableArray *patternA;
 
 
 +(NSMutableArray*)sendPatternForLevel: (NSInteger) userLevel{
+    
+    patternA= [[NSMutableArray alloc]init];
 
     if (userLevel == 1) {
-        patternA= [[NSMutableArray alloc]init];
         
         
         CrazyCarsTaxis * newCar;
@@ -130,14 +139,84 @@ static NSMutableArray *patternA;
         [patternA addObject:newCar];
         
         
-        return patternA;
     } else if (userLevel == 2) {
  
-        return patternA;
+        CrazyCarsTaxis * newCar;
+        
+        
+        NSInteger xcoord=180;
+        
+        
+        xcoord=120;
+        
+        for (int i=0; i<10; i++) {
+            newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+            newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+            newCar.physicsBody.density=0.1;
+            newCar.physicsBody.collisionGroup = @"notColliding";
+            newCar.scale=0.3;
+            if (i%2 == 1) {
+                newCar.position=ccp(xcoord + 40,920+i*50);
+                
+            } else {
+                newCar.position=ccp(xcoord,920+i*50);
+                
+            }
+            newCar.type=1;
+            newCar.physicsBody.collisionType=@"level";
+            [patternA addObject:newCar];
+            
+        }
+        
     } else if (userLevel == 3) {
+        CrazyCarsTaxis * newCar;
+        
+        
+        NSInteger xcoord=180;
+        
+        
+        xcoord=120;
+        
+        for (int i=0; i<10; i++) {
+            newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+            newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+            newCar.physicsBody.density=0.1;
+            newCar.physicsBody.collisionGroup = @"notColliding";
+            newCar.scale=0.3;
+            if (i%2 == 1) {
+                newCar.position=ccp(xcoord + 40,920+i*50);
+
+            } else {
+                newCar.position=ccp(xcoord,920+i*50);
+
+            }
+            newCar.type=1;
+            newCar.physicsBody.collisionType=@"level";
+            [patternA addObject:newCar];
+            
+        }
+        
+        for (int i=0; i<10; i++) {
+            newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+            newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+            newCar.physicsBody.density=0.1;
+            newCar.physicsBody.collisionGroup = @"notColliding";
+            newCar.scale=0.3;
+            if (i%2 == 1) {
+                newCar.position=ccp(xcoord + 40,620+i*50);
+                
+            } else {
+                newCar.position=ccp(xcoord,620+i*50);
+                
+            }
+            newCar.type=1;
+            newCar.physicsBody.collisionType=@"level";
+            [patternA addObject:newCar];
+            
+        }
+        
         
     } else if (userLevel == 4) {
-        patternA= [[NSMutableArray alloc]init];
         
         
         CrazyCarsTaxis * newCar;
@@ -192,11 +271,10 @@ static NSMutableArray *patternA;
         }
         
     } else {
-        patternA= [[NSMutableArray alloc]init];
-        return patternA;
+        
     }
    
-
+return patternA;
 }
 
 
