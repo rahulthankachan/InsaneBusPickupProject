@@ -17,5 +17,6 @@
  type 4     construction area
  type 5     flame
  type 6     pizza
+ type 7     gas refill
  */
 @end

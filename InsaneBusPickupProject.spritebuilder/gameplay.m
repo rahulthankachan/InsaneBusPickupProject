@@ -8,7 +8,7 @@
 #import "Header.h"
 #import "CrazyCarsTaxis.h"
 #import "HealthBar.h"
-
+#import "ObjectOnRoad.h"
 #import "CapacityOfBus.h"
 
 @implementation gameplay{
@@ -80,6 +80,10 @@
     ALBuffer* soundBufferHit;
     BOOL trafficComing;
     BOOL patternComing;
+    ObjectOnRoad *pizza;
+    ObjectOnRoad *gas;
+    ObjectOnRoad *roadBarrier;
+    ObjectOnRoad *timber;
     
     NSInteger capacityOfBus;
     NSInteger offsetVelocityOfCars;
@@ -609,6 +613,30 @@
                 count++;
             }
         }
+        
+        if (distance >= 1 & distance < 2) {
+            if (!pizza) {
+                pizza = [[ObjectOnRoad alloc] initWithImageNamed:@"pizza.png"];
+                pizza.scale = 0.06;
+                pizza.type = 6;
+                
+                num = foo4random();
+                xcoord = minimum + (num % div);
+                pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
+                pizza.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, pizza.contentSize.width, pizza.contentSize.height) cornerRadius:0];
+                pizza.physicsBody.collisionType = @"objectOnRoad";
+                pizza.physicsBody.collisionGroup = @"notColliding";
+                [physicsNode addChild:pizza];
+                
+            }
+        }
+        
+        
+        
+        if (pizza) {
+            pizza.position = ccp(pizza.position.x, pizza.position.y - roadVelocity);
+        }
+        
        
         if (distance % 5 == 4) {
             CrazyCarsTaxis *car1 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
@@ -1260,7 +1288,37 @@
 
 
 
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus objectOnRoad:(ObjectOnRoad*)objectOnRoad {
+    if (objectOnRoad) {
+        if (objectOnRoad.type == 1) {
+            
+        } else if (objectOnRoad.type == 2) {
+            
+        } else if (objectOnRoad.type == 3) {
+            
+        } else if (objectOnRoad.type == 4) {
+            
+        } else if (objectOnRoad.type == 5) {
+            
+        } else if (objectOnRoad.type == 6) {
+            
+            if (progressTimer.percentage <= 70) {
+                progressTimer.percentage += 30;
 
+            } else {
+                progressTimer.percentage = 100;
+            }
+            [[OALSimpleAudio sharedInstance] playEffect:@"power-up.wav" loop:NO];
+
+        } else if (objectOnRoad.type == 7) {
+            
+        }
+        [objectOnRoad removeFromParent];
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 
