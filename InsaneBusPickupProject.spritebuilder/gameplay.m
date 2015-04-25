@@ -381,7 +381,7 @@
                 xcoord = minimum + (num % div);
                 pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
                 
-                [physicsNode addChild:pizza];
+                [_physicsNode addChild:pizza];
                 
             }
         }
@@ -396,7 +396,7 @@
                 num = foo4random();
                 xcoord = minimum + (num % div);
                 gas.position = ccp(xcoord, window.height + gas.contentSize.height);
-                [physicsNode addChild:gas];
+                [_physicsNode addChild:gas];
                 
             }
         }
@@ -410,7 +410,7 @@
                 num = foo4random();
                 xcoord = minimum + (num % div);
                 roadBarrier.position = ccp(xcoord, window.height + roadBarrier.contentSize.height);
-                [physicsNode addChild:roadBarrier];
+                [_physicsNode addChild:roadBarrier];
                 
             }
         }
@@ -424,7 +424,7 @@
                 num = foo4random();
                 xcoord = minimum + (num % div);
                 timber.position = ccp(xcoord, window.height + timber.contentSize.height);
-                [physicsNode addChild:timber];
+                [_physicsNode addChild:timber];
                 
             }
         }
@@ -438,7 +438,7 @@
                 num = foo4random();
                 xcoord = minimum + (num % div);
                 horizontalBus.position = ccp(xcoord, window.height + horizontalBus.contentSize.height);
-                [physicsNode addChild:horizontalBus];
+                [_physicsNode addChild:horizontalBus];
                 
             }
         }
@@ -452,7 +452,7 @@
                 num = foo4random();
                 xcoord = minimum + (num % div);
                 grenade.position = ccp(xcoord, window.height + grenade.contentSize.height);
-                [physicsNode addChild:grenade];
+                [_physicsNode addChild:grenade];
                 
             }
         }
@@ -466,7 +466,7 @@
                 num = foo4random();
                 xcoord = minimum + (num % div);
                 powerUp.position = ccp(xcoord, window.height + powerUp.contentSize.height);
-                [physicsNode addChild:powerUp];
+                [_physicsNode addChild:powerUp];
                 
             }
         }
