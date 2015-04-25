@@ -181,8 +181,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>160</real>
-							<real>283</real>
+							<real>168.96392822265625</real>
+							<real>285</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -206,8 +206,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>1.1629805564880371</real>
+							<real>1.0987074375152588</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -264,7 +264,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Play</string>
+							<string>play</string>
 							<false/>
 						</array>
 					</dict>
@@ -277,6 +277,32 @@
 						<array>
 							<string></string>
 							<string>insanebusResources/button.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>backgroundColor|Normal</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.45825532078742981</real>
+							<real>0.41484349966049194</real>
+							<real>0.085135221481323242</real>
+							<real>1</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>labelColor|Normal</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>0.88398224115371704</real>
+							<real>0.3245815634727478</real>
+							<real>1</real>
 						</array>
 					</dict>
 					<dict>
@@ -347,7 +373,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Helvetica</string>
+						<string>Papyrus</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -356,7 +382,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -405,10 +431,10 @@
 						<string>Color4</string>
 						<key>value</key>
 						<array>
-							<real>255</real>
-							<real>255</real>
-							<real>255</real>
-							<real>255</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
 						</array>
 					</dict>
 					<dict>
@@ -1265,9 +1291,9 @@
 						<string>Color4</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
+							<real>0.34483239054679871</real>
+							<real>0.51767712831497192</real>
+							<real>0.25277826189994812</real>
 							<real>1</real>
 						</array>
 					</dict>

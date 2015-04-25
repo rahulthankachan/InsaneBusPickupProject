@@ -72,7 +72,7 @@
 						<key>value</key>
 						<array>
 							<real>0.0</real>
-							<real>0.0</real>
+							<real>-0.36557626724243164</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -146,6 +146,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -262,7 +264,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>BACK</string>
+							<string>BacK</string>
 							<false/>
 						</array>
 					</dict>
@@ -274,7 +276,33 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>insanebusResources/button.png</string>
+							<string>buttons-02@4x.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>backgroundColor|Normal</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>0.43637123703956604</real>
+							<real>0.11834067851305008</real>
+							<real>1</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>labelColor|Normal</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>0.84983676671981812</real>
+							<real>0.20691828429698944</real>
+							<real>1</real>
 						</array>
 					</dict>
 					<dict>
@@ -345,7 +373,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>AmericanTypewriter</string>
+						<string>Chalkduster</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -354,7 +382,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>

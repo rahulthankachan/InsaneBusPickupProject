@@ -15,5 +15,5 @@
     NSMutableArray *x;
 }
 - (NSMutableArray *)returnScoreBasedOnLevel: (NSInteger) level;
-
+- (void)setScores: (long)score andLevel:(int)level;
 @end

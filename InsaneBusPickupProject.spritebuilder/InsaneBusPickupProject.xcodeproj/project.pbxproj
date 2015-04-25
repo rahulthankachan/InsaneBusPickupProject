@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		01043C1A1AE6174600D352F8 /* gameEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 01043C191AE6174600D352F8 /* gameEnd.m */; };
 		01043C2E1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043C2D1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav */; };
-		01043C341AE6D70500D352F8 /* hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 01043C331AE6D70500D352F8 /* hit.mp3 */; };
 		01043C361AE6DBE400D352F8 /* boom-kick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043C351AE6DBE400D352F8 /* boom-kick.wav */; };
 		01043C451AE6EAC000D352F8 /* hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043C441AE6EAC000D352F8 /* hit.wav */; };
 		01043C511AE6FC3500D352F8 /* cha-ching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043C501AE6FC3500D352F8 /* cha-ching.wav */; };
 		01043C651AE7824C00D352F8 /* CapacityOfBus.m in Sources */ = {isa = PBXBuildFile; fileRef = 01043C641AE7824C00D352F8 /* CapacityOfBus.m */; };
 		01043C7C1AE79A9B00D352F8 /* ObjectOnRoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 01043C7B1AE79A9B00D352F8 /* ObjectOnRoad.m */; };
+		01043CA91AEA25D700D352F8 /* power-up.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043CA81AEA25D700D352F8 /* power-up.wav */; };
+		01043CAD1AEA2D5500D352F8 /* engine-start.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043CAC1AEA2D5500D352F8 /* engine-start.wav */; };
+		01043CAF1AEAE21800D352F8 /* bomb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043CAE1AEAE21800D352F8 /* bomb.wav */; };
+		01043CB11AEAE57700D352F8 /* wood-sword-fall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043CB01AEAE57700D352F8 /* wood-sword-fall.wav */; };
+		01043CB31AEB1D3400D352F8 /* car-crash.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043CB21AEB1D3400D352F8 /* car-crash.wav */; };
 		010C41091ADBADB300273945 /* carimage2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 010C41081ADBADB300273945 /* carimage2.xcassets */; };
 		011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 011258EE1AA790B100BFFAA0 /* GamePlayScene.m */; };
 		01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01235B261AD32FBD0092AFDF /* SampleList.plist */; };
@@ -25,6 +29,8 @@
 		2E25F7C01AE77ED20038466C /* EndlevelCCB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E25F7BF1AE77ED20038466C /* EndlevelCCB.m */; };
 		2E4918B71AAAF5AB00ADA502 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */; };
 		2EC6732C1ADCAE27007E236A /* CrazyCarsTaxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6732B1ADCAE27007E236A /* CrazyCarsTaxis.m */; };
+		3F22C98C1AEBB713000F0B27 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F22C98B1AEBB713000F0B27 /* Default-568h@2x.png */; };
+		3F22C98E1AEBB718000F0B27 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F22C98D1AEBB718000F0B27 /* default.png */; };
 		3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57DAFD1AD7C20400FACC78 /* gameplay.m */; };
 		3F6212DE1AE8D4690013CC8E /* RetrieveScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6212DD1AE8D4690013CC8E /* RetrieveScores.m */; };
 		3F7374271AE4E858006BBCFB /* GameData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F7374261AE4E858006BBCFB /* GameData.plist */; };
@@ -45,9 +51,7 @@
 		B71F5919188484E7003F4D28 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F590F188484E7003F4D28 /* Settings.png */; };
 		B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5910188484E7003F4D28 /* Settings@2x.png */; };
 		B737893B180761570076A88C /* Published-iOS in Resources */ = {isa = PBXBuildFile; fileRef = B737893A180761570076A88C /* Published-iOS */; };
-		B7378975180762440076A88C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896B180762440076A88C /* Default-568h@2x.png */; };
 		B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896C180762440076A88C /* Default-Landscape~ipad.png */; };
-		B7378977180762440076A88C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896D180762440076A88C /* Default.png */; };
 		B7378978180762440076A88C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896E180762440076A88C /* Default@2x.png */; };
 		B73789871807631A0076A88C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B73789851807631A0076A88C /* main.m */; };
 		B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3117B978D7009739AE /* QuartzCore.framework */; };
@@ -103,7 +107,6 @@
 		01043C181AE6174600D352F8 /* gameEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameEnd.h; sourceTree = "<group>"; };
 		01043C191AE6174600D352F8 /* gameEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameEnd.m; sourceTree = "<group>"; };
 		01043C2D1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DesertRace_22050Hz_Loop.wav; sourceTree = "<group>"; };
-		01043C331AE6D70500D352F8 /* hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit.mp3; sourceTree = "<group>"; };
 		01043C351AE6DBE400D352F8 /* boom-kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "boom-kick.wav"; sourceTree = "<group>"; };
 		01043C441AE6EAC000D352F8 /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit.wav; sourceTree = "<group>"; };
 		01043C501AE6FC3500D352F8 /* cha-ching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "cha-ching.wav"; sourceTree = "<group>"; };
@@ -111,6 +114,11 @@
 		01043C641AE7824C00D352F8 /* CapacityOfBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapacityOfBus.m; sourceTree = "<group>"; };
 		01043C7A1AE79A9B00D352F8 /* ObjectOnRoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectOnRoad.h; sourceTree = "<group>"; };
 		01043C7B1AE79A9B00D352F8 /* ObjectOnRoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectOnRoad.m; sourceTree = "<group>"; };
+		01043CA81AEA25D700D352F8 /* power-up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "power-up.wav"; sourceTree = "<group>"; };
+		01043CAC1AEA2D5500D352F8 /* engine-start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "engine-start.wav"; sourceTree = "<group>"; };
+		01043CAE1AEAE21800D352F8 /* bomb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bomb.wav; sourceTree = "<group>"; };
+		01043CB01AEAE57700D352F8 /* wood-sword-fall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "wood-sword-fall.wav"; sourceTree = "<group>"; };
+		01043CB21AEB1D3400D352F8 /* car-crash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "car-crash.wav"; sourceTree = "<group>"; };
 		010C41081ADBADB300273945 /* carimage2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = carimage2.xcassets; sourceTree = "<group>"; };
 		011258ED1AA7900A00BFFAA0 /* GamePlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayScene.h; sourceTree = "<group>"; };
 		011258EE1AA790B100BFFAA0 /* GamePlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlayScene.m; sourceTree = "<group>"; };
@@ -128,6 +136,8 @@
 		2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		2EC6732A1ADCAE27007E236A /* CrazyCarsTaxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrazyCarsTaxis.h; sourceTree = "<group>"; };
 		2EC6732B1ADCAE27007E236A /* CrazyCarsTaxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrazyCarsTaxis.m; sourceTree = "<group>"; };
+		3F22C98B1AEBB713000F0B27 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../../../../Downloads/Default-568h@2x.png"; sourceTree = "<group>"; };
+		3F22C98D1AEBB718000F0B27 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = ../../../../../Downloads/default.png; sourceTree = "<group>"; };
 		3F57DAFC1AD7C20400FACC78 /* gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameplay.h; sourceTree = "<group>"; };
 		3F57DAFD1AD7C20400FACC78 /* gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameplay.m; sourceTree = "<group>"; };
 		3F6212DC1AE8D4690013CC8E /* RetrieveScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrieveScores.h; sourceTree = "<group>"; };
@@ -173,9 +183,7 @@
 		B737893D1807617C0076A88C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/Platforms/iOS/AppDelegate.h; sourceTree = "<group>"; };
 		B737893E1807617C0076A88C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/Platforms/iOS/AppDelegate.m; sourceTree = "<group>"; };
 		B7378940180761A80076A88C /* cocos2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d.xcodeproj; path = "Source/libs/cocos2d-iphone/cocos2d.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		B737896B180762440076A88C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Source/Resources/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		B737896C180762440076A88C /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Source/Resources/Default-Landscape~ipad.png"; sourceTree = SOURCE_ROOT; };
-		B737896D180762440076A88C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Source/Resources/Default.png; sourceTree = SOURCE_ROOT; };
 		B737896E180762440076A88C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Source/Resources/Default@2x.png"; sourceTree = SOURCE_ROOT; };
 		B73789851807631A0076A88C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/Platforms/iOS/main.m; sourceTree = SOURCE_ROOT; };
 		B73789861807631A0076A88C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = Source/Prefix.pch; sourceTree = SOURCE_ROOT; };
@@ -229,8 +237,12 @@
 			children = (
 				01043C441AE6EAC000D352F8 /* hit.wav */,
 				01043C501AE6FC3500D352F8 /* cha-ching.wav */,
+				01043CB21AEB1D3400D352F8 /* car-crash.wav */,
 				01043C351AE6DBE400D352F8 /* boom-kick.wav */,
-				01043C331AE6D70500D352F8 /* hit.mp3 */,
+				01043CB01AEAE57700D352F8 /* wood-sword-fall.wav */,
+				01043CAE1AEAE21800D352F8 /* bomb.wav */,
+				01043CA81AEA25D700D352F8 /* power-up.wav */,
+				01043CAC1AEA2D5500D352F8 /* engine-start.wav */,
 				01043C2D1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav */,
 				010C41081ADBADB300273945 /* carimage2.xcassets */,
 			);
@@ -446,12 +458,12 @@
 				B71F590B188484E7003F4D28 /* iPhone-old.png */,
 				B71F590C188484E7003F4D28 /* iPhone-old@2x.png */,
 				B71F590D188484E7003F4D28 /* iPhone.png */,
+				3F22C98B1AEBB713000F0B27 /* Default-568h@2x.png */,
 				B71F590E188484E7003F4D28 /* iPhone@2x.png */,
 				B71F590F188484E7003F4D28 /* Settings.png */,
+				3F22C98D1AEBB718000F0B27 /* default.png */,
 				B71F5910188484E7003F4D28 /* Settings@2x.png */,
-				B737896B180762440076A88C /* Default-568h@2x.png */,
 				B737896C180762440076A88C /* Default-Landscape~ipad.png */,
-				B737896D180762440076A88C /* Default.png */,
 				B737896E180762440076A88C /* Default@2x.png */,
 			);
 			name = Icons;
@@ -635,12 +647,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01043C341AE6D70500D352F8 /* hit.mp3 in Resources */,
 				01043C2E1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav in Resources */,
 				01043C451AE6EAC000D352F8 /* hit.wav in Resources */,
+				3F22C98E1AEBB718000F0B27 /* default.png in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				01ED05A91ACB56A600033567 /* Info.plist in Resources */,
+				3F22C98C1AEBB713000F0B27 /* Default-568h@2x.png in Resources */,
+				01043CB31AEB1D3400D352F8 /* car-crash.wav in Resources */,
 				01043C361AE6DBE400D352F8 /* boom-kick.wav in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				3F7374271AE4E858006BBCFB /* GameData.plist in Resources */,
@@ -652,12 +666,14 @@
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
+				01043CAD1AEA2D5500D352F8 /* engine-start.wav in Resources */,
 				010C41091ADBADB300273945 /* carimage2.xcassets in Resources */,
 				01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */,
 				01043C511AE6FC3500D352F8 /* cha-ching.wav in Resources */,
-				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
+				01043CB11AEAE57700D352F8 /* wood-sword-fall.wav in Resources */,
+				01043CA91AEA25D700D352F8 /* power-up.wav in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
-				B7378977180762440076A88C /* Default.png in Resources */,
+				01043CAF1AEAE21800D352F8 /* bomb.wav in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
