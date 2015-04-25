@@ -228,8 +228,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>30</real>
+							<real>30</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -262,7 +262,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Back</string>
+							<string>BacK</string>
 							<false/>
 						</array>
 					</dict>
@@ -274,7 +274,33 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>insanebusResources/button.png</string>
+							<string>buttons-42@4x.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>backgroundColor|Normal</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.97448444366455078</real>
+							<real>1</real>
+							<real>0.96148669719696045</real>
+							<real>1</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>labelColor|Normal</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.58292442560195923</real>
+							<real>0.52941912412643433</real>
+							<real>1</real>
+							<real>1</real>
 						</array>
 					</dict>
 					<dict>
@@ -285,7 +311,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>insanebusResources/button_pressed.png</string>
+							<string>buttons-41@4x.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -295,8 +321,8 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.57700401544570923</real>
+							<real>0.5585625171661377</real>
 							<real>1</real>
 							<real>1</real>
 						</array>
@@ -345,7 +371,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>AmericanTypewriter</string>
+						<string>Chalkduster</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -354,7 +380,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -505,8 +531,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>162.599609375</real>
-							<real>490</real>
+							<real>164.75627136230469</real>
+							<real>488.36029052734375</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -726,7 +752,7 @@ Insane Bus Pickup			</string>
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>171</real>
+							<real>205</real>
 							<real>73</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -751,8 +777,8 @@ Insane Bus Pickup			</string>
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>6.7638020515441895</real>
-							<real>3.571331262588501</real>
+							<real>6.1253561973571777</real>
+							<real>3.3480908870697021</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -834,7 +860,7 @@ Insane Bus Pickup			</string>
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>226</real>
+							<real>248.49989318847656</real>
 							<real>73</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -859,8 +885,8 @@ Insane Bus Pickup			</string>
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>4.595911979675293</real>
-							<real>3.6178698539733887</real>
+							<real>3.9641306400299072</real>
+							<real>3.4907772541046143</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -942,7 +968,7 @@ Insane Bus Pickup			</string>
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>287</real>
+							<real>294</real>
 							<real>73</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -967,8 +993,8 @@ Insane Bus Pickup			</string>
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>4.1153044700622559</real>
-							<real>3.3523900508880615</real>
+							<real>3.6192200183868408</real>
+							<real>3.4643192291259766</real>
 							<false/>
 							<integer>0</integer>
 						</array>

@@ -619,7 +619,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>142</real>
+							<real>154</real>
 							<real>491</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -667,7 +667,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Helvetica-Light</string>
+						<string>Copperplate-Bold</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -839,7 +839,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>143</real>
+							<real>162</real>
 							<real>386</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -887,7 +887,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Helvetica-Light</string>
+						<string>Copperplate-Bold</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1059,8 +1059,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>63</real>
-							<real>273.5</real>
+							<real>162</real>
+							<real>276.5</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1107,7 +1107,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Helvetica-Light</string>
+						<string>Copperplate-Bold</string>
 					</dict>
 					<dict>
 						<key>name</key>

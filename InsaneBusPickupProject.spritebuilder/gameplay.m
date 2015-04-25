@@ -43,6 +43,7 @@
     CCLabelTTF *scorelabel1;
     CGSize window;
     CCButton *retry;
+    CCButton *menubutton;
     
     
     //variables for students
@@ -99,6 +100,12 @@
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
      [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
     [[CCDirector sharedDirector] replaceScene:gameplayscene];
+}
+
+- (void)menubutton {
+    CCScene *mainscene = [CCBReader loadAsScene:@"MainScene"];
+    [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+    [[CCDirector sharedDirector] replaceScene:mainscene];
 }
 
 -(id)init {
@@ -1610,28 +1617,6 @@
 
 - (BOOL)checkIfBusIsDead {
     if (progressTimer.percentage <= 0) {
-        NSString *listPath;
-        NSMutableDictionary *plistData;
-        // long x[3];
-        listPath = [[self docsDir]stringByAppendingPathComponent:@"GameData.plist"];
-        if(![[NSFileManager defaultManager]fileExistsAtPath:listPath]) {
-            [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle]pathForResource:@"GameData" ofType:@"plist"] toPath:listPath error:nil];
-        }
-        plistData = [NSMutableDictionary dictionaryWithContentsOfFile:listPath];
-        long s1 = [[plistData objectForKey:@"score1"] integerValue];
-        long s2 = [[plistData objectForKey:@"score2"] integerValue];
-        long s3 = [[plistData objectForKey:@"score3"] integerValue];
-        
-        long s4 = [[plistData objectForKey:@"score4"] integerValue];
-        long s5 = [[plistData objectForKey:@"score5"] integerValue];
-        long s6 = [[plistData objectForKey:@"score6"] integerValue];
-        long s7 = [[plistData objectForKey:@"score7"] integerValue];
-        long s8 = [[plistData objectForKey:@"score8"] integerValue];
-        long s9 = [[plistData objectForKey:@"score9"] integerValue];
-        long s10 = [[plistData objectForKey:@"score10"] integerValue];
-        long s11 = [[plistData objectForKey:@"score11"] integerValue];
-        long s12 = [[plistData objectForKey:@"score12"] integerValue];
-        NSLog(@"s1:%ld,s2:%ld,s3:%ld,s4:%ld,s5:%ld,s6:%ld,s7:%ld,s8:%ld,s9:%ld,s10:%ld,s11:%ld,s12:%ld",s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12);
         [bus removeFromParent];
         [self gameEnds];
         return true;
