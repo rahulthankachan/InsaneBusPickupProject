@@ -85,6 +85,7 @@
     ObjectOnRoad *roadBarrier;
     ObjectOnRoad *timber;
     
+    
     NSInteger capacityOfBus;
     NSInteger offsetVelocityOfCars;
     CGFloat baseRoadVelocity;
@@ -203,8 +204,8 @@
     // label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     bus = [[CCSprite alloc] initWithImageNamed:@"bus.png"];
     //bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
-    scoreLabel =[[CCLabelTTF alloc]initWithString:@"Score: 0" fontName:@"Hello" fontSize:15];
-    distLabel =[[CCLabelTTF alloc]initWithString:@"Dist: 0" fontName:@"Hello" fontSize:15];
+    scoreLabel =[[CCLabelTTF alloc]initWithString:@"Students: 0" fontName:@"Hello" fontSize:15];
+    distLabel =[[CCLabelTTF alloc]initWithString:@"Distance: 0" fontName:@"Hello" fontSize:15];
     scoreLabel.position= ccp(windowSize.width-50,windowSize.height-10);
     distLabel.position= ccp(windowSize.width-50,windowSize.height-35);
     bus.position=ccp(windowSize.width/2, 90);
@@ -321,7 +322,7 @@
             //  score = score + 300;
             // totalTime = 0;
             distance = distance + 1;
-            [distLabel setString:[NSString stringWithFormat:@"Dist: %d",distance]];
+            [distLabel setString:[NSString stringWithFormat:@"Distance: %d",distance]];
             count = 0;
         }
         if(totalTime == 240)
@@ -330,7 +331,7 @@
             //score=score+1;
             totalTime = 0;
         }
-        [scoreLabel setString:[NSString stringWithFormat:@"Score: %ld/%ld", score, capacityOfBus]];
+        [scoreLabel setString:[NSString stringWithFormat:@"Students: %ld/%ld", score, capacityOfBus]];
         
         
         
@@ -588,7 +589,7 @@
                         
                     }
                 }
-                
+   /*
                 if (distance >= 1 & distance < 2) {
                     if (!pizza) {
                         pizza = [[ObjectOnRoad alloc] initWithImageNamed:@"pizza.png"];
@@ -601,6 +602,18 @@
                         pizza.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, pizza.contentSize.width, pizza.contentSize.height) cornerRadius:0];
                         pizza.physicsBody.collisionType = @"objectOnRoad";
                         pizza.physicsBody.collisionGroup = @"notColliding";
+                        [physicsNode addChild:pizza];
+                        
+                    }
+                }
+     */
+                if (distance >= 1 & distance < 2) {
+                    if (!pizza) {
+                        pizza = [[ObjectOnRoad alloc] initWithType:6 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
+                        
                         [physicsNode addChild:pizza];
                         
                     }
@@ -629,10 +642,10 @@
        */
                 if (distance >= 3 & distance < 4) {
                     if (!gas) {
-                        gas = [[ObjectOnRoad alloc] initWithType:7];
+                        gas = [[ObjectOnRoad alloc] initWithType:7 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
                         num = foo4random();
                         xcoord = minimum + (num % div);
-                        gas.position = ccp(xcoord, window.height + pizza.contentSize.height);
+                        gas.position = ccp(xcoord, window.height + gas.contentSize.height);
                         [physicsNode addChild:gas];
 
                     }
@@ -641,6 +654,33 @@
                     gas.position = ccp(gas.position.x, gas.position.y - roadVelocity);
                 }
                 
+                if (distance >= 5 & distance < 6) {
+                    if (!roadBarrier) {
+                        roadBarrier = [[ObjectOnRoad alloc] initWithType:3 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        roadBarrier.position = ccp(xcoord, window.height + roadBarrier.contentSize.height);
+                        [physicsNode addChild:roadBarrier];
+                        
+                    }
+                }
+                if (roadBarrier) {
+                    roadBarrier.position = ccp(roadBarrier.position.x, roadBarrier.position.y - roadVelocity);
+                }
+                
+                if (distance >= 5 & distance < 6) {
+                    if (!timber) {
+                        timber = [[ObjectOnRoad alloc] initWithType:8 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        timber.position = ccp(xcoord, window.height + timber.contentSize.height);
+                        [physicsNode addChild:timber];
+                        
+                    }
+                }
+                if (timber) {
+                    timber.position = ccp(timber.position.x, timber.position.y - roadVelocity);
+                }
                 
                 if (distance % 5 == 4) {
                     CrazyCarsTaxis *car1 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
@@ -1136,7 +1176,9 @@
         } else if (objectOnRoad.type == 2) {
             
         } else if (objectOnRoad.type == 3) {
-            
+            progressTimer.percentage -= 30;
+            [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
+
         } else if (objectOnRoad.type == 4) {
             
         } else if (objectOnRoad.type == 5) {
@@ -1149,7 +1191,7 @@
             } else {
                 progressTimer.percentage = 100;
             }
-            [[OALSimpleAudio sharedInstance] playEffect:@"power-up.wav" loop:NO];
+            [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
             
         } else if (objectOnRoad.type == 7) {
             if (progressTimer.percentage <= 50) {
@@ -1158,7 +1200,10 @@
             } else {
                 progressTimer.percentage = 100;
             }
-            [[OALSimpleAudio sharedInstance] playEffect:@"engine-start.wav" loop:NO];
+            [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
+        } else if (objectOnRoad.type == 8) {
+            progressTimer.percentage -= 20;
+            [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
         }
         [objectOnRoad removeFromParent];
         return true;
