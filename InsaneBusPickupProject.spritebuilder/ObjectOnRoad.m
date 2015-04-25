@@ -18,6 +18,8 @@
  type 6     pizza
  type 7     gas refill
  type 8     timber
+ type 9     grenade
+ type 10    powerUp
  */
 
 - (id)initWithType:(NSInteger) type withCollisionType:(NSString *) collisionType andCollisionGroup:(NSString *) collisionGroup
@@ -63,7 +65,7 @@
             if (self) {
                 self.type = 6;
                 self.scale = 0.06;
-                self.soundEffect = @"power-up.wav";
+                self.soundEffect = @"ting.wav";
                 self.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, self.contentSize.width, self.contentSize.height) cornerRadius:0];
                 self.physicsBody.collisionType = collisionType;
                 self.physicsBody.collisionGroup = collisionGroup;
@@ -92,6 +94,26 @@
                 self.physicsBody.collisionType = collisionType;
                 self.physicsBody.collisionGroup = collisionGroup;
 
+            }
+        } else if (type == 9) {
+            self = [super initWithImageNamed:@"grenade_PNG1351.png"];
+            if (self) {
+                self.type = 9;
+                self.scale = 0.01;
+                self.soundEffect = @"grenade.wav";
+                self.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, self.contentSize.width, self.contentSize.height) cornerRadius:0];
+                self.physicsBody.collisionType = collisionType;
+                self.physicsBody.collisionGroup = collisionGroup;
+            }
+        } else if (type == 10) {
+            self = [super initWithImageNamed:@"powerupHeart.png"];
+            if (self) {
+                self.type = 10;
+                self.scale = 0.15;
+                self.soundEffect = @"power-up.wav";
+                self.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, self.contentSize.width, self.contentSize.height) cornerRadius:0];
+                self.physicsBody.collisionType = collisionType;
+                self.physicsBody.collisionGroup = collisionGroup;
             }
         }
     

@@ -85,6 +85,8 @@
     ObjectOnRoad *roadBarrier;
     ObjectOnRoad *timber;
     ObjectOnRoad *horizontalBus;
+    ObjectOnRoad *grenade;
+    ObjectOnRoad *powerUp;
     
     
     NSInteger capacityOfBus;
@@ -664,6 +666,34 @@
                     horizontalBus.position = ccp(horizontalBus.position.x, horizontalBus.position.y - roadVelocity);
                 }
                 
+                if (distance >= 5 & distance < 6) {
+                    if (!grenade) {
+                        grenade = [[ObjectOnRoad alloc] initWithType:9 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        grenade.position = ccp(xcoord, window.height + grenade.contentSize.height);
+                        [physicsNode addChild:grenade];
+                        
+                    }
+                }
+                if (grenade) {
+                    grenade.position = ccp(grenade.position.x, grenade.position.y - roadVelocity);
+                }
+                
+                if (distance >= 5 & distance < 6) {
+                    if (!powerUp) {
+                        powerUp = [[ObjectOnRoad alloc] initWithType:10 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        powerUp.position = ccp(xcoord, window.height + powerUp.contentSize.height);
+                        [physicsNode addChild:powerUp];
+                        
+                    }
+                }
+                if (powerUp) {
+                    powerUp.position = ccp(powerUp.position.x, powerUp.position.y - roadVelocity);
+                }
+                
                 if (distance % 5 == 4) {
                     CrazyCarsTaxis *car1 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
                     CrazyCarsTaxis *car2 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
@@ -1188,6 +1218,27 @@
         } else if (objectOnRoad.type == 8) {
             progressTimer.percentage -= 20;
             [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
+        } else if (objectOnRoad.type == 9) {
+            [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
+            for (CrazyCarsTaxis *car in _cars) {
+                if (car.position.y < window.height && car.position.y > 0) {
+                    [car removeFromParent];
+                }
+            }
+
+        } else if (objectOnRoad.type == 10) {
+            NSInteger increasing = 5;
+            capacityOfBus += increasing;
+            CapacityOfBus *capacity = [CapacityOfBus alloc];
+            [capacity increaseCapacityOfBusBy:increasing];
+            
+            if (progressTimer.percentage <= 70) {
+                progressTimer.percentage += 30;
+            } else {
+                progressTimer.percentage = 100;
+            }
+            [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
+
         }
         [objectOnRoad removeFromParent];
         return true;
