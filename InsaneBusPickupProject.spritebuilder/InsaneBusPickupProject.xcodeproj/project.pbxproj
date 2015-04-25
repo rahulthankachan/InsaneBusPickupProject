@@ -23,14 +23,14 @@
 		01043CB71AEB262700D352F8 /* ting.wav in Resources */ = {isa = PBXBuildFile; fileRef = 01043CB61AEB262700D352F8 /* ting.wav */; };
 		010C41091ADBADB300273945 /* carimage2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 010C41081ADBADB300273945 /* carimage2.xcassets */; };
 		011258EF1AA790B100BFFAA0 /* GamePlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 011258EE1AA790B100BFFAA0 /* GamePlayScene.m */; };
+		011FBFC71AEC12870020243A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 011FBFC51AEC12870020243A /* Default-568h@2x.png */; };
+		011FBFC81AEC12870020243A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 011FBFC61AEC12870020243A /* Default.png */; };
 		01235B271AD32FBD0092AFDF /* SampleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01235B261AD32FBD0092AFDF /* SampleList.plist */; };
 		0133E8DB1ADEEC59000DCB2F /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0133E8DA1ADEEC59000DCB2F /* HealthBar.m */; };
 		01ED05A91ACB56A600033567 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01ED05A81ACB56A600033567 /* Info.plist */; };
 		2E094DE41AE33D5600590919 /* GameLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E094DE31AE33D5600590919 /* GameLevel.m */; };
 		2E094E111AE61AB000590919 /* FinalScoresScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E094E101AE61AB000590919 /* FinalScoresScene.m */; };
 		2E25F7C01AE77ED20038466C /* EndlevelCCB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E25F7BF1AE77ED20038466C /* EndlevelCCB.m */; };
-		2E3A21771AEC00EC00C9E616 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3A21751AEC00EC00C9E616 /* Default-568h@2x.png */; };
-		2E3A21781AEC00EC00C9E616 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3A21761AEC00EC00C9E616 /* Default.png */; };
 		2E4918B71AAAF5AB00ADA502 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */; };
 		2EC6732C1ADCAE27007E236A /* CrazyCarsTaxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6732B1ADCAE27007E236A /* CrazyCarsTaxis.m */; };
 		3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57DAFD1AD7C20400FACC78 /* gameplay.m */; };
@@ -126,6 +126,8 @@
 		010C41081ADBADB300273945 /* carimage2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = carimage2.xcassets; sourceTree = "<group>"; };
 		011258ED1AA7900A00BFFAA0 /* GamePlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayScene.h; sourceTree = "<group>"; };
 		011258EE1AA790B100BFFAA0 /* GamePlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlayScene.m; sourceTree = "<group>"; };
+		011FBFC51AEC12870020243A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		011FBFC61AEC12870020243A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		01235B261AD32FBD0092AFDF /* SampleList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SampleList.plist; sourceTree = "<group>"; };
 		0133E8D91ADEEC59000DCB2F /* HealthBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthBar.h; sourceTree = "<group>"; };
 		0133E8DA1ADEEC59000DCB2F /* HealthBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthBar.m; sourceTree = "<group>"; };
@@ -137,8 +139,6 @@
 		2E094E101AE61AB000590919 /* FinalScoresScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalScoresScene.m; sourceTree = "<group>"; };
 		2E25F7BE1AE77ED20038466C /* EndlevelCCB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndlevelCCB.h; sourceTree = "<group>"; };
 		2E25F7BF1AE77ED20038466C /* EndlevelCCB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndlevelCCB.m; sourceTree = "<group>"; };
-		2E3A21751AEC00EC00C9E616 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../../../dev-Branch1 2/InsaneBusPickupProject.spritebuilder/Source/Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
-		2E3A21761AEC00EC00C9E616 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "../../../../dev-Branch1 2/InsaneBusPickupProject.spritebuilder/Source/Resources/Default.png"; sourceTree = "<group>"; };
 		2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		2EC6732A1ADCAE27007E236A /* CrazyCarsTaxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrazyCarsTaxis.h; sourceTree = "<group>"; };
 		2EC6732B1ADCAE27007E236A /* CrazyCarsTaxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrazyCarsTaxis.m; sourceTree = "<group>"; };
@@ -466,8 +466,8 @@
 				B71F590D188484E7003F4D28 /* iPhone.png */,
 				B71F590E188484E7003F4D28 /* iPhone@2x.png */,
 				B71F590F188484E7003F4D28 /* Settings.png */,
-				2E3A21751AEC00EC00C9E616 /* Default-568h@2x.png */,
-				2E3A21761AEC00EC00C9E616 /* Default.png */,
+				011FBFC51AEC12870020243A /* Default-568h@2x.png */,
+				011FBFC61AEC12870020243A /* Default.png */,
 				B71F5910188484E7003F4D28 /* Settings@2x.png */,
 				B737896C180762440076A88C /* Default-Landscape~ipad.png */,
 				B737896E180762440076A88C /* Default@2x.png */,
@@ -656,10 +656,10 @@
 				01043CB71AEB262700D352F8 /* ting.wav in Resources */,
 				01043C2E1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav in Resources */,
 				01043C451AE6EAC000D352F8 /* hit.wav in Resources */,
+				011FBFC81AEC12870020243A /* Default.png in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				01ED05A91ACB56A600033567 /* Info.plist in Resources */,
-				2E3A21771AEC00EC00C9E616 /* Default-568h@2x.png in Resources */,
 				01043CB31AEB1D3400D352F8 /* car-crash.wav in Resources */,
 				01043CB51AEB217E00D352F8 /* grenade.wav in Resources */,
 				01043C361AE6DBE400D352F8 /* boom-kick.wav in Resources */,
@@ -670,9 +670,9 @@
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
+				011FBFC71AEC12870020243A /* Default-568h@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
-				2E3A21781AEC00EC00C9E616 /* Default.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				01043CAD1AEA2D5500D352F8 /* engine-start.wav in Resources */,
 				010C41091ADBADB300273945 /* carimage2.xcassets in Resources */,
