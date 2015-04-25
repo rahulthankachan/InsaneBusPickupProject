@@ -289,7 +289,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>48</real>
+							<real>30</real>
 							<real>0.0</real>
 							<integer>0</integer>
 							<integer>1</integer>
@@ -303,9 +303,9 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>224</real>
+							<real>260</real>
 							<real>568</real>
-							<integer>0</integer>
+							<integer>1</integer>
 							<integer>1</integer>
 						</array>
 					</dict>

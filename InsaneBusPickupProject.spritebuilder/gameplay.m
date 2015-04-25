@@ -1013,8 +1013,9 @@
         [self gyroConfiguration];
         
         
-        if (ccpAdd(bus.position, velocity).x>_physicsNode.position.x &&ccpAdd(bus.position, velocity).x<_physicsNode.contentSize.width) {
+        if (ccpAdd(bus.position, velocity).x>leftBound &&ccpAdd(bus.position, velocity).x<rightBound) {
             bus.position= ccpAdd(bus.position, velocity);
+            
         }
         
         
