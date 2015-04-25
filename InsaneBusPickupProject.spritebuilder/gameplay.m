@@ -699,7 +699,7 @@
                         num = foo4random();
                         xcoord = minimum + (num % div);
                         grenade.position = ccp(xcoord, window.height + grenade.contentSize.height);
-                        [physicsNode addChild:grenade];
+                        [_physicsNode addChild:grenade];
                         
                     }
                 }
@@ -713,7 +713,7 @@
                         num = foo4random();
                         xcoord = minimum + (num % div);
                         powerUp.position = ccp(xcoord, window.height + powerUp.contentSize.height);
-                        [physicsNode addChild:powerUp];
+                        [_physicsNode addChild:powerUp];
                         
                     }
                 }
