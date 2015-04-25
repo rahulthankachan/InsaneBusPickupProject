@@ -39,7 +39,7 @@
     CGFloat roadVelocity;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *distLabel;
-    CCLabelTTF *countdownLabel;
+    
     CCLabelTTF *scorelabel1;
     CGSize window;
     CCButton *retry;
@@ -52,7 +52,7 @@
     CCTime _timeSpan;
     NSMutableArray *_students;
     CCSprite *_student0;
-    int _maxStudentNum; //maximum number of _students
+
     CGFloat initStudentXLeft;
     CGFloat initStudentXRight;
     CGFloat initStudentY;
@@ -95,11 +95,21 @@
     NSInteger offsetVelocityOfCars;
     CGFloat baseRoadVelocity;
     CGFloat capRoadVelocity;
-    NSInteger level;
+
     NSInteger totalBumps;
     
+    
+    NSInteger level;
     NSInteger leftBound;
     NSInteger rightBound;
+    NSInteger _maxDistance;
+    NSInteger _maxStudentNum;
+    
+    
+    
+    CCLabelTTF *countdownLabelLeft;
+    CCLabelTTF *countdownLabelRigh;
+    CCLabelTTF *countdownLabel;
     
 }
 - (void)retry {
@@ -129,56 +139,50 @@
         
     }
     
-    //starting of the joystick by Frank
-    
-    if(self != nil)
-    {
-        // set this so we can register with touch dispatcher
-        
-        //isTouchEnabled = YES;
-        self.userInteractionEnabled = YES;
-        //joypad = [[CCSprite spriteWithImageNamed:@"Joystick"]];
-        _joypad.position = ccp(70, 70);
-        _joypad.opacity = 0;
-        
-    }
+
 #pragma mark init: Current Level Config
     
-    /* Configures the current Level*/
-    //addd by Stephen
-    //AppController * app = (AppController *)[UIApplication sharedApplication];
-    int nLevel = [[[NSUserDefaults standardUserDefaults] objectForKey:@"levelSelected"] intValue];
-    NSLog(@"Level selected %d", nLevel);
-    _physicsNode.contentSize= CGSizeMake(280, 580);
-    
-    
-    currentLevelInfo= [GameLevel sendLevelObjectForLevel:1];
-    _maxStudentNum = currentLevelInfo.maxDistance;
-    
-    
+    /* Configures the current Level*//* Configures the current Level*//* Configures the current Level*//* Configures the current Level*/
+    /* Configures the current Level*//* Configures the current Level*//* Configures the current Level*//* Configures the current Level*/
+    /* Configures the current Level*//* Configures the current Level*//* Configures the current Level*//* Configures the current Level*/
+
+    level = [[[NSUserDefaults standardUserDefaults] objectForKey:@"levelSelected"] intValue];
+    currentLevelInfo= [GameLevel sendLevelObjectForLevel:level];
+    _maxDistance= currentLevelInfo.maxDistance;
+    _maxStudentNum= currentLevelInfo.maxStudents;
     level=currentLevelInfo.levelNumber;
+    
+    
     //  level = 1;
+    
+    
+    
     totalBumps=5;
     
-    
-    /* Configures the current Level*/
+    /* Configures the current Level*//* Configures the current Level*//* Configures the current Level*//* Configures the current Level*/
+    /* Configures the current Level*//* Configures the current Level*//* Configures the current Level*//* Configures the current Level*/
     
     
     
     return self;
 }
-- (void)backbutton4 {
-    CCScene *mainscene = [CCBReader loadAsScene:@"MainScene"];
-    [[CCDirector sharedDirector] replaceScene:mainscene];
-}
 
+
+
+#pragma mark didLoadfromCCB
 - (void)didLoadFromCCB {
     
     
-    /* Will give the bounds of the physics node
+    /*Will give the bounds of the physics node
+
+     Will give the bounds of the physics node
      */
     leftBound= _physicsNode.position.x;
     rightBound=_physicsNode.contentSize.width;
+    
+    countdownLabelLeft = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
+    countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
+    [self addChild:countdownLabel];
     
     
     //initialize the sound effect
@@ -188,35 +192,14 @@
     
     CGSize windowSize= [[CCDirector sharedDirector] viewSize];
     
-    //_physicsNode.physicsBody=[CCPhysicsBody bodyWithRect:CGRectMake(0, 0,_physicsNode.contentSize.width+100, _physicsNode.contentSize.height) cornerRadius:0];
-    //_physicsNode.physicsBody.type = CCPhysicsBodyTypeStatic;
-    
-    
-    
-    
-    //this line is for test
-    //[[GamePlayScene alloc] updateScore:32];
-    
-    
-    //progressTimer = [[HealthBar alloc] initWithProgressTimerSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
-    //progressTimer = [HealthBar progressWithSprite:[[CCSprite alloc] initWithImageNamed:@"green_health_bar.png"]];
+
+
     progressTimer = [CCProgressNode progressWithSprite:[[CCSprite alloc] initWithImageNamed:@"heart-red.png"]];
-    //self.progressTimer.type = kCCProgressTimerTypeHorizontalBarLR;
     [progressTimer setScale:0.15];
     progressTimer.percentage = 100;
     progressTimer.position = ccp(50, windowSize.height - 50);
+    progressTimer.zOrder=10;
     [self addChild:progressTimer z:1];
-    
-    //   float delay = 1.0; // Number of seconds between each call of myTimedMethod:
-    //   CCTimer *myTimer = [[CCTimer alloc] initWithTarget:self selector:@selector(myTimedMethod:) interval:delay]];
-    
-    //  CCTimer *myTimer = [[CCTimer alloc] ]
-    
-    //Done by Yao Frank Fan
-    //this part is to create a thread to do a countdown before the student appears
-    
-    
-    
     
     
     NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selector(createStudent:) object:nil];
@@ -240,10 +223,7 @@
     distLabel.position= ccp(windowSize.width-50,windowSize.height-35);
     bus.position=ccp(windowSize.width/2, 90);
     
-    
-    countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
-    //countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 50);
-    [self addChild:countdownLabel];
+
     
     
     _physicsNode.collisionDelegate=self;
@@ -1135,32 +1115,39 @@
 
 
 
+#pragma mark createStudent
 
-//A thread to create a student, and before that to make a countdown
-//Not perfect yet, but it works
 - (void)createStudent:(CCTime) delta {
+    
     _createdFlag = true;
-    
     CGSize windowSize = [[CCDirector sharedDirector] viewSize];
-    
     BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
     
     if (posLeft == NO) {
-        countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 50);
+        countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 120);
+      
         
     } else {
         countdownLabel.position = ccp(100, windowSize.height - 50);
-        
+   
     }
     
-    //CCLabelTTF *countdownLabel;
+
     for (int i = 3; i != 0; --i) {
         //NSLog(@"You have %d seconds left.", i);
         [countdownLabel setString:[NSString stringWithFormat:@"%d", i]];
-        
         [NSThread sleepForTimeInterval:1.0f];
     }
-    [countdownLabel setString:@"Incomming"];
+    
+    if (posLeft == NO) {
+        [countdownLabel setString:@"Keep\nRight!"];
+        
+    } else {
+        [countdownLabel setString:@"Keep\nLeft!"];
+        
+    }
+    
+    
     
     int number= arc4random_uniform(11)+1;
     CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:[NSString stringWithFormat:@"character-%i.png",number]];
@@ -1678,5 +1665,11 @@
         return false;
     }
 }
+
+- (void)backbutton4 {
+    CCScene *mainscene = [CCBReader loadAsScene:@"MainScene"];
+    [[CCDirector sharedDirector] replaceScene:mainscene];
+}
+
 
 @end

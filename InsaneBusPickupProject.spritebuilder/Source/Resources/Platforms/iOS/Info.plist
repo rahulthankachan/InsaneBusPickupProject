@@ -2,46 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>highscore3</key>
-	<integer>0</integer>
-	<key>highscore2</key>
-	<integer>0</integer>
-	<key>highscore1</key>
-	<integer>0</integer>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>Settings</string>
-		<string>iPhone</string>
-		<string>iPhone-old</string>
-		<string>Icon.png</string>
-		<string>Icon@2x.png</string>
-		<string>Icon-72.png</string>
-		<string>Icon-Small-50.png</string>
-		<string>Icon-Small.png</string>
-		<string>Icon-Small@2x.png</string>
-	</array>
-	<key>CFBundleIconFiles~ipad</key>
-	<array>
-		<string>Settings</string>
-		<string>iPad</string>
-		<string>iPad-old</string>
-		<string>iPhone</string>
-		<string>iPhone-old</string>
-		<string>Icon.png</string>
-		<string>Icon@2x.png</string>
-		<string>Icon-72.png</string>
-		<string>Icon-Small-50.png</string>
-		<string>Icon-Small.png</string>
-		<string>Icon-Small@2x.png</string>
-	</array>
+	<key>CFBundleIcons</key>
+	<dict/>
 	<key>CFBundleIdentifier</key>
 	<string>edu.usc.gamepipe.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -78,5 +46,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>highscore1</key>
+	<integer>0</integer>
+	<key>highscore2</key>
+	<integer>0</integer>
+	<key>highscore3</key>
+	<integer>0</integer>
 </dict>
 </plist>
