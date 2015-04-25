@@ -12,7 +12,7 @@
 
 
 
-static int x;
+//static int x;
 static GameLevel *currentLevel;
 static NSMutableArray *patternA;
 

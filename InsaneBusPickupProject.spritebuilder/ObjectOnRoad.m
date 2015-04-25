@@ -29,9 +29,14 @@
 
             }
         } else if (type == 2) {
+            self = [super initWithImageNamed:@"schoolbus.png"];
             if (self) {
                 self.type = 2;
-
+                self.scale = 0.1;
+                self.soundEffect = @"car-crash.wav";
+                self.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, self.contentSize.width, self.contentSize.height) cornerRadius:0];
+                self.physicsBody.collisionType = collisionType;
+                self.physicsBody.collisionGroup = collisionGroup;
             }
         } else if (type == 3) {
             self = [super initWithImageNamed:@"road-barrier.png"];

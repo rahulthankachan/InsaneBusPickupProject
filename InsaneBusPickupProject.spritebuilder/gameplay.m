@@ -84,6 +84,7 @@
     ObjectOnRoad *gas;
     ObjectOnRoad *roadBarrier;
     ObjectOnRoad *timber;
+    ObjectOnRoad *horizontalBus;
     
     
     NSInteger capacityOfBus;
@@ -300,6 +301,7 @@
 
 - (void)update:(CCTime)delta
 {
+    [self checkIfBusIsDead];
     
     if (roadVelocity) {
         
@@ -589,24 +591,7 @@
                         
                     }
                 }
-   /*
-                if (distance >= 1 & distance < 2) {
-                    if (!pizza) {
-                        pizza = [[ObjectOnRoad alloc] initWithImageNamed:@"pizza.png"];
-                        pizza.scale = 0.06;
-                        pizza.type = 6;
-                        
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
-                        pizza.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, pizza.contentSize.width, pizza.contentSize.height) cornerRadius:0];
-                        pizza.physicsBody.collisionType = @"objectOnRoad";
-                        pizza.physicsBody.collisionGroup = @"notColliding";
-                        [physicsNode addChild:pizza];
-                        
-                    }
-                }
-     */
+
                 if (distance >= 1 & distance < 2) {
                     if (!pizza) {
                         pizza = [[ObjectOnRoad alloc] initWithType:6 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
@@ -622,24 +607,7 @@
                 if (pizza) {
                     pizza.position = ccp(pizza.position.x, pizza.position.y - roadVelocity);
                 }
-    /*
-                if (distance >= 3 & distance < 4) {
-                    if (!gas) {
-                        gas = [[ObjectOnRoad alloc] initWithImageNamed:@"gas-tank.png"];
-                        gas.scale = 0.06;
-                        gas.type = 7;
-                        
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        gas.position = ccp(xcoord, window.height + pizza.contentSize.height);
-                        gas.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, gas.contentSize.width, gas.contentSize.height) cornerRadius:0];
-                        gas.physicsBody.collisionType = @"objectOnRoad";
-                        gas.physicsBody.collisionGroup = @"notColliding";
-                        [physicsNode addChild:gas];
-                        
-                    }
-                }
-       */
+
                 if (distance >= 3 & distance < 4) {
                     if (!gas) {
                         gas = [[ObjectOnRoad alloc] initWithType:7 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
@@ -680,6 +648,20 @@
                 }
                 if (timber) {
                     timber.position = ccp(timber.position.x, timber.position.y - roadVelocity);
+                }
+                
+                if (distance >= 5 & distance < 6) {
+                    if (!horizontalBus) {
+                        horizontalBus = [[ObjectOnRoad alloc] initWithType:2 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                        num = foo4random();
+                        xcoord = minimum + (num % div);
+                        horizontalBus.position = ccp(xcoord, window.height + horizontalBus.contentSize.height);
+                        [physicsNode addChild:horizontalBus];
+                        
+                    }
+                }
+                if (horizontalBus) {
+                    horizontalBus.position = ccp(horizontalBus.position.x, horizontalBus.position.y - roadVelocity);
                 }
                 
                 if (distance % 5 == 4) {
@@ -1174,7 +1156,9 @@
         if (objectOnRoad.type == 1) {
             
         } else if (objectOnRoad.type == 2) {
-            
+            progressTimer.percentage -= 50;
+            [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
+
         } else if (objectOnRoad.type == 3) {
             progressTimer.percentage -= 30;
             [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
@@ -1244,7 +1228,7 @@
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSMutableDictionary *dataForScoreScreen = [[NSMutableDictionary alloc]init];
     [dataForScoreScreen setObject:[NSString stringWithFormat:@"%i",distance] forKey:@"distance"];
-    [dataForScoreScreen setObject:[NSString stringWithFormat:@"%i",score] forKey:@"students"];
+    [dataForScoreScreen setObject:[NSString stringWithFormat:@"%li",score] forKey:@"students"];
     
     
 #pragma mark Change this to actual trophy list
@@ -1454,8 +1438,6 @@
          long s2 = [[plistData objectForKey:@"score2"] integerValue];
          long s3 = [[plistData objectForKey:@"score3"] integerValue];
          NSLog(@"s1:%ld,s2:%ld,s3:%ld",s1,s2,s3); */
-        [insaneBus removeFromParent];
-        [self gameEnds];
     }
     
 }
@@ -1612,5 +1594,14 @@
     
 }
 
+- (BOOL)checkIfBusIsDead {
+    if (progressTimer.percentage <= 0) {
+        [bus removeFromParent];
+        [self gameEnds];
+        return true;
+    } else {
+        return false;
+    }
+}
 
 @end
