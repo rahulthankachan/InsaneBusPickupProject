@@ -29,10 +29,10 @@
 		2E094DE41AE33D5600590919 /* GameLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E094DE31AE33D5600590919 /* GameLevel.m */; };
 		2E094E111AE61AB000590919 /* FinalScoresScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E094E101AE61AB000590919 /* FinalScoresScene.m */; };
 		2E25F7C01AE77ED20038466C /* EndlevelCCB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E25F7BF1AE77ED20038466C /* EndlevelCCB.m */; };
+		2E3A21771AEC00EC00C9E616 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3A21751AEC00EC00C9E616 /* Default-568h@2x.png */; };
+		2E3A21781AEC00EC00C9E616 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3A21761AEC00EC00C9E616 /* Default.png */; };
 		2E4918B71AAAF5AB00ADA502 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */; };
 		2EC6732C1ADCAE27007E236A /* CrazyCarsTaxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6732B1ADCAE27007E236A /* CrazyCarsTaxis.m */; };
-		3F22C98C1AEBB713000F0B27 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F22C98B1AEBB713000F0B27 /* Default-568h@2x.png */; };
-		3F22C98E1AEBB718000F0B27 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F22C98D1AEBB718000F0B27 /* default.png */; };
 		3F57DAFE1AD7C20400FACC78 /* gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F57DAFD1AD7C20400FACC78 /* gameplay.m */; };
 		3F6212DE1AE8D4690013CC8E /* RetrieveScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6212DD1AE8D4690013CC8E /* RetrieveScores.m */; };
 		3F7374271AE4E858006BBCFB /* GameData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F7374261AE4E858006BBCFB /* GameData.plist */; };
@@ -137,11 +137,11 @@
 		2E094E101AE61AB000590919 /* FinalScoresScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalScoresScene.m; sourceTree = "<group>"; };
 		2E25F7BE1AE77ED20038466C /* EndlevelCCB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndlevelCCB.h; sourceTree = "<group>"; };
 		2E25F7BF1AE77ED20038466C /* EndlevelCCB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndlevelCCB.m; sourceTree = "<group>"; };
+		2E3A21751AEC00EC00C9E616 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../../../dev-Branch1 2/InsaneBusPickupProject.spritebuilder/Source/Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
+		2E3A21761AEC00EC00C9E616 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "../../../../dev-Branch1 2/InsaneBusPickupProject.spritebuilder/Source/Resources/Default.png"; sourceTree = "<group>"; };
 		2E4918B61AAAF5AB00ADA502 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		2EC6732A1ADCAE27007E236A /* CrazyCarsTaxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrazyCarsTaxis.h; sourceTree = "<group>"; };
 		2EC6732B1ADCAE27007E236A /* CrazyCarsTaxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrazyCarsTaxis.m; sourceTree = "<group>"; };
-		3F22C98B1AEBB713000F0B27 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../../../../Downloads/Default-568h@2x.png"; sourceTree = "<group>"; };
-		3F22C98D1AEBB718000F0B27 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = ../../../../../Downloads/default.png; sourceTree = "<group>"; };
 		3F57DAFC1AD7C20400FACC78 /* gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameplay.h; sourceTree = "<group>"; };
 		3F57DAFD1AD7C20400FACC78 /* gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameplay.m; sourceTree = "<group>"; };
 		3F6212DC1AE8D4690013CC8E /* RetrieveScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrieveScores.h; sourceTree = "<group>"; };
@@ -464,10 +464,10 @@
 				B71F590B188484E7003F4D28 /* iPhone-old.png */,
 				B71F590C188484E7003F4D28 /* iPhone-old@2x.png */,
 				B71F590D188484E7003F4D28 /* iPhone.png */,
-				3F22C98B1AEBB713000F0B27 /* Default-568h@2x.png */,
 				B71F590E188484E7003F4D28 /* iPhone@2x.png */,
 				B71F590F188484E7003F4D28 /* Settings.png */,
-				3F22C98D1AEBB718000F0B27 /* default.png */,
+				2E3A21751AEC00EC00C9E616 /* Default-568h@2x.png */,
+				2E3A21761AEC00EC00C9E616 /* Default.png */,
 				B71F5910188484E7003F4D28 /* Settings@2x.png */,
 				B737896C180762440076A88C /* Default-Landscape~ipad.png */,
 				B737896E180762440076A88C /* Default@2x.png */,
@@ -656,11 +656,10 @@
 				01043CB71AEB262700D352F8 /* ting.wav in Resources */,
 				01043C2E1AE6D4E700D352F8 /* DesertRace_22050Hz_Loop.wav in Resources */,
 				01043C451AE6EAC000D352F8 /* hit.wav in Resources */,
-				3F22C98E1AEBB718000F0B27 /* default.png in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				01ED05A91ACB56A600033567 /* Info.plist in Resources */,
-				3F22C98C1AEBB713000F0B27 /* Default-568h@2x.png in Resources */,
+				2E3A21771AEC00EC00C9E616 /* Default-568h@2x.png in Resources */,
 				01043CB31AEB1D3400D352F8 /* car-crash.wav in Resources */,
 				01043CB51AEB217E00D352F8 /* grenade.wav in Resources */,
 				01043C361AE6DBE400D352F8 /* boom-kick.wav in Resources */,
@@ -673,6 +672,7 @@
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
+				2E3A21781AEC00EC00C9E616 /* Default.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				01043CAD1AEA2D5500D352F8 /* engine-start.wav in Resources */,
 				010C41091ADBADB300273945 /* carimage2.xcassets in Resources */,
