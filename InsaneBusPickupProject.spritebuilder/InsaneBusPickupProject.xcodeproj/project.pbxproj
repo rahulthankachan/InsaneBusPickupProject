@@ -154,21 +154,17 @@
 		5B121015197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B12102E197484FA004C1E1D /* InsaneBusPickupProjectActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InsaneBusPickupProjectActivity.h; path = Source/Platforms/Android/InsaneBusPickupProjectActivity.h; sourceTree = "<group>"; };
 		5B12102F197484FA004C1E1D /* InsaneBusPickupProjectActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InsaneBusPickupProjectActivity.m; path = Source/Platforms/Android/InsaneBusPickupProjectActivity.m; sourceTree = "<group>"; };
-		5B121033197485FE004C1E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/Android/Info.plist; sourceTree = "<group>"; };
 		5B121034197485FE004C1E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/iOS/Info.plist; sourceTree = "<group>"; };
-		5BA4619E1974C88900785744 /* AndroidManifest.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = AndroidManifest.xml; path = Platforms/Android/AndroidManifest.xml; sourceTree = "<group>"; };
 		78013E811AE67A1B0062BAA2 /* GameFinScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameFinScene.h; sourceTree = "<group>"; };
 		78013E821AE67A1B0062BAA2 /* GameFinScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameFinScene.m; sourceTree = "<group>"; };
 		78013E941AE741FD0062BAA2 /* LevelSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelection.h; sourceTree = "<group>"; };
 		78013E951AE741FD0062BAA2 /* LevelSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelection.m; sourceTree = "<group>"; };
-		7A40360219DDEE84007B6E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/Mac/Info.plist; sourceTree = "<group>"; };
 		7A40360319DDEE84007B6E8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/Platforms/Mac/main.m; sourceTree = "<group>"; };
 		7A40360519DDEE84007B6E8F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/Platforms/Mac/AppDelegate.h; sourceTree = "<group>"; };
 		7A40360619DDEE84007B6E8F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Source/Platforms/Mac/AppDelegate.m; sourceTree = "<group>"; };
 		7A4036F419DE3FA8007B6E8F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		7A59493A19E37F9300F65F90 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		7A59493C19E37FB200F65F90 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
-		7A59498A19E38E4A00F65F90 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = Platforms/Mac/MainMenu.xib; sourceTree = "<group>"; };
 		7AFCD5DB19E9BD9F00BCCCDA /* cocos2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocos2d.h; path = "Source/libs/cocos2d-iphone/cocos2d/cocos2d.h"; sourceTree = "<group>"; };
 		7AFCD5DD19E9BDC200BCCCDA /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/Bridging-Header.h"; sourceTree = "<group>"; };
 		7BF6AF9F1A425F9800FFF9BA /* JavaFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaFoundation.framework; path = "../../../../../../../Library/SBAndroid/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaFoundation.framework"; sourceTree = "<group>"; };
@@ -356,8 +352,6 @@
 			isa = PBXGroup;
 			children = (
 				7A40366219DDF8CB007B6E8F /* iOS */,
-				7A40366319DDF8D4007B6E8F /* Android */,
-				7A40366419DDF8DB007B6E8F /* Mac */,
 			);
 			name = Platforms;
 			sourceTree = "<group>";
@@ -368,24 +362,6 @@
 				5B121034197485FE004C1E1D /* Info.plist */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		7A40366319DDF8D4007B6E8F /* Android */ = {
-			isa = PBXGroup;
-			children = (
-				5BA4619E1974C88900785744 /* AndroidManifest.xml */,
-				5B121033197485FE004C1E1D /* Info.plist */,
-			);
-			name = Android;
-			sourceTree = "<group>";
-		};
-		7A40366419DDF8DB007B6E8F /* Mac */ = {
-			isa = PBXGroup;
-			children = (
-				7A40360219DDEE84007B6E8F /* Info.plist */,
-				7A59498A19E38E4A00F65F90 /* MainMenu.xib */,
-			);
-			name = Mac;
 			sourceTree = "<group>";
 		};
 		7A9790F619E62E3F001FFC4D /* Products */ = {
