@@ -71,7 +71,7 @@
     
     
     
-    CCPhysicsNode *physicsNode;
+    CCPhysicsNode *_physicsNode;
     
     
     BOOL _createdFlag;
@@ -95,6 +95,10 @@
     CGFloat capRoadVelocity;
     NSInteger level;
     NSInteger totalBumps;
+    
+    NSInteger leftBound;
+    NSInteger rightBound;
+    
 }
 - (void)retry {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
@@ -143,6 +147,7 @@
     //AppController * app = (AppController *)[UIApplication sharedApplication];
     int nLevel = [[[NSUserDefaults standardUserDefaults] objectForKey:@"levelSelected"] intValue];
     NSLog(@"Level selected %d", nLevel);
+    _physicsNode.contentSize= CGSizeMake(280, 580);
     
     
     currentLevelInfo= [GameLevel sendLevelObjectForLevel:1];
@@ -168,12 +173,24 @@
 - (void)didLoadFromCCB {
     
     
+    /* Will give the bounds of the physics node
+     */
+    leftBound= _physicsNode.position.x;
+    rightBound=_physicsNode.contentSize.width;
+    
+    
     //initialize the sound effect
    
     buttonHitSoundEffect = @"boom-kick.wav";
     
     
     CGSize windowSize= [[CCDirector sharedDirector] viewSize];
+    
+    //_physicsNode.physicsBody=[CCPhysicsBody bodyWithRect:CGRectMake(0, 0,_physicsNode.contentSize.width+100, _physicsNode.contentSize.height) cornerRadius:0];
+    //_physicsNode.physicsBody.type = CCPhysicsBodyTypeStatic;
+    
+    
+    
     
     //this line is for test
     //[[GamePlayScene alloc] updateScore:32];
@@ -227,8 +244,8 @@
     [self addChild:countdownLabel];
     
     
-    physicsNode.collisionDelegate=self;
-    //physicsNode.debugDraw=YES;
+    _physicsNode.collisionDelegate=self;
+    _physicsNode.debugDraw=YES;
     bus.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0,0, bus.contentSize.width-5, bus.contentSize.height) cornerRadius:0];
     bus.physicsBody.type = CCPhysicsBodyTypeStatic;
     bus.physicsBody.mass=1;
@@ -236,7 +253,7 @@
     bus.physicsBody.collisionType=@"insaneBus";
     bus.physicsBody.collisionGroup=@"cheat";
     //bus.physicsBody.allowsRotation=NO;
-    [physicsNode addChild:bus];
+    [_physicsNode addChild:bus];
     
     
     //bus.position=ccp(0, 0);
@@ -281,7 +298,7 @@
     //    _student0.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,_student0.contentSize.width, _student0.contentSize.height) cornerRadius:0];;
     //    _student0.physicsBody.collisionType= @"student";
     //    _student0.physicsBody.type=CCPhysicsBodyTypeStatic;
-    //    [physicsNode addChild:_student0];
+    //    [_physicsNode addChild:_student0];
     
     
     motionManager= [[CMMotionManager alloc]init];
@@ -609,7 +626,7 @@
                         xcoord = minimum + (num % div);
                         pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
                         
-                        [physicsNode addChild:pizza];
+                        [_physicsNode addChild:pizza];
                         
                     }
                 }
@@ -624,7 +641,7 @@
                         num = foo4random();
                         xcoord = minimum + (num % div);
                         gas.position = ccp(xcoord, window.height + gas.contentSize.height);
-                        [physicsNode addChild:gas];
+                        [_physicsNode addChild:gas];
 
                     }
                 }
@@ -638,7 +655,7 @@
                         num = foo4random();
                         xcoord = minimum + (num % div);
                         roadBarrier.position = ccp(xcoord, window.height + roadBarrier.contentSize.height);
-                        [physicsNode addChild:roadBarrier];
+                        [_physicsNode addChild:roadBarrier];
                         
                     }
                 }
@@ -652,7 +669,7 @@
                         num = foo4random();
                         xcoord = minimum + (num % div);
                         timber.position = ccp(xcoord, window.height + timber.contentSize.height);
-                        [physicsNode addChild:timber];
+                        [_physicsNode addChild:timber];
                         
                     }
                 }
@@ -666,7 +683,7 @@
                         num = foo4random();
                         xcoord = minimum + (num % div);
                         horizontalBus.position = ccp(xcoord, window.height + horizontalBus.contentSize.height);
-                        [physicsNode addChild:horizontalBus];
+                        [_physicsNode addChild:horizontalBus];
                         
                     }
                 }
@@ -696,7 +713,7 @@
                         car1.physicsBody.density=0.1;
                         car1.physicsBody.collisionGroup = @"notColliding";
                         car1.physicsBody.collisionType=@"level";
-                        [physicsNode addChild:car1];
+                        [_physicsNode addChild:car1];
                         [_cars addObject:car1];
                         
                     }
@@ -705,7 +722,7 @@
                         car2.physicsBody.density=0.1;
                         car2.physicsBody.collisionGroup = @"notColliding";
                         car2.physicsBody.collisionType=@"level";
-                        [physicsNode addChild:car2];
+                        [_physicsNode addChild:car2];
                         [_cars addObject:car2];
                         
                     }
@@ -714,7 +731,7 @@
                         car3.physicsBody.density=0.1;
                         car3.physicsBody.collisionGroup = @"notColliding";
                         car3.physicsBody.collisionType=@"level";
-                        [physicsNode addChild:car3];
+                        [_physicsNode addChild:car3];
                         [_cars addObject:car3];
                         
                     }
@@ -743,7 +760,7 @@
                     
                     
                     
-                    [physicsNode addChild:newCar];
+                    [_physicsNode addChild:newCar];
                     [_cars addObject:newCar];
                     
                     
@@ -789,7 +806,7 @@
                     patternCars=[[NSMutableArray alloc]initWithArray:[GameLevel sendPatternForLevel:level]];
                     
                     for (CrazyCarsTaxis *temp in patternCars) {
-                        [physicsNode addChild:temp];
+                        [_physicsNode addChild:temp];
                         [_cars addObject:temp];
                         
                     }
@@ -825,14 +842,14 @@
                     int xcoord= 320/2;
                     parking.position=ccp(xcoord,550);
                     sensor.position=ccp(0,720);
-                    [physicsNode addChild:parking];
-                    [physicsNode addChild:sensor];
+                    [_physicsNode addChild:parking];
+                    [_physicsNode addChild:sensor];
                     
                     
                 }
             }
             /*
-             NSLog(@"tHIS IS THE HIDDEN VELOVITY physics node %f",physicsNode.physicsBody.velocity.y) ;
+             NSLog(@"tHIS IS THE HIDDEN VELOVITY physics node %f",_physicsNode.physicsBody.velocity.y) ;
              NSLog(@"tHIS IS THE HIDDEN VELOVITY parking %f",parking.physicsBody.velocity.y) ;
              NSLog(@"tHIS IS THE HIDDEN VELOVITY %f",[parking parent].physicsBody.velocity.y) ;
              */
@@ -859,7 +876,7 @@
             //
             //                int xcoord= 320/2-college.boundingBox.size.width/2;
             //                college.position=ccp(xcoord,620);
-            //                [physicsNode addChild:college];
+            //                [_physicsNode addChild:college];
             //
             //            }
             //        }
@@ -979,42 +996,28 @@
         }
         [toDelete removeAllObjects];
         
-        //  NSLog(@"The number of elements are %i", [[physicsNode children]count]);
+        //  NSLog(@"The number of elements are %i", [[_physicsNode children]count]);
         
         
         /////CALLS THE GYRO FUNCTION
         [self gyroConfiguration];
         
         
+        if (ccpAdd(bus.position, velocity).x>_physicsNode.position.x &&ccpAdd(bus.position, velocity).x<_physicsNode.contentSize.width) {
+            bus.position= ccpAdd(bus.position, velocity);
+        }
         
-        bus.position= ccpAdd(bus.position, velocity);
         
         if (smoke) {
             smoke.position = ccp(bus.position.x, bus.position.y + bus.contentSize.height / 2 - 10);
         }
         
-        [self busWillNotGoBeyondScreen];
+       // [self busWillNotGoBeyondScreen];
         
         
     }//// end of if velocity
 }
 
--(void)busWillNotGoBeyondScreen {
-    // done by Frank. make sure the bus will not go beyond the screen.
-    if (bus.position.x < 0 + bus.contentSize.width / 2) {
-        bus.position = ccp(0 + bus.contentSize.width / 2, bus.position.y);
-    }
-    if (bus.position.x > window.width - bus.contentSize.width / 2) {
-        bus.position = ccp(window.width - bus.contentSize.width / 2, bus.position.y);
-    }
-    
-    if (bus.position.y < 0) {
-        bus.position = ccp(bus.position.x, 0);
-    }
-    if (bus.position.y > window.height - bus.contentSize.height) {
-        bus.position = ccp(bus.position.x, window.height - bus.contentSize.height);
-    }
-}
 
 
 /*
@@ -1146,7 +1149,7 @@
     newStudent.physicsBody.collisionGroup = @"notColliding";
     
     newStudent.physicsBody.type=CCPhysicsBodyTypeStatic;
-    [physicsNode addChild:newStudent];
+    [_physicsNode addChild:newStudent];
     
     [_students addObject:newStudent];
     //NSLog(@"student added.");
