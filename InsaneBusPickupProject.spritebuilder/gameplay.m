@@ -289,6 +289,8 @@
     
     widthBoundary = _road1.contentSize.width;
     heightBoundary = _road1.contentSize.height;
+    
+    
     roadVelocity = 5;
     baseRoadVelocity = roadVelocity;
     //set the max velocity of road to 10
@@ -350,8 +352,9 @@
         
         for (CCNode *road in _roads) {
             road.position = ccp(road.position.x, road.position.y - (roadVelocity));
-            if (road.position.y <= (-1 * road.contentSize.height * 3)&&roadVelocity) {
-                road.position = ccp(road.position.x, road.position.y + 3 *2 * road.contentSize.height - 50);
+            if (road.position.y <= -1 * 568) {
+                
+                road.position = ccp(road.position.x, road.position.y + 568*2);
             }
         }
         
