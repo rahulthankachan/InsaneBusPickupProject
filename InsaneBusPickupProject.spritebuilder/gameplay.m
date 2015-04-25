@@ -407,6 +407,105 @@
             int minimum=50;
             int div=201;
             
+            if (distance >= 1 & distance < 2) {
+                if (!pizza) {
+                    pizza = [[ObjectOnRoad alloc] initWithType:6 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                    num = foo4random();
+                    xcoord = minimum + (num % div);
+                    pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
+                    
+                    [physicsNode addChild:pizza];
+                    
+                }
+            }
+            
+            if (pizza) {
+                pizza.position = ccp(pizza.position.x, pizza.position.y - roadVelocity);
+            }
+            
+            if (distance >= 3 & distance < 4) {
+                if (!gas) {
+                    gas = [[ObjectOnRoad alloc] initWithType:7 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                    num = foo4random();
+                    xcoord = minimum + (num % div);
+                    gas.position = ccp(xcoord, window.height + gas.contentSize.height);
+                    [physicsNode addChild:gas];
+                    
+                }
+            }
+            if (gas) {
+                gas.position = ccp(gas.position.x, gas.position.y - roadVelocity);
+            }
+            
+            if (distance >= 5 & distance < 6) {
+                if (!roadBarrier) {
+                    roadBarrier = [[ObjectOnRoad alloc] initWithType:3 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                    num = foo4random();
+                    xcoord = minimum + (num % div);
+                    roadBarrier.position = ccp(xcoord, window.height + roadBarrier.contentSize.height);
+                    [physicsNode addChild:roadBarrier];
+                    
+                }
+            }
+            if (roadBarrier) {
+                roadBarrier.position = ccp(roadBarrier.position.x, roadBarrier.position.y - roadVelocity);
+            }
+            
+            if (distance >= 5 & distance < 6) {
+                if (!timber) {
+                    timber = [[ObjectOnRoad alloc] initWithType:8 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                    num = foo4random();
+                    xcoord = minimum + (num % div);
+                    timber.position = ccp(xcoord, window.height + timber.contentSize.height);
+                    [physicsNode addChild:timber];
+                    
+                }
+            }
+            if (timber) {
+                timber.position = ccp(timber.position.x, timber.position.y - roadVelocity);
+            }
+            
+            if (distance >= 5 & distance < 6) {
+                if (!horizontalBus) {
+                    horizontalBus = [[ObjectOnRoad alloc] initWithType:2 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                    num = foo4random();
+                    xcoord = minimum + (num % div);
+                    horizontalBus.position = ccp(xcoord, window.height + horizontalBus.contentSize.height);
+                    [physicsNode addChild:horizontalBus];
+                    
+                }
+            }
+            if (horizontalBus) {
+                horizontalBus.position = ccp(horizontalBus.position.x, horizontalBus.position.y - roadVelocity);
+            }
+            
+            if (distance >= 5 & distance < 6) {
+                if (!grenade) {
+                    grenade = [[ObjectOnRoad alloc] initWithType:9 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                    num = foo4random();
+                    xcoord = minimum + (num % div);
+                    grenade.position = ccp(xcoord, window.height + grenade.contentSize.height);
+                    [physicsNode addChild:grenade];
+                    
+                }
+            }
+            if (grenade) {
+                grenade.position = ccp(grenade.position.x, grenade.position.y - roadVelocity);
+            }
+            
+            if (distance >= 5 & distance < 6) {
+                if (!powerUp) {
+                    powerUp = [[ObjectOnRoad alloc] initWithType:10 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+                    num = foo4random();
+                    xcoord = minimum + (num % div);
+                    powerUp.position = ccp(xcoord, window.height + powerUp.contentSize.height);
+                    [physicsNode addChild:powerUp];
+                    
+                }
+            }
+            if (powerUp) {
+                powerUp.position = ccp(powerUp.position.x, powerUp.position.y - roadVelocity);
+            }
             
             
             if (timeSinceObstacle >1.25f)
@@ -604,105 +703,7 @@
                     }
                 }
 
-                if (distance >= 1 & distance < 2) {
-                    if (!pizza) {
-                        pizza = [[ObjectOnRoad alloc] initWithType:6 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
-                        
-                        [physicsNode addChild:pizza];
-                        
-                    }
-                }
                 
-                if (pizza) {
-                    pizza.position = ccp(pizza.position.x, pizza.position.y - roadVelocity);
-                }
-
-                if (distance >= 3 & distance < 4) {
-                    if (!gas) {
-                        gas = [[ObjectOnRoad alloc] initWithType:7 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        gas.position = ccp(xcoord, window.height + gas.contentSize.height);
-                        [physicsNode addChild:gas];
-
-                    }
-                }
-                if (gas) {
-                    gas.position = ccp(gas.position.x, gas.position.y - roadVelocity);
-                }
-                
-                if (distance >= 5 & distance < 6) {
-                    if (!roadBarrier) {
-                        roadBarrier = [[ObjectOnRoad alloc] initWithType:3 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        roadBarrier.position = ccp(xcoord, window.height + roadBarrier.contentSize.height);
-                        [physicsNode addChild:roadBarrier];
-                        
-                    }
-                }
-                if (roadBarrier) {
-                    roadBarrier.position = ccp(roadBarrier.position.x, roadBarrier.position.y - roadVelocity);
-                }
-                
-                if (distance >= 5 & distance < 6) {
-                    if (!timber) {
-                        timber = [[ObjectOnRoad alloc] initWithType:8 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        timber.position = ccp(xcoord, window.height + timber.contentSize.height);
-                        [physicsNode addChild:timber];
-                        
-                    }
-                }
-                if (timber) {
-                    timber.position = ccp(timber.position.x, timber.position.y - roadVelocity);
-                }
-                
-                if (distance >= 5 & distance < 6) {
-                    if (!horizontalBus) {
-                        horizontalBus = [[ObjectOnRoad alloc] initWithType:2 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        horizontalBus.position = ccp(xcoord, window.height + horizontalBus.contentSize.height);
-                        [physicsNode addChild:horizontalBus];
-                        
-                    }
-                }
-                if (horizontalBus) {
-                    horizontalBus.position = ccp(horizontalBus.position.x, horizontalBus.position.y - roadVelocity);
-                }
-                
-                if (distance >= 5 & distance < 6) {
-                    if (!grenade) {
-                        grenade = [[ObjectOnRoad alloc] initWithType:9 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        grenade.position = ccp(xcoord, window.height + grenade.contentSize.height);
-                        [physicsNode addChild:grenade];
-                        
-                    }
-                }
-                if (grenade) {
-                    grenade.position = ccp(grenade.position.x, grenade.position.y - roadVelocity);
-                }
-                
-                if (distance >= 5 & distance < 6) {
-                    if (!powerUp) {
-                        powerUp = [[ObjectOnRoad alloc] initWithType:10 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        powerUp.position = ccp(xcoord, window.height + powerUp.contentSize.height);
-                        [physicsNode addChild:powerUp];
-                        
-                    }
-                }
-                if (powerUp) {
-                    powerUp.position = ccp(powerUp.position.x, powerUp.position.y - roadVelocity);
-                }
                 
                 if (distance % 5 == 4) {
                     CrazyCarsTaxis *car1 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
@@ -931,7 +932,7 @@
                 switch (car1.type) {
                         
                     case 1:
-                        car1.position = ccp(car1.position.x, car1.position.y - .5 + roadVelocity - offsetVelocityOfCars);
+                        car1.position = ccp(car1.position.x, car1.position.y - baseRoadVelocity - .5 + roadVelocity - offsetVelocityOfCars);
                         
                         
                         
@@ -944,7 +945,7 @@
                         
                     case 2:
                         
-                        car1.position = ccp(car1.position.x, car1.position.y - 0.5  + roadVelocity - offsetVelocityOfCars);
+                        car1.position = ccp(car1.position.x, car1.position.y - baseRoadVelocity - 0.5  + roadVelocity - offsetVelocityOfCars);
                         if (car1.position.y - bus.position.y <= 250) {
                             if (car1.position.x != bus.position.x) {
                                 if (car1.position.x - bus.position.x - 15 > 0) {
@@ -963,7 +964,7 @@
                             break;
                             
                         case 3:
-                            car1.position = ccp(car1.position.x, car1.position.y - 3  + roadVelocity - offsetVelocityOfCars);
+                            car1.position = ccp(car1.position.x, car1.position.y - baseRoadVelocity - 3  + roadVelocity - offsetVelocityOfCars);
                             
                             
                             
@@ -976,7 +977,7 @@
                             
                         case 4:
                             
-                            car1.position = ccp(car1.position.x, car1.position.y + 2.5  - roadVelocity + offsetVelocityOfCars);
+                            car1.position = ccp(car1.position.x, car1.position.y + baseRoadVelocity + 2.5  - roadVelocity + offsetVelocityOfCars);
                             
                             if (car1.position.y > windowSize.height || car1.position.y < -500) {
                                 // if (car1.position.y < -car1.contentSize.height) {
