@@ -47,10 +47,14 @@
 - (void)backbutton2 {
     CCScene *mainscene = [CCBReader loadAsScene:@"MainScene"];
     [[CCDirector sharedDirector] replaceScene:mainscene];
+    [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+
 }
 - (void)backbutton3 {
     CCScene *mainscene = [CCBReader loadAsScene:@"MainScene"];
     [[CCDirector sharedDirector] replaceScene:mainscene];
+    [[OALSimpleAudio sharedInstance] playEffect:buttonHitSoundEffect loop:NO];
+
 }
 
 -(void) didLoadFromCCB {
