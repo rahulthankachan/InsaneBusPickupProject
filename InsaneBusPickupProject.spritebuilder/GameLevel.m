@@ -184,10 +184,10 @@ static NSMutableArray *patternA;
             newCar.physicsBody.collisionGroup = @"notColliding";
             newCar.scale=0.3;
             if (i%2 == 1) {
-                newCar.position=ccp(xcoord + 40,920+i*50);
+                newCar.position=ccp(xcoord + 40,520+i*50);
                 
             } else {
-                newCar.position=ccp(xcoord,920+i*50);
+                newCar.position=ccp(xcoord,520+i*50);
                 
             }
             newCar.type=1;
@@ -195,6 +195,33 @@ static NSMutableArray *patternA;
             [patternA addObject:newCar];
             
         }
+        
+        for (int i=0; i<10; i++) {
+            newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+            newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+            newCar.physicsBody.density=0.1;
+            newCar.physicsBody.collisionGroup = @"notColliding";
+            newCar.scale=0.3;
+            if (i%3 == 0) {
+                newCar.position=ccp(xcoord + 40,920+i*50 + 20);
+                
+            } else if (i%3 == 1) {
+                newCar.position=ccp(xcoord,920+i*50);
+                
+            } else {
+                newCar.position=ccp(xcoord - 40,920+i*50 - 20);
+
+            }
+            newCar.type=1;
+            newCar.physicsBody.collisionType=@"level";
+            [patternA addObject:newCar];
+            
+        }
+        
+        ObjectOnRoad *powerUp = [[ObjectOnRoad alloc] initWithType:10 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+        
+        powerUp.position = ccp(xcoord-100+40, 620+12*50);
+        [patternA addObject:powerUp];
         
     } else if (userLevel == 3) {
         CrazyCarsTaxis * newCar;

@@ -775,8 +775,8 @@
                     xcoord = 60+arc4random_uniform(rightBound-120);
 
                     car1.position = ccp(xcoord - 30, window.height + car1.contentSize.height);
-                    car2.position = ccp(xcoord , window.height + car1.contentSize.height);
-                    car3.position = ccp(xcoord + 30, window.height + car1.contentSize.height);
+                    car2.position = ccp(xcoord , window.height + car2.contentSize.height);
+                    car3.position = ccp(xcoord + 30, window.height + car3.contentSize.height);
                     
                     if (car1) {
                         car1.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,car1.contentSize.width, car1.contentSize.height) cornerRadius:0];
@@ -827,7 +827,7 @@
                         deltaMinusBoundWidth=20;
                         deltaMinusBoundHeight=20;
                     }
-                    newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width-deltaMinusBoundWidth, newCar.contentSize.height-deltaMinusBoundHeight) cornerRadius:0];
+                    newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
                     newCar.physicsBody.density=0.1;
                     
                     
