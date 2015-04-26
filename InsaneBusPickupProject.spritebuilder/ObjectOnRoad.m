@@ -20,6 +20,7 @@
  type 8     timber
  type 9     grenade
  type 10    powerUp
+ type 11    diamond
  */
 
 - (id)initWithType:(NSInteger) type withCollisionType:(NSString *) collisionType andCollisionGroup:(NSString *) collisionGroup
@@ -111,6 +112,16 @@
                 self.type = 10;
                 self.scale = 0.15;
                 self.soundEffect = @"power-up.wav";
+                self.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, self.contentSize.width, self.contentSize.height) cornerRadius:0];
+                self.physicsBody.collisionType = collisionType;
+                self.physicsBody.collisionGroup = collisionGroup;
+            }
+        } else if (type == 11) {
+            self = [super initWithImageNamed:@"diamond.png"];
+            if (self) {
+                self.type = 11;
+                self.scale = 0.12;
+                self.soundEffect = @"diamond.wav";
                 self.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, self.contentSize.width, self.contentSize.height) cornerRadius:0];
                 self.physicsBody.collisionType = collisionType;
                 self.physicsBody.collisionGroup = collisionGroup;

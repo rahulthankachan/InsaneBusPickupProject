@@ -120,6 +120,8 @@
     CCSprite *newStudent;
     NSMutableArray *objectsOnRoad;
     
+    CCSprite *rainbow;
+    
 }
 - (void)retry {
     CCScene *gameplayscene = [CCBReader loadAsScene:@"gameplay"];
@@ -279,7 +281,7 @@
     
     
     _physicsNode.collisionDelegate=self;
-    _physicsNode.debugDraw=YES;
+    //_physicsNode.debugDraw=YES;
     bus.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0,0, bus.contentSize.width, bus.contentSize.height) cornerRadius:0];
     bus.physicsBody.type = CCPhysicsBodyTypeStatic;
     bus.physicsBody.mass=1;
@@ -938,6 +940,10 @@
                     [_physicsNode addChild:parking];
                     [_physicsNode addChild:sensor];
                     
+                    rainbow = [[CCSprite alloc] initWithImageNamed:@"Rainbows.png"];
+                    rainbow.zOrder = 10;
+                    rainbow.position = ccp(xcoord, 570);
+                    [_physicsNode addChild:rainbow];
                     
                 }
             }
@@ -954,7 +960,9 @@
                 sensor.position = ccp(sensor.position.x, sensor.position.y - roadVelocity);
             }
             
-            
+            if (rainbow) {
+                rainbow.position = ccp(rainbow.position.x, rainbow.position.y - roadVelocity);
+            }
             
         }
         if(distance==currentLevelInfo.maxDistance+6)
@@ -1339,6 +1347,9 @@
             }
             [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
 
+        } else if (objectOnRoad.type == 11) {
+            [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
+            progressTimer.percentage = 100;
         }
         [objectOnRoad removeFromParent];
         return true;
@@ -1499,7 +1510,7 @@
     [meteor setEndSize:2];
     
     [meteor setDuration:3];
-    meteor.position = ccp(student.position.x, student.position.y);
+    meteor.position = ccp(student.position.x + leftBound, student.position.y);
     //meteor.position = ccp(window.width/2, window.height/2);
     
     [self addChild:meteor];
