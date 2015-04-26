@@ -71,7 +71,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>97</real>
+							<real>96</real>
 							<real>184</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3815,7 +3815,7 @@
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string>MainScene</string>
+		<string>scorescene</string>
 		<key>displayName</key>
 		<string>CCNode</string>
 		<key>memberVarAssignmentName</key>
