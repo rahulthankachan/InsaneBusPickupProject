@@ -19,9 +19,7 @@
     
     if ([defaults integerForKey:@"capacityOfBus"]) {
         NSInteger capacityOfBus = [defaults integerForKey:@"capacityOfBus"];
-        capacityOfBus = 5;
-        [defaults setInteger:capacityOfBus forKey:@"capacityOfBus"];
-        [defaults synchronize];
+  
         //NSLog(@"The value of capacityOfBus is %ld", (long)[defaults integerForKey:@"capacityOfBus"]);
         return [defaults integerForKey:@"capacityOfBus"];
     } else {

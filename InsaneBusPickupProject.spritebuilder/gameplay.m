@@ -1352,9 +1352,7 @@
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus student:(CCNode*)student {
     
     CapacityOfBus *capacity = [CapacityOfBus alloc];
-    if (score == [capacity getCapacityOfBus]) {
 
-    }
     if (score < [capacity getCapacityOfBus]) {
         NSLog(@"Collision Student");
         [self applyEnergizeEffect:student];

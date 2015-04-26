@@ -177,7 +177,7 @@ static NSMutableArray *patternA;
         
         xcoord=120;
         
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<7; i++) {
             newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
             newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
             newCar.physicsBody.density=0.1;
@@ -223,6 +223,10 @@ static NSMutableArray *patternA;
         powerUp.position = ccp(xcoord-100+40, 620+12*50);
         [patternA addObject:powerUp];
         
+        ObjectOnRoad *grenade = [[ObjectOnRoad alloc] initWithType:9 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+        grenade.position = ccp(xcoord - 100 + 70, 620 + 12 * 50 - 30);
+        [patternA addObject:grenade];
+        
     } else if (userLevel == 3) {
         CrazyCarsTaxis * newCar;
         
@@ -239,7 +243,7 @@ static NSMutableArray *patternA;
             newCar.physicsBody.collisionGroup = @"notColliding";
             newCar.scale=0.3;
             if (i%2 == 1) {
-                newCar.position=ccp(xcoord + 40,1120+i*50*1.2);
+                newCar.position=ccp(xcoord + 30,1120+i*50*1.2);
 
             } else {
                 newCar.position=ccp(xcoord,1120+i*50);
@@ -269,7 +273,39 @@ static NSMutableArray *patternA;
             [patternA addObject:newCar];
             
         }
+        int heightOffset = 50;
+        for (int i=0; i<25; i++) {
+            newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+            newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+            newCar.physicsBody.density=0.1;
+            newCar.physicsBody.collisionGroup = @"notColliding";
+            newCar.scale=0.3;
+            if (i%3 == 0) {
+                newCar.position=ccp(xcoord - 30,1020+i*50 + (i/3 * heightOffset));
+                
+            } else if (i%3 == 1) {
+                newCar.position=ccp(xcoord,1020+i*50 + (i/3 * heightOffset));
+                
+            } else {
+                newCar.position=ccp(xcoord + 30,1020+i*50 + (i/3 * heightOffset));
+
+            }
+            newCar.type=1;
+            newCar.physicsBody.collisionType=@"level";
+            [patternA addObject:newCar];
+            
+        }
+        ObjectOnRoad *gas = [[ObjectOnRoad alloc] initWithType:7 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+        gas.position = ccp(xcoord - 100 + 70, 620 + 12 * 50 - 30);
+        [patternA addObject:gas];
         
+        ObjectOnRoad *gas2 = [[ObjectOnRoad alloc] initWithType:7 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+        gas2.position = ccp(xcoord + 70, 620 + 12 * 50 + 80);
+        [patternA addObject:gas2];
+        
+        ObjectOnRoad *grenade = [[ObjectOnRoad alloc] initWithType:9 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+        grenade.position = ccp(xcoord + 20, 620 + 12 * 50 + 80 - 100);
+        [patternA addObject:grenade];
         
     } else if (userLevel == 4) {
         
@@ -324,6 +360,18 @@ static NSMutableArray *patternA;
             
             [patternA addObject:newCar];
         }
+        
+        ObjectOnRoad *gas = [[ObjectOnRoad alloc] initWithType:7 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+        gas.position = ccp(xcoord - 100 + 70, 620 + 4 * 50 - 30);
+        [patternA addObject:gas];
+        
+        ObjectOnRoad *gas2 = [[ObjectOnRoad alloc] initWithType:7 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+        gas2.position = ccp(xcoord - 180, 620 + 4 * 50 + 80);
+        [patternA addObject:gas2];
+        
+        ObjectOnRoad *grenade = [[ObjectOnRoad alloc] initWithType:9 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+        grenade.position = ccp(xcoord - 200, 620 + 4 * 50 + 80 - 100);
+        [patternA addObject:grenade];
         
     } else {
         
