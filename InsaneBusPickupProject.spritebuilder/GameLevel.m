@@ -45,8 +45,8 @@ static NSMutableArray *patternA;
         case 1:
             currentLevel.currentGameLevel=currentLevel;
             currentLevel.maxCars=2;
-            currentLevel.maxStudents=25;
-            currentLevel.maxDistance=20;
+            currentLevel.maxStudents=10;
+            currentLevel.maxDistance=30;
             currentLevel.levelNumber=currentLevelNumber;
             
             break;
@@ -55,7 +55,7 @@ static NSMutableArray *patternA;
             currentLevel.currentGameLevel=currentLevel;
             currentLevel.maxCars=5;
             currentLevel.maxStudents=10;
-            currentLevel.maxDistance=20;
+            currentLevel.maxDistance=30;
             currentLevel.levelNumber=currentLevelNumber;
             
             break;
@@ -63,8 +63,8 @@ static NSMutableArray *patternA;
         case 3:
             currentLevel.currentGameLevel=currentLevel;
             currentLevel.maxCars=8;
-            currentLevel.maxStudents=15;
-            currentLevel.maxDistance=20;
+            currentLevel.maxStudents=10;
+            currentLevel.maxDistance=30;
             currentLevel.levelNumber=currentLevelNumber;
             
             break;
@@ -72,8 +72,8 @@ static NSMutableArray *patternA;
         case 4:
             currentLevel.currentGameLevel=currentLevel;
             currentLevel.maxCars=12;
-            currentLevel.maxStudents=20;
-            currentLevel.maxDistance=25;
+            currentLevel.maxStudents=10;
+            currentLevel.maxDistance=30;
             currentLevel.levelNumber=currentLevelNumber;
             
             break;
@@ -97,8 +97,8 @@ static NSMutableArray *patternA;
         CrazyCarsTaxis * newCar;
         
         
-        NSInteger xcoord=180;
-        for (int i=0; i<10; i++) {
+        NSInteger xcoord=80;
+        for (int i=0; i<20; i++) {
             newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
             newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
             newCar.physicsBody.density=0.1;
@@ -111,9 +111,9 @@ static NSMutableArray *patternA;
             
         }
         
-        xcoord=180+100;
+        xcoord=230;
         
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<15; i++) {
             newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
             newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
             newCar.physicsBody.density=0.1;
@@ -132,11 +132,39 @@ static NSMutableArray *patternA;
         newCar.physicsBody.density=0.1;
         newCar.physicsBody.collisionGroup = @"notColliding";
         newCar.scale=0.3;
-        newCar.position=ccp(xcoord+40-100,620+2*50);
+        newCar.position=ccp(xcoord-60,620+2*50);
+        newCar.physicsBody.collisionType=@"level";
+        newCar.type=1;
+        [patternA addObject:newCar];
+        
+        newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+        newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+        newCar.physicsBody.density=0.1;
+        newCar.physicsBody.collisionGroup = @"notColliding";
+        newCar.scale=0.3;
+        newCar.position=ccp(xcoord-60,620+4*50);
         newCar.physicsBody.collisionType=@"level";
         newCar.type=1;
         
         [patternA addObject:newCar];
+
+        
+        newCar= [[CrazyCarsTaxis alloc]initWithImageNamed:@"carimage.png"];
+        newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+        newCar.physicsBody.density=0.1;
+        newCar.physicsBody.collisionGroup = @"notColliding";
+        newCar.scale=0.3;
+        newCar.position=ccp(xcoord-100,620+10*50);
+        newCar.physicsBody.collisionType=@"level";
+        newCar.type=1;
+        
+        
+        [patternA addObject:newCar];
+        
+        ObjectOnRoad *powerUp = [[ObjectOnRoad alloc] initWithType:10 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+       
+        powerUp.position = ccp(xcoord-100+40, 620+12*50);
+        [patternA addObject:powerUp];
         
         
     } else if (userLevel == 2) {

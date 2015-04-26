@@ -11,6 +11,7 @@
 #import "ObjectOnRoad.h"
 #import "CapacityOfBus.h"
 
+
 @implementation gameplay{
     
     
@@ -107,14 +108,17 @@
     
     
     
+    
     CCLabelTTF *countdownLabelLeft;
     CCLabelTTF *countdownLabelRight;
     CCLabelTTF *countdownLabel;
+    CCLabelTTF *capacityLabel;
     CCSprite *_level2road1;
     CCSprite *_level2road2;
     CCSprite *_level3road1;
     CCSprite *_level3road2;
     CCSprite *newStudent;
+    NSMutableArray *objectsOnRoad;
     
 }
 - (void)retry {
@@ -176,7 +180,7 @@
 
 #pragma mark didLoadfromCCB
 - (void)didLoadFromCCB {
-    
+    CGSize screenSize =[[CCDirector sharedDirector] viewSize];
     
     /*Will give the bounds of the physics node
 
@@ -188,6 +192,10 @@
     countdownLabelLeft = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
     countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
     countdownLabelRight = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
+    capacityLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
+    capacityLabel.position= ccp(screenSize.width/2, 400);
+    capacityLabel.visible=FALSE;
+    [self addChild:capacityLabel];
     [self addChild:countdownLabel];
     [self addChild:countdownLabelLeft];
     [self addChild:countdownLabelRight];
@@ -198,7 +206,7 @@
     buttonHitSoundEffect = @"boom-kick.wav";
     
     
-    CGSize windowSize= [[CCDirector sharedDirector] viewSize];
+    CGSize windowSize= _physicsNode.contentSize;//[[CCDirector sharedDirector] viewSize];
     
 
 
@@ -251,6 +259,7 @@
 
     _cars= [[NSMutableArray alloc]init];
     _cars2 = [[NSMutableArray alloc] init];
+    objectsOnRoad = [[NSMutableArray alloc]init];
     
     // label= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
     // label2= [[CCLabelTTF alloc]initWithString:@"Hello there !!" fontName:@"Hello" fontSize:15];
@@ -258,15 +267,19 @@
     //bus= [[CCNodeColor alloc]initWithColor:[CCColor colorWithUIColor:[UIColor cyanColor]] width:30 height:50];
     scoreLabel =[[CCLabelTTF alloc]initWithString:@"Students: 0" fontName:@"Hello" fontSize:15];
     distLabel =[[CCLabelTTF alloc]initWithString:@"Distance: 0" fontName:@"Hello" fontSize:15];
-    scoreLabel.position= ccp(windowSize.width-50,windowSize.height-10);
-    distLabel.position= ccp(windowSize.width-50,windowSize.height-35);
-    bus.position=ccp(windowSize.width/2, 90);
     
+    
+    
+    scoreLabel.position= ccp(windowSize.width,windowSize.height-10);
+    distLabel.position= ccp(windowSize.width,windowSize.height-35);
+    //bus.position=ccp(windowSize.width/2, 90);
+    
+    bus.position = ccp(rightBound / 2, 90);
 
     
     
     _physicsNode.collisionDelegate=self;
-    //_physicsNode.debugDraw=YES;
+    _physicsNode.debugDraw=YES;
     bus.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0,0, bus.contentSize.width-5, bus.contentSize.height) cornerRadius:0];
     bus.physicsBody.type = CCPhysicsBodyTypeStatic;
     bus.physicsBody.mass=1;
@@ -353,6 +366,8 @@
 {
     [self checkIfBusIsDead];
     
+    NSLog(@"%f, %f", bus.position.x, bus.position.y);
+    
     if (roadVelocity) {
         
         // size of the window
@@ -410,7 +425,7 @@
             patternComing = false;
         }
         
-        int minimum=50;
+        int minimum=leftBound;
         int div=201;
         
         if (distance >= 1 & distance < 2) {
@@ -418,8 +433,9 @@
                 pizza = [[ObjectOnRoad alloc] initWithType:6 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
                 num = foo4random();
                 xcoord = minimum + (num % div);
-                pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
-                
+                //pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
+                pizza.position = ccp(windowSize.width/2, window.height + pizza.contentSize.height);
+
                 [_physicsNode addChild:pizza];
                 
             }
@@ -742,107 +758,7 @@
                         
                     }
                 }
-/*
-                if (distance >= 1 & distance < 2) {
-                    if (!pizza) {
-                        pizza = [[ObjectOnRoad alloc] initWithType:6 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        pizza.position = ccp(xcoord, window.height + pizza.contentSize.height);
-                        
-                        [_physicsNode addChild:pizza];
-                        
-                    }
-                }
-                
-                if (pizza) {
-                    pizza.position = ccp(pizza.position.x, pizza.position.y - roadVelocity);
-                }
 
-                if (distance >= 3 & distance < 4) {
-                    if (!gas) {
-                        gas = [[ObjectOnRoad alloc] initWithType:7 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        gas.position = ccp(xcoord, window.height + gas.contentSize.height);
-                        [_physicsNode addChild:gas];
-
-                    }
-                }
-                if (gas) {
-                    gas.position = ccp(gas.position.x, gas.position.y - roadVelocity);
-                }
-                
-                if (distance >= 5 & distance < 6) {
-                    if (!roadBarrier) {
-                        roadBarrier = [[ObjectOnRoad alloc] initWithType:3 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        roadBarrier.position = ccp(xcoord, window.height + roadBarrier.contentSize.height);
-                        [_physicsNode addChild:roadBarrier];
-                        
-                    }
-                }
-                if (roadBarrier) {
-                    roadBarrier.position = ccp(roadBarrier.position.x, roadBarrier.position.y - roadVelocity);
-                }
-                
-                if (distance >= 5 & distance < 6) {
-                    if (!timber) {
-                        timber = [[ObjectOnRoad alloc] initWithType:8 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        timber.position = ccp(xcoord, window.height + timber.contentSize.height);
-                        [_physicsNode addChild:timber];
-                        
-                    }
-                }
-                if (timber) {
-                    timber.position = ccp(timber.position.x, timber.position.y - roadVelocity);
-                }
-                
-                if (distance >= 5 & distance < 6) {
-                    if (!horizontalBus) {
-                        horizontalBus = [[ObjectOnRoad alloc] initWithType:2 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        horizontalBus.position = ccp(xcoord, window.height + horizontalBus.contentSize.height);
-                        [_physicsNode addChild:horizontalBus];
-                        
-                    }
-                }
-                if (horizontalBus) {
-                    horizontalBus.position = ccp(horizontalBus.position.x, horizontalBus.position.y - roadVelocity);
-                }
-                
-                if (distance >= 5 & distance < 6) {
-                    if (!grenade) {
-                        grenade = [[ObjectOnRoad alloc] initWithType:9 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        grenade.position = ccp(xcoord, window.height + grenade.contentSize.height);
-                        [_physicsNode addChild:grenade];
-                        
-                    }
-                }
-                if (grenade) {
-                    grenade.position = ccp(grenade.position.x, grenade.position.y - roadVelocity);
-                }
-                
-                if (distance >= 5 & distance < 6) {
-                    if (!powerUp) {
-                        powerUp = [[ObjectOnRoad alloc] initWithType:10 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
-                        num = foo4random();
-                        xcoord = minimum + (num % div);
-                        powerUp.position = ccp(xcoord, window.height + powerUp.contentSize.height);
-                        [_physicsNode addChild:powerUp];
-                        
-                    }
-                }
-                if (powerUp) {
-                    powerUp.position = ccp(powerUp.position.x, powerUp.position.y - roadVelocity);
-                }
-          */
                 if (distance % 5 == 4) {
                     CrazyCarsTaxis *car1 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
                     CrazyCarsTaxis *car2 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
@@ -854,11 +770,13 @@
                     car2.scale = 0.3;
                     
                     car3.scale = 0.3;
-                    num = foo4random();
-                    xcoord = minimum + (num % div);
-                    car1.position = ccp(xcoord, window.height + car1.contentSize.height);
-                    car2.position = ccp(xcoord + 40, window.height + car1.contentSize.height);
-                    car3.position = ccp(xcoord + 40*2, window.height + car1.contentSize.height);
+//                    NSInteger num1 = arc4random_uniform(rightBound-30);
+                    NSInteger minimum1 = leftBound + 20;
+                    xcoord = 60+arc4random_uniform(rightBound-120);
+
+                    car1.position = ccp(xcoord - 30, window.height + car1.contentSize.height);
+                    car2.position = ccp(xcoord , window.height + car1.contentSize.height);
+                    car3.position = ccp(xcoord + 30, window.height + car1.contentSize.height);
                     
                     if (car1) {
                         car1.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,car1.contentSize.width, car1.contentSize.height) cornerRadius:0];
@@ -899,8 +817,19 @@
                     //newCar.position=ccp(xcoord,620);
                     //newStudent.position=ccp(xcoord,500);
                     // [self addChild:newCar];
-                    newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width, newCar.contentSize.height) cornerRadius:0];
+                    NSInteger deltaMinusBoundWidth=0;
+                    NSInteger deltaMinusBoundHeight=0;
+                    if (newCar.type==1) {
+                        deltaMinusBoundWidth=10;
+                        deltaMinusBoundHeight=10;
+                    }
+                    else if (newCar.type==3) {
+                        deltaMinusBoundWidth=20;
+                        deltaMinusBoundHeight=20;
+                    }
+                    newCar.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0, 0,newCar.contentSize.width-deltaMinusBoundWidth, newCar.contentSize.height-deltaMinusBoundHeight) cornerRadius:0];
                     newCar.physicsBody.density=0.1;
+                    
                     
                     newCar.physicsBody.collisionGroup = @"notColliding";
                     
@@ -957,9 +886,21 @@
                 if(!patternCars){
                     patternCars=[[NSMutableArray alloc]initWithArray:[GameLevel sendPatternForLevel:level]];
                     
-                    for (CrazyCarsTaxis *temp in patternCars) {
-                        [_physicsNode addChild:temp];
+                    for (CCNode *temp in patternCars) {
+                        
+                        if([temp isKindOfClass:[ObjectOnRoad class]])
+                        {
+                        
+                            [objectsOnRoad addObject:temp];
+                        }else
+                        {
+                        
                         [_cars addObject:temp];
+                        }
+                        
+                        
+                        [_physicsNode addChild:temp];
+                        
                         
                     }
                 }
@@ -991,7 +932,7 @@
                     
                     
                     
-                    int xcoord= 320/2;
+                    int xcoord= (320-2*30)/2;
                     parking.position=ccp(xcoord,550);
                     sensor.position=ccp(0,720);
                     [_physicsNode addChild:parking];
@@ -1065,6 +1006,12 @@
         // Find the things to remove
         
         if (roadVelocity) {
+            
+            for (ObjectOnRoad *object in objectsOnRoad) {
+                
+                object.position = ccp(object.position.x, object.position.y - baseRoadVelocity - .5 + roadVelocity - offsetVelocityOfCars);
+                
+            }
             
             for (CrazyCarsTaxis *car1 in _cars) {
                 switch (car1.type) {
@@ -1155,7 +1102,7 @@
         [self gyroConfiguration];
         
         
-        if (ccpAdd(bus.position, velocity).x>leftBound &&ccpAdd(bus.position, velocity).x<rightBound) {
+        if (ccpAdd(bus.position, velocity).x>leftBound &&ccpAdd(bus.position, velocity).x<rightBound - bus.contentSize.width) {
             bus.position= ccpAdd(bus.position, velocity);
             
         }
@@ -1264,6 +1211,7 @@
     
     _createdFlag = true;
     CGSize windowSize = [[CCDirector sharedDirector] viewSize];
+
     BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
     [countdownLabelRight setString:@""];
     [countdownLabelLeft setString:@""];
@@ -1300,7 +1248,7 @@
     
     
     int number= arc4random_uniform(11)+1;
-    newStudent = [[CCSprite alloc] initWithImageNamed:[NSString stringWithFormat:@"character-%i.png",number]];
+    CCSprite* newStudent = [[CCSprite alloc] initWithImageNamed:[NSString stringWithFormat:@"character-%i.png",number]];
     newStudent.scale=.2;
     
     if (posLeft == YES) {
@@ -1324,7 +1272,7 @@
     
     
     [NSThread sleepForTimeInterval:1.0f];
-    [countdownLabel setString:@""];
+   // [countdownLabel setString:@""];
     [countdownLabelLeft setString:@""];
     [countdownLabelRight setString:@""];
     _createdFlag = false;
@@ -1404,6 +1352,9 @@
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus student:(CCNode*)student {
     
     CapacityOfBus *capacity = [CapacityOfBus alloc];
+    if (score == [capacity getCapacityOfBus]) {
+
+    }
     if (score < [capacity getCapacityOfBus]) {
         NSLog(@"Collision Student");
         [self applyEnergizeEffect:student];
@@ -1414,6 +1365,9 @@
         return TRUE;
         
     } else {
+        capacityLabel.visible=TRUE;
+        [capacityLabel setString:@"Capacity full!"];
+        [self performSelector:@selector(disableCapacityFull) withObject:nil afterDelay:2];
         return FALSE;
     }
     
@@ -1821,6 +1775,11 @@
 - (void)backbutton4 {
     CCScene *mainscene = [CCBReader loadAsScene:@"MainScene"];
     [[CCDirector sharedDirector] replaceScene:mainscene];
+}
+
+-(void)disableCapacityFull{
+
+    capacityLabel.visible=FALSE;
 }
 
 
