@@ -280,7 +280,7 @@
     
     _physicsNode.collisionDelegate=self;
     _physicsNode.debugDraw=YES;
-    bus.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0,0, bus.contentSize.width-5, bus.contentSize.height) cornerRadius:0];
+    bus.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0,0, bus.contentSize.width, bus.contentSize.height) cornerRadius:0];
     bus.physicsBody.type = CCPhysicsBodyTypeStatic;
     bus.physicsBody.mass=1;
     bus.zOrder=2;
