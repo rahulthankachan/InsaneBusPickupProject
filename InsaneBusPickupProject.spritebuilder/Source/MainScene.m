@@ -57,13 +57,22 @@
 
 }
 
+- (NSString *)docsDir {
+    
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+    
+}
+
 -(void) didLoadFromCCB {
     //Sound effect of buttons
     buttonHitSoundEffect = @"boom-kick.wav";
-    
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    NSString *finalPath = [path stringByAppendingPathComponent:@"GameData.plist"];
-    NSMutableDictionary *plistData = [NSMutableDictionary dictionaryWithContentsOfFile:finalPath];
+    NSString *listPath;
+    NSMutableDictionary *plistData;
+    listPath = [[self docsDir]stringByAppendingPathComponent:@"GameData.plist"];
+    if(![[NSFileManager defaultManager]fileExistsAtPath:listPath]) {
+        [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle]pathForResource:@"GameData" ofType:@"plist"] toPath:listPath error:nil];
+    }
+    plistData = [NSMutableDictionary dictionaryWithContentsOfFile:listPath];
     h[0] = [[plistData objectForKey:@"score1"] integerValue];
     h[1] = [[plistData objectForKey:@"score2"] integerValue];
     h[2] = [[plistData objectForKey:@"score3"] integerValue];
