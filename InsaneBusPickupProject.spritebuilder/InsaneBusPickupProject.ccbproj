@@ -78,6 +78,55 @@
 			<key>previewFolderHidden</key>
 			<false/>
 		</dict>
+		<key>Backgrounds/Circle-offset-ipadhd@4x.png</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>scaleFrom</key>
+			<integer>2</integer>
+		</dict>
+		<key>Backgrounds/desert-04@4x.png</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>scaleFrom</key>
+			<integer>2</integer>
+		</dict>
+		<key>Burst-ipad@4x.png</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>scaleFrom</key>
+			<integer>2</integer>
+		</dict>
+		<key>Roads/level2road1.png</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>Roads/level2road2.png</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>Roads/level3road1.png</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>Roads/level3road2.png</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
 		<key>Sprites</key>
 		<dict/>
 		<key>ccbResources</key>
@@ -162,10 +211,19 @@
 			<key>tabletScale</key>
 			<integer>1</integer>
 		</dict>
+		<key>dot-square-ip5@4x.png</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>scaleFrom</key>
+			<integer>2</integer>
+		</dict>
 		<key>road02.png</key>
 		<dict>
+			<key>isDirty</key>
+			<true/>
 			<key>scaleFrom</key>
-			<integer>4</integer>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>versionStr</key>

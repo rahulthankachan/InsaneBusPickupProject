@@ -398,14 +398,14 @@
         }
         
         
-        if (distance > 5 && distance < 13) {
+        if (distance > 5 && distance < 9) {
             trafficComing = false;
-            if (distance > 6 && distance < 13) {
+            if (distance > 6 && distance < 9) {
                 patternComing = true;
             }
             
         }
-        if (distance > 13) {
+        if (distance > 9) {
             trafficComing = true;
             patternComing = false;
         }
@@ -742,7 +742,7 @@
                         
                     }
                 }
-
+/*
                 if (distance >= 1 & distance < 2) {
                     if (!pizza) {
                         pizza = [[ObjectOnRoad alloc] initWithType:6 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
@@ -842,7 +842,7 @@
                 if (powerUp) {
                     powerUp.position = ccp(powerUp.position.x, powerUp.position.y - roadVelocity);
                 }
-                
+          */
                 if (distance % 5 == 4) {
                     CrazyCarsTaxis *car1 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
                     CrazyCarsTaxis *car2 = [[CrazyCarsTaxis alloc] initWithImageNamed:@"carimage3.png"];
@@ -1162,7 +1162,7 @@
         
         
         if (smoke) {
-            smoke.position = ccp(bus.position.x, bus.position.y + bus.contentSize.height / 2 - 10);
+            smoke.position = ccp(bus.position.x + bus.contentSize.width, bus.position.y + bus.contentSize.height / 2 - 10);
         }
         
        // [self busWillNotGoBeyondScreen];
