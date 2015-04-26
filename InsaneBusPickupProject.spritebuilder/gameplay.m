@@ -108,7 +108,7 @@
     
     
     CCLabelTTF *countdownLabelLeft;
-    CCLabelTTF *countdownLabelRigh;
+    CCLabelTTF *countdownLabelRight;
     CCLabelTTF *countdownLabel;
     CCSprite *_level2road1;
     CCSprite *_level2road2;
@@ -187,7 +187,10 @@
     
     countdownLabelLeft = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
     countdownLabel = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
+    countdownLabelRight = [[CCLabelTTF alloc] initWithString:@"" fontName:@"" fontSize:30];
     [self addChild:countdownLabel];
+    [self addChild:countdownLabelLeft];
+    [self addChild:countdownLabelRight];
     
     
     //initialize the sound effect
@@ -1262,13 +1265,18 @@
     _createdFlag = true;
     CGSize windowSize = [[CCDirector sharedDirector] viewSize];
     BOOL posLeft = CCRANDOM_0_1()<=0.5?YES:NO;
-    
+    [countdownLabelRight setString:@""];
+    [countdownLabelLeft setString:@""];
     if (posLeft == NO) {
-        countdownLabel.position = ccp(windowSize.width - 100, windowSize.height - 120);
+        countdownLabelRight.visible=TRUE;
+        countdownLabelRight.position = ccp(windowSize.width - 100, windowSize.height - 120);
+        countdownLabel=countdownLabelRight;
       
         
     } else {
-        countdownLabel.position = ccp(100, windowSize.height - 50);
+        countdownLabelLeft.visible=TRUE;
+        countdownLabelLeft.position = ccp(100, windowSize.height - 120);
+        countdownLabel=countdownLabelLeft;
    
     }
     
@@ -1280,10 +1288,12 @@
     }
     
     if (posLeft == NO) {
-        [countdownLabel setString:@"Keep\nRight!"];
+        [countdownLabelRight setString:@"Keep\nRight!"];
+       // countdownLabelRight.visible=FALSE;
         
     } else {
-        [countdownLabel setString:@"Keep\nLeft!"];
+        [countdownLabelLeft setString:@"Keep\nLeft!"];
+       // countdownLabelLeft.visible=FALSE;
         
     }
     
@@ -1315,6 +1325,8 @@
     
     [NSThread sleepForTimeInterval:1.0f];
     [countdownLabel setString:@""];
+    [countdownLabelLeft setString:@""];
+    [countdownLabelRight setString:@""];
     _createdFlag = false;
 }
 

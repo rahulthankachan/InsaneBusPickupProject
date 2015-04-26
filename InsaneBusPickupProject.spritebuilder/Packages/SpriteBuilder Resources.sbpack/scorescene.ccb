@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>20</integer>
+	<integer>22</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -41,7 +41,7 @@
 		<array>
 			<dict>
 				<key>UUID</key>
-				<integer>5</integer>
+				<integer>21</integer>
 				<key>baseClass</key>
 				<string>CCSprite</string>
 				<key>children</key>
@@ -49,7 +49,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>gamefin_background</string>
+				<string>desert-04@4x</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -71,8 +71,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>-0.36557626724243164</real>
+							<real>97</real>
+							<real>184</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -85,8 +85,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>0.5</real>
+							<real>0.5</real>
 						</array>
 					</dict>
 					<dict>
@@ -96,8 +96,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.1196081638336182</real>
-							<real>2.9146952629089355</real>
+							<real>1</real>
+							<real>1</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -110,7 +110,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>insanebusResources/gamefin_background.png</string>
+							<string>Backgrounds/desert-04@4x.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -181,8 +181,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>49</real>
-							<real>527</real>
+							<real>52</real>
+							<real>525.5</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -533,8 +533,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>169</real>
-							<real>483</real>
+							<real>175</real>
+							<real>478</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -581,7 +581,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue-Light</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -740,8 +740,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>172</real>
-							<real>453</real>
+							<real>173</real>
+							<real>450</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -788,7 +788,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -948,7 +948,7 @@
 						<key>value</key>
 						<array>
 							<real>172</real>
-							<real>423</real>
+							<real>417</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -995,7 +995,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1154,8 +1154,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>169</real>
-							<real>514</real>
+							<real>175</real>
+							<real>505.5</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1202,7 +1202,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Georgia-Bold</string>
+						<string>HelveticaNeue-UltraLight</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1361,8 +1361,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>169</real>
-							<real>382</real>
+							<real>173</real>
+							<real>378</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1409,7 +1409,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Georgia-Bold</string>
+						<string>HelveticaNeue-UltraLight</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1568,8 +1568,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>173</real>
-							<real>231</real>
+							<real>175.75520324707031</real>
+							<real>205</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1582,8 +1582,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
+							<real>0.50581395626068115</real>
+							<real>0.4166666567325592</real>
 						</array>
 					</dict>
 					<dict>
@@ -1616,7 +1616,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1776,7 +1776,7 @@
 						<key>value</key>
 						<array>
 							<real>173</real>
-							<real>174</real>
+							<real>159</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1823,7 +1823,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1982,8 +1982,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>169</real>
-							<real>328</real>
+							<real>173</real>
+							<real>320</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2030,7 +2030,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2189,8 +2189,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>169</real>
-							<real>354</real>
+							<real>173</real>
+							<real>344</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2237,7 +2237,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2396,8 +2396,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>169</real>
-							<real>302</real>
+							<real>173</real>
+							<real>296</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2444,7 +2444,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2603,8 +2603,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>173</real>
-							<real>262</real>
+							<real>174.75520324707031</real>
+							<real>244</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2651,7 +2651,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Georgia-Bold</string>
+						<string>HelveticaNeue-UltraLight</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2810,8 +2810,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>179.29983520507812</real>
-							<real>206.26953125</real>
+							<real>175.75520324707031</real>
+							<real>184.171875</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2858,7 +2858,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3017,8 +3017,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>169</real>
-							<real>127</real>
+							<real>173</real>
+							<real>117</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3065,7 +3065,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Georgia-Bold</string>
+						<string>HelveticaNeue-UltraLight</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3224,8 +3224,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>170</real>
-							<real>95</real>
+							<real>173</real>
+							<real>86</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3272,7 +3272,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3432,7 +3432,7 @@
 						<key>value</key>
 						<array>
 							<real>173</real>
-							<real>73</real>
+							<real>57</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3479,7 +3479,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3639,7 +3639,7 @@
 						<key>value</key>
 						<array>
 							<real>173</real>
-							<real>47</real>
+							<real>33</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3686,7 +3686,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Chalkduster</string>
+						<string>HelveticaNeue</string>
 					</dict>
 					<dict>
 						<key>name</key>
