@@ -147,7 +147,8 @@
         patternComing = false;
         //modify the background music
         [[OALSimpleAudio sharedInstance] setBgVolume:0.8];
-        
+        self.userInteractionEnabled = YES;
+
     }
     
 
@@ -368,7 +369,6 @@
 {
     [self checkIfBusIsDead];
     
-    NSLog(@"%f, %f", bus.position.x, bus.position.y);
     
     if (roadVelocity) {
         
@@ -942,7 +942,7 @@
                     
                     rainbow = [[CCSprite alloc] initWithImageNamed:@"Rainbows.png"];
                     rainbow.zOrder = 10;
-                    rainbow.position = ccp(xcoord, 570);
+                    rainbow.position = ccp(xcoord, 530);
                     [_physicsNode addChild:rainbow];
                     
                 }
@@ -1017,7 +1017,7 @@
             
             for (ObjectOnRoad *object in objectsOnRoad) {
                 
-                object.position = ccp(object.position.x, object.position.y - baseRoadVelocity - .5 + roadVelocity - offsetVelocityOfCars);
+                object.position = ccp(object.position.x, object.position.y -  roadVelocity);
                 
             }
             
@@ -1025,7 +1025,7 @@
                 switch (car1.type) {
                         
                     case 1:
-                        car1.position = ccp(car1.position.x, car1.position.y - baseRoadVelocity - .5 + roadVelocity - offsetVelocityOfCars);
+                        car1.position = ccp(car1.position.x, car1.position.y + baseRoadVelocity - .5 - roadVelocity - offsetVelocityOfCars);
                         
                         
                         
@@ -1038,7 +1038,7 @@
                         
                     case 2:
                         
-                        car1.position = ccp(car1.position.x, car1.position.y - baseRoadVelocity - 0.5  + roadVelocity - offsetVelocityOfCars);
+                        car1.position = ccp(car1.position.x, car1.position.y + baseRoadVelocity - 0.5  - roadVelocity - offsetVelocityOfCars);
                         if (car1.position.y - bus.position.y <= 250) {
                             if (car1.position.x != bus.position.x) {
                                 if (car1.position.x - bus.position.x - 15 > 0) {
@@ -1057,7 +1057,7 @@
                             break;
                             
                         case 3:
-                            car1.position = ccp(car1.position.x, car1.position.y - baseRoadVelocity - 3  + roadVelocity - offsetVelocityOfCars);
+                            car1.position = ccp(car1.position.x, car1.position.y + baseRoadVelocity - 3  - roadVelocity - offsetVelocityOfCars);
                             
                             
                             
@@ -1070,7 +1070,7 @@
                             
                         case 4:
                             
-                            car1.position = ccp(car1.position.x, car1.position.y + baseRoadVelocity + 2.5  - roadVelocity + offsetVelocityOfCars);
+                            car1.position = ccp(car1.position.x, car1.position.y - baseRoadVelocity + 2.5  + roadVelocity + offsetVelocityOfCars);
                             
                             if (car1.position.y > windowSize.height || car1.position.y < -500) {
                                 // if (car1.position.y < -car1.contentSize.height) {
@@ -1180,14 +1180,14 @@
     
     if (touchLocation.x < window.width / 2) {
         if (roadVelocity > baseRoadVelocity) {
-            roadVelocity -= 0.1;
-            offsetVelocityOfCars -= 0.05;
+            roadVelocity -= 0.1 * 5;
+            offsetVelocityOfCars -= 0.05 * 5;
         }
         
     } else {
         if (roadVelocity < capRoadVelocity) {
-            roadVelocity += 0.1;
-            offsetVelocityOfCars += 0.05;
+            roadVelocity += 0.1 * 5;
+            offsetVelocityOfCars += 0.05 * 5;
         }
         
         
