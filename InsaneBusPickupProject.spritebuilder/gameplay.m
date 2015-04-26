@@ -110,6 +110,11 @@
     CCLabelTTF *countdownLabelLeft;
     CCLabelTTF *countdownLabelRigh;
     CCLabelTTF *countdownLabel;
+    CCSprite *_level2road1;
+    CCSprite *_level2road2;
+    CCSprite *_level3road1;
+    CCSprite *_level3road2;
+    CCSprite *newStudent;
     
 }
 - (void)retry {
@@ -209,7 +214,38 @@
     
     
     //done by Frank
-    _roads= @[_road1,_road2];
+    
+    ///Configure the theme
+    _road1.visible=FALSE;
+    _road2.visible=FALSE;
+    _level2road1.visible=FALSE;
+    _level2road2.visible=FALSE;
+    _level3road1.visible=FALSE;
+    _level3road2.visible=FALSE;
+
+    switch (level) {
+        case 2:
+            _level2road1.visible=TRUE;
+            _level2road2.visible=TRUE;
+            
+            _roads= @[_level2road1,_level2road2];
+            break;
+        case 3:
+            _level3road1.visible=TRUE;
+            _level3road2.visible=TRUE;
+            
+            _roads= @[_level3road1,_level3road2];
+            break;
+            
+        default:
+            _road1.visible=TRUE;
+            _road2.visible=TRUE;
+            _roads= @[_road1,_road2];
+            break;
+    }
+
+    
+
     _cars= [[NSMutableArray alloc]init];
     _cars2 = [[NSMutableArray alloc] init];
     
@@ -227,7 +263,7 @@
     
     
     _physicsNode.collisionDelegate=self;
-    _physicsNode.debugDraw=YES;
+    //_physicsNode.debugDraw=YES;
     bus.physicsBody= [CCPhysicsBody bodyWithRect:CGRectMake(0,0, bus.contentSize.width-5, bus.contentSize.height) cornerRadius:0];
     bus.physicsBody.type = CCPhysicsBodyTypeStatic;
     bus.physicsBody.mass=1;
@@ -1254,7 +1290,7 @@
     
     
     int number= arc4random_uniform(11)+1;
-    CCSprite *newStudent = [[CCSprite alloc] initWithImageNamed:[NSString stringWithFormat:@"character-%i.png",number]];
+    newStudent = [[CCSprite alloc] initWithImageNamed:[NSString stringWithFormat:@"character-%i.png",number]];
     newStudent.scale=.2;
     
     if (posLeft == YES) {
