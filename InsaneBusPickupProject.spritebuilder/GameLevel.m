@@ -377,6 +377,10 @@ static NSMutableArray *patternA;
         grenade.position = ccp(xcoord - 200, 620 + 4 * 50 + 80 - 100);
         [patternA addObject:grenade];
         
+        ObjectOnRoad *diamond = [[ObjectOnRoad alloc] initWithType:11 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+        diamond.position = ccp(xcoord + 20, 620 + 12 * 50 + 80 + 300);
+        [patternA addObject:diamond];
+        
     } else {
         
     }
