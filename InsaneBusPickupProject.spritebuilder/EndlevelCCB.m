@@ -7,6 +7,7 @@
 //
 
 #import "EndlevelCCB.h"
+#import "RetrieveScores.h"
 
 @implementation EndlevelCCB{
     
@@ -69,6 +70,10 @@
         [defaults setObject:currentUsedata forKey:@"currentUserData"];
     
     }
+    
+    
+    RetrieveScores *retrieveScores = [[RetrieveScores alloc]init];
+    [retrieveScores setScores:studentScore+bonusScore+timeScore andLevel:currentLevel];
 
     
     
