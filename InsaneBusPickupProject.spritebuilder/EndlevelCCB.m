@@ -23,6 +23,9 @@
     CCSprite *_restartButton;
     CCSprite *_menuButton;
     CCSprite *_nextButton;
+    CCSprite *_trophy1shield;
+    CCSprite *_trophy2health;
+    CCSprite *_trophy3star;
     
 }
 
@@ -31,22 +34,48 @@
 -(void) didLoadFromCCB {
     
     self.userInteractionEnabled=true;
+    _trophy3star.visible=FALSE;
+    _trophy2health.visible=FALSE;
+    _trophy1shield.visible=FALSE;
+    NSInteger timeScore,studentScore,bonusScore,totalScore,timeRemaining,students,numberOfT;
+    numberOfT=0;
     
     [_timeScore setString:@"Rahul"];
     
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSDictionary *dataForScoreScreen=[[NSDictionary alloc]initWithDictionary:[defaults objectForKey:@"dataForScoreScreen"]];
     
-    NSInteger timeScore,studentScore,bonusScore,totalScore,timeRemaining,students,numberOfT;
+
+    
+    
     timeRemaining=[[dataForScoreScreen objectForKey:@"distance"] integerValue];
     students=[[dataForScoreScreen objectForKey:@"students"] integerValue];
-    numberOfT=[[dataForScoreScreen objectForKey:@"numberOfTrophies"] integerValue];
+    NSArray *trophies= [[NSArray alloc]initWithArray:[dataForScoreScreen objectForKey:@"trophies"]];
+    for(NSString *temp in trophies){
+        if ([temp isEqual:@"health"]) {
+            _trophy2health.visible=TRUE;
+            numberOfT++;
+        }
+        else if ([temp isEqual:@"star"]){
+        
+            _trophy3star.visible=TRUE;
+            numberOfT++;
+        }
+        else if ([temp isEqual:@"shield"]){
+            
+            _trophy1shield.visible=TRUE;
+            numberOfT++;
+        }
+    
+    }
+    
+
     
     
     
     timeScore= timeRemaining*5;
     studentScore= students*20;
-    bonusScore= numberOfT*10;
+    bonusScore= numberOfT*50;
     
     [_timeRemaining setString:[NSString stringWithFormat:@"%i",timeRemaining]];
     [_students setString:[NSString stringWithFormat:@"%i",students]];

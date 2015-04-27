@@ -275,7 +275,7 @@
 				<key>displayName</key>
 				<string>character-12</string>
 				<key>memberVarAssignmentName</key>
-				<string>_trophy3</string>
+				<string>_trophy3star</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -295,7 +295,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>143</real>
+							<real>140</real>
 							<real>221</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -320,8 +320,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.30000001192092896</real>
+							<real>0.30000001192092896</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -334,7 +334,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>character-12.png</string>
+							<string>Trophies/Star@4x.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -383,7 +383,7 @@
 				<key>displayName</key>
 				<string>character-12</string>
 				<key>memberVarAssignmentName</key>
-				<string>_trophy2</string>
+				<string>_trophy2health</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -403,7 +403,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>101</real>
+							<real>97</real>
 							<real>221</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -428,8 +428,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.30000001192092896</real>
+							<real>0.30000001192092896</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -442,7 +442,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>character-12.png</string>
+							<string>Trophies/Health@4x.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -491,7 +491,7 @@
 				<key>displayName</key>
 				<string>character-12</string>
 				<key>memberVarAssignmentName</key>
-				<string>_trophy1</string>
+				<string>_trophy1shield</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -511,7 +511,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>56</real>
+							<real>54.400001525878906</real>
 							<real>221</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -536,8 +536,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.30000001192092896</real>
+							<real>0.30000001192092896</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -550,7 +550,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>character-12.png</string>
+							<string>Trophies/Shield@4x.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -619,8 +619,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>154</real>
-							<real>491</real>
+							<real>146</real>
+							<real>488</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -667,7 +667,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Copperplate-Bold</string>
+						<string>Helvetica-Light</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -839,8 +839,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>162</real>
-							<real>386</real>
+							<real>147</real>
+							<real>390</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -887,7 +887,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Copperplate-Bold</string>
+						<string>Helvetica-Light</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1059,8 +1059,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>162</real>
-							<real>276.5</real>
+							<real>66</real>
+							<real>269</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1107,7 +1107,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Copperplate-Bold</string>
+						<string>HelveticaNeue-Light</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2637,7 +2637,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>10</string>
+							<string>50</string>
 							<false/>
 						</array>
 					</dict>

@@ -81,7 +81,7 @@
         long s1 = [[plistData objectForKey:@"score1"] integerValue];
         long s2 = [[plistData objectForKey:@"score2"] integerValue];
         long s3 = [[plistData objectForKey:@"score3"] integerValue];
-        score = 100;
+
         if(score>s1 && score>s2 && score>s3)
         {
             

@@ -64,6 +64,7 @@
     CCSprite *parking;
     CCNode *sensor;
     NSMutableArray *patternCars;
+    NSMutableArray *trophylist;
     
     
     CCNode *_joypad;
@@ -113,6 +114,8 @@
     CCLabelTTF *countdownLabelRight;
     CCLabelTTF *countdownLabel;
     CCLabelTTF *capacityLabel;
+    CCSprite *_level1road1;
+    CCSprite *_level1road2;
     CCSprite *_level2road1;
     CCSprite *_level2road2;
     CCSprite *_level3road1;
@@ -121,6 +124,8 @@
     CCSprite *_level4road2;
     CCSprite *newStudent;
     NSMutableArray *objectsOnRoad;
+    CGFloat timeTakenGenerally;
+    CGFloat realTimeTaken;
     
     CCSprite *rainbow;
     
@@ -150,6 +155,7 @@
         //modify the background music
         [[OALSimpleAudio sharedInstance] setBgVolume:0.8];
         self.userInteractionEnabled = YES;
+        trophylist= [[NSMutableArray alloc]init];
 
     }
     
@@ -234,6 +240,8 @@
     ///Configure the theme
     _road1.visible=FALSE;
     _road2.visible=FALSE;
+    _level1road1.visible=FALSE;
+    _level1road2.visible=FALSE;
     _level2road1.visible=FALSE;
     _level2road2.visible=FALSE;
     _level3road1.visible=FALSE;
@@ -242,6 +250,12 @@
     _level4road2.visible=FALSE;
 
     switch (level) {
+            
+        case 1:
+            _level1road1.visible=TRUE;
+            _level1road2.visible=TRUE;
+            _roads= @[_level1road1,_level1road2];
+            break;
         case 2:
             _level2road1.visible=TRUE;
             _level2road2.visible=TRUE;
@@ -362,6 +376,8 @@
     capRoadVelocity = roadVelocity + 5;
     offsetVelocityOfCars = roadVelocity;
     
+    timeTakenGenerally=0;
+    realTimeTaken=0;
     
     //set the capacity of the bus
     CapacityOfBus *capacity = [CapacityOfBus alloc];
@@ -396,11 +412,16 @@
         
         
         
+        
+        
         if(count >= 120)
         {
             //  score = score + 300;
             // totalTime = 0;
             distance = distance + 1;
+            
+            timeTakenGenerally= timeTakenGenerally + 1/baseRoadVelocity;
+            realTimeTaken=realTimeTaken +1/roadVelocity;
             [distLabel setString:[NSString stringWithFormat:@"Distance: %d",distance]];
             count = 0;
         }
@@ -410,7 +431,7 @@
             //score=score+1;
             totalTime = 0;
         }
-        [scoreLabel setString:[NSString stringWithFormat:@"Students: %ld/%ld", score, capacityOfBus]];
+        [scoreLabel setString:[NSString stringWithFormat:@"Students: %ld/%ld", score, (long)capacityOfBus]];
         
         
         
@@ -528,8 +549,8 @@
         }
         
         if (distance >= 5 & distance < 6) {
-            if (!powerUp) {
-                powerUp = [[ObjectOnRoad alloc] initWithType:10 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
+            if (!powerUp) {///made this one into a diamond
+                powerUp = [[ObjectOnRoad alloc] initWithType:11 withCollisionType:@"objectOnRoad" andCollisionGroup:@"notColliding"];
                 num = foo4random();
                 xcoord = minimum + (num % div);
                 powerUp.position = ccp(xcoord, window.height + powerUp.contentSize.height);
@@ -945,7 +966,7 @@
                     
                     
                     int xcoord= (320-2*30)/2;
-                    parking.position=ccp(xcoord,550);
+                    parking.position=ccp(xcoord,650);
                     sensor.position=ccp(0,720);
                     [_physicsNode addChild:parking];
                     [_physicsNode addChild:sensor];
@@ -953,7 +974,7 @@
                     rainbow = [[CCSprite alloc] initWithImageNamed:@"Rainbows.png"];
                     rainbow.zOrder = 10;
                     rainbow.position = ccp(xcoord, 530);
-                    [_physicsNode addChild:rainbow];
+                   // [_physicsNode addChild:rainbow];
                     
                 }
             }
@@ -1203,13 +1224,13 @@
         
     }
     
-    if (touchLocation.x>180) {
-        [bus.physicsBody applyImpulse:ccp(0, 400)];
-    }
-    else{
-        [bus.physicsBody applyImpulse:ccp(0, -400)];
-        
-    }
+//    if (touchLocation.x>180) {
+//        [bus.physicsBody applyImpulse:ccp(0, 400)];
+//    }
+//    else{
+//        [bus.physicsBody applyImpulse:ccp(0, -400)];
+//        
+//    }
     //NSLog(@"The y coordinate is %f",touchLocation.y);
     
     
@@ -1296,9 +1317,21 @@
     _createdFlag = false;
 }
 
+/*
+ type 1     trophy
+ type 2     horizontal bus
+ type 3     road barrier
+ type 4     construction area
+ type 5     flame
+ type 6     pizza
+ type 7     gas refill
+ type 8     timber
+ type 9     grenade
+ type 10    powerUp
+ type 11    diamond
+ */
 
-
-
+#pragma mark collision object
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair*)pair insaneBus:(CCNode*)insaneBus objectOnRoad:(ObjectOnRoad*)objectOnRoad {
     if (objectOnRoad) {
         if (objectOnRoad.type == 1) {
@@ -1316,6 +1349,8 @@
         } else if (objectOnRoad.type == 5) {
             
         } else if (objectOnRoad.type == 6) {
+            
+            [trophylist addObject:@"health"];
             
             if (progressTimer.percentage <= 70) {
                 progressTimer.percentage += 30;
@@ -1345,7 +1380,9 @@
             }
 
         } else if (objectOnRoad.type == 10) {
-            NSInteger increasing = 5;
+            
+            [trophylist addObject:@"star"];
+            NSInteger increasing = 2;
             capacityOfBus += increasing;
             CapacityOfBus *capacity = [CapacityOfBus alloc];
             [capacity increaseCapacityOfBusBy:increasing];
@@ -1358,6 +1395,10 @@
             [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
 
         } else if (objectOnRoad.type == 11) {
+            
+            insaneBus.physicsBody.collisionGroup= @"notColliding";
+            [self performSelector:@selector(disableInvincibleMode) withObject:nil afterDelay:2];
+            [trophylist addObject:@"shield"];
             [[OALSimpleAudio sharedInstance] playEffect:objectOnRoad.soundEffect loop:NO];
             progressTimer.percentage = 100;
         }
@@ -1403,7 +1444,7 @@
     
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSMutableDictionary *dataForScoreScreen = [[NSMutableDictionary alloc]init];
-    [dataForScoreScreen setObject:[NSString stringWithFormat:@"%i",distance] forKey:@"distance"];
+    [dataForScoreScreen setObject:[NSString stringWithFormat:@"%f",(timeTakenGenerally- realTimeTaken)*10] forKey:@"distance"];
     [dataForScoreScreen setObject:[NSString stringWithFormat:@"%li",score] forKey:@"students"];
     
     
@@ -1411,16 +1452,13 @@
     ////////Change this to actual trophy list later/////
     
     
-    NSString *nameOfTheTrophy=@"trophy1";
-    NSMutableArray *trophylist= [[NSMutableArray alloc]init];
-    [trophylist addObject:nameOfTheTrophy];
     
-    for (int i=0; i<[trophylist count]; i++) {
+
         
-        [dataForScoreScreen setObject:trophylist[i] forKey:[NSString stringWithFormat:@"trophy%i",i]];
-        
-    }
     
+    
+    [dataForScoreScreen setObject:trophylist forKey:@"trophies"];
+
     [dataForScoreScreen setObject:[NSString stringWithFormat:@"%i",[trophylist count]] forKey:@"numberOfTrophies"];
     
     [defaults setObject:dataForScoreScreen forKey:@"dataForScoreScreen"];
@@ -1639,6 +1677,14 @@
 
     capacityLabel.visible=FALSE;
 }
+
+-(void)disableInvincibleMode{
+    
+    
+    bus.physicsBody.collisionGroup=@"cheat";
+}
+
+
 
 
 @end

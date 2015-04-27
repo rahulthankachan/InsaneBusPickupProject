@@ -15,12 +15,12 @@
  type 3     road barrier
  type 4     construction area
  type 5     flame
- type 6     pizza
+ type 6     pizza//////////////////health
  type 7     gas refill
  type 8     timber
  type 9     grenade
  type 10    powerUp
- type 11    diamond
+ type 11    diamond////////////////shield
  */
 
 - (id)initWithType:(NSInteger) type withCollisionType:(NSString *) collisionType andCollisionGroup:(NSString *) collisionGroup
@@ -65,7 +65,7 @@
             self = [super initWithImageNamed:@"pizza.png"];
             if (self) {
                 self.type = 6;
-                self.scale = 0.06;
+                self.scale = .15;
                 self.soundEffect = @"ting.wav";
                 self.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, self.contentSize.width, self.contentSize.height) cornerRadius:0];
                 self.physicsBody.collisionType = collisionType;
@@ -120,7 +120,7 @@
             self = [super initWithImageNamed:@"diamond.png"];
             if (self) {
                 self.type = 11;
-                self.scale = 0.12;
+                self.scale = 0.15;
                 self.soundEffect = @"diamond.wav";
                 self.physicsBody = [CCPhysicsBody bodyWithRect:CGRectMake(0, 0, self.contentSize.width, self.contentSize.height) cornerRadius:0];
                 self.physicsBody.collisionType = collisionType;
