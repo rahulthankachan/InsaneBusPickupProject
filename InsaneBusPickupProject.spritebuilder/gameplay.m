@@ -117,6 +117,8 @@
     CCSprite *_level2road2;
     CCSprite *_level3road1;
     CCSprite *_level3road2;
+    CCSprite *_level4road1;
+    CCSprite *_level4road2;
     CCSprite *newStudent;
     NSMutableArray *objectsOnRoad;
     
@@ -236,6 +238,8 @@
     _level2road2.visible=FALSE;
     _level3road1.visible=FALSE;
     _level3road2.visible=FALSE;
+    _level4road1.visible=FALSE;
+    _level4road2.visible=FALSE;
 
     switch (level) {
         case 2:
@@ -249,6 +253,12 @@
             _level3road2.visible=TRUE;
             
             _roads= @[_level3road1,_level3road2];
+            break;
+        case 4:
+            _level4road1.visible=TRUE;
+            _level4road2.visible=TRUE;
+            
+            _roads= @[_level4road1,_level4road2];
             break;
             
         default:

@@ -118,6 +118,11 @@
 			<key>scaleFrom</key>
 			<integer>1</integer>
 		</dict>
+		<key>Roads/level4road1.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
 		<key>Sprites</key>
 		<dict/>
 		<key>ccbResources</key>
@@ -214,9 +219,9 @@
 		</dict>
 	</dict>
 	<key>versionStr</key>
-	<string>revision : eea568a5c7
+	<string>revision : 10891b8575
 sku : default
-version : 1.4.9
+version : 1.4.7
 </string>
 </dict>
 </plist>
